@@ -60,7 +60,20 @@ Les examens sont pratiques et se déroulent directement dans la partie.
 
 Le joueur doit effectuer des tâches agricoles réelles, respecter un ordre d’étapes, travailler au bon endroit, utiliser correctement le matériel et éviter les erreurs.
 
+Le système d’examen est conçu pour que le joueur reste dans son tracteur et dans son travail au lieu de devoir retourner dans le menu après chaque étape :
+
+- le HUD affiche en permanence **l’étape X/10** et l’action exacte attendue ;
+- la progression, la note et le nombre d’erreurs restent visibles ;
+- après une étape validée, le HUD passe temporairement en état de réussite avec **pictogramme vert** ;
+- la consigne suivante apparaît immédiatement ;
+- la dernière erreur connue reste expliquée après la disparition de la notification temporaire ;
+- la validation du travail privilégie la surface WorkArea réellement traitée ;
+- un mécanisme de secours peut reconnaître un outil compatible réellement abaissé/en travail lorsqu’un véhicule ou un mod ne remonte pas correctement la surface travaillée ;
+- les étapes de retour vérifient la position réelle du matériel assigné dans sa zone d’origine.
+
 Les erreurs doivent être explicites : mauvais champ, dégâts matériels ou autre faute liée à l’épreuve.
+
+**0.6.4.24 TEST :** ces améliorations sont implémentées et attendent une validation complète en jeu sur les 10 étapes.
 
 ## Personnel & paie
 
@@ -90,6 +103,8 @@ Principe central : **un salarié disponible correspond à une capacité réelle 
 Le joueur doit progressivement gérer son exploitation comme une véritable structure professionnelle.
 
 Les obligations administratives et juridiques varient selon la difficulté. La société doit ensuite être utilisée par les autres systèmes : Banque, Contrats, Assurance et Huissier.
+
+Le parcours de démarrage est contextuel : lorsqu’une étape est requise, le tableau de bord affiche l’action réellement attendue. En Difficile, la logique visée est notamment **Banque → Conseiller → Société → Permis**, sans demander de valider la société avant que les choix bancaires requis soient terminés.
 
 ## Assurances
 
@@ -158,7 +173,7 @@ Les intégrations prévues avec Courseplay, AutoDrive, Soil Fertilizer, Precisio
 
 ## Interface & localisation
 
-L’interface AgriLife suit une identité sombre et moderne, avec informations hiérarchisées, cartes, tableaux, étoiles de réputation/compétence et pictogrammes fonctionnels.
+L’interface AgriLife suit une identité sombre et moderne, avec informations hiérarchisées, cartes, tableaux, étoiles de réputation/compétence et **pictogrammes fonctionnels conservés comme élément important de l’identité du mod**.
 
 Langues prévues : français, anglais, italien, chinois simplifié et chinois traditionnel, avec relecture et contrôle systématique des clés l10n.
 
