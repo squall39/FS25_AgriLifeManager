@@ -1,19 +1,21 @@
 # 🌾 AgriLife Manager — Farming Simulator 25
 
 > **Et si Farming Simulator ne s’arrêtait plus à conduire des machines ?**  
-> AgriLife Manager transforme une partie FS25 en véritable parcours de chef d’exploitation : banque, conseiller, crédit, carrière, examens, personnel, contrats de travail, société, assurances, atelier, contrats commerciaux, réputation, finances professionnelles et, à terme, contentieux et huissier.
+> AgriLife Manager transforme une partie FS25 en véritable parcours de chef d’exploitation : banque, conseiller, crédit, carrière, examens, personnel, contrats de travail, société, assurances, atelier, contrats commerciaux, réputation, comptabilité, fiscalité et, à terme, contrôles administratifs, sanctions et contentieux.
 
 **AgriLife Manager n’est pas pensé comme un simple menu supplémentaire.** Le projet vise à créer une couche complète de gestion autour de la ferme, avec des décisions qui ont des conséquences dans le temps et une exploitation qui possède une véritable mémoire.
+
+> **Principe central : chaque nouvelle fonctionnalité doit produire une conséquence réelle en jeu.**
 
 ---
 
 ## 🚜 Le concept
 
-FS25 simule déjà le travail agricole. AgriLife Manager ajoute tout ce qui se passe **autour** : créer son exploitation, choisir sa banque et son conseiller, obtenir un financement, passer des examens pratiques, faire évoluer sa carrière, recruter du personnel, payer ses salariés, organiser le travail, assurer son matériel, entretenir son parc, signer des contrats et construire progressivement la réputation de son entreprise.
+FS25 simule déjà le travail agricole. AgriLife Manager ajoute tout ce qui se passe **autour** : gérer son exploitation, choisir sa banque et son conseiller lorsque le niveau l’exige, obtenir un financement, passer des examens pratiques, faire évoluer sa carrière, recruter du personnel, payer ses salariés, organiser le travail, assurer son matériel, entretenir son parc, signer des contrats et construire progressivement la réputation de son entreprise.
 
 L’objectif est que **les décisions prises aujourd’hui puissent encore avoir un impact plusieurs mois plus tard dans la sauvegarde**.
 
-Une exploitation bien gérée doit progressivement obtenir de meilleures conditions bancaires, davantage de confiance, une équipe plus compétente et de meilleures opportunités. À l’inverse, dettes mal maîtrisées, incidents, mauvais choix ou réputation dégradée doivent rendre certaines portes plus difficiles à ouvrir.
+Une exploitation bien gérée doit progressivement obtenir de meilleures conditions bancaires, davantage de confiance, une équipe plus compétente et de meilleures opportunités. À l’inverse, dettes mal maîtrisées, incidents, mauvais choix, défauts de conformité ou réputation dégradée doivent avoir des conséquences identifiables et durables.
 
 ---
 
@@ -21,7 +23,7 @@ Une exploitation bien gérée doit progressivement obtenir de meilleures conditi
 
 ### 🏦 Banque et financement réellement jouables
 
-Le joueur choisit une banque et un conseiller parmi plusieurs profils différents. Réputation, compétence, relation avec le joueur, endettement, santé de l’entreprise, historique de paiement et objet du financement participent au dossier.
+Le joueur peut entrer dans une vraie relation bancaire AgriLife. Banque, conseiller, réputation, compétence, relation avec le joueur, endettement, santé de l’entreprise, historique de paiement et objet du financement participent au dossier.
 
 Une demande de crédit n’est pas instantanée : elle est étudiée pendant plusieurs **heures de jeu FS25**. La décision peut être un accord, un accord sous conditions ou un refus.
 
@@ -34,6 +36,8 @@ Les examens sont pratiques et se déroulent directement dans la partie avec les 
 Le HUD indique l’étape en cours, l’action exacte attendue, la progression, la note et les erreurs. Chaque étape réussie déclenche un retour visuel et affiche immédiatement la prochaine consigne afin d’éviter de retourner constamment dans les menus.
 
 La carrière et les compétences doivent refléter ce que le joueur réalise réellement en jeu, et non un simple profil choisi artificiellement au lancement.
+
+Le permis agricole est une obligation de progression dans les niveaux **Réaliste et Strict**.
 
 ### 👨‍🌾 Personnel, contrats de travail et ordres de mission
 
@@ -49,11 +53,11 @@ Le futur centre d’ordres suivra un flux visuel :
 
 Sans Courseplay ni AutoDrive, AgriLife pourra utiliser l’IA native FS25 pour les tâches réellement supportées par le jeu.
 
-### 🛰️ Joueur humain : GPS conservé, ouvrier vanilla retiré
+### 🛰️ Joueur humain : GPS conservé, ouvrier vanilla séparé
 
 À partir de la **0.6.4.25 TEST**, AgriLife commence à séparer clairement le joueur humain de la main-d’œuvre salariée.
 
-Quand une carrière AgriLife est active, le joueur ne doit plus engager directement l’ouvrier natif FS25 avec la commande habituelle. En revanche, le **GPS / Steering Assist natif reste disponible**.
+Quand une carrière AgriLife est active, le joueur ne doit plus engager directement un ouvrier natif comme s’il s’agissait d’une ressource humaine gratuite et indépendante du système Personnel. En revanche, le **GPS / Steering Assist natif reste disponible**.
 
 Les fonctions IA de FS25 ne sont pas supprimées : elles restent accessibles à AgriLife pour permettre au futur centre d’ordres de lancer lui-même les tâches des salariés enregistrés.
 
@@ -61,11 +65,33 @@ Cette architecture évite le cafouillage entre helper vanilla, Personnel AgriLif
 
 ➡️ **[Conception détaillée du système Personnel](docs/WORKFORCE_DESIGN.md)**
 
-### 🏢 Société et administration
+### 🏢 Société, statuts et administration
 
-Dans les niveaux les plus exigeants, créer et administrer son exploitation fait partie du gameplay. La structure de l’entreprise, sa santé, sa réputation et sa conformité doivent progressivement influencer Banque, contrats, assurances et futurs contentieux.
+En **Réaliste et Strict**, créer et administrer son exploitation fait partie du gameplay. Société et permis agricole deviennent de vraies obligations de démarrage.
 
-Le tableau de bord suit l’ordre réel des obligations : **banque → conseiller → société → permis** lorsque ces étapes sont requises.
+À terme, l’exploitation doit pouvoir évoluer par statuts :
+
+**petite exploitation → exploitation professionnelle → entreprise agricole → grande entreprise**
+
+Cette évolution dépendra de l’expérience, de la réputation, du capital, des examens, de la conformité et de l’activité réellement réalisée.
+
+### ⭐ Réputation de l’exploitation
+
+La réputation devient le **premier grand système à développer après la stabilisation des builds actuelles**.
+
+Elle doit évoluer selon les contrats terminés, retards, dettes, incidents, examens, qualité du travail, conformité et gestion générale. Elle influencera notamment Banque, Conseiller, Contrats, Coopératives, Assurance et futurs contentieux.
+
+### 📊 Comptabilité & fiscalité
+
+La comptabilité/fiscalité est la **deuxième grande priorité après stabilisation**.
+
+AgriLife doit suivre chiffre d’affaires, charges, salaires, assurances, intérêts, entretien, résultat, actifs, dettes et historique pluriannuel. Les niveaux les plus exigeants devront imposer une séparation professionnelle/personnelle plus contraignante et de vraies échéances fiscales.
+
+### 🧾 Contrôles administratifs & sanctions
+
+Les contrôles administratifs sont la **troisième grande priorité après stabilisation**.
+
+Un contrôle pourra vérifier les obligations réellement applicables à la difficulté choisie : permis, assurance, documents, conformité ou autres exigences. Les conséquences pourront aller de l’avertissement à l’amende ou à l’immobilisation selon la gravité, avec une cause toujours compréhensible par le joueur.
 
 ### 🛡️ Assurances
 
@@ -79,27 +105,31 @@ Le matériel doit posséder une histoire économique : achat, utilisation, usure
 
 Le projet vise de véritables engagements commerciaux : volumes, prix, qualité, délais, pénalités, contrats avant semis, plusieurs acheteurs et coopératives, avec impact de la réputation et de l’historique.
 
+Les contrats devront également recevoir une notation selon le respect des conditions, la qualité et les incidents, avec effet sur les futures opportunités.
+
 ### ⚖️ Huissier et contentieux
 
 Les difficultés financières doivent former une chaîne cohérente :
 
 **activité → finances → banque → crédit → incident → relance → négociation → contentieux → réputation**
 
-Un problème bancaire ne doit pas se limiter à un message rouge : AgriLife prévoit retards, mises en demeure, échéanciers, frais, négociation et conséquences durables.
+Un problème bancaire ou fiscal ne doit pas se limiter à un message rouge : AgriLife prévoit retards, mises en demeure, échéanciers, frais, négociation et conséquences durables.
 
 ---
 
-## 🎮 Trois niveaux de difficulté
+## 🎮 Difficultés — cible fonctionnelle
 
-| Niveau | Capital AgriLife | Philosophie générale |
-|---|---:|---|
-| **Facile** | 200 000 € | Gestion accessible, centrée sur Banque et XP/Carrière |
-| **Normal** | 100 000 € | Banque + Personnel + Examens + XP/Carrière |
-| **Difficile** | 50 000 € | Expérience complète avec obligations administratives renforcées |
+La conception cible distingue **Libre, Facile, Réaliste et Strict**.
 
-Le niveau choisi est **permanent pour la sauvegarde**. Les modules verrouillés restent visibles afin que le joueur comprenne ce que les difficultés supérieures ajoutent.
+| Obligation de démarrage | Libre | Facile | Réaliste | Strict |
+|---|---:|---:|---:|---:|
+| Banque + conseiller obligatoires | Non | Non | Oui | Oui |
+| Création de la société obligatoire | Non | Non | Oui | Oui |
+| Permis agricole obligatoire | Non | Non | Oui | Oui |
 
-Pour une nouvelle carrière, AgriLife fournit son propre capital et neutralise le prêt de départ FS25. Pour une sauvegarde existante, argent, terrains, bâtiments, véhicules et dette existante sont conservés.
+Les systèmes peuvent rester accessibles dans les niveaux plus souples sans y être imposés. **Réaliste** vise une gestion complète et crédible ; **Strict** conserve la même logique avec des exigences, coûts, pénalités et conséquences plus lourds.
+
+Le niveau choisi est permanent pour la sauvegarde.
 
 ---
 
@@ -107,7 +137,9 @@ Pour une nouvelle carrière, AgriLife fournit son propre capital et neutralise l
 
 AgriLife Manager est construit autour d’une idée importante : la sauvegarde doit conserver l’histoire de l’exploitation.
 
-Historique bancaire, crédit, réputation, carrière, examens, employés, contrats de travail, patrimoine, dette, société et événements doivent survivre aux sauvegardes/rechargements et former progressivement un dossier durable de l’exploitation.
+Historique bancaire, crédit, réputation, carrière, examens, employés, contrats de travail, patrimoine, dette, société, fiscalité, contrôles et événements doivent survivre aux sauvegardes/rechargements et former progressivement un dossier durable de l’exploitation.
+
+Un **Journal de bord AgriLife** est prévu pour retracer les grandes étapes : permis obtenu, salarié embauché, premier gros financement, évolution de statut, contrôle, contrat important ou autre événement marquant.
 
 ---
 
@@ -131,12 +163,12 @@ La base 1920×1080 est utilisée pour les tests, avec adaptation 1440p et 4K pr�
 
 ## 🧪 État actuel du développement
 
-**Version de travail actuelle : 0.6.4.25 TEST**  
+**Version de travail documentée : 0.6.4.25 TEST**  
 **Plateforme cible : PC**  
 **Auteur : Chez_Squall**  
 **Statut : développement privé / builds TEST**
 
-La prochaine session de test doit principalement vérifier : la chaîne complète des examens corrigée depuis 0.6.4.24, le HUD permanent, les transitions d’étapes, le parcours Banque → Conseiller → Société → Permis, et la nouvelle séparation **ouvrier vanilla désactivé / GPS natif conservé**.
+La prochaine session de test doit principalement vérifier : la chaîne complète des examens corrigée depuis 0.6.4.24, le HUD permanent, les transitions d’étapes, la persistance propre à la sauvegarde et la nouvelle séparation **joueur humain / GPS natif / salariés AgriLife**.
 
 La numérotation restera volontairement **inférieure à 1.0.0.0** tant que les grands systèmes ne sont pas suffisamment terminés et validés.
 
@@ -144,21 +176,13 @@ La numérotation restera volontairement **inférieure à 1.0.0.0** tant que les 
 
 ## 🗺️ Feuille de route
 
-Le développement est organisé en grandes phases :
+Après stabilisation de la base actuelle, les trois priorités validées sont :
 
-1. Banque & finances
-2. Interface & expérience utilisateur
-3. Personnel, contrats, ordres de travail & paie
-4. Carrière, XP, examens & permis
-5. Société & administration
-6. Assurances
-7. Atelier & cycle de vie du matériel
-8. Contrats & coopératives
-9. Huissier & contentieux
-10. Compatibilités PC optionnelles
-11. Sauvegardes, migration & multijoueur
-12. Localisation
-13. Préparation publication
+1. **Réputation de l’exploitation**
+2. **Comptabilité & fiscalité**
+3. **Contrôles administratifs & sanctions**
+
+La feuille de route détaillée couvre ensuite Personnel, Carrière/Examens, statuts d’exploitation, Assurances, Atelier, Contrats/Coopératives, Contentieux, compatibilités, sauvegardes/multijoueur, localisation et préparation publication.
 
 ➡️ **[Consulter la feuille de route complète](ROADMAP.md)**
 
@@ -181,7 +205,7 @@ AgriLife Manager veut répondre à une question :
 
 > **Que se passerait-il si Farming Simulator simulait aussi la vie économique et professionnelle d’un exploitant agricole ?**
 
-Acheter une moissonneuse ne devrait pas être seulement une question de prix. Il faudrait aussi se demander si la banque suivra, si la trésorerie absorbera la mensualité, si les salariés sont disponibles, si l’assurance couvrira le risque, si le matériel sera entretenu et si l’investissement permettra réellement de développer l’exploitation.
+Acheter une moissonneuse ne devrait pas être seulement une question de prix. Il faudrait aussi se demander si la banque suivra, si la trésorerie absorbera la mensualité, si les salariés sont disponibles, si l’assurance couvrira le risque, si le matériel sera entretenu, si l’exploitation est en conformité et si l’investissement permettra réellement de se développer.
 
 C’est cette profondeur que le projet cherche à apporter.
 
