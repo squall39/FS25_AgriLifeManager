@@ -12,14 +12,14 @@ Cette feuille de route décrit l’ordre de développement actuellement retenu p
 - [x] Persistance du dossier bancaire en sauvegarde.
 - [x] Une seule demande active à la fois.
 - [x] Objet du financement sélectionnable.
-- [x] Première différenciation des profils bancaires et conseillers.
-- [ ] Finaliser les notes en étoiles des banques : réputation, compétence, solidité/politique de risque.
-- [ ] Finaliser les notes en étoiles des conseillers : réputation, compétence, sévérité, rapidité.
-- [ ] Rendre les étoiles clairement différentes d’une banque/conseiller à l’autre.
-- [ ] Séparer clairement qualité intrinsèque et relation personnelle du joueur.
+- [x] Profils bancaires et conseillers différenciés.
+- [x] Réputation et compétence affichées séparément en étoiles pour les banques et les conseillers.
+- [x] Valeurs d’étoiles différentes d’une banque/conseiller à l’autre.
+- [x] Qualité intrinsèque du professionnel séparée de la relation/confiance personnelle du joueur.
+- [ ] Ajouter/affiner solidité bancaire, politique de risque, sévérité et rapidité d’étude.
 - [ ] Bloquer le changement de banque/conseiller pendant une demande en cours.
 - [ ] Ajouter des raisons détaillées de décision et journaliser les facteurs déterminants.
-- [ ] Faire varier taux, plafond, durée, garanties et délai selon banque, conseiller, objet et qualité du dossier.
+- [ ] Faire varier davantage taux, plafond, durée, garanties et délai selon banque, conseiller, objet et qualité du dossier.
 
 ### Comptes & finances
 - [x] Base du compte professionnel.
@@ -47,9 +47,10 @@ Cette feuille de route décrit l’ordre de développement actuellement retenu p
 - [x] Tutoriel lancé une fois réellement en jeu.
 - [x] Assistance native intégrée.
 - [x] Support 1920x1080 validé comme base.
+- [x] Pictogrammes conservés comme élément volontaire de l’identité AgriLife.
+- [x] Tableau de bord : action obligatoire contextuelle Banque → Conseiller → Société → Permis.
 - [ ] Finaliser l’adaptation 1440p / 4K.
-- [ ] Revoir les pictogrammes trop petits ou décoratifs.
-- [ ] Utiliser des pictogrammes fonctionnels et immédiatement compréhensibles.
+- [ ] Continuer à harmoniser taille, netteté et placement des pictogrammes **sans les supprimer**.
 - [ ] Conserver une présentation proche d’une application/web moderne sans surcharge.
 - [ ] Harmoniser tailles de texte, boutons et onglets.
 - [ ] Supprimer tout artefact visuel résiduel.
@@ -75,8 +76,14 @@ Cette feuille de route décrit l’ordre de développement actuellement retenu p
 - [x] Structure carrière / XP.
 - [x] Structure examens.
 - [x] Permis agricole et progression d’examens disponibles en Difficile.
-- [ ] Revalider toute la progression réelle des examens.
-- [ ] Corriger/valider définitivement l’étape cultivateur / examen 5.
+- [x] Le HUD conserve l’action exacte à réaliser pendant toute l’épreuve, y compris en Difficile — **implémenté en 0.6.4.24, à revalider en jeu**.
+- [x] Panneau HUD vert + pictogramme après chaque étape réussie avec affichage immédiat de la consigne suivante — **implémenté en 0.6.4.24, à revalider en jeu**.
+- [x] Affichage persistant de la nature de la dernière erreur d’examen.
+- [x] Correction logique du retour du matériel : présence réelle de l’outil dans son cercle d’origine sans sortie/rentrée artificielle — **à revalider en jeu après l’étape 5**.
+- [x] Progression de secours pour les travaux réels lorsque la surface WorkArea n’est pas remontée : outil compatible actif/abaissé + déplacement réel — **implémenté en 0.6.4.24**.
+- [ ] Revalider toute la chaîne réelle des 10 étapes sur une partie complète.
+- [ ] Valider définitivement l’épreuve 5 « cultivation » avec le test utilisateur au retour.
+- [ ] Vérifier ensuite les étapes 6/10 à 10/10, notamment retour/dételage/parking/sortie.
 - [ ] Vérifier chaque outil et chaque type de travail comptabilisé.
 - [ ] Développer la réputation patron/société à partir de l’activité réelle.
 - [ ] Faire évoluer le statut professionnel sans choix de profil artificiel.
@@ -84,6 +91,7 @@ Cette feuille de route décrit l’ordre de développement actuellement retenu p
 ## Phase 5 — Société & administration
 
 - [x] Base du module Société.
+- [x] Ordonnancement du démarrage clarifié : la société n’est proposée qu’après la banque et le conseiller lorsqu’ils sont requis.
 - [ ] Gestion plus profonde de la structure juridique.
 - [ ] Charges administratives selon difficulté.
 - [ ] Obligations de création et de conformité en Difficile.
