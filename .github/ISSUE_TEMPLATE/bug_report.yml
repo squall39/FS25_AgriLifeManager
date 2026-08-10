@@ -7,6 +7,8 @@ body:
       value: |
         Merci de fournir le maximum d'informations. Un rapport accompagné du `log.txt` de la session concernée est beaucoup plus facile à reproduire et corriger.
 
+        ⚠️ **Attention : les issues GitHub sont publiques.** Avant de joindre un `log.txt`, une capture ou une sauvegarde, vérifiez et masquez si nécessaire les données personnelles (nom de session Windows, chemins locaux, adresse e-mail, identifiants ou toute autre information que vous ne souhaitez pas publier).
+
   - type: input
     id: agrilife_version
     attributes:
@@ -98,8 +100,8 @@ body:
     id: log
     attributes:
       label: log.txt
-      description: Glissez-déposez ici le `log.txt` de la session où le problème s'est produit. Évitez un log d'une autre session.
-      placeholder: Déposez le fichier log.txt ici.
+      description: Glissez-déposez ici le `log.txt` de la session où le problème s'est produit, après avoir vérifié qu'il ne contient pas de donnée personnelle que vous ne souhaitez pas publier. Évitez un log d'une autre session.
+      placeholder: Déposez le fichier log.txt ici après vérification/anonymisation si nécessaire.
     validations:
       required: false
 
@@ -116,7 +118,7 @@ body:
     id: extra
     attributes:
       label: Informations complémentaires
-      description: Captures d'écran, vidéos, détails de sauvegarde ou autres observations utiles.
+      description: Captures d'écran, vidéos, détails de sauvegarde ou autres observations utiles. Vérifiez également ces fichiers avant publication.
     validations:
       required: false
 
@@ -128,4 +130,6 @@ body:
         - label: J'ai vérifié que le problème concerne bien AgriLife Manager ou une de ses interactions.
           required: true
         - label: J'ai indiqué si le problème se produit sur une nouvelle partie ou une sauvegarde existante.
+          required: true
+        - label: J'ai vérifié les fichiers joints et masqué les données personnelles que je ne souhaite pas publier.
           required: true
