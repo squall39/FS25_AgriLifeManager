@@ -1,0 +1,31 @@
+# Farming Simulator / AgriLife development artefacts
+*.log
+log.txt
+log*.txt
+
+# Savegames / temporary test data
+savegame*/
+*.bak
+*.tmp
+*.temp
+
+# Test distribution archives
+*_TEST.zip
+*.7z
+*.rar
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Generated caches
+__pycache__/
+*.pyc
+
+# Local staging folders
+_build/
+build/
+dist/
+_staging/
