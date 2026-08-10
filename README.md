@@ -2,11 +2,14 @@
 
 > **Et si Farming Simulator ne s’arrêtait plus à conduire des machines ?**
 
-AgriLife Manager transforme une partie FS25 en véritable parcours de chef d’exploitation : banque, conseiller, crédit, carrière, examens, personnel, contrats de travail, société, assurances, atelier, contrats commerciaux, réputation, comptabilité, fiscalité et, à terme, contrôles administratifs, sanctions et contentieux.
+AgriLife Manager transforme une partie FS25 en véritable parcours de chef d’exploitation : banque, conseiller, crédit, carrière, examens, personnel, contrats de travail, société, assurances, atelier, contrats commerciaux, réputation, comptabilité, fiscalité, économie dynamique et, à terme, contrôles administratifs, sanctions et contentieux.
 
 **AgriLife Manager n’est pas pensé comme un simple menu supplémentaire.** Le projet vise à créer une couche complète de gestion autour de la ferme, avec des décisions qui ont des conséquences dans le temps et une exploitation qui possède une véritable mémoire.
 
 > **Principe central : chaque nouvelle fonctionnalité doit produire une conséquence réelle en jeu.**
+
+> [!WARNING]
+> **Projet en développement actif.** Le dépôt est public afin de rendre le développement, la documentation et les retours plus accessibles, mais AgriLife Manager n’est pas encore une version finale. Les builds TEST peuvent contenir des fonctions incomplètes ou nécessiter des migrations. La numérotation restera volontairement **inférieure à 1.0.0.0** tant que les grands systèmes ne sont pas terminés et validés.
 
 ---
 
@@ -28,7 +31,7 @@ AgriLife Manager conserve **uniquement trois niveaux : Facile, Normal et Diffici
 | **Normal** | 100 000 € | Réglage de référence, expérience complète et équilibrée. |
 | **Difficile** | 50 000 € | Contraintes, coûts, risques, contrôles et conséquences renforcés. |
 
-**La difficulté agit sur tout AgriLifeManager**, pas seulement sur le capital de départ. Banque, crédits, examens, XP, personnel, salaires, assurances, atelier, fiscalité, réputation, contrats, contrôles, sanctions et événements doivent tous consulter le même profil de difficulté enregistré dans la sauvegarde.
+**La difficulté agit sur tout AgriLifeManager**, pas seulement sur le capital de départ. Banque, crédits, examens, XP, personnel, salaires, assurances, atelier, fiscalité, réputation, marchés, contrats, contrôles, sanctions et événements doivent tous consulter le même profil de difficulté enregistré dans la sauvegarde.
 
 Le niveau choisi est permanent pour la carrière.
 
@@ -104,11 +107,32 @@ Contrats, primes, franchises, exclusions et couverture évolueront selon risque,
 
 Le matériel doit posséder une histoire économique : achat, utilisation, usure, entretien, réparation, immobilisation et valeur résiduelle. Coûts et conséquences seront adaptés au niveau choisi.
 
+### 🌍 Économie & marchés dynamiques
+
+AgriLife prévoit un moteur économique commun capable d’influencer :
+
+- le matériel neuf et d’occasion ;
+- les outils et accessoires ;
+- les palettes, big bags, semences, engrais et autres intrants ;
+- le carburant et les énergies détectables ;
+- le foncier et les champs ;
+- la location de matériel, outils, parcelles et productions/usines lorsque leur gestion est techniquement sûre ;
+- les produits agricoles et issus des productions ;
+- les contrats, coopératives et débouchés commerciaux.
+
+Le marché doit évoluer avec **offre, demande, saison, disponibilité, événements et historique**, sans fluctuations absurdes ni prix purement aléatoires.
+
+La chaîne économique de référence est :
+
+**sol / pratiques → intrants → coût de production → rendement / qualité → marché mondial → marchés locaux → coopératives / usines → contrats → comptabilité → banque → réputation**
+
+➡️ **[Conception détaillée de l’économie dynamique](docs/DYNAMIC_ECONOMY_AGRONOMY.md)**
+
 ### 🤝 Contrats et coopératives
 
 Le projet vise de vrais engagements commerciaux : volumes, prix, qualité, délais, pénalités, contrats avant semis, acheteurs et coopératives multiples.
 
-Les contrats recevront une notation influençant réputation et futures offres, avec exigences et pénalités dépendant de la difficulté.
+Les contrats seront reliés au moteur de marché dynamique : demande, cours, volumes recherchés et primes pourront évoluer. La réputation, l’historique et la difficulté resteront également déterminants.
 
 ### ⚖️ Huissier et contentieux
 
@@ -117,6 +141,28 @@ Chaîne visée :
 **activité → finances → banque → crédit → incident → relance → négociation → contentieux → réputation**
 
 Délais, frais, tolérances et escalade dépendront également du niveau de difficulté.
+
+---
+
+## 🌾 Toutes maps & multifruit — objectif d’architecture
+
+AgriLifeManager ne doit pas dépendre d’une liste fermée de maps ou de cultures.
+
+Le projet vise la détection dynamique des **fruits, fillTypes, produits, points de vente, productions, parcelles et articles magasin** enregistrés dans la partie. Les multifruits correctement enregistrés par une map ou un mod doivent pouvoir être intégrés aux systèmes AgriLife sans ajout manuel systématique.
+
+Lorsqu’un contenu tiers utilise une implémentation non détectable ou non sûre, AgriLife doit l’ignorer proprement plutôt que casser la partie.
+
+---
+
+## 🌱 Precision Farming & Soil Fertilizer
+
+Ces intégrations restent **optionnelles**. AgriLifeManager ne doit pas refaire leur logique agronomique.
+
+Lorsqu’ils sont présents et que leurs données sont accessibles de manière fiable, Precision Farming et Soil Fertilizer pourront enrichir les coûts de production, contrats qualité, primes, réputation, contrôles et rentabilité.
+
+**La difficulté AgriLife modifie les conséquences économiques et administratives, pas artificiellement les lois agronomiques de Precision Farming ou Soil Fertilizer.**
+
+En leur absence, AgriLife doit rester pleinement fonctionnel avec FS25 vanilla.
 
 ---
 
@@ -129,16 +175,14 @@ AgriLifeManager doit être utilisable proprement dans **toutes les langues distr
 - Tous les fichiers de langue doivent contenir exactement le même jeu de clés.
 - Les clés manquantes, doublons, clés inutilisées et fautes de nommage doivent être détectés avant les builds importantes.
 - Les nouvelles clés doivent être ajoutées immédiatement à toutes les langues distribuées.
-- Une version publique doit avoir **0 clé manquante, 0 clé brute visible, 0 traduction vide et 0 fallback involontaire**.
+- Une version publiable doit avoir **0 clé manquante, 0 clé brute visible, 0 traduction vide et 0 fallback involontaire**.
 - Les traductions doivent respecter une terminologie cohérente pour l’agriculture, la banque, la comptabilité, l’administration, le droit et le personnel.
-
-La feuille de route prévoit aussi l’extension progressive aux langues pertinentes de FS25/ModHub afin que le mod soit accessible au plus grand nombre.
 
 ---
 
 ## 🧠 Une carrière avec une mémoire
 
-Historique bancaire, crédit, réputation, carrière, examens, employés, contrats de travail, patrimoine, dette, société, fiscalité, contrôles et événements doivent survivre aux sauvegardes/rechargements.
+Historique bancaire, crédit, réputation, carrière, examens, employés, contrats de travail, patrimoine, dette, société, fiscalité, marchés, locations, contrôles et événements doivent survivre aux sauvegardes/rechargements.
 
 Un **Journal de bord AgriLife** est prévu pour conserver les grandes étapes : permis obtenu, salarié embauché, financement majeur, évolution de statut, contrôle, contrat important, sinistre ou autre événement marquant.
 
@@ -147,6 +191,8 @@ Un **Journal de bord AgriLife** est prévu pour conserver les grandes étapes : 
 ## 🔌 Compatibilités prévues
 
 Le cœur du mod doit fonctionner seul. Courseplay, AutoDrive, Soil Fertilizer, Precision Farming et autres intégrations resteront optionnelles.
+
+La compatibilité sera testée progressivement sur plusieurs maps vanilla, modmaps et maps multifruits.
 
 ---
 
@@ -163,11 +209,29 @@ Base de test : 1920×1080, avec adaptation 1440p et 4K prévue.
 **Version de travail documentée : 0.6.4.25 TEST**  
 **Plateforme cible : PC**  
 **Auteur : Chez_Squall**  
-**Statut : développement privé / builds TEST**
+**Statut : développement public / builds TEST**
 
 La prochaine session de test doit principalement vérifier la chaîne complète des examens corrigée depuis 0.6.4.24, le HUD permanent, la persistance propre à la sauvegarde et la séparation joueur humain / GPS natif / salariés AgriLife.
 
-La numérotation restera volontairement **inférieure à 1.0.0.0** tant que les grands systèmes ne sont pas suffisamment terminés et validés.
+---
+
+## 🐛 Signaler un problème ou proposer une idée
+
+Le dépôt public peut servir à centraliser les retours utiles au développement.
+
+Pour un bug, merci de fournir autant que possible :
+
+- version AgriLifeManager ;
+- version de Farming Simulator 25 ;
+- map utilisée ;
+- difficulté AgriLife ;
+- nouvelle partie ou sauvegarde existante ;
+- étapes permettant de reproduire le problème ;
+- résultat attendu et résultat obtenu ;
+- `log.txt` de la session concernée ;
+- autres mods susceptibles d’intervenir.
+
+Utilisez les formulaires GitHub **Bug report** ou **Feature request** afin de garder des retours exploitables.
 
 ---
 
@@ -188,8 +252,9 @@ Après stabilisation :
 - **[Feuille de route](ROADMAP.md)**
 - **[Fonctionnalités détaillées](FEATURES.md)**
 - **[Personnel & main-d’œuvre](docs/WORKFORCE_DESIGN.md)**
+- **[Économie dynamique, multifruit, Precision Farming & Soil Fertilizer](docs/DYNAMIC_ECONOMY_AGRONOMY.md)**
 - **[Changelog](CHANGELOG.md)**
-- **[Règles de développement](CONTRIBUTING.md)**
+- **[Règles de développement et contributions](CONTRIBUTING.md)**
 - **[Copyright et distribution](COPYRIGHT.md)**
 
 ---
