@@ -5,7 +5,7 @@
 ## État du projet
 
 - Développement actif — builds TEST
-- Version de travail actuelle : **0.6.4.22 TEST**
+- Version de travail actuelle : **0.6.4.23 TEST**
 - Plateforme cible : **PC**
 - Auteur : **Chez_Squall**
 - Dépôt de développement : **privé tant que le mod n'est pas prêt pour une publication stable**
