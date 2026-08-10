@@ -205,15 +205,14 @@ Base de test : 1920×1080, avec adaptation 1440p et 4K prévue.
 
 ## 🧪 État actuel du développement
 
-**Documentation de travail : 0.6.4.25 TEST**  
-**Dernière archive de code de référence disponible lors de la synchronisation publique : 0.6.4.24 TEST**  
+**Build de travail actuelle : 0.6.4.26 TEST**  
 **Plateforme cible : PC**  
 **Auteur : Chez_Squall**  
 **Statut : développement public / builds TEST**
 
-Cette distinction évite de présenter un snapshot 0.6.4.24 comme s’il contenait déjà tous les changements ciblés pour la 0.6.4.25.
+Le test en cours vise d’abord à terminer la chaîne complète des examens. La 0.6.4.26 corrige l’étape 6/10 afin que l’arrêt et le relevage de l’équipement suffisent à valider la sécurisation ; le repliage n’est plus bloquant. Le log `Secure-state` permet désormais d’identifier immédiatement un état d’outil mal remonté par FS25 ou un matériel moddé.
 
-La prochaine validation en jeu reste centrée sur la chaîne complète des examens, le HUD permanent, la persistance propre à la sauvegarde et la séparation joueur humain / GPS natif / salariés AgriLife.
+La prochaine validation reste : reprendre la sauvegarde déjà bloquée en 6/10, poursuivre jusqu’à 10/10, puis contrôler la persistance du permis après sauvegarde/rechargement.
 
 ---
 
