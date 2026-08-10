@@ -2,6 +2,12 @@
 
 Ce document présente la vision fonctionnelle d’AgriLife Manager. Les systèmes décrits ici n’ont pas tous le même niveau d’avancement : certains sont déjà jouables, d’autres sont en cours de développement ou planifiés dans la feuille de route.
 
+## Principe de conception
+
+AgriLife Manager ne doit pas devenir une collection de menus sans effet sur la partie.
+
+**Chaque nouvelle fonctionnalité doit avoir une conséquence réelle en jeu** : accès ou refus, coût, avantage, obligation, réputation, progression, risque, sanction, opportunité ou évolution durable de la carrière.
+
 ## Banque & conseiller
 
 AgriLife Manager remplace progressivement la logique de prêt instantané de FS25 par une relation bancaire construite dans le temps.
@@ -23,6 +29,8 @@ Le système bancaire doit prendre en compte :
 - santé générale de l’entreprise.
 
 Les demandes de crédit sont étudiées pendant des heures de jeu FS25 et peuvent être acceptées, refusées ou conditionnées.
+
+Dans la cible fonctionnelle, **Banque + conseiller sont obligatoires en Réaliste et Strict**. Ils peuvent rester disponibles dans les niveaux plus souples sans y être imposés.
 
 ## Compte professionnel
 
@@ -46,13 +54,55 @@ Fonctions visées :
 
 ## Compte personnel
 
-Le compte personnel reste distinct du compte professionnel. En difficulté élevée, la séparation doit devenir réellement contraignante afin d’empêcher le joueur de traiter l’argent professionnel comme une caisse personnelle sans conséquence.
+Le compte personnel reste distinct du compte professionnel. En Réaliste et surtout en Strict, la séparation doit devenir réellement contraignante afin d’empêcher le joueur de traiter l’argent professionnel comme une caisse personnelle sans conséquence.
+
+## Réputation de l’exploitation
+
+La réputation est le **premier grand système prioritaire après stabilisation des builds TEST actuelles**.
+
+Elle ne doit pas être une simple barre décorative. Elle doit évoluer à partir d’événements réels :
+
+- contrats réussis ou mal exécutés ;
+- retards ;
+- dettes et incidents de paiement ;
+- examens et qualifications ;
+- qualité du travail ;
+- sinistres ou incidents ;
+- conformité administrative ;
+- historique de gestion.
+
+La réputation doit ensuite influencer Banque, Conseiller, Contrats, Coopératives, Assurance, Administration et futurs contentieux.
+
+Une réputation dégradée doit pouvoir être reconstruite progressivement afin d’éviter les situations définitivement bloquées.
+
+## Comptabilité & fiscalité
+
+La comptabilité/fiscalité est le **deuxième grand système prioritaire après stabilisation**.
+
+Le système visé comprend :
+
+- chiffre d’affaires ;
+- produits et charges ;
+- salaires et coût employeur ;
+- assurances ;
+- intérêts et frais financiers ;
+- entretien et réparations ;
+- résultat annuel ;
+- actifs et dettes ;
+- amortissements lorsque pertinents ;
+- historique pluriannuel ;
+- échéances fiscales ;
+- clôture d’exercice.
+
+La situation comptable doit influencer le crédit et la capacité de développement de l’entreprise.
 
 ## Carrière & XP
 
 La carrière ne repose pas sur un profil choisi artificiellement au départ. Elle doit refléter l’expérience réellement acquise sur l’exploitation.
 
 La progression doit prendre en compte les travaux effectués, les résultats, les examens, la réputation et l’historique professionnel.
+
+Une fiche de carrière durable est prévue avec notamment heures de travail, hectares, examens, contrats, incidents et grandes étapes de développement.
 
 ## Examens & permis agricole
 
@@ -71,9 +121,11 @@ Le système d’examen est conçu pour que le joueur reste dans son tracteur et 
 - un mécanisme de secours peut reconnaître un outil compatible réellement abaissé/en travail lorsqu’un véhicule ou un mod ne remonte pas correctement la surface travaillée ;
 - les étapes de retour vérifient la position réelle du matériel assigné dans sa zone d’origine.
 
-Les erreurs doivent être explicites : mauvais champ, dégâts matériels ou autre faute liée à l’épreuve.
-
 **0.6.4.24 TEST :** ces améliorations sont implémentées et attendent une validation complète en jeu sur les 10 étapes.
+
+Le **permis agricole est obligatoire en Réaliste et Strict** dans la cible validée.
+
+Des qualifications spécialisées pourront ensuite compléter le permis général : phytosanitaire/pulvérisation, télescopique, forestier, transport agricole ou autres catégories pertinentes.
 
 ## Personnel, contrats & paie
 
@@ -81,7 +133,7 @@ Les salariés ne doivent pas être de simples entrées de menu : ils représente
 
 Principe central : **1 salarié disponible = 1 tâche automatisée active maximum**.
 
-AgriLife doit également devenir la **source unique de paie** des salariés enregistrés. Lorsqu’un salarié AgriLife travaille via l’IA native FS25, Courseplay ou AutoDrive, la facturation de main-d’œuvre provenant de ces systèmes doit être neutralisée si nécessaire afin d’éviter une double dépense. Les fichiers des mods tiers ne doivent pas être modifiés : l’intégration se fait dynamiquement par détection et hooks, afin de rester compatible avec leurs mises à jour.
+AgriLife doit également devenir la **source unique de paie** des salariés enregistrés. Lorsqu’un salarié AgriLife travaille via l’IA native FS25, Courseplay ou AutoDrive, la facturation de main-d’œuvre provenant de ces systèmes doit être neutralisée si nécessaire afin d’éviter une double dépense. Les fichiers des mods tiers ne doivent pas être modifiés : l’intégration se fait dynamiquement par détection et hooks afin de rester compatible avec leurs mises à jour.
 
 ### Contrats de travail
 
@@ -122,19 +174,52 @@ Les compétences prévues incluent notamment : préparation du sol, semis, ferti
 
 Le niveau de compétence doit influencer la rémunération et les possibilités d’évolution, sans introduire de bonus irréalistes.
 
-L’interface Personnel doit être très visuelle : cartes employés, pictogrammes/portraits, badge **CDI / CDD / SAISONNIER**, étoiles, spécialités, état en temps réel, mission actuelle, véhicule, outil, progression, heures travaillées et paie.
-
-## Société & administration
+## Société, statuts & administration
 
 Le joueur doit progressivement gérer son exploitation comme une véritable structure professionnelle.
 
-Les obligations administratives et juridiques varient selon la difficulté. La société doit ensuite être utilisée par les autres systèmes : Banque, Contrats, Assurance et Huissier.
+Dans la cible validée :
 
-Le parcours de démarrage est contextuel : lorsqu’une étape est requise, le tableau de bord affiche l’action réellement attendue. En Difficile, la logique visée est notamment **Banque → Conseiller → Société → Permis**, sans demander de valider la société avant que les choix bancaires requis soient terminés.
+- création de la société obligatoire en **Réaliste et Strict** ;
+- permis agricole obligatoire en **Réaliste et Strict** ;
+- Banque + conseiller obligatoires en **Réaliste et Strict**.
+
+Les systèmes peuvent rester accessibles en Libre et Facile sans y être imposés.
+
+Un système de statut évolutif est prévu :
+
+**petite exploitation → exploitation professionnelle → entreprise agricole → grande entreprise**.
+
+Le passage d’un statut au suivant devra dépendre de l’expérience, de la réputation, du capital, des examens, de la conformité et de l’activité réelle.
+
+## Contrôles administratifs & sanctions
+
+Les contrôles administratifs sont le **troisième grand système prioritaire après stabilisation**.
+
+Ils pourront vérifier uniquement les obligations réellement applicables au joueur : permis, assurances, documents, conformité et autres exigences activées par son niveau.
+
+Les conséquences prévues comprennent selon la gravité :
+
+- avertissement ;
+- délai de régularisation ;
+- amende ;
+- immobilisation ;
+- effet sur la réputation ;
+- aggravation en cas de récidive.
+
+Chaque sanction doit avoir une cause identifiable et compréhensible. Le système ne doit pas punir le joueur au hasard.
+
+## Événements de gestion
+
+Des événements dynamiques mais peu fréquents pourront créer de vraies situations de gestion : échéance, facture imprévue, contrôle, réparation lourde, absence salarié ou autre incident crédible.
+
+Leur fréquence et leur sévérité doivent dépendre de la difficulté et laisser plusieurs solutions réalistes lorsque c’est possible.
 
 ## Assurances
 
 Le système Assurance doit évoluer vers plusieurs contrats et niveaux de couverture, avec primes, franchises, historique de sinistres et conséquences selon le niveau de risque.
+
+Réputation, comportement, historique et niveau de difficulté pourront influer sur les conditions proposées.
 
 ## Atelier & matériel
 
@@ -157,11 +242,14 @@ Sont prévus :
 - pénalités ;
 - contrats avant semis ;
 - historique commercial ;
-- impact de la réputation.
+- impact de la réputation ;
+- notation du contrat selon le respect réel des engagements.
+
+La notation d’un contrat doit influencer les futures offres et la réputation de l’exploitation.
 
 ## Huissier & contentieux
 
-Le module Huissier doit prolonger naturellement le système bancaire.
+Le module Huissier doit prolonger naturellement les systèmes bancaire, fiscal et administratif.
 
 Chaîne visée :
 
@@ -169,23 +257,30 @@ Chaîne visée :
 
 L’objectif n’est pas de punir arbitrairement le joueur, mais de donner des conséquences crédibles aux difficultés financières et plusieurs moyens réalistes d’en sortir.
 
-## Difficulté
+## Journal de bord AgriLife
 
-Trois niveaux structurent l’expérience :
+La carrière doit conserver une chronologie des événements importants : permis obtenu, salarié embauché, financement majeur, évolution de statut, contrôle administratif, contrat marquant, sinistre ou autre étape importante.
 
-- **Facile** : 200 000 € — Banque + XP/Carrière ;
-- **Normal** : 100 000 € — Banque + Personnel + Examens + XP/Carrière ;
-- **Difficile** : 50 000 € — expérience complète et obligations renforcées.
+Ce journal participe à l’idée centrale d’une exploitation qui possède une véritable mémoire.
+
+## Difficulté — cible fonctionnelle
+
+Quatre niveaux structurent la cible du projet :
+
+- **Libre** : gestion très souple, systèmes disponibles mais obligations minimales ;
+- **Facile** : progression accessible et conséquences réduites ;
+- **Réaliste** : gestion complète avec Banque + conseiller, Société et Permis obligatoires ;
+- **Strict** : mêmes grandes obligations que Réaliste avec coûts, exigences, pénalités et conséquences renforcés.
 
 La difficulté choisie reste permanente pour la sauvegarde.
 
 ## Sauvegardes & migration
 
-AgriLife Manager doit respecter les carrières existantes.
+AgriLife Manager doit respecter les carrières existantes et ne jamais partager la progression d’une carrière vers une nouvelle partie indépendante.
 
-Nouvelle partie : capital AgriLife et suppression du prêt de départ FS25.
+Nouvelle partie : initialisation d’un état AgriLife propre à la sauvegarde.
 
-Sauvegarde existante : conservation de l’argent, des terrains, bâtiments, véhicules et de la dette FS25 existante, enregistrée comme dette héritée.
+Sauvegarde existante : conservation de l’argent, des terrains, bâtiments, véhicules et de la dette FS25 existante, enregistrée comme dette héritée lorsque nécessaire.
 
 ## Compatibilités
 
