@@ -5,12 +5,14 @@ Cette feuille de route décrit l’ordre de développement retenu pour AgriLife 
 ## Principes directeurs validés
 
 - **Chaque nouvelle fonctionnalité doit avoir une conséquence réelle en jeu.** Un système ne doit pas exister uniquement pour remplir un menu.
-- Les décisions doivent pouvoir produire des effets différés : progression, réputation, accès au crédit, contrats, assurance, fiscalité, sanctions ou développement de l’exploitation.
+- Les décisions doivent pouvoir produire des effets différés : progression, réputation, accès au crédit, contrats, assurance, fiscalité, sanctions, marchés ou développement de l’exploitation.
 - La sauvegarde AgriLife doit rester propre à chaque carrière FS25 et conserver l’histoire de l’exploitation.
 - Les intégrations avec Courseplay, AutoDrive, Soil Fertilizer, Precision Farming et autres mods restent optionnelles : le cœur d’AgriLife doit fonctionner seul.
 - La numérotation reste volontairement **inférieure à 1.0.0.0** tant que les grands systèmes ne sont pas terminés et validés.
 - **Aucun texte destiné au joueur ne doit rester codé en dur.** Toute chaîne visible doit passer par une clé l10n.
 - **Toutes les langues distribuées avec le mod doivent posséder exactement les mêmes clés.** Une build publiable ne doit contenir aucune clé manquante.
+- **Compatibilité universelle recherchée : aucune liste fixe de maps, fruits ou multifruits.** AgriLife doit détecter dynamiquement les contenus enregistrés par FS25, la map et les mods lorsque les API du jeu le permettent.
+- **L’économie dynamique doit être commune à tous les modules concernés.** Marchés, coopératives, contrats, productions, location, carburant, foncier, matériel et comptabilité ne doivent pas fonctionner en silos séparés.
 
 ## Priorités immédiates
 
@@ -70,7 +72,8 @@ Selon le niveau choisi, AgriLife peut faire varier notamment :
 - réputation gagnée ou perdue ;
 - exigences des contrats commerciaux et pénalités ;
 - tolérance aux retards et incidents de paiement ;
-- événements de gestion et conséquences économiques ;
+- amplitude et vitesse des évolutions de marché ;
+- coût et disponibilité des locations ;
 - aide contextuelle, tutoriel et niveau d’accompagnement.
 
 ### Facile
@@ -78,14 +81,14 @@ Selon le niveau choisi, AgriLife peut faire varier notamment :
 - Plus de tolérance et d’accompagnement.
 - Coûts, sanctions, intérêts, franchises et pénalités réduits.
 - Critères d’examen et de financement plus permissifs.
-- Événements négatifs moins sévères.
-- Les systèmes AgriLife restent actifs : le joueur joue bien à AgriLifeManager, mais avec davantage de marge d’erreur.
+- Événements négatifs et fluctuations économiques moins sévères.
+- Les systèmes AgriLife restent actifs avec davantage de marge d’erreur.
 
 ### Normal
 
 - Réglage de référence du mod.
 - Tous les grands systèmes sont réellement actifs et équilibrés.
-- Coûts, délais, contrôles, progression, réputation et sanctions correspondent au niveau de réalisme standard voulu pour AgriLife.
+- Coûts, délais, contrôles, progression, réputation, marchés et sanctions correspondent au niveau de référence AgriLife.
 
 ### Difficile
 
@@ -94,6 +97,7 @@ Selon le niveau choisi, AgriLife peut faire varier notamment :
 - Examens moins tolérants et erreurs plus pénalisantes.
 - Fiscalité, assurances, charges, contrôles et sanctions renforcés.
 - Réputation plus importante dans l’accès aux opportunités.
+- Marchés et locations plus sensibles aux tensions économiques.
 - Mauvaise gestion financière ou administrative avec conséquences durables.
 
 ---
@@ -115,6 +119,7 @@ Selon le niveau choisi, AgriLife peut faire varier notamment :
 - [ ] Bloquer le changement de banque/conseiller pendant une demande en cours.
 - [ ] Ajouter des raisons détaillées de décision et journaliser les facteurs déterminants.
 - [ ] Faire varier taux, plafond, durée, garanties et délai selon banque, conseiller, objet, dossier et difficulté.
+- [ ] Intégrer les tendances économiques et les marchés dans certaines décisions de financement.
 
 ### Comptes & finances de base
 - [x] Base du compte professionnel.
@@ -150,6 +155,7 @@ Selon le niveau choisi, AgriLife peut faire varier notamment :
 - [ ] Supprimer tout artefact visuel résiduel.
 - [ ] Synchroniser chaque évolution majeure avec le tutoriel et Échap → Assistance.
 - [ ] Ajouter un **Journal de bord AgriLife** retraçant les grands événements de la carrière.
+- [ ] Ajouter des vues lisibles pour tendances de marché, contrats, locations et coûts de production.
 
 ## Phase 3 — Personnel, contrats, ordres de travail & paie
 
@@ -239,6 +245,7 @@ Le module Personnel doit devenir un véritable système de main-d’œuvre. **Ag
 - [ ] Utiliser résultats, endettement et capacité d’autofinancement dans les décisions bancaires.
 - [ ] Séparation pro/perso plus contraignante à mesure que la difficulté augmente.
 - [ ] Conséquences réelles en cas d’impayé fiscal ou de trésorerie insuffisante.
+- [ ] Intégrer achats, ventes, locations, carburants, intrants, contrats et productions au calcul réel de rentabilité.
 
 ## Phase 7 — Société, statuts, administration, contrôles & sanctions
 
@@ -283,7 +290,7 @@ Le module Personnel doit devenir un véritable système de main-d’œuvre. **Ag
 - [x] Base de l’Atelier.
 - [x] État du matériel et opérations de maintenance.
 - [ ] Usure, entretien et immobilisation plus poussés.
-- [ ] Marché de l’occasion cohérent avec l’état réel du matériel.
+- [ ] Relier la valeur du matériel au marché mondial du neuf et de l’occasion.
 - [ ] Coûts de maintenance et réparations liés à l’historique.
 - [ ] Interaction avec assurances et trésorerie.
 - [ ] Historique économique complet du matériel : achat, usage, entretien, sinistres, réparation et valeur résiduelle.
@@ -301,8 +308,91 @@ Le module Personnel doit devenir un véritable système de main-d’œuvre. **Ag
 - [ ] Notation de contrat selon respect des délais, qualité du travail, incidents et conditions remplies.
 - [ ] Faire influencer cette notation sur les futures offres et la réputation.
 - [ ] Faire varier exigences, marges de tolérance et pénalités selon la difficulté.
+- [ ] **Brancher les contrats et coopératives sur le moteur de marché dynamique.**
+- [ ] Faire évoluer prix proposés, volumes recherchés, primes, pénalités et opportunités selon offre, demande, saison, marché et réputation.
+- [ ] Permettre aux fruits et produits multifruits détectés dynamiquement de générer leurs propres opportunités de marché et contrats lorsqu’ils sont exploitables par les systèmes FS25.
+- [ ] Relier les contrats de qualité aux données réellement disponibles de Precision Farming / Soil Fertilizer sans imposer ces mods.
 
-## Phase 11 — Huissier & contentieux
+## Phase 11 — Économie & marchés mondiaux dynamiques
+
+**Objectif : construire un moteur économique commun capable d’influencer l’ensemble d’AgriLifeManager sans dépendre d’une map précise.**
+
+### Architecture universelle / toutes maps / multifruit
+- [ ] Détecter dynamiquement les fruits, fillTypes, produits, points de vente, productions, parcelles et articles magasin enregistrés dans la partie.
+- [ ] Éviter toute liste fermée de cultures ou de maps dans le cœur du système.
+- [ ] Supporter les multifruits ajoutés par la map ou par des mods dès lors qu’ils sont correctement enregistrés dans FS25.
+- [ ] Détecter les productions/usines et leurs entrées/sorties lorsqu’elles utilisent les systèmes accessibles de FS25.
+- [ ] Prévoir un fallback propre : un contenu non détectable est ignoré sans casser AgriLifeManager.
+
+### Marché mondial des productions et produits
+- [ ] Créer une tendance mondiale et des tendances locales pour les productions vendables.
+- [ ] Faire varier les prix selon offre/demande, saison, stocks simulés, événements et activité économique.
+- [ ] Éviter les fluctuations absurdes : bornes, inertie et retour progressif vers un prix de référence.
+- [ ] Relier prix mondiaux, prix locaux, points de vente, coopératives, contrats et rentabilité.
+- [ ] Permettre aux produits issus de productions/usines d’entrer dans le marché dynamique.
+- [ ] Prendre en compte les multifruits détectés sans configuration manuelle systématique.
+
+### Marché mondial du neuf et de l’occasion
+- [ ] Marché dynamique des tracteurs, véhicules, outils et accessoires.
+- [ ] Faire varier disponibilité, délais et prix du neuf selon demande et catégorie.
+- [ ] Marché de l’occasion avec âge, heures, état, entretien, réparations, région simulée, rareté et demande.
+- [ ] Faire varier la valeur de revente selon état réel et situation du marché.
+- [ ] Inclure les articles de magasin compatibles détectés dynamiquement plutôt qu’une liste figée.
+
+### Consommables, palettes et big bags
+- [ ] Marché dynamique des palettes, big bags, semences, engrais, amendements, consommables et autres intrants enregistrés.
+- [ ] Faire varier prix et disponibilité en fonction de la demande, de la saison et des tensions de marché.
+- [ ] Relier le coût réel des intrants à la comptabilité et à la marge des productions/contrats.
+
+### Carburants & énergie
+- [ ] Prix dynamique du diesel et des autres énergies/carburants détectables.
+- [ ] Faire évoluer les prix dans le temps avec inertie et événements crédibles.
+- [ ] Répercuter le coût du carburant sur coûts de production, transport, travaux et rentabilité.
+- [ ] Faire varier l’impact selon Facile / Normal / Difficile sans créer de prix incohérents.
+
+### Foncier / champs dynamiques
+- [ ] Marché foncier dynamique à partir des parcelles disponibles sur la map.
+- [ ] Faire varier valeur des terres selon surface, potentiel économique, localisation disponible, rareté et contexte de marché.
+- [ ] Ajouter des opportunités temporaires de vente ou de location lorsque techniquement possible.
+- [ ] Conserver une logique compatible avec la structure propre de chaque map.
+
+### Location dynamique — matériel, champs et usines
+- [ ] Étendre la location dynamique au **matériel, outils, accessoires, champs/parcelles et productions/usines** lorsque le type d’actif peut être géré proprement.
+- [ ] Faire varier tarif, disponibilité, durée, caution/frais et conditions selon marché et difficulté.
+- [ ] Prévoir location courte, saisonnière ou plus longue lorsque pertinente.
+- [ ] Intégrer les loyers dans la comptabilité, la trésorerie et les décisions bancaires.
+- [ ] Prévoir conséquences réalistes en cas de retard, dégradation ou rupture de contrat de location.
+- [ ] Ne jamais forcer une location sur un actif qu’une map ou un mod tiers ne permet pas de gérer de manière sûre.
+
+### Productions / usines
+- [ ] Intégrer achat, vente et location des productions/usines au moteur économique lorsque leur propriété peut être pilotée proprement.
+- [ ] Faire varier leur valeur selon capacité, rentabilité potentielle, intrants, débouchés et contexte de marché.
+- [ ] Relier coût des intrants, prix des sorties, entretien/charges et rentabilité réelle de la production.
+
+### Contrats & coopératives reliés au marché
+- [ ] Le marché mondial influence les besoins des coopératives et acheteurs.
+- [ ] Une forte demande peut augmenter prix, volumes recherchés ou primes ; une surproduction peut les réduire.
+- [ ] Les contrats doivent tenir compte des marchés mais aussi de la réputation, de l’historique et de la difficulté.
+- [ ] Conserver plusieurs acheteurs avec stratégies différentes afin d’éviter un prix unique artificiel.
+
+### Precision Farming & Soil Fertilizer — intégrations enrichies
+- [ ] **Ne pas refaire leur agronomie dans AgriLifeManager.**
+- [ ] Utiliser Precision Farming comme source optionnelle de données agronomiques réellement disponibles.
+- [ ] Utiliser Soil Fertilizer comme source optionnelle pour les données de sol, fertilisation, intrants et qualité qu’il expose de manière exploitable.
+- [ ] Transformer ces données en conséquences AgriLife : coûts, rentabilité, conditions contractuelles, primes qualité, réputation, contrôles et historique.
+- [ ] Relier le prix dynamique des intrants aux coûts de production issus de Soil Fertilizer lorsque pertinent.
+- [ ] Permettre à certains contrats/coopératives d’imposer des critères agronomiques uniquement lorsqu’ils peuvent être mesurés de façon fiable.
+- [ ] Si PF ou Soil Fertilizer est absent, conserver un fonctionnement AgriLife complet basé sur FS25 vanilla.
+- [ ] Si une donnée externe devient indisponible ou change après une mise à jour, désactiver seulement l’enrichissement concerné sans casser la sauvegarde.
+- [ ] **La difficulté AgriLife modifie les conséquences économiques/administratives, pas artificiellement les lois agronomiques de PF ou Soil Fertilizer.**
+
+### Chaîne économique de référence
+
+**sol / pratiques → intrants → coût de production → rendement / qualité → marché mondial → marchés locaux → coopératives / usines → contrats → comptabilité → banque → réputation**
+
+Documentation détaillée : **[docs/DYNAMIC_ECONOMY_AGRONOMY.md](docs/DYNAMIC_ECONOMY_AGRONOMY.md)**.
+
+## Phase 12 — Huissier & contentieux
 
 Module volontairement approfondi et fortement lié à Banque, Fiscalité et Administration.
 
@@ -315,18 +405,19 @@ Module volontairement approfondi et fortement lié à Banque, Fiscalité et Admi
 - [ ] Prendre en compte les dettes fiscales et administratives.
 - [ ] Faire varier délais, frais, tolérances et escalade selon la difficulté.
 
-## Phase 12 — Compatibilités PC optionnelles
+## Phase 13 — Compatibilités PC optionnelles
 
 AgriLife Manager doit rester autonome : aucune de ces compatibilités ne doit devenir une dépendance dure.
 
 - [ ] Courseplay.
 - [ ] AutoDrive.
-- [ ] Soil Fertilizer.
-- [ ] Precision Farming / systèmes compatibles pertinents.
+- [ ] Soil Fertilizer — intégration enrichie mais optionnelle.
+- [ ] Precision Farming — intégration enrichie mais optionnelle.
 - [ ] Autres mods de gestion ou réalisme identifiés pendant les tests.
 - [ ] Vérifier qu’AgriLife continue à fonctionner correctement lorsque ces mods sont absents.
+- [ ] Vérifier l’auto-détection sur plusieurs maps vanilla, modmaps et maps multifruits.
 
-## Phase 13 — Sauvegardes, migration & multijoueur
+## Phase 14 — Sauvegardes, migration & multijoueur
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
 - [x] Migration des sauvegardes existantes sans écraser leur patrimoine.
@@ -334,13 +425,14 @@ AgriLife Manager doit rester autonome : aucune de ces compatibilités ne doit de
 - [x] Nouvelle carrière : capital AgriLife et gestion dédiée du démarrage.
 - [ ] Garantir qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
 - [ ] Sauvegarder le niveau de difficulté dans la carrière et interdire qu’il change accidentellement après rechargement.
+- [ ] Sauvegarder l’état des marchés, locations, contrats et tendances économiques par carrière.
 - [ ] Renforcer les migrations entre versions du mod.
 - [ ] Tests de corruption/récupération backup.
 - [ ] Multi-fermes.
 - [ ] Multijoueur complet.
 - [ ] Autorité serveur et synchronisation réseau de tous les modules.
 
-## Phase 14 — Traductions, localisation & clés l10n
+## Phase 15 — Traductions, localisation & clés l10n
 
 **Objectif : AgriLifeManager doit être utilisable proprement par tous les joueurs auxquels une langue est proposée.**
 
@@ -373,7 +465,7 @@ AgriLife Manager doit rester autonome : aucune de ces compatibilités ne doit de
 - [ ] **0 traduction volontairement laissée vide.**
 - [ ] Audit complet des traductions après chaque ajout massif de fonctionnalités.
 
-## Phase 15 — Préparation publication
+## Phase 16 — Préparation publication
 
 Objectif final : version PC propre et publiable, notamment pour soumission officielle GIANTS/ModHub si elle respecte les exigences applicables au moment de la soumission.
 
@@ -386,6 +478,8 @@ Objectif final : version PC propre et publiable, notamment pour soumission offic
 - [ ] Tests des trois difficultés **Facile / Normal / Difficile** sur les modules majeurs.
 - [ ] Tests sans mods tiers.
 - [ ] Tests avec les principaux mods de compatibilité.
+- [ ] Tests sur maps vanilla, modmaps et maps multifruits.
+- [ ] Tests du marché dynamique, des locations, contrats, coopératives, carburants, usines et foncier.
 - [ ] Tests 1080p / 1440p / 4K.
 - [ ] Audit final des traductions et des clés l10n.
 - [ ] Documentation utilisateur finale.
