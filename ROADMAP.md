@@ -1,5 +1,8 @@
 # Feuille de route — AgriLife Manager
 
+> **Règle de développement : on termine et valide complètement un bloc avant d’ouvrir le suivant.**  
+> Ordre de travail : **Démarrage → Interface de base → Banque → Entreprise → Carrière & Qualifications → Administration → Contrats & Marchés → Atelier → Finalisation**.
+
 # 1 — Démarrage
 
 Le **Démarrage** est la racine de toute carrière AgriLifeManager. Ce n’est pas un module du tableau de bord : il initialise la sauvegarde, le niveau de difficulté, les obligations de départ et les règles globales qui seront ensuite utilisées par tous les modules.
@@ -15,7 +18,7 @@ Le **Démarrage** est la racine de toute carrière AgriLifeManager. Ce n’est p
 - **Toutes les langues distribuées avec le mod doivent posséder exactement les mêmes clés.** Une build publiable ne doit contenir aucune clé manquante.
 - **Compatibilité universelle recherchée : aucune liste fixe de maps, fruits ou multifruits.** AgriLife doit détecter dynamiquement les contenus enregistrés par FS25, la map et les mods lorsque les API du jeu le permettent.
 - **L’économie dynamique doit être commune à tous les modules concernés.** Marchés, coopératives, contrats, productions, location, carburant, foncier, matériel et comptabilité ne doivent pas fonctionner en silos séparés.
-- **Tous les grands systèmes restent actifs quelle que soit la difficulté.** La difficulté modifie les coûts, tolérances, délais, obligations et conséquences ; elle ne doit pas transformer Facile ou Normal en version amputée d’AgriLifeManager.
+- **Tous les grands systèmes restent disponibles quelle que soit la difficulté.** La difficulté modifie les obligations, coûts, tolérances, délais et conséquences. Le mode Facile reste volontairement plus libre, sans transformer le cœur d’AgriLife en un autre mod.
 
 ## Choix de difficulté — trois niveaux uniquement
 
@@ -23,29 +26,39 @@ AgriLife Manager conserve **uniquement trois difficultés : Facile, Normal et Di
 
 | Niveau | Capital de départ | Philosophie |
 |---|---:|---|
-| **Facile** | 200 000 € | Gestion accessible, tolérances plus larges, coûts et sanctions réduits. |
-| **Normal** | 100 000 € | Expérience complète équilibrée, contraintes réalistes et progression structurée. |
-| **Difficile** | 50 000 € | Expérience complète avec obligations, coûts, risques, contrôles et conséquences renforcés. |
+| **Facile** | 200 000 € | Gestion libre et accessible, tolérances larges, obligations réduites et sanctions faibles. |
+| **Normal** | 100 000 € | Expérience complète équilibrée avec banque obligatoire et permis provisoire limité dans le temps. |
+| **Difficile** | 50 000 € | Expérience complète avec obligations renforcées, banque obligatoire et permis définitif requis avant conduite normale. |
 
 Le niveau choisi est permanent pour la sauvegarde.
 
 ### Facile
 
+- Banque et conseiller **facultatifs au démarrage**.
+- Examen/permis **facultatif**.
+- Le joueur peut utiliser librement les véhicules dès le départ.
 - Plus de tolérance et d’accompagnement.
 - Coûts, sanctions, intérêts, franchises et pénalités réduits.
 - Critères d’examen et de financement plus permissifs.
 - Événements négatifs et fluctuations économiques moins sévères.
-- Les systèmes AgriLife restent actifs avec davantage de marge d’erreur.
 
 ### Normal
 
-- Réglage de référence du mod.
-- Tous les grands systèmes sont réellement actifs et équilibrés.
-- Coûts, délais, contrôles, progression, réputation, marchés et sanctions correspondent au niveau de référence AgriLife.
+- Banque + conseiller **obligatoires au démarrage**.
+- Une fois la banque et le conseiller validés, AgriLife active la carrière et délivre un **permis provisoire de 3 mois de jeu**.
+- Pendant ces 3 mois, le joueur peut utiliser les véhicules et travailler normalement.
+- Notification de rappel **toutes les 6 heures de jeu** tant que le permis définitif n’est pas obtenu.
+- À l’expiration du permis provisoire : **amende unique de 500 €**, prélevée sur le **compte personnel du dirigeant**, jamais sur le compte professionnel.
+- Après expiration, l’état devient **Permis provisoire expiré / échéance dépassée** et les rappels continuent tant que l’examen n’est pas réussi.
+- Si le compte personnel ne peut pas régler une sanction, la société ne doit pas payer silencieusement à sa place ; ce cas devra être transmis plus tard à l’Administration comme sanction personnelle impayée.
+- Le délai de 3 mois ne commence qu’après validation banque + conseiller, pas pendant le tutoriel ou le choix de difficulté.
 
 ### Difficile
 
-- Contraintes maximales prévues par le mod.
+- Banque + conseiller **obligatoires au démarrage**.
+- Après validation bancaire, l’examen agricole devient **obligatoire**.
+- Le joueur ne doit pas pouvoir utiliser normalement les véhicules tant que le permis définitif n’est pas obtenu.
+- Exception : le matériel nécessaire à une épreuve active doit rester utilisable pendant l’examen.
 - Dossiers bancaires plus exigeants, coûts et garanties plus sévères.
 - Examens moins tolérants et erreurs plus pénalisantes.
 - Fiscalité, assurances, charges, contrôles et sanctions renforcés.
@@ -82,23 +95,82 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 2. Lancement du tutoriel/onboarding uniquement une fois le gameplay réellement chargé, jamais pendant le choix du personnage ou des vêtements.
 3. Choix **Facile / Normal / Difficile**.
 4. Validation définitive du niveau pour cette sauvegarde.
-5. Attribution du capital de départ AgriLife.
+5. Attribution du capital de départ AgriLife une seule fois.
 6. Chargement du profil global de difficulté.
-7. Détermination des obligations de départ : Banque / Conseiller / Société / Permis selon le profil choisi.
-8. Guidage du joueur dans l’ordre logique des obligations requises.
-9. Validation du démarrage.
-10. Passage à la carrière active ; tous les modules utilisent ensuite le même profil de difficulté pendant toute la sauvegarde.
+7. Application du parcours correspondant :
+   - **Facile** → carrière libre immédiatement ; banque et examen facultatifs.
+   - **Normal** → banque + conseiller obligatoires → carrière active + permis provisoire 3 mois → examen à passer avant échéance pour éviter sanction.
+   - **Difficile** → banque + conseiller obligatoires → examen obligatoire → déblocage complet de la conduite après obtention du permis.
+8. Validation du démarrage.
+9. Passage à la carrière active ; tous les modules utilisent ensuite le même profil de difficulté pendant toute la sauvegarde.
+
+## Tutoriel / onboarding du démarrage
+
+- [x] Tutoriel différé jusqu’à l’arrivée réelle en gameplay.
+- [x] Tutoriel mis à jour pour expliquer les différences Facile / Normal / Difficile et l’ordre Banque → Permis lorsque requis.
+- [x] Le mode Normal explique le permis provisoire de 3 mois, les rappels et l’amende de 500 € après échéance.
+- [ ] Revalider complètement l’onboarding dans chacun des trois niveaux de difficulté.
 
 ## Persistance du démarrage
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
 - [x] Nouvelle carrière : capital AgriLife et gestion dédiée du démarrage.
-- [x] Migration des sauvegardes existantes sans écraser leur patrimoine.
-- [x] Conservation de la dette FS25 existante comme dette héritée.
-- [ ] Garantir qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
-- [ ] Sauvegarder le niveau de difficulté dans la carrière et interdire qu’il change accidentellement après rechargement.
-- [ ] Revalider complètement l’onboarding dans chacun des trois niveaux de difficulté.
-- [ ] Revalider la persistance AgriLife dans la sauvegarde FS25 et l’absence de progression partagée entre deux nouvelles carrières.
+- [x] Migration des sauvegardes existantes sans écraser leur patrimoine — mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
+- [x] Conservation de la dette FS25 existante comme dette héritée — mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
+- [x] Le niveau Normal, le départ validé et le permis provisoire persistent après sauvegarde/rechargement.
+- [x] La banque et le conseiller sélectionnés dans le parcours Normal restent associés à la carrière après rechargement.
+- [ ] Garantir par test complet qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
+- [ ] Revalider la persistance du niveau Facile après sauvegarde/rechargement complet.
+- [ ] Revalider la persistance du niveau Difficile après sauvegarde/rechargement complet.
+- [ ] Revalider la migration d’une ancienne sauvegarde avec patrimoine et dette FS25 existante.
+- [ ] Revalider la persistance AgriLife et l’absence de progression partagée entre deux nouvelles carrières.
+
+## État des tests Démarrage
+
+### Facile
+
+- [x] Capital de départ : **200 000 €**.
+- [x] Banque non obligatoire au démarrage.
+- [x] Examen non obligatoire.
+- [x] Accès véhicule libre.
+- [x] Tableau de bord cohérent avec le mode Facile sur la build testée.
+- [ ] Faire un dernier cycle sauvegarde → rechargement → contrôle du démarrage déjà validé.
+
+### Normal
+
+- [x] Capital de départ : **100 000 €**.
+- [x] Banque + conseiller obligatoires avant validation du départ.
+- [x] Permis provisoire activé après validation banque + conseiller.
+- [x] Durée : **3 mois de jeu**.
+- [x] Accès véhicule autorisé pendant le permis provisoire.
+- [x] Notification de rappel toutes les **6 heures de jeu**.
+- [x] Tableau de bord : **PERMIS PROVISOIRE** + échéance restante.
+- [x] À expiration : **PROVISOIRE EXPIRÉ / ÉCHÉANCE DÉPASSÉE**.
+- [x] Rappels maintenus après expiration tant que l’examen n’est pas réussi.
+- [x] Amende unique : **500 €**.
+- [x] Amende débitée sur le **compte personnel** et non sur la trésorerie professionnelle.
+- [x] Le compte personnel justifie les mouvements : capital, salaire, retenues, net versé, logement, frais bancaires personnels et amende.
+- [x] Vérification chiffrée du troisième mois : solde personnel attendu et affiché **8 525 €** après amende dans le scénario testé.
+- [ ] Harmoniser définitivement les arrondis affichés afin que chaque addition ligne par ligne retombe toujours exactement sur le solde présenté.
+- [ ] Remplacer tout libellé générique de type « mouvement personnel » pour l’amende par un libellé explicite **Amende permis provisoire**.
+- [ ] Faire un dernier cycle sauvegarde → rechargement après expiration pour vérifier que l’état expiré et l’amende déjà payée ne se rejouent pas.
+
+### Difficile — prochain test
+
+- [ ] Capital de départ : **50 000 €**.
+- [ ] Banque + conseiller obligatoires.
+- [ ] Examen obligatoire après validation bancaire.
+- [ ] Verrouillage de l’accès normal aux véhicules avant obtention du permis.
+- [ ] Exception fonctionnelle pour le véhicule/matériel de l’examen actif.
+- [ ] Refaire la chaîne complète des 10 étapes si nécessaire.
+- [ ] Sauvegarder/recharger en cours d’examen pour vérifier la persistance de l’étape.
+- [ ] Terminer l’examen, sauvegarder/recharger et vérifier que le permis reste obtenu et que l’accès véhicule reste débloqué.
+
+### Ancienne sauvegarde / isolation — à faire après Difficile
+
+- [ ] Charger l’ancienne sauvegarde sans écraser argent, véhicules, terrains, bâtiments ou progression FS25.
+- [ ] Vérifier que la dette FS25 existante est conservée comme dette héritée sans duplication.
+- [ ] Vérifier qu’une nouvelle carrière créée après les autres tests reste totalement vierge côté AgriLife.
 
 ---
 
@@ -123,12 +195,21 @@ Le **Démarrage** n’est pas une carte. Le bas du tableau de bord peut néanmoi
 
 ### Résumés attendus sur les 6 cartes
 
-- **Banque** : banque actuelle, conseiller, contrat bancaire, trésorerie, dette, score de crédit.
-- **Entreprise** : salariés actifs, disponibles/occupés/absents, masse salariale, tâches actives, réputation de l’exploitation.
-- **Carrière & Qualifications** : niveau, XP, permis obtenu/non obtenu, examens réussis, qualifications et progression.
+- **Banque** : banque actuelle, conseiller, contrat bancaire, durée/échéance du contrat, trésorerie, dette et score de crédit.
+- **Entreprise** : salariés actifs, disponibles/occupés/absents, masse salariale, tâches actives et réputation de l’exploitation.
+- **Carrière & Qualifications** : niveau, XP, état réel du permis, échéance éventuelle, examens réussis, qualifications et progression.
 - **Administration** : statut administratif, assurance, contrôles/alertes, sanctions ou échéances en cours.
 - **Contrats & Marchés** : contrats actifs, prochaine échéance, coopérative/acheteur, tendance de marché et opportunités importantes.
 - **Atelier** : état du matériel, entretiens dus, immobilisations, réparations et alertes atelier.
+
+### Carte Carrière & Qualifications / permis
+
+- [x] En Normal, afficher **PERMIS PROVISOIRE** à la place de « Disponible » pendant la période provisoire.
+- [x] Afficher l’échéance restante du permis provisoire.
+- [x] Après expiration, afficher **PROVISOIRE EXPIRÉ** et **ÉCHÉANCE DÉPASSÉE**.
+- [ ] En Facile, afficher clairement le caractère **FACULTATIF** du permis/examen.
+- [ ] En Difficile, afficher clairement **EXAMEN OBLIGATOIRE / ACCÈS VÉHICULE VERROUILLÉ** avant réussite.
+- [ ] Après réussite, afficher **PERMIS OBTENU / RÉUSSI**, score/résultat, tentatives et historique utile.
 
 ## Identité visuelle & navigation
 
@@ -139,7 +220,7 @@ Le **Démarrage** n’est pas une carte. Le bas du tableau de bord peut néanmoi
 - [x] Support 1920×1080 validé comme base.
 - [x] Pictogrammes conservés comme élément volontaire de l’identité AgriLife.
 - [x] Tableau de bord avec action obligatoire contextuelle.
-- [ ] Adapter tutoriel, conseils et avertissements à Facile / Normal / Difficile.
+- [x] Adaptation initiale du tutoriel et des avertissements aux parcours Facile / Normal / Difficile pour le Démarrage.
 - [ ] Finaliser l’adaptation 1440p / 4K.
 - [ ] Harmoniser taille, netteté et placement des pictogrammes sans les supprimer.
 - [ ] Harmoniser tailles de texte, boutons et onglets.
@@ -155,9 +236,12 @@ Le **Démarrage** n’est pas une carte. Le bas du tableau de bord peut néanmoi
 
 Le module Banque regroupe **Banque & finance + Comptabilité & fiscalité**. Il possède les données financières ; les autres modules peuvent les consulter mais ne doivent pas recréer leur propre logique bancaire ou comptable.
 
+**Règle de chantier : le module Banque devra être terminé de A à Z et validé avant d’ouvrir le chantier Entreprise.**
+
 ## Banque, conseiller & relation bancaire
 
 - [x] Base Banque et Conseiller.
+- [x] Choix banque + conseiller utilisé comme prérequis réel du Démarrage en Normal.
 - [x] Demande de crédit avec délai d’étude basé sur l’horloge de jeu FS25.
 - [x] Décision réelle : acceptation, refus ou validation conditionnelle selon le dossier.
 - [x] Persistance du dossier bancaire en sauvegarde.
@@ -174,7 +258,7 @@ Le module Banque regroupe **Banque & finance + Comptabilité & fiscalité**. Il 
 
 ## Contrat bancaire durable
 
-La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois la relation engagée.
+La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois la relation engagée. Cette partie est volontairement laissée au chantier **Banque**, pas au Démarrage.
 
 - [ ] Ajouter une phase de consultation/offre avant engagement.
 - [ ] Permettre au joueur de choisir une banque et un conseiller compatibles avec son dossier.
@@ -194,6 +278,9 @@ La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois
 - [x] Base du compte professionnel.
 - [x] Base du compte personnel.
 - [x] Début de relevé/mouvements sur le compte professionnel.
+- [x] Relevé personnel enrichi : capital initial, paies, brut, retenues, net versé, logement, frais bancaires personnels, sanctions et solde après mouvement.
+- [x] Séparation vérifiée entre compte professionnel et compte personnel pour l’amende du permis provisoire Normal.
+- [ ] Harmoniser tous les arrondis monétaires affichés afin que le relevé soit recalculable ligne par ligne sans écart visuel.
 - [ ] Historique complet des transactions avec catégories/tags.
 - [ ] Filtres par période, catégorie, fournisseur, contrat et type de flux.
 - [ ] Détail des prêts : capital, restant dû, taux, mensualité, échéance, durée, coût total et remboursement anticipé.
@@ -236,6 +323,7 @@ Le module Entreprise regroupe la gestion de la main-d’œuvre, la paie, les ord
 - [x] Structure Personnel / Équipe & paie.
 - [x] Base des employés AgriLife.
 - [x] Compétences visuelles en étoiles.
+- [ ] Renommer/réorganiser l’entrée actuelle **Salaires & Personnel** en **Entreprise** lorsque ce chantier sera ouvert.
 - [ ] Ajouter trois types de contrats : **CDI, CDD et saisonnier**.
 - [ ] Fiche salarié complète : contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, expérience et historique.
 - [ ] Disponibilité, horaires, pauses, heures supplémentaires, congés, maladie et absences.
@@ -311,12 +399,13 @@ Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qual
 - [x] Affichage persistant de la dernière erreur d’examen.
 - [x] Correction logique du retour du matériel dans sa zone d’origine.
 - [x] Progression de secours pour certains travaux réels : outil compatible actif/abaissé + déplacement réel.
-- [ ] Revalider toute la chaîne réelle des 10 étapes sur une partie complète.
-- [ ] Valider définitivement l’épreuve 5 « cultivation ».
+- [x] État provisoire Normal relié au Démarrage : 3 mois, rappels 6 h, expiration et sanction personnelle.
+- [ ] Revalider toute la chaîne réelle des 10 étapes sur une partie complète en Difficile lors de la prochaine session.
+- [ ] Valider définitivement l’épreuve 5 « cultivation » dans la campagne de test actuelle.
 - [ ] Vérifier les étapes 6/10 à 10/10 : retour, dételage, parking et sortie.
 - [ ] Vérifier chaque outil et chaque type de travail comptabilisé.
 - [ ] Faire varier frais d’inscription, tolérance, notation et exigences selon Facile / Normal / Difficile.
-- [ ] Le Tableau de bord doit afficher **PERMIS OBTENU / RÉUSSI** lorsque le permis est acquis, avec score/résultat et historique utile, jamais seulement « Disponible ».
+- [ ] Après réussite, le Tableau de bord doit afficher **PERMIS OBTENU / RÉUSSI** avec score/résultat et historique utile, jamais seulement « Disponible ».
 
 ## Qualifications spécialisées
 
@@ -351,6 +440,7 @@ Le module Administration regroupe **société/statuts administratifs, assurances
 - [ ] Faire varier fréquence, seuils et sévérité des contrôles selon la difficulté.
 - [ ] Faire influencer les sanctions par le comportement antérieur et la réputation.
 - [ ] Chaque sanction doit avoir une cause identifiable par le joueur.
+- [ ] Reprendre plus tard les sanctions personnelles impayées (ex. amende de permis Normal non réglable) sans ponction silencieuse sur la société.
 
 ## Événements de gestion
 
@@ -524,11 +614,10 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 ## Sauvegardes, migration & multijoueur
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
-- [x] Migration des sauvegardes existantes sans écraser leur patrimoine.
-- [x] Conservation de la dette FS25 existante comme dette héritée.
+- [x] Migration des sauvegardes existantes sans écraser leur patrimoine — à revalider dans la campagne Démarrage actuelle.
+- [x] Conservation de la dette FS25 existante comme dette héritée — à revalider dans la campagne Démarrage actuelle.
 - [x] Nouvelle carrière : capital AgriLife et gestion dédiée du démarrage.
 - [ ] Garantir qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
-- [ ] Sauvegarder le niveau de difficulté dans la carrière et interdire qu’il change accidentellement après rechargement.
 - [ ] Sauvegarder l’état des marchés, locations, contrats et tendances économiques par carrière.
 - [ ] Renforcer les migrations entre versions du mod.
 - [ ] Tests de corruption/récupération backup.
@@ -574,10 +663,14 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 ## Méthode de développement & validation
 
 - Conserver une base jouable stable avant d’ouvrir un nouveau grand bloc.
+- **Terminer entièrement le bloc ou module en cours avant de passer au suivant.**
+- Ordre obligatoire : **Démarrage → Interface de base → Banque → Entreprise → Carrière & Qualifications → Administration → Contrats & Marchés → Atelier → Finalisation**.
+- Ne pas commencer le développement fonctionnel d’un module futur simplement parce que le module courant lui transmettra une donnée ; préparer seulement le point de connexion nécessaire côté module courant.
 - Développer **un système complet et cohérent** avant de demander un test joueur, au lieu d’enchaîner les micro-builds et micro-tests.
 - Continuer les contrôles statiques/verifiers après chaque changement de développement.
 - Réserver les tests rapides intermédiaires aux infrastructures globales critiques : sauvegarde/chargement, onboarding, accès véhicule, synchronisation ou autre mécanisme transversal.
 - Chaque module doit être testé comme un vrai cycle de gameplay complet avec ses conséquences et ses interactions.
+- Un module n’est considéré terminé qu’après : fonctionnalités → interface → liens nécessaires → sauvegarde → difficulté → l10n → tableau de bord → contrôles internes → test joueur → corrections → validation finale.
 
 ## Préparation publication
 
@@ -622,4 +715,4 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 
 **Auteur : Chez_Squall**  
 **Projet : FS25_AgriLifeManager**  
-**Statut actuel : développement pré-1.0**
+**Statut actuel : développement pré-1.0 — Démarrage en cours de validation, Normal validé, Difficile prochain test**
