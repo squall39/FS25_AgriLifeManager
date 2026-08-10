@@ -2,6 +2,14 @@
 
 Toutes les évolutions importantes du projet seront consignées ici.
 
+## 0.6.4.23 TEST
+
+- Correction de l’étape 7/10 des examens : le retour du matériel se valide désormais lorsque l’outil assigné est réellement dans son cercle de retour, sans obligation artificielle de ressortir de la zone puis d’y revenir.
+- Correction applicable à toutes les cartes compatibles FS25, sans traitement spécifique à Le Méchet.
+- La nature de la dernière erreur d’examen reste visible dans le HUD et sur la page Examens : dommage matériel ou mauvais champ.
+- La dernière erreur est maintenant sauvegardée et synchronisée.
+- Tutoriel et Assistance mis à jour avec ce comportement.
+
 ## 0.6.4.22 TEST
 
 - Différenciation initiale des profils de banques et de conseillers.
