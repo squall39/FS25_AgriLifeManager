@@ -2,30 +2,65 @@
 *.log
 log.txt
 log*.txt
+*.crash
+*.dmp
 
 # Savegames / temporary test data
 savegame*/
+savegameBackup*/
+backupSavegame*/
 *.bak
 *.tmp
 *.temp
+*.old
+*.orig
+*~
 
-# Test distribution archives
-*_TEST.zip
+# Distribution archives
+# Les ZIP publics doivent être publiés via GitHub Releases / canal officiel,
+# pas versionnés dans le dépôt source.
+*.zip
 *.7z
 *.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# Local Farming Simulator folders that must never be committed
+mods/
+FarmingSimulator2025/
+
+# Secrets / local environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
 
 # OS / editors
 .DS_Store
 Thumbs.db
+desktop.ini
 .vscode/
 .idea/
+.vs/
+.history/
+*.swp
+*.swo
 
 # Generated caches
 __pycache__/
 *.pyc
 
-# Local staging folders
+# Local staging / generated folders
 _build/
 build/
 dist/
 _staging/
+staging/
+temp/
+tmp/
