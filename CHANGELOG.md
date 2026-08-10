@@ -2,6 +2,17 @@
 
 Toutes les évolutions importantes du projet sont consignées ici.
 
+## 0.6.4.27 TEST
+
+- Banque : correction ciblée du rendu des petits pictogrammes internes observé en 1920×1080.
+- Création d’un jeu d’icônes Banque dédié dans `gui/bankicons` : fond transparent, glyphes normalisés et lisibles à petite taille.
+- Les nouvelles icônes Banque sont isolées afin de ne pas modifier le rendu des pictogrammes utilisés par les autres écrans.
+- DDS Banque recompressés en DXT5 avec mipmaps.
+- Correction du libellé `Banque partenaire`, qui était tronqué en `Banque par...`.
+- Aucun changement de logique bancaire ni de schéma de sauvegarde.
+- Vérification statique : **OK — 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
+- **Statut : build prête pour revalidation visuelle de Banque, Financement et Relevé pro.**
+
 ## 0.6.4.26 TEST
 
 - Correction complémentaire du blocage de l’étape **6/10** observé en jeu avec la 0.6.4.25.
@@ -10,7 +21,7 @@ Toutes les évolutions importantes du projet sont consignées ici.
 - Ajout d’un diagnostic `Secure-state` dans `log.txt` indiquant `operating`, `lowered`, `folded`, `foldable` et `scenarioMatch` dès que l’état détecté change.
 - Vérification statique : **OK — 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
 - Aucun changement de schéma de sauvegarde requis.
-- **Statut : build prête pour reprendre directement le test à l’étape 6 puis poursuivre 7/10 à 10/10.**
+- **Statut : examen 1→10, obtention du permis, rechargement et isolation entre sauvegardes validés en jeu le 10 août 2026.**
 
 ## 0.6.4.25 TEST
 
