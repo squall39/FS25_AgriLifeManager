@@ -2,6 +2,16 @@
 
 Toutes les évolutions importantes du projet sont consignées ici.
 
+## 0.6.4.26 TEST
+
+- Correction complémentaire du blocage de l’étape **6/10** observé en jeu avec la 0.6.4.25.
+- L’étape 6 valide désormais l’action réellement demandée au candidat : **équipement arrêté et relevé**. Le repliage n’est plus un prérequis bloquant, car plusieurs outils FS25/moddés peuvent rester déployés après relevage.
+- La correction fonctionne directement sur une sauvegarde déjà bloquée à l’étape 6/10.
+- Ajout d’un diagnostic `Secure-state` dans `log.txt` indiquant `operating`, `lowered`, `folded`, `foldable` et `scenarioMatch` dès que l’état détecté change.
+- Vérification statique : **OK — 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
+- Aucun changement de schéma de sauvegarde requis.
+- **Statut : build prête pour reprendre directement le test à l’étape 6 puis poursuivre 7/10 à 10/10.**
+
 ## 0.6.4.25 TEST
 
 - Correction du blocage de l’étape **6/10** après la validation du travail : l’étape valide désormais directement l’état sécurisé réel de l’outil (**arrêté, relevé et replié si nécessaire**) au lieu d’exiger d’observer artificiellement un nouvel état abaissé/actif après l’étape 5.
@@ -12,7 +22,7 @@ Toutes les évolutions importantes du projet sont consignées ici.
 - `gui/icons/success.dds` recompressé en DXT5 afin d’éviter l’avertissement de texture brute observé au moment de la transition.
 - Vérification statique : **OK — 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
 - Aucun changement de schéma de sauvegarde requis.
-- **Statut : build préparée pour reprendre directement le même examen à l’étape 6 puis poursuivre 7/10 à 10/10.**
+- **Statut : remplacée pour ce test par la 0.6.4.26 TEST.**
 
 ### Personnel — conception conservée, implémentation après stabilisation
 
