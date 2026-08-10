@@ -1,0 +1,92 @@
+name: Feature request
+description: Proposer une amélioration cohérente avec AgriLife Manager
+title: "[IDEA] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AgriLife Manager cherche des fonctionnalités qui ont une **conséquence réelle en jeu** et qui s'intègrent aux systèmes existants. Merci d'expliquer le besoin avant la solution.
+
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin ou problème à résoudre
+      description: Quel manque de gameplay ou quelle situation cette idée cherche-t-elle à améliorer ?
+      placeholder: Décrivez le besoin du joueur.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposition
+      description: Décrivez la fonctionnalité envisagée.
+      placeholder: Expliquez comment vous imaginez le système.
+    validations:
+      required: true
+
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Conséquences en jeu
+      description: Que change réellement cette fonction dans la carrière, l'économie, la réputation, les contrats, le personnel ou les autres systèmes ?
+      placeholder: Décrivez les effets concrets et les interactions.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Domaine principal
+      options:
+        - Banque / finance
+        - Carrière / XP / examens
+        - Personnel / salariés
+        - Société / administration
+        - Réputation
+        - Comptabilité / fiscalité
+        - Assurances
+        - Atelier / matériel
+        - Économie / marchés dynamiques
+        - Contrats / coopératives
+        - Precision Farming / Soil Fertilizer
+        - Compatibilité map / multifruit
+        - Interface / tutoriel / l10n
+        - Sauvegarde / multijoueur
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibilités concernées
+      description: Si l'idée dépend d'une map, d'un multifruit ou d'un autre mod, précisez-le. Une dépendance obligatoire doit être évitée autant que possible.
+      placeholder: FS25 vanilla, Precision Farming, Soil Fertilizer, Courseplay, AutoDrive, map particulière, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: difficulty
+    attributes:
+      label: Impact des difficultés
+      description: Indiquez si Facile, Normal et Difficile devraient modifier le comportement ou les conséquences de cette fonction.
+      placeholder: Facile..., Normal..., Difficile...
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Informations complémentaires
+      description: Maquettes, captures, exemples ou références utiles.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérification
+      options:
+        - label: Cette proposition apporte une conséquence réelle en jeu et n'est pas uniquement décorative.
+          required: true
