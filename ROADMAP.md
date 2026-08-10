@@ -56,20 +56,68 @@ Cette feuille de route décrit l’ordre de développement actuellement retenu p
 - [ ] Supprimer tout artefact visuel résiduel.
 - [ ] Synchroniser chaque évolution majeure avec le tutoriel et Échap → Assistance.
 
-## Phase 3 — Personnel & paie
+## Phase 3 — Personnel, contrats, ordres de travail & paie
 
+Le module Personnel doit devenir un véritable système de main-d’œuvre. **AgriLife devient la source unique de paie des salariés** afin d’éviter de payer deux fois un même ouvrier lorsqu’une tâche est exécutée par FS25, Courseplay ou AutoDrive.
+
+### Salariés & contrats
 - [x] Structure Personnel / Équipe & paie.
 - [x] Base des employés AgriLife.
 - [x] Compétences visuelles en étoiles.
-- [ ] 1 salarié disponible = 1 tâche automatisée active.
-- [ ] Intégration optionnelle des helpers FS25.
-- [ ] Intégration optionnelle Courseplay.
-- [ ] Intégration optionnelle AutoDrive.
-- [ ] Disponibilité, affectation, horaires, salaires et heures supplémentaires.
-- [ ] Congés, maladie, absences, promotion et licenciement.
-- [ ] Compétence générale + spécialités : sol, semis, récolte, transport, élevage, mécanique, etc.
-- [ ] Coût salarial lié au niveau de compétence.
+- [ ] Ajouter trois types de contrats : **CDI, CDD et saisonnier**.
+- [ ] CDI : emploi permanent, salaire régulier, ancienneté, évolution salariale, coût de rupture/licenciement selon règles AgriLife.
+- [ ] CDD : date de début et de fin, salaire défini, renouvellement possible, fin automatique ou transformation en CDI.
+- [ ] Saisonnier : recrutement pour une campagne/période déterminée (semis, récolte, ensilage, vendanges, etc.) avec disponibilité temporaire.
+- [ ] Fiche salarié complète : contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, expérience, historique et état actuel.
+- [ ] Disponibilité, horaires, pauses, heures supplémentaires, congés, maladie et absences.
+- [ ] Promotion, augmentation, renouvellement, fin de contrat et licenciement.
+
+### Une personne = une tâche réelle
+- [ ] **1 salarié disponible = 1 tâche automatisée active maximum.**
+- [ ] Empêcher qu’un même salarié soit affecté simultanément à plusieurs véhicules/tâches.
+- [ ] Libérer automatiquement le salarié à la fin, l’arrêt ou l’annulation de sa tâche.
+- [ ] Afficher clairement : disponible / affecté / en pause / absent / congé / malade.
+
+### Centre d’ordres AgriLife — fonctionnement sans Courseplay/AutoDrive
+- [ ] Permettre de donner directement un ordre à un salarié depuis AgriLife lorsque Courseplay/AutoDrive ne sont pas utilisés.
+- [ ] Sélection visuelle : **salarié → véhicule → outil → travail → champ/destination**.
+- [ ] Proposer les travaux compatibles avec le véhicule et l’outil réellement attaché.
+- [ ] S’appuyer sur l’IA native FS25 lorsque le travail demandé est supporté par le jeu.
+- [ ] Commandes : démarrer, mettre en pause, reprendre, arrêter/rappeler.
+- [ ] Afficher l’état de la mission, la progression, le champ/destination, le véhicule et l’outil utilisés.
+- [ ] Prévoir des ordres agricoles : préparation du sol, semis, fertilisation, pulvérisation, récolte, transport et autres travaux supportés.
+- [ ] Ne jamais simuler un travail impossible : si FS25 ne sait pas exécuter l’ordre, l’interface doit l’indiquer au joueur.
+
+### Paie unique & intégrations FS25 / Courseplay / AutoDrive
+- [ ] Faire d’AgriLife **l’unique moteur de salaire** des employés enregistrés dans le module Personnel.
+- [ ] Neutraliser le coût horaire de l’ouvrier vanilla FS25 lorsqu’une tâche est liée à un salarié AgriLife afin d’éviter la double facturation.
+- [ ] Intégration optionnelle Courseplay : associer chaque tâche/driver Courseplay à un salarié AgriLife disponible.
+- [ ] Lorsque Courseplay exécute la tâche pour un salarié AgriLife, neutraliser sa facturation de main-d’œuvre et laisser AgriLife calculer la paie.
+- [ ] Intégration optionnelle AutoDrive : associer chaque conducteur/tâche AutoDrive à un salarié AgriLife disponible et éviter toute double facturation de main-d’œuvre si nécessaire.
+- [ ] Les intégrations doivent être faites **à l’exécution par détection/hooks**, sans modifier les fichiers de Courseplay ou AutoDrive, afin de rester compatibles avec leurs mises à jour.
+- [ ] Si Courseplay ou AutoDrive est absent, AgriLife doit rester entièrement fonctionnel avec son propre centre d’ordres et l’IA native FS25.
+- [ ] Prévoir une sécurité : si une intégration n’est plus compatible après une mise à jour d’un mod tiers, ne pas casser AgriLife et revenir proprement au fonctionnement autonome.
+
+### Expérience, compétences & évolution
+- [ ] Chaque salarié gagne de l’expérience uniquement grâce au **travail réellement effectué**.
+- [ ] Compétence générale + spécialités : sol, semis, fertilisation, récolte, transport, élevage, mécanique, etc.
+- [ ] La progression dépend du temps de travail, du type de tâche, de la réussite et des incidents éventuels.
+- [ ] Les étoiles/compétences évoluent progressivement au fil de la carrière du salarié.
+- [ ] Un salarié expérimenté peut devenir plus efficace/fiable dans sa spécialité sans créer de bonus irréalistes.
+- [ ] Le niveau de compétence doit influencer la rémunération et les possibilités d’évolution du salarié.
+- [ ] Conserver l’historique de carrière du salarié dans la sauvegarde.
+
+### Interface Personnel visuelle
+- [ ] Cartes salariés avec pictogramme/portrait, nom, contrat, étoiles, spécialités et état en temps réel.
+- [ ] Badge visuel CDI / CDD / SAISONNIER.
+- [ ] Pendant une affectation : véhicule, outil, tâche, champ/destination, progression et durée de travail visibles.
+- [ ] Écran de planification permettant d’affecter rapidement une personne à une tâche sans devoir parcourir plusieurs menus.
+- [ ] Tableau de paie : salaire de base, heures réalisées, heures supplémentaires, primes/coûts et total employeur.
+- [ ] Alertes visuelles en cas de salarié indisponible, fin de CDD, fin de saison, dépassement horaire ou tâche interrompue.
+
+### Multijoueur
 - [ ] Préparer la logique multijoueur : joueurs humains = collaborateurs actifs, sans bonus artificiels.
+- [ ] Éviter qu’un joueur humain et un salarié AgriLife soient comptés deux fois pour la même tâche.
 
 ## Phase 4 — Carrière, XP, examens & permis
 
