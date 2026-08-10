@@ -37,7 +37,9 @@ L’objectif à terme est que la page Banque d’AgriLife devienne le véritable
 
 En difficulté élevée, le joueur ne devient pas automatiquement un exploitant reconnu. Il doit faire progresser sa carrière et passer des examens pratiques.
 
-Les examens demandent de réaliser de vraies opérations agricoles avec le matériel de la partie : travailler le bon champ, respecter les étapes, éviter les erreurs et ramener le matériel dans les zones prévues. Les fautes sont comptabilisées et doivent être expliquées au joueur.
+Les examens demandent de réaliser de vraies opérations agricoles avec le matériel de la partie : travailler le bon champ, respecter les étapes, éviter les erreurs et ramener le matériel dans les zones prévues. Les fautes sont comptabilisées et expliquées au joueur.
+
+Depuis la **0.6.4.24 TEST**, le HUD d’examen conserve l’action exacte à réaliser même en Difficile. Chaque étape réussie déclenche un retour visuel vert avec pictogramme et affiche directement la consigne suivante, afin de rester dans le gameplay sans retourner constamment dans le menu. Le moteur de travail dispose aussi d’une validation de secours pour les outils compatibles qui travaillent réellement mais dont la surface WorkArea n’est pas remontée correctement.
 
 La progression professionnelle est conçue pour dépendre de ce que le joueur réalise réellement en jeu, pas d’un simple choix de profil au lancement.
 
@@ -50,6 +52,8 @@ Les employés AgriLife ne sont pas destinés à être de simples noms décoratif
 ### 🏢 Société et administration
 
 Dans les niveaux les plus exigeants, créer et administrer son exploitation fait partie du gameplay. La structure de l’entreprise, sa santé, sa réputation et sa conformité doivent progressivement influencer la Banque, les contrats commerciaux, les assurances et les futurs contentieux.
+
+Le tableau de bord suit désormais la séquence obligatoire de façon contextuelle : **banque → conseiller → société → permis** lorsque ces étapes sont requises par la difficulté. Le bouton d’action dirige vers le module réellement attendu au lieu d’afficher une action administrative hors contexte.
 
 ### 🛡️ Assurances
 
@@ -107,7 +111,7 @@ Ainsi, AgriLife Manager pourra enrichir une configuration très modée sans emp�
 
 ## 🖥️ Interface
 
-Le projet dispose de sa propre identité visuelle sombre, pensée comme une véritable application de gestion intégrée à FS25. Les pages sont progressivement harmonisées autour de cartes, tableaux, étoiles de compétence/réputation, indicateurs financiers et pictogrammes fonctionnels.
+Le projet dispose de sa propre identité visuelle sombre, pensée comme une véritable application de gestion intégrée à FS25. Les pages sont progressivement harmonisées autour de cartes, tableaux, étoiles de compétence/réputation, indicateurs financiers et **pictogrammes fonctionnels qui font partie de l’identité AgriLife**.
 
 La base 1920×1080 est actuellement utilisée pour les tests, avec une adaptation 1440p et 4K prévue dans la feuille de route.
 
@@ -117,12 +121,12 @@ Une galerie de captures d’écran sera ajoutée progressivement au dépôt afin
 
 ## 🧪 État actuel du développement
 
-**Version de travail actuelle : 0.6.4.23 TEST**  
+**Version de travail actuelle : 0.6.4.24 TEST**  
 **Plateforme cible : PC**  
 **Auteur : Chez_Squall**  
 **Statut : développement privé / builds TEST**
 
-Les versions actuelles servent encore à valider les mécaniques, la persistance, les examens, la Banque et l’interface. Tant que le projet n’est pas suffisamment stable, la numérotation restera volontairement **inférieure à 1.0.0.0**.
+La 0.6.4.24 est prête pour la prochaine session de tests : progression réelle de l’épreuve 5, continuité jusqu’aux étapes de retour, HUD permanent, panneau de réussite et parcours Banque → Conseiller → Société → Permis. Tant que ces mécaniques et les autres grands modules ne sont pas suffisamment stables, la numérotation restera volontairement **inférieure à 1.0.0.0**.
 
 ---
 
