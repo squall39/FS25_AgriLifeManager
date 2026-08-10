@@ -75,28 +75,54 @@ Les erreurs doivent être explicites : mauvais champ, dégâts matériels ou aut
 
 **0.6.4.24 TEST :** ces améliorations sont implémentées et attendent une validation complète en jeu sur les 10 étapes.
 
-## Personnel & paie
+## Personnel, contrats & paie
 
-Les salariés ne doivent pas être de simples entrées de menu.
+Les salariés ne doivent pas être de simples entrées de menu : ils représentent la **capacité réelle de main-d’œuvre** de l’exploitation.
 
-Principe central : **un salarié disponible correspond à une capacité réelle de travail automatisé**.
+Principe central : **1 salarié disponible = 1 tâche automatisée active maximum**.
 
-À terme :
+AgriLife doit également devenir la **source unique de paie** des salariés enregistrés. Lorsqu’un salarié AgriLife travaille via l’IA native FS25, Courseplay ou AutoDrive, la facturation de main-d’œuvre provenant de ces systèmes doit être neutralisée si nécessaire afin d’éviter une double dépense. Les fichiers des mods tiers ne doivent pas être modifiés : l’intégration se fait dynamiquement par détection et hooks, afin de rester compatible avec leurs mises à jour.
 
-- affectations ;
-- compétences générales ;
-- spécialités ;
-- salaires ;
-- heures supplémentaires ;
-- horaires ;
-- absences ;
-- maladie ;
-- congés ;
-- promotion ;
-- licenciement ;
-- intégration optionnelle helpers FS25 ;
-- intégration optionnelle Courseplay ;
-- intégration optionnelle AutoDrive.
+### Contrats de travail
+
+Trois formes de contrat sont prévues :
+
+- **CDI** : salarié permanent, ancienneté, salaire régulier, progression et coût de rupture ;
+- **CDD** : durée définie avec début/fin, renouvellement ou transformation éventuelle en CDI ;
+- **Saisonnier** : embauche temporaire pour une période ou campagne agricole spécifique.
+
+Chaque salarié doit posséder une fiche complète avec contrat, salaire/coût employeur, ancienneté, disponibilité, spécialités, compétences, expérience, historique et état actuel.
+
+### Donner des ordres aux salariés
+
+AgriLife doit rester utile même sans Courseplay ni AutoDrive.
+
+Le joueur pourra ouvrir un **centre d’ordres visuel** et choisir :
+
+**salarié → véhicule → outil → type de travail → champ ou destination**.
+
+Lorsque le travail est compatible avec l’IA native de FS25, AgriLife lance et suit la tâche. L’interface montre le salarié utilisé, le véhicule, l’outil, la mission, le champ/destination, la progression et l’état de la tâche. Si un travail ne peut pas être exécuté proprement par l’IA disponible, le mod doit l’indiquer au lieu de simuler une fausse exécution.
+
+### Courseplay & AutoDrive
+
+Les deux intégrations restent optionnelles :
+
+- une tâche Courseplay peut consommer un salarié AgriLife disponible ;
+- un conducteur AutoDrive peut consommer un salarié AgriLife disponible ;
+- un même salarié ne peut jamais travailler sur deux tâches en même temps ;
+- quand la tâche se termine ou est annulée, le salarié redevient disponible ;
+- AgriLife calcule la paie et évite la double facturation par FS25/CP/AD ;
+- si une mise à jour d’un mod tiers casse temporairement une intégration, le cœur d’AgriLife doit continuer à fonctionner seul.
+
+### Expérience & évolution des employés
+
+Un salarié progresse uniquement grâce au **travail réellement effectué**.
+
+Les compétences prévues incluent notamment : préparation du sol, semis, fertilisation, récolte, transport, élevage et mécanique. Les étoiles et spécialités évoluent avec le temps de travail, le type de tâches réalisées, les réussites et les incidents éventuels.
+
+Le niveau de compétence doit influencer la rémunération et les possibilités d’évolution, sans introduire de bonus irréalistes.
+
+L’interface Personnel doit être très visuelle : cartes employés, pictogrammes/portraits, badge **CDI / CDD / SAISONNIER**, étoiles, spécialités, état en temps réel, mission actuelle, véhicule, outil, progression, heures travaillées et paie.
 
 ## Société & administration
 
