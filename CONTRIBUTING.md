@@ -1,6 +1,21 @@
 # Développement & contributions — AgriLife Manager
 
-Le dépôt AgriLife Manager est public afin de rendre le développement, la documentation et les retours plus accessibles. Le projet reste toutefois en **développement actif** et les builds actuelles sont des builds TEST.
+Le dépôt AgriLife Manager est public afin de rendre le développement, le code source original, la documentation et les retours plus accessibles. Le projet reste toutefois en **développement actif** et les builds actuelles sont des builds TEST.
+
+## Règle de priorité
+
+**Le passage du dépôt en public ne change pas l’ordre de travail AgriLifeManager.**
+
+L’ordre officiel reste celui défini dans `ROADMAP.md` :
+
+1. stabilisation des builds TEST actuelles ;
+2. validation examens / HUD / persistance / onboarding / trois difficultés ;
+3. Réputation de l’exploitation ;
+4. Comptabilité & fiscalité ;
+5. Contrôles administratifs & sanctions ;
+6. poursuite progressive des autres phases de la feuille de route.
+
+Une issue, une proposition ou une pull request publique ne devient donc pas automatiquement prioritaire. Elle doit rester cohérente avec l’architecture, les décisions validées et le programme de test.
 
 ## Règles de travail
 
@@ -31,6 +46,8 @@ Pour un bug, fournir autant que possible :
 - `log.txt` de la session concernée ;
 - liste des mods susceptibles d’interagir avec le problème.
 
+Avant de joindre un `log.txt`, vérifier qu’il ne contient pas d’information personnelle que vous ne souhaitez pas rendre publique, notamment un nom de session Windows ou un chemin local identifiable.
+
 Un rapport reproductible accompagné du log est prioritaire sur un simple message du type « ça ne marche pas ».
 
 ## Contributions de code
@@ -38,6 +55,8 @@ Un rapport reproductible accompagné du log est prioritaire sur un simple messag
 Le dépôt étant public, les propositions techniques peuvent être discutées via une issue avant d’engager une grosse modification. Une modification ne doit pas casser l’architecture, les sauvegardes ou les principes validés dans `ROADMAP.md`.
 
 Les grosses refontes doivent idéalement être isolées afin de rester faciles à tester et à relire.
+
+La publication du source original par Chez_Squall est autorisée sur ce dépôt. Les composants et assets tiers restent soumis à leurs propres droits et conditions de redistribution : voir `COPYRIGHT.md` et `SOURCE_PUBLICATION.md`.
 
 ## Convention de version
 
@@ -71,6 +90,7 @@ Avant toute contribution importante, consulter :
 
 - `ROADMAP.md` ;
 - `FEATURES.md` ;
+- `SOURCE_PUBLICATION.md` pour le statut du source public ;
 - `docs/WORKFORCE_DESIGN.md` lorsque le Personnel est concerné ;
 - `docs/DYNAMIC_ECONOMY_AGRONOMY.md` pour les marchés, multifruits, Precision Farming et Soil Fertilizer ;
 - `COPYRIGHT.md` pour les règles de copyright et de distribution.
