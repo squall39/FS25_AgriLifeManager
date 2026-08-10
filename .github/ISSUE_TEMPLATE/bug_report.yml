@@ -1,0 +1,131 @@
+name: Bug report
+description: Signaler un problème reproductible dans AgriLife Manager
+title: "[BUG] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de fournir le maximum d'informations. Un rapport accompagné du `log.txt` de la session concernée est beaucoup plus facile à reproduire et corriger.
+
+  - type: input
+    id: agrilife_version
+    attributes:
+      label: Version AgriLife Manager
+      description: Exemple : 0.6.4.25 TEST
+      placeholder: 0.x.x.x TEST
+    validations:
+      required: true
+
+  - type: input
+    id: fs_version
+    attributes:
+      label: Version Farming Simulator 25
+      placeholder: Version du jeu affichée dans FS25
+    validations:
+      required: true
+
+  - type: input
+    id: map
+    attributes:
+      label: Map utilisée
+      description: Précisez si possible la version de la map.
+      placeholder: Nom et version de la map
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulté AgriLife
+      options:
+        - Facile
+        - Normal
+        - Difficile
+        - Non déterminé / problème avant le choix
+    validations:
+      required: true
+
+  - type: dropdown
+    id: save_type
+    attributes:
+      label: Type de partie
+      options:
+        - Nouvelle partie
+        - Sauvegarde existante
+        - Sauvegarde migrée depuis une ancienne version AgriLife
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Description du problème
+      description: Décrivez ce qui se passe réellement.
+      placeholder: Expliquez le problème de manière précise.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes pour reproduire
+      description: Donnez les actions exactes permettant de reproduire le bug.
+      placeholder: |
+        1. Charger la sauvegarde...
+        2. Ouvrir...
+        3. Faire...
+        4. Le problème apparaît...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Résultat attendu
+      placeholder: Ce qui aurait dû se produire.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Résultat obtenu
+      placeholder: Ce qui s'est réellement produit.
+    validations:
+      required: true
+
+  - type: textarea
+    id: log
+    attributes:
+      label: log.txt
+      description: Glissez-déposez ici le `log.txt` de la session où le problème s'est produit. Évitez un log d'une autre session.
+      placeholder: Déposez le fichier log.txt ici.
+    validations:
+      required: false
+
+  - type: textarea
+    id: mods
+    attributes:
+      label: Mods susceptibles d'interagir
+      description: Indiquez notamment Courseplay, AutoDrive, Precision Farming, Soil Fertilizer ou tout mod lié au problème.
+      placeholder: Liste des mods concernés, ou « aucun / test AgriLife seul ».
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Informations complémentaires
+      description: Captures d'écran, vidéos, détails de sauvegarde ou autres observations utiles.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Vérifications
+      options:
+        - label: J'ai vérifié que le problème concerne bien AgriLife Manager ou une de ses interactions.
+          required: true
+        - label: J'ai indiqué si le problème se produit sur une nouvelle partie ou une sauvegarde existante.
+          required: true
