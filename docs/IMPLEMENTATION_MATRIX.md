@@ -1,6 +1,6 @@
 # Matrice d'implémentation - AgriLife Manager
 
-Version suivie : **0.7.8.0 TEST**
+Version suivie : **0.7.9.0 TEST**
 
 Cette matrice complète la feuille de route sans la remplacer. `ROADMAP.md` reste le registre maître additif de toutes les idées validées.
 
@@ -26,9 +26,25 @@ L'historique Git n'est pas un substitut à cette règle : les idées validées d
 | 4. Entreprise | Écriture complète | À faire |
 | 5. Carrière & Qualifications | Écriture complète | À faire |
 | 6. Administration | Écriture complète | À faire |
-| 7. Contrats & Marchés | Fondations présentes | À faire |
+| 7. Contrats & Marchés | Écriture complète | À faire |
 | 8. Atelier | Fondations présentes | À faire |
 | 9. Finalisation | À faire | À faire |
+
+## Étape 7 - écriture 0.7.9.0
+
+- engagements commerciaux et négociation ;
+- acheteurs, coopératives et relations durables ;
+- notation A-E et conséquences sur réputation/offres ;
+- marché mondial et marchés locaux ;
+- détection dynamique maps, fruits, multifruits, fillTypes, points de vente, productions, parcelles et articles magasin ;
+- marché du neuf et de l'occasion avec disponibilité et délais ;
+- intrants, consommables, carburants et énergie ;
+- foncier, achats/ventes, opportunités et locations ;
+- productions/usines, valeur et rentabilité ;
+- Precision Farming et Soil Fertilizer optionnels sans dupliquer leur agronomie ;
+- persistance des marchés, contrats, relations et transactions.
+
+Ces éléments restent à certifier dans FS25 avant fermeture des cases détaillées de `ROADMAP.md`.
 
 ## Priorités validées après stabilisation
 
