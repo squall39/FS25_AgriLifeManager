@@ -1,6 +1,18 @@
 # Changelog - AgriLife Manager
 
-Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve désormais les jalons de la branche actuelle au lieu de recopier toutes les notes 0.6.x.
+Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les jalons de la branche actuelle au lieu de recopier toutes les notes 0.6.x.
+
+## 0.7.9.0 TEST - Contrats & Marchés
+
+- Étape 7 Contrats & Marchés écrite et intégrée.
+- Engagements commerciaux, négociation, acheteurs et coopératives.
+- Notation A-E, relations acheteurs et conséquences sur les futures opportunités.
+- Marchés mondial et locaux dynamiques avec détection maps/multifruits.
+- Matériel neuf/occasion avec disponibilité, stock et délais de livraison.
+- Intrants, carburants, énergie, foncier, locations et productions/usines.
+- Precision Farming et Soil Fertilizer utilisés uniquement comme enrichissements optionnels.
+- Feuille de route complète conservée et mise à jour de manière additive.
+- Certification FS25 réelle volontairement différée.
 
 ## 0.7.8.0 TEST - Administration
 
