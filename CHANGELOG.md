@@ -1,4 +1,4 @@
-# Changelog — AgriLife Manager
+# Changelog - AgriLife Manager
 
 Toutes les évolutions importantes du projet sont consignées ici.
 
@@ -13,7 +13,7 @@ Toutes les évolutions importantes du projet sont consignées ici.
 - Onboarding : tant que la difficulté n’est pas confirmée, l’entrée / prise de contrôle d’un véhicule est bloquée ; un contrôle obtenu par un autre chemin est annulé.
 - Ajout de la clé l10n `agrilife_difficulty_vehicle_locked` dans les traductions distribuées.
 - Aucun changement de schéma de sauvegarde.
-- Vérification statique : **OK — 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
+- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
 
 ## 0.6.4.29
 
@@ -52,7 +52,7 @@ Toutes les évolutions importantes du projet sont consignées ici.
 - Notification FS25 explicite lors de chaque étape validée.
 - `gui/icons/success.dds` recompressé en DXT5.
 
-### Personnel — conception conservée, implémentation après stabilisation
+### Personnel - conception conservée, implémentation après stabilisation
 
 La séparation **joueur humain / GPS natif / salariés AgriLife**, la règle **1 salarié disponible = 1 tâche active maximum**, la paie unique AgriLife et le futur centre d’ordres restent validés dans `docs/WORKFORCE_DESIGN.md`. Leur implémentation ne doit pas interrompre la stabilisation actuelle des examens, du HUD, de la persistance, de l’onboarding et des difficultés.
 
