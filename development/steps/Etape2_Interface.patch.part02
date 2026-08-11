@@ -1,0 +1,172 @@
+life_market_direction_stable"
++    if commodities > 1.015 then directionKey = "agrilife_market_direction_up"
++    elseif commodities < 0.985 then directionKey = "agrilife_market_direction_down" end
++    setText(frame.statusValueCard, trf("agrilife_dashboard_market_index_fmt", tr(directionKey), commodities))
++    setText(frame.valueVersion, tostring(tonumber(contracts.activeContracts) or 0))
++    setText(frame.valueModules, tostring(tonumber(contracts.opportunityCount) or 0))
++    setText(frame.valueErrors, trf("agrilife_dashboard_fuel_index_fmt", tonumber(contracts.fuelIndex) or 1))
++    setText(frame.valueLastSave, trf("agrilife_dashboard_inputs_index_fmt", tonumber(contracts.inputIndex) or 1))
++
++    local workshop = cards.workshop or {}
++    setText(frame.dashWorkshopState, trf("agrilife_dashboard_workshop_state_fmt", tonumber(workshop.vehicleCount) or 0, tonumber(workshop.immobilized) or 0))
++    setText(frame.dashWorkshopDetail, trf("agrilife_dashboard_workshop_detail_fmt", tonumber(workshop.serviceDue) or 0, tonumber(workshop.breakdowns) or 0, tonumber(workshop.activeLeases) or 0, formatMoney(workshop.fleetMarketValue or 0)))
++end
++
++function AgriLife.Interface6:refreshDashboard()
++    local frame = self.frame
++    local core = self:getCore()
++    if frame == nil or core == nil then return end
++
++    local farmId = self:getFarmId()
++    local status = core.getStatusSnapshot ~= nil and core:getStatusSnapshot() or {}
++    setText(frame.headerVersion, status.version or "--")
++    setText(frame.headerFarm, string.format("%s %s", tr("agrilife_core_farm"), tostring(farmId)))
++
++    local startup = self:getStartupSnapshot()
++    self:bindStartupBar(startup)
++    self:bindDashboard(startup, self:getDashboardSnapshot())
++    self:applyNavigation(frame.activePage or "dashboard", startup)
++
++    -- The guided tutorial still owns its overlay, but it no longer owns the
++    -- startup gate. Startup order comes only from getStartupSnapshot().
++    local economy = module(core, "economy")
++    local legacyTutorialSnapshot = safeSnapshot(economy, "getSnapshot", farmId)
++    if frame.refreshTutorialOverlay ~= nil then
++        frame:refreshTutorialOverlay(farmId, legacyTutorialSnapshot)
++    end
++end
++
++function AgriLife.Interface6:showPage(requestedPage)
++    local frame = self.frame
++    if frame == nil then return end
++
++    local startup = self:getStartupSnapshot()
++    local pageId, reasonKey = self:resolvePage(requestedPage, startup)
++    if reasonKey ~= nil then frame.lastOnboardingMessage = tr(reasonKey) end
++    frame.activePage = pageId
++
++    setVisible(frame.dashboardPage, pageId == "dashboard")
++    setVisible(frame.bankPage, pageId == "bank")
++    setVisible(frame.payrollPage, pageId == "payroll")
++    setVisible(frame.examPage, pageId == "exams")
++    setVisible(frame.insurancePage, pageId == "insurance")
++    setVisible(frame.contractsPage, pageId == "contracts")
++    setVisible(frame.workshopPage, pageId == "workshop")
++
++    -- These pages remain implementation details and are not root modules.
++    setVisible(frame.companyPage, false)
++    setVisible(frame.xpPage, false)
++    setVisible(frame.accidentsPage, false)
++    setVisible(frame.leasingPage, false)
++    setVisible(frame.usedPage, false)
++
++    if pageId == "exams" then
++        local own = frame.examSubview ~= "team"
++        setVisible(frame.examSelfSummaryPanel, own)
++        setVisible(frame.examSelfTaskPanel, own)
++        setVisible(frame.examSelfStatusPanel, own)
++        setVisible(frame.examTeamPanel, not own)
++        setDisabled(frame.examSelfTabButton, own)
++        setDisabled(frame.examTeamTabButton, not own)
++    elseif pageId == "payroll" then
++        local own = frame.payrollSubview ~= "team"
++        setVisible(frame.payrollSelfPanel, own)
++        setVisible(frame.payrollTeamPanel, not own)
++        setDisabled(frame.payrollSelfTabButton, own)
++        local canManage = frame.canManage ~= nil and frame:canManage("payroll.manage") == true
++        setDisabled(frame.payrollTeamTabButton, (not own) or not canManage)
++    end
++
++    self:applyNavigation(pageId, startup)
++    if frame.refresh ~= nil then frame:refresh() end
++end
++
++function AgriLife.Interface6:onStartupAction()
++    local frame = self.frame
++    local core = self:getCore()
++    if frame == nil or core == nil then return end
++    local farmId = self:getFarmId()
++    local economy = module(core, "economy")
++    if economy == nil or economy.getStartupSnapshot == nil then return end
++
++    local startup = economy:getStartupSnapshot(farmId)
++    if startup == nil then return end
++    local step = tostring(startup.step or "tutorial")
++    local result = nil
++
++    if step == "migration" and economy.acknowledgeExistingCareer ~= nil then
++        result = economy:acknowledgeExistingCareer(farmId)
++    elseif step == "tutorial" then
++        if frame.promptTutorialChoice ~= nil then frame:promptTutorialChoice() end
++        return
++    elseif step == "difficulty" and economy.confirmMode ~= nil then
++        result = economy:confirmMode(farmId)
++    elseif step == "bank" or step == "advisor" then
++        self:showPage("bank")
++        return
++    elseif step == "exam" then
++        self:showPage("exams")
++        return
++    elseif step == "ready" then
++        frame.lastOnboardingMessage = nil
++        self:refreshDashboard()
++        return
++    end
++
++    frame.lastOnboardingMessage = result ~= nil and result.message or nil
++    if frame.refresh ~= nil then frame:refresh() end
++end
++
++function AgriLife.Interface6.install()
++    if AgriLife.HomeFrame == nil or AgriLife.HomeFrame.__interface6Installed == true then return end
++    AgriLife.HomeFrame.__interface6Installed = true
++
++    local function presenter(self)
++        if self.interface6 == nil then self.interface6 = AgriLife.Interface6.new(self) end
++        return self.interface6
++    end
++
++    function AgriLife.HomeFrame:getInterface6()
++        return presenter(self)
++    end
++
++    function AgriLife.HomeFrame:isPageAvailableForDifficulty(pageId, snapshot)
++        local ui = presenter(self)
++        local startup = ui:getStartupSnapshot()
++        return ui:isCanonicalReachable(ui:canonicalize(pageId), startup)
++    end
++
++    function AgriLife.HomeFrame:updateNavigationStyle(pageId)
++        presenter(self):applyNavigation(pageId, presenter(self):getStartupSnapshot())
++    end
++
++    function AgriLife.HomeFrame:refreshOnboarding(farmId)
++        presenter(self):bindStartupBar(presenter(self):getStartupSnapshot())
++    end
++
++    function AgriLife.HomeFrame:refreshDashboard()
++        presenter(self):refreshDashboard()
++    end
++
++    function AgriLife.HomeFrame:showPage(pageId)
++        presenter(self):showPage(pageId)
++    end
++
++    function AgriLife.HomeFrame:onClickOnboardingActivate()
++        presenter(self):onStartupAction()
++    end
++
++    -- Final module aliases. Old detail pages remain reachable internally, but
++    -- the player-facing root always resolves to the six roadmap modules.
++    function AgriLife.HomeFrame:onClickCompany() self:showPage("enterprise") end
++    function AgriLife.HomeFrame:onClickPayroll() self:showPage("enterprise") end
++    function AgriLife.HomeFrame:onClickXp() self:showPage("careerQualifications") end
++    function AgriLife.HomeFrame:onClickExams() self:showPage("careerQualifications") end
++    function AgriLife.HomeFrame:onClickAccidents() self:showPage("administration") end
++    function AgriLife.HomeFrame:onClickInsurance() self:showPage("administration") end
++    function AgriLife.HomeFrame:onClickLeasing() self:showPage("contractsMarkets") end
++    function AgriLife.HomeFrame:onClickUsed() self:showPage("contractsMarkets") end
++    function AgriLife.HomeFrame:onClickContracts() self:showPage("contractsMarkets") end
++end
++
++AgriLife.Interface6.install()
