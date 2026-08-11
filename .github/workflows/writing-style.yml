@@ -1,0 +1,20 @@
+name: Writing style
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  writing-style:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check writing style and attribution
+        run: python3 tests/writing_style_spec.py
