@@ -38,12 +38,8 @@
         <action name="AGRILIFE_SERVICE_TRUCK" category="VEHICLE" axisType="HALF" />
     </actions>
     <inputBinding>
-        <actionBinding action="AGRILIFE_FIELD_KIT">
-            <binding device="KB_MOUSE_DEFAULT" input="KEY_o" />
-        </actionBinding>
-        <actionBinding action="AGRILIFE_SERVICE_TRUCK">
-            <binding device="KB_MOUSE_DEFAULT" input="KEY_r" />
-        </actionBinding>
+        <actionBinding action="AGRILIFE_FIELD_KIT"><binding device="KB_MOUSE_DEFAULT" input="KEY_o" /></actionBinding>
+        <actionBinding action="AGRILIFE_SERVICE_TRUCK"><binding device="KB_MOUSE_DEFAULT" input="KEY_r" /></actionBinding>
     </inputBinding>
     <extraSourceFiles>
         <sourceFile filename="src/core/AgriLifeVersion.lua" />
@@ -90,6 +86,7 @@
         <sourceFile filename="src/modules/contracts/CommercialContractsModule.lua" />
         <sourceFile filename="src/modules/economy/Economy6Service.lua" />
         <sourceFile filename="src/modules/economy/EconomyModule.lua" />
+        <sourceFile filename="src/modules/economy/EconomyStartupRoadmap1.lua" />
         <sourceFile filename="src/modules/integrity/Integrity6Service.lua" />
         <sourceFile filename="src/modules/integrity/IntegrityModule.lua" />
         <sourceFile filename="src/modules/insurance/Insurance6Service.lua" />
@@ -128,13 +125,8 @@
         <specialization name="ServiceTruck6" className="ServiceTruck6" filename="vehicles/ServiceTruck6.lua" />
     </specializations>
     <vehicleTypes>
-        <type name="agriLifeManagerFieldServiceKit" parent="base" filename="$dataS/scripts/vehicles/Vehicle.lua">
-            <specialization name="FieldServiceKit6" />
-        </type>
-        <type name="agriLifeManagerServiceTruck" parent="carFillable" filename="$dataS/scripts/vehicles/Vehicle.lua">
-            <specialization name="ServiceTruck6" />
-            <specialization name="fillTriggerVehicle" />
-        </type>
+        <type name="agriLifeManagerFieldServiceKit" parent="base" filename="$dataS/scripts/vehicles/Vehicle.lua"><specialization name="FieldServiceKit6" /></type>
+        <type name="agriLifeManagerServiceTruck" parent="carFillable" filename="$dataS/scripts/vehicles/Vehicle.lua"><specialization name="ServiceTruck6" /><specialization name="fillTriggerVehicle" /></type>
     </vehicleTypes>
     <materialTemplates id="brandColor" name="Brand Material" parentTemplateFilename="$data/shared/detailLibrary/materialTemplates.xml">
         <template name="RAM_SILVER" title="Silver" usage="2" colorScale="1 1 1" parentTemplate="silverScratched" />
@@ -144,17 +136,9 @@
         <template name="PLAST1" title="Dark plastic" usage="2" colorScale="0.02 0.02 0.02" parentTemplate="plasticPaintedBlack" />
         <template name="PLAST2" title="Dark plastic 2" usage="2" colorScale="0.03 0.03 0.03" parentTemplate="plasticPaintedShinyBlack" />
     </materialTemplates>
-    <placeableSpecializations>
-        <specialization name="OilServicePoint6" className="OilServicePoint6" filename="placeables/OilServicePoint6.lua" />
-    </placeableSpecializations>
-    <placeableTypes>
-        <type name="agriLifeManagerOilServicePoint" parent="simplePlaceable" filename="$dataS/scripts/placeables/Placeable.lua">
-            <specialization name="OilServicePoint6" />
-        </type>
-    </placeableTypes>
-    <brands>
-        <brand name="GMC" title="GMC" image="gui/icons/brand_gmc.dds" />
-    </brands>
+    <placeableSpecializations><specialization name="OilServicePoint6" className="OilServicePoint6" filename="placeables/OilServicePoint6.lua" /></placeableSpecializations>
+    <placeableTypes><type name="agriLifeManagerOilServicePoint" parent="simplePlaceable" filename="$dataS/scripts/placeables/Placeable.lua"><specialization name="OilServicePoint6" /></type></placeableTypes>
+    <brands><brand name="GMC" title="GMC" image="gui/icons/brand_gmc.dds" /></brands>
     <storeItems>
         <storeItem xmlFilename="placeables/OilTank.xml" />
         <storeItem xmlFilename="vehicles/fieldServiceKit/fieldServiceKit.xml" />
