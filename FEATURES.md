@@ -1,4 +1,4 @@
-# Fonctionnalités — AgriLife Manager
+# Fonctionnalités - AgriLife Manager
 
 Ce document présente la vision fonctionnelle d’AgriLife Manager. Certains systèmes sont déjà jouables, d’autres sont en cours de développement ou planifiés.
 
@@ -8,151 +8,161 @@ AgriLife Manager ne doit pas devenir une collection de menus sans effet sur la p
 
 **Chaque nouvelle fonctionnalité doit avoir une conséquence réelle en jeu** : accès ou refus, coût, avantage, obligation, réputation, progression, risque, sanction, opportunité ou évolution durable de la carrière.
 
-## Difficulté — trois niveaux uniquement
+## Difficulté - trois niveaux uniquement
 
 Le mod conserve **Facile, Normal et Difficile**.
 
-La difficulté est un paramètre global de la carrière et doit agir sur **tout le mod**. Chaque module consulte le même profil de difficulté sauvegardé avec la partie afin d’éviter des comportements incohérents entre Banque, Examens, Personnel, Assurance, Fiscalité, Contrats ou Administration.
+La difficulté est un paramètre global de la carrière. Chaque module consulte le même profil sauvegardé afin d’éviter des comportements incohérents entre Banque, Entreprise, Carrière & Qualifications, Administration, Contrats & Marchés et Atelier.
 
 ### Facile
 
-Gestion accessible avec davantage de tolérance, coûts et sanctions réduits, critères plus permissifs et accompagnement renforcé.
+- capital de départ : **200 000 €** ;
+- banque et conseiller facultatifs au démarrage ;
+- examen/permis facultatif ;
+- accès véhicule libre ;
+- coûts, sanctions et exigences plus permissifs.
 
 ### Normal
 
-Réglage de référence d’AgriLifeManager. Tous les grands systèmes sont actifs avec un niveau de contrainte équilibré et réaliste.
+- capital de départ : **100 000 €** ;
+- banque + conseiller obligatoires ;
+- permis provisoire de **3 mois de jeu** ;
+- rappel toutes les **6 heures de jeu** ;
+- amende unique de **500 €** sur le compte personnel après expiration ;
+- conduite normale autorisée pendant la période provisoire.
 
 ### Difficile
 
-Contraintes, coûts, risques, contrôles, exigences bancaires, fiscalité, sanctions et conséquences renforcés. Les erreurs de gestion doivent avoir un impact plus durable.
+- capital de départ : **50 000 €** ;
+- banque + conseiller obligatoires ;
+- examen agricole obligatoire ;
+- accès normal aux véhicules verrouillé jusqu’à obtention du permis ;
+- matériel d’examen utilisable pendant une épreuve active ;
+- contraintes, coûts, risques et conséquences renforcés.
 
-La difficulté peut notamment agir sur : capital de départ, obligations, crédit, taux et garanties, examens, XP, salaires, assurances, entretien, fiscalité, réputation, contrats, contrôles, sanctions, contentieux et événements de gestion.
+La difficulté agit ensuite sur crédit, taux, garanties, examens, XP, salaires, assurances, entretien, fiscalité, réputation, contrats, marchés, contrôles, sanctions et événements de gestion.
 
-## Banque & conseiller
+## Démarrage
 
-AgriLife remplace progressivement la logique de prêt instantané de FS25 par une relation bancaire construite dans le temps.
+Démarrage n’est pas un module joueur. Il initialise la carrière, le niveau de difficulté, le capital, les obligations initiales, la banque/conseiller lorsque requis, le permis et la persistance de l’état AgriLife dans la sauvegarde FS25.
 
-Le dossier prend en compte notamment réputation, qualité de la banque, compétence du conseiller, relation bancaire, dettes, incidents, objet du financement, santé de l’entreprise et difficulté.
+La validation actuelle porte sur les trois parcours Facile, Normal et Difficile, puis sur migration et isolation des sauvegardes.
 
-Les demandes sont étudiées pendant des heures de jeu FS25 et peuvent être acceptées, refusées ou conditionnées. Taux, plafond, garanties, frais et délais doivent varier avec le profil et la difficulté.
+## Interface
 
-## Compte professionnel et compte personnel
+Le tableau de bord est la racine de l’information et présente exactement six modules :
 
-Le compte professionnel devient la mémoire financière de l’exploitation : solde, mouvements, catégories, frais, mensualités, intérêts, dette AgriLife, dette FS25 héritée, capacité d’emprunt, prévision de trésorerie et historique des incidents.
+1. Banque
+2. Entreprise
+3. Carrière & Qualifications
+4. Administration
+5. Contrats & Marchés
+6. Atelier
 
-Le compte personnel reste distinct. La séparation professionnelle/personnelle devient plus contraignante à mesure que la difficulté augmente.
+L’Interface reste une couche transversale : navigation, tutoriel, Assistance, HUD, notifications, tableaux de bord, lisibilité 1080p/1440p/4K et futur Journal de bord AgriLife.
 
-## Réputation de l’exploitation
+## Banque
 
-La réputation est le **premier grand système prioritaire après stabilisation des builds TEST actuelles**.
+La Banque regroupe relation bancaire, conseiller, crédit, compte professionnel, compte personnel, dette, trésorerie, comptabilité et fiscalité.
 
-Elle évolue à partir d’événements réels : contrats, retards, dettes, incidents, examens, qualité du travail, conformité et historique de gestion.
+Sont prévus :
 
-Elle influence Banque, Conseiller, Contrats, Coopératives, Assurance, Administration et futurs contentieux. Gains, pertes et seuils doivent dépendre de la difficulté.
+- contrat bancaire à durée déterminée ;
+- renouvellement, changement et rupture anticipée ;
+- conséquences de relation, incidents et réputation ;
+- prêts conservés chez leur banque d’origine ;
+- refinancement ;
+- historique complet des transactions ;
+- prévision de trésorerie ;
+- bilan, résultat et fiscalité AgriLife.
 
-## Comptabilité & fiscalité
+## Entreprise
 
-Deuxième grande priorité après stabilisation.
-
-Sont prévus : chiffre d’affaires, produits et charges, salaires, assurances, intérêts, entretien, résultat annuel, actifs, dettes, amortissements, historique pluriannuel, échéances fiscales et clôture d’exercice.
-
-Fiscalité, délais, pénalités et conséquences d’impayé varient selon Facile / Normal / Difficile.
-
-## Carrière & XP
-
-La carrière reflète l’expérience réellement acquise sur l’exploitation. La progression prend en compte travaux réalisés, résultats, examens, réputation et historique professionnel.
-
-Une fiche de carrière durable doit suivre heures, hectares, examens, contrats, incidents et grandes étapes de développement.
-
-La vitesse de progression et les seuils peuvent varier selon la difficulté.
-
-## Examens & permis agricole
-
-Les examens sont pratiques et se déroulent directement dans la partie.
-
-Le HUD affiche étape, action attendue, progression, note et erreurs. Après validation d’une étape, la consigne suivante apparaît immédiatement. La validation privilégie le travail réel et utilise un mécanisme de secours lorsque certains outils ne remontent pas correctement leur WorkArea.
-
-**0.6.4.24 TEST :** la chaîne corrigée attend encore une validation complète des 10 étapes.
-
-Frais d’inscription, tolérance, notation et exigences doivent varier selon la difficulté.
-
-Des qualifications spécialisées pourront compléter le permis général : phytosanitaire/pulvérisation, télescopique, forestier, transport agricole ou autres catégories pertinentes.
-
-## Personnel, contrats & paie
+Entreprise regroupe salariés, contrats de travail, paie, ordres de travail, expérience des employés et réputation de l’exploitation.
 
 Principe central : **1 salarié disponible = 1 tâche automatisée active maximum**.
 
-Les salariés représentent une vraie capacité de main-d’œuvre et disposent de contrats CDI, CDD ou saisonniers, d’un salaire, d’une ancienneté, de compétences, de spécialités, d’un historique et d’un état de disponibilité.
+AgriLife doit devenir la source unique de paie des salariés enregistrés afin d’éviter toute double facturation par FS25, Courseplay ou AutoDrive.
 
-AgriLife doit devenir la **source unique de paie** des salariés enregistrés afin d’éviter une double facturation par FS25, Courseplay ou AutoDrive.
+Contrats prévus : CDI, CDD et saisonnier.
 
-Le futur centre d’ordres suit :
+## Carrière & Qualifications
 
-**salarié → véhicule → outil → type de travail → champ ou destination**
+Ce module regroupe XP joueur, carrière, examens, permis et qualifications spécialisées.
 
-Coûts employeur, contraintes, tolérances et progression des salariés peuvent dépendre de la difficulté.
+Les examens sont pratiques et se déroulent directement dans la partie. Le HUD affiche étape, action attendue, progression, note et erreurs.
 
-## Joueur humain, GPS et ouvriers
+La progression XP normale reste séparée de la progression d’examen.
 
-Le joueur humain reste distinct de la main-d’œuvre salariée. Le GPS / Steering Assist natif reste disponible, mais les tâches automatisées doivent être rattachées au système Personnel AgriLife afin de conserver une gestion cohérente des ressources humaines et de la paie.
+Qualifications spécialisées envisagées : pulvérisation/phytosanitaire, télescopique, forestier, transport agricole et autres catégories pertinentes.
 
-## Société, administration & statut d’exploitation
+## Administration
 
-La société devient un véritable élément de gameplay avec obligations, coûts, formalités et conformité adaptés au niveau choisi.
+Administration regroupe société, statuts, conformité, assurances, contrôles, sanctions, événements de gestion, huissier et contentieux.
 
-Un statut évolutif est prévu :
+Chaque sanction doit avoir une cause compréhensible et une conséquence réelle. Les sanctions personnelles ne doivent pas être payées silencieusement par l’entreprise.
+
+Un statut d’exploitation évolutif est prévu :
 
 **petite exploitation → exploitation professionnelle → entreprise agricole → grande entreprise**
 
-Le passage d’un statut au suivant dépend de l’expérience, de la réputation, du capital, des examens, de la conformité et de l’activité réelle.
+## Contrats & Marchés
 
-## Contrôles administratifs & sanctions
+AgriLife vise de véritables engagements commerciaux : acheteurs multiples, coopératives, volumes, prix, qualité, échéances, pénalités et contrats avant semis.
 
-Troisième grande priorité après stabilisation.
+Le même moteur économique doit alimenter :
 
-Les contrôles vérifient uniquement les obligations réellement applicables à la carrière : permis, assurances, documents, conformité ou autres exigences actives.
+- cultures et produits ;
+- multifruits ;
+- matériel neuf et occasion ;
+- intrants, palettes et big bags ;
+- carburants et énergies ;
+- foncier ;
+- locations ;
+- productions/usines ;
+- contrats et coopératives.
 
-Les conséquences peuvent inclure avertissement, délai de régularisation, amende, immobilisation, effet sur la réputation et aggravation en cas de récidive.
+Les fluctuations restent bornées, progressives et cohérentes.
 
-Fréquence, seuils et sévérité doivent dépendre de la difficulté. Chaque sanction doit avoir une cause compréhensible et identifiable.
+## Atelier
 
-## Événements de gestion
+Atelier possède l’état, l’usure, l’entretien, les réparations, les immobilisations et l’historique technique du matériel.
 
-Des événements peu fréquents mais significatifs pourront créer de vraies situations de gestion : échéance, facture imprévue, contrôle, réparation lourde, absence salarié ou autre incident crédible.
+Le matériel doit conserver une histoire économique : achat, utilisation, entretien, sinistres, réparation et valeur résiduelle.
 
-Fréquence et sévérité dépendent du niveau choisi.
+## Réputation
 
-## Assurances
+La réputation appartient au module Entreprise. Les autres modules la consultent mais ne recréent pas leur propre moteur de réputation.
 
-Contrats, primes, franchises, exclusions et couverture doivent évoluer selon risque, historique, réputation et difficulté.
+Elle évolue à partir d’événements réels : contrats, retards, dettes, incidents, examens, qualité du travail, conformité et gestion.
 
-## Atelier & matériel
+## Compte professionnel et compte personnel
 
-Le matériel possède une histoire économique : achat, utilisation, usure, entretien, immobilisation, réparation, sinistres et valeur résiduelle.
+Les deux comptes restent séparés.
 
-Coûts, tolérances et conséquences d’entretien varient avec la difficulté.
+Le compte personnel doit justifier clairement capital initial, salaire brut, retenues, net versé, logement, frais bancaires personnels, sanctions et solde après mouvement.
 
-## Contrats & coopératives
-
-AgriLife vise de véritables engagements commerciaux : acheteurs multiples, coopératives, volumes, prix, qualité, échéances, pénalités, contrats avant semis et historique commercial.
-
-Chaque contrat pourra recevoir une notation selon le respect réel des engagements. Exigences, tolérances et pénalités varient selon la difficulté.
-
-## Huissier & contentieux
-
-Chaîne visée :
-
-**retard → relance → mise en demeure → négociation → échéancier → contentieux → frais → conséquences bancaires et réputationnelles**
-
-Délais, frais, tolérances et escalade dépendent du niveau choisi.
+Le compte professionnel conserve les charges et opérations de l’exploitation.
 
 ## Journal de bord AgriLife
 
-La carrière conserve une chronologie des événements importants : permis obtenu, salarié embauché, financement majeur, évolution de statut, contrôle administratif, contrat marquant, sinistre ou autre étape importante.
+La carrière conservera une chronologie des événements importants : permis obtenu, salarié embauché, financement majeur, évolution de statut, contrôle administratif, contrat marquant, sinistre ou autre étape importante.
+
+## Toutes maps et multifruit
+
+AgriLifeManager ne doit pas dépendre d’une liste fermée de maps ou de cultures.
+
+Le projet vise la détection dynamique des fruits, fillTypes, produits, points de vente, productions, parcelles, articles magasin, véhicules, outils, palettes, big bags et ressources enregistrées dans la partie lorsque les API FS25 le permettent.
+
+Un contenu non détectable de manière sûre doit être ignoré proprement sans casser AgriLife.
+
+## Precision Farming & Soil Fertilizer
+
+Ces intégrations restent optionnelles.
+
+AgriLife ne refait pas leur agronomie. Il utilise leurs données fiables pour produire des conséquences économiques, contractuelles, administratives et réputationnelles.
 
 ## Traductions & clés l10n
-
-AgriLifeManager doit être proprement utilisable dans **toutes les langues distribuées avec le mod**.
 
 Règles :
 
@@ -162,10 +172,11 @@ Règles :
 - toute nouvelle clé est ajoutée immédiatement à tous les fichiers de langue ;
 - détection des clés manquantes, doublons, fautes de nommage et clés inutilisées ;
 - contrôle des accents, caractères spéciaux, encodage UTF-8, textes longs, unités, montants et dates ;
-- glossaire cohérent pour les termes agricoles, bancaires, comptables, juridiques, administratifs et liés au personnel ;
-- extension progressive aux langues pertinentes de FS25/ModHub.
+- glossaire cohérent pour les termes agricoles, bancaires, comptables, juridiques, administratifs et liés au personnel.
 
 **Critère de publication : 0 clé manquante, 0 clé brute visible, 0 traduction vide et 0 fallback involontaire.**
+
+Une contribution l10n est suivie dans l’issue GitHub #2 et devra être rebasée sur le référentiel courant avant intégration.
 
 ## Sauvegardes & migration
 
@@ -183,9 +194,13 @@ Le mod doit fonctionner seul. Courseplay, AutoDrive, Soil Fertilizer, Precision 
 
 À terme, AgriLife doit fonctionner en multi-fermes et multijoueur complet, avec autorité serveur et synchronisation des modules.
 
-## Interface & localisation
+## Style et attribution
 
-L’interface suit une identité sombre et moderne avec informations hiérarchisées, cartes, tableaux, étoiles de réputation/compétence et pictogrammes fonctionnels.
+Le caractère em dash n’est pas utilisé dans les contenus du projet.
+
+Aucune attribution à une IA ou à un fournisseur d’IA ne doit être ajoutée aux commits, PR, releases, README, documentation, commentaires de code ou textes en jeu.
+
+Le projet reste attribué à **Chez_Squall**.
 
 ---
 
