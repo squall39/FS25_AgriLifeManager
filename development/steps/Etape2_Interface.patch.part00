@@ -1,0 +1,226 @@
+--- /mnt/data/agrilife_step1/modDesc.xml	2026-08-11 10:46:04.000000000 +0000
++++ /mnt/data/agrilife_step2/modDesc.xml	2026-08-11 12:29:08.712113851 +0000
+@@ -117,6 +117,7 @@
+         <sourceFile filename="src/modules/finalization/FinalizationModule.lua" />
+         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
+         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
++        <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
+         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
+         <sourceFile filename="src/core/AgriLifeCore.lua" />
+         <sourceFile filename="src/bootstrap/AgriLifeBootstrap.lua" />
+--- /dev/null	2026-08-11 08:26:59.763306012 +0000
++++ /mnt/data/agrilife_step2/src/ui/AgriLifeInterface6.lua	2026-08-11 12:29:08.257752442 +0000
+@@ -0,0 +1,530 @@
++-- Copyright (C) 2026 Chez_Squall. All rights reserved.
++-- AgriLife Manager - roadmap step 2: interface and user experience.
++-- This layer is presentation-only. It never owns gameplay or save data.
++
++AgriLife = AgriLife or {}
++
++AgriLife.Interface6 = {}
++AgriLife.Interface6.__index = AgriLife.Interface6
++
++AgriLife.Interface6.CANONICAL = {
++    DASHBOARD = "dashboard",
++    BANK = "bank",
++    ENTERPRISE = "enterprise",
++    CAREER = "careerQualifications",
++    ADMINISTRATION = "administration",
++    CONTRACTS = "contractsMarkets",
++    WORKSHOP = "workshop"
++}
++
++AgriLife.Interface6.PAGE_BY_CANONICAL = {
++    dashboard = "dashboard",
++    bank = "bank",
++    enterprise = "payroll",
++    careerQualifications = "exams",
++    administration = "insurance",
++    contractsMarkets = "contracts",
++    workshop = "workshop"
++}
++
++AgriLife.Interface6.CANONICAL_BY_PAGE = {
++    dashboard = "dashboard",
++    bank = "bank",
++    payroll = "enterprise",
++    company = "enterprise",
++    exams = "careerQualifications",
++    xp = "careerQualifications",
++    insurance = "administration",
++    accidents = "administration",
++    contracts = "contractsMarkets",
++    leasing = "contractsMarkets",
++    used = "contractsMarkets",
++    workshop = "workshop"
++}
++
++AgriLife.Interface6.NAVIGATION_ORDER = {
++    "bank",
++    "enterprise",
++    "careerQualifications",
++    "administration",
++    "contractsMarkets",
++    "workshop"
++}
++
++local function setText(element, value)
++    if element ~= nil and element.setText ~= nil then
++        element:setText(tostring(value or ""))
++    end
++end
++
++local function setVisible(element, visible)
++    if element ~= nil and element.setVisible ~= nil then
++        element:setVisible(visible == true)
++    end
++end
++
++local function setDisabled(element, disabled)
++    if element ~= nil and element.setDisabled ~= nil then
++        element:setDisabled(disabled == true)
++    end
++end
++
++local function setImageColor(element, r, g, b, a)
++    if element ~= nil and element.setImageColor ~= nil then
++        element:setImageColor(r, g, b, a or 1)
++    end
++end
++
++local function setTextColor(element, r, g, b, a)
++    if element ~= nil and element.setTextColor ~= nil then
++        element:setTextColor(r, g, b, a or 1)
++    end
++end
++
++local function tr(key)
++    if g_i18n == nil or g_i18n.getText == nil then return "--" end
++    local value = g_i18n:getText(key)
++    if value == nil or value == "" or value == key then return "--" end
++    return value
++end
++
++local function trf(key, ...)
++    local pattern = tr(key)
++    if pattern == "--" then return pattern end
++    local ok, value = pcall(string.format, pattern, ...)
++    return ok and value or pattern
++end
++
++local function formatMoney(value)
++    value = tonumber(value) or 0
++    if g_i18n ~= nil and g_i18n.formatMoney ~= nil then
++        local ok, textValue = pcall(g_i18n.formatMoney, g_i18n, value, 0, true, true)
++        if ok and textValue ~= nil then return textValue end
++    end
++    return string.format("%.0f", value)
++end
++
++local function module(core, id)
++    if core == nil or core.registry == nil or core.registry.instances == nil then return nil end
++    return core.registry.instances[id]
++end
++
++local function safeSnapshot(instance, methodName, farmId)
++    if instance == nil or instance[methodName] == nil then return nil end
++    local ok, result = pcall(instance[methodName], instance, farmId)
++    return ok and result or nil
++end
++
++function AgriLife.Interface6.new(frame)
++    return setmetatable({frame = frame}, AgriLife.Interface6)
++end
++
++function AgriLife.Interface6:getCore()
++    return self.frame ~= nil and self.frame.core or nil
++end
++
++function AgriLife.Interface6:getFarmId()
++    local core = self:getCore()
++    if core == nil or core.context == nil or core.context.getFarmId == nil then return 0 end
++    return tonumber(core.context:getFarmId()) or 0
++end
++
++function AgriLife.Interface6:getStartupSnapshot()
++    local economy = module(self:getCore(), "economy")
++    return safeSnapshot(economy, "getStartupSnapshot", self:getFarmId())
++end
++
++function AgriLife.Interface6:getDashboardSnapshot()
++    local facade = module(self:getCore(), "dashboardFacade")
++    return safeSnapshot(facade, "getSnapshot", self:getFarmId())
++end
++
++function AgriLife.Interface6:canonicalize(pageId)
++    pageId = tostring(pageId or "dashboard")
++    if AgriLife.Interface6.PAGE_BY_CANONICAL[pageId] ~= nil then return pageId end
++    return AgriLife.Interface6.CANONICAL_BY_PAGE[pageId] or "dashboard"
++end
++
++function AgriLife.Interface6:pageForCanonical(canonicalId)
++    return AgriLife.Interface6.PAGE_BY_CANONICAL[canonicalId] or "dashboard"
++end
++
++function AgriLife.Interface6:getStartupMessage(step)
++    local map = {
++        migration = {state = "agrilife_onboarding_existing_state", message = "agrilife_onboarding_existing_msg", action = "agrilife_onboarding_existing_button"},
++        tutorial = {state = "agrilife_onboarding_choice_required_state", message = "agrilife_onboarding_choice_required_msg", action = "agrilife_onboarding_choice_required_button"},
++        difficulty = {state = "agrilife_onboarding_mode_first_state", message = "agrilife_onboarding_mode_first_msg", action = "agrilife_onboarding_mode_first_button"},
++        bank = {state = "agrilife_onboarding_bank_state", message = "agrilife_onboarding_bank_msg", action = "agrilife_onboarding_bank_button"},
++        advisor = {state = "agrilife_onboarding_advisor_state", message = "agrilife_onboarding_advisor_msg", action = "agrilife_onboarding_advisor_button"},
++        exam = {state = "agrilife_onboarding_licence_state", message = "agrilife_onboarding_licence_msg", action = "agrilife_onboarding_licence_button"},
++        ready = {state = "agrilife_onboarding_ready", message = "agrilife_onboarding_ready_message_simple", action = "agrilife_onboarding_validated"}
++    }
++    return map[tostring(step or "")] or map.tutorial
++end
++
++function AgriLife.Interface6:isCanonicalReachable(canonicalId, startup)
++    if canonicalId == "dashboard" then return true end
++    if startup == nil then return false end
++
++    local step = tostring(startup.step or "tutorial")
++    if step == "ready" then return true end
++    if step == "bank" or step == "advisor" then return canonicalId == "bank" end
++    if step == "exam" then return canonicalId == "bank" or canonicalId == "careerQualifications" end
++    return false
++end
++
++function AgriLife.Interface6:getNavigationSnapshot(startup)
++    startup = startup or self:getStartupSnapshot()
++    local state = {dashboard = {enabled = true, page = "dashboard"}}
++    for _, canonicalId in ipairs(AgriLife.Interface6.NAVIGATION_ORDER) do
++        state[canonicalId] = {
++            enabled = self:isCanonicalReachable(canonicalId, startup),
++            page = self:pageForCanonical(canonicalId)
++        }
++    end
++    return state
++end
++
++function AgriLife.Interface6:resolvePage(requestedPage, startup)
++    startup = startup or self:getStartupSnapshot()
++    local canonicalId = self:canonicalize(requestedPage)
++    if self:isCanonicalReachable(canonicalId, startup) then
++        return self:pageForCanonical(canonicalId), nil
++    end
++
++    local step = tostring(startup ~= nil and startup.step or "tutorial")
++    local target = "dashboard"
++    if step == "bank" or step == "advisor" then
++        target = "bank"
++    elseif step == "exam" then
++        target = "exams"
++    end
++
++    local message = self:getStartupMessage(step)
++    return target, message.message
++end
++
++function AgriLife.Interface6:getNavElements(canonicalId)
++    local frame = self.frame
++    if frame == nil then return nil end
++    local map = {
++        dashboard = {button = frame.navDashboard, bg = frame.navDashboardBg, accent = frame.navDashboardAccent, icon = frame.navDashboardIcon, label = frame.navDashboardLabel},
++        bank = {button = frame.navBank, bg = frame.navBankBg, accent = frame.navBankAccent, icon = frame.navBankIcon, label = frame.navBankLabel},
++        enterprise = {button = frame.navPayroll, bg = frame.navPayrollBg, accent = frame.navPayrollAccent, icon = frame.navPayrollIcon, label = frame.navPay
