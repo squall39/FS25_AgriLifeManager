@@ -2,6 +2,10 @@
 
 > **Règle de développement : on termine et valide complètement un bloc avant d’ouvrir le suivant.**  
 > Ordre de travail : **Démarrage → Interface de base → Banque → Entreprise → Carrière & Qualifications → Administration → Contrats & Marchés → Atelier → Finalisation**.
+>
+> **Règle de maintenance de la feuille de route :** ce fichier est le registre maître additif du projet. Une mise à jour peut modifier l’état d’un point, préciser son avancement ou ajouter une idée validée, mais ne doit jamais supprimer, condenser ou reformuler une idée au point d’en perdre le contenu.
+>
+> **État code 0.7.9.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration et 7 Contrats & Marchés sont écrites et intégrées. Leur certification FS25 réelle reste à effectuer avant de fermer leurs cases de validation terrain.
 
 # 1 - Démarrage
 
@@ -148,7 +152,7 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 - [x] Accès véhicule autorisé pendant le permis provisoire.
 - [x] Notification de rappel toutes les **6 heures de jeu**.
 - [x] Tableau de bord : **PERMIS PROVISOIRE** + échéance restante.
-- [x] À expiration : **PROVISOIRE EXPIRÉ / ÉCHÉANCE DÉPASSÉE**.
+- [x] À expiration : **PROVISOIRE EXPIRÉ** et **ÉCHÉANCE DÉPASSÉE**.
 - [x] Rappels maintenus après expiration tant que l’examen n’est pas réussi.
 - [x] Amende unique : **500 €**.
 - [x] Amende débitée sur le **compte personnel** et non sur la trésorerie professionnelle.
@@ -320,6 +324,8 @@ La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois
 
 # 4 - Module Entreprise
 
+> **État code 0.7.6.0 TEST :** l’ensemble des scripts prévus pour l’étape 4 est écrit et intégré. Les cases de cette section restent ouvertes jusqu’à la certification complète en jeu, sauvegarde/rechargement et contrôle du log.
+
 Le module Entreprise regroupe la gestion de la main-d’œuvre, la paie, les ordres de travail, l’évolution des salariés et la **réputation de l’exploitation/du dirigeant**.
 
 ## Salariés & contrats de travail
@@ -386,6 +392,8 @@ La réputation appartient à l’Entreprise. Banque, Administration, Contrats & 
 
 # 5 - Module Carrière & Qualifications
 
+> **État code 0.7.7.0 TEST :** l’ensemble des scripts prévus pour l’étape 5 est écrit et intégré. Les cases restent ouvertes jusqu’à la certification réelle des examens, qualifications et sauvegarde/rechargement.
+
 Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qualifications spécialisées et historique professionnel**. Les anciennes entrées séparées « Examens » et « XP & Carrière » doivent converger vers ce module unique.
 
 ## Carrière & XP
@@ -419,6 +427,8 @@ Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qual
 ---
 
 # 6 - Module Administration
+
+> **État code 0.7.8.0 TEST :** l’ensemble des scripts prévus pour l’étape 6 est écrit et intégré. Les cases restent ouvertes jusqu’à la certification complète en jeu des statuts, contrôles, sanctions, assurances et contentieux.
 
 Le module Administration regroupe **société/statuts administratifs, assurances, conformité, contrôles, sanctions, événements de gestion, huissier et contentieux**.
 
@@ -477,6 +487,8 @@ L’Assurance devient une composante de l’Administration et non une carte/modu
 ---
 
 # 7 - Module Contrats & Marchés
+
+> **État code 0.7.9.0 TEST :** l’ensemble des scripts prévus pour l’étape 7 est écrit et intégré : engagements commerciaux, négociation, acheteurs/coopératives, notation A-E, marché mondial/local, détection maps/multifruits, neuf/occasion, intrants, carburants/énergie, foncier, locations, productions/usines et enrichissements Precision Farming / Soil Fertilizer. Les cases restent ouvertes jusqu’à la certification FS25 réelle, sauvegarde/rechargement et contrôle du log.
 
 Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, économie mondiale, marchés locaux, multifruits, matériel neuf/occasion, intrants, carburants, foncier, locations et productions/usines**.
 
@@ -734,4 +746,4 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 
 **Auteur : Chez_Squall**  
 **Projet : FS25_AgriLifeManager**  
-**Statut actuel : développement pré-1.0 - Démarrage en cours de validation, Normal validé fonctionnellement, Difficile prochain test**
+**Statut actuel : développement pré-1.0 - Étapes 4, 5, 6 et 7 écrites/intégrées ; certification FS25 réelle à poursuivre avant validation finale.**
