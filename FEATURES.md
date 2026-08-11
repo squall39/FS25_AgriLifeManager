@@ -1,67 +1,63 @@
 # Fonctionnalités - AgriLife Manager
 
-État de référence : **0.7.8.0 TEST**.
+Version de référence : **0.7.9.0 TEST**
 
-## Démarrage
+Ce document résume les fonctions déjà écrites. La liste exhaustive des idées et des points à certifier reste dans `ROADMAP.md`.
 
-- Facile / Normal / Difficile.
-- Capital de départ AgriLife.
-- Banque et conseiller selon difficulté.
-- Permis provisoire Normal et examen obligatoire Difficile.
-- Persistance et migration de sauvegarde.
+## Démarrage, interface et banque
 
-## Banque
-
-- Banque et conseiller.
-- Comptes professionnel et personnel.
-- Crédit, dette héritée, remboursement, refinancement et découvert.
-- Score de crédit, contrats bancaires et prévision de trésorerie.
-- Comptabilité et fiscalité.
+- trois difficultés Facile / Normal / Difficile ;
+- onboarding différé jusqu'au gameplay réel ;
+- banque, conseiller, financement et comptes AgriLife ;
+- tableau de bord à six modules ;
+- persistance par sauvegarde AgriLife.
 
 ## Entreprise
 
-- CDI, CDD et saisonnier.
-- Horaires, pauses, heures supplémentaires, congés, maladie et absences.
-- Une personne = une tâche active.
-- Planning et centre d'ordres.
-- IA native FS25, Courseplay et AutoDrive optionnels.
-- Paie unique AgriLife.
-- XP salarié, spécialités, recrutement, formation, carrière et incidents.
-- Réputation exploitation + dirigeant.
+- salariés CDI, CDD et saisonniers ;
+- horaires, absences, congés, maladie et heures supplémentaires ;
+- paie unique AgriLife ;
+- centre d'ordres, planning et affectation unique ;
+- IA FS25 et intégrations Courseplay / AutoDrive optionnelles ;
+- XP salarié, recrutement, formation, carrière et incidents ;
+- réputation de l'exploitation et du dirigeant.
 
 ## Carrière & Qualifications
 
-- Fiche carrière durable et XP par difficulté.
-- Examen agricole en 10 étapes.
-- Permis et historique des résultats.
-- Qualifications phytosanitaire, manutention, forestier, transport, récolte et travaux publics.
-- Verrous métier lorsque la difficulté l'exige.
+- XP joueur et carrière durable ;
+- examen agricole en dix étapes ;
+- permis provisoire Normal et permis définitif ;
+- qualifications spécialisées et verrous métier selon difficulté ;
+- historique des examens et qualifications.
 
 ## Administration
 
-- Statut d'exploitation évolutif.
-- Santé administrative et documents.
-- Contrôles, récidive, régularisation, amendes, restrictions et immobilisation.
-- Assurance et événements de gestion.
-- Contentieux, huissier, plans de paiement, saisie et suspension.
-- Conséquences sur Banque, Contrats et Entreprise.
+- statut d'exploitation évolutif ;
+- documents, conformité et santé administrative ;
+- contrôles, récidive, régularisation et sanctions ;
+- assurance et événements de gestion ;
+- contentieux, plans de paiement, huissier et saisie.
 
 ## Contrats & Marchés
 
-Des fondations sont présentes : marché dynamique, contrats, demande, points de vente et économie commune. La passe dédiée de l'étape 7 reste à fermer avant certification.
+- engagements commerciaux et négociation prix / volume / délai ;
+- acheteurs, coopératives et relation commerciale durable ;
+- notation A-E des contrats et conséquences sur les futures offres ;
+- marché mondial et marchés locaux dynamiques ;
+- découverte dynamique maps, multifruits, fillTypes, points de vente, productions, parcelles et articles magasin ;
+- matériel neuf et occasion avec marché, disponibilité, stock et délais de livraison ;
+- intrants, consommables, carburants et énergie dynamiques ;
+- foncier dynamique, achats, ventes et opportunités temporaires ;
+- locations de matériel et actifs lorsque l'API permet une gestion sûre ;
+- productions/usines avec valeur et rentabilité ;
+- Precision Farming et Soil Fertilizer utilisés uniquement comme enrichissements optionnels avec fallback vanilla.
 
 ## Atelier
 
-Des fondations sont présentes : entretien, réparation, stocks, maintenance et valeur de flotte. La passe dédiée de l'étape 8 reste à fermer.
+Les fondations Atelier sont présentes. La passe complète de l'étape 8 reste la prochaine étape d'écriture.
 
-## Compatibilités
+## Validation
 
-- Courseplay : optionnel.
-- AutoDrive : optionnel.
-- Precision Farming : détection/capability-gating.
-- Soil Fertilizer : détection/capability-gating.
-- Maps et fillTypes : détection dynamique privilégiée.
+Les étapes 4, 5, 6 et 7 sont **écrites et intégrées** mais restent à certifier dans FS25 avant validation finale. Voir `ROADMAP.md` et `docs/VERIFICATION_REPORT.md`.
 
-## Multijoueur
-
-Architecture par ferme et autorité serveur préparées, mais le `modDesc.xml` conserve `supported=false` jusqu'à validation réseau réelle.
+© 2026 Chez_Squall.
