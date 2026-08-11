@@ -189,6 +189,9 @@ function AgriLife.Interface6:resolvePage(requestedPage, startup)
     startup = startup or self:getStartupSnapshot()
     local canonicalId = self:canonicalize(requestedPage)
     if self:isCanonicalReachable(canonicalId, startup) then
+        if canonicalId == "careerQualifications" and (requestedPage == "xp" or requestedPage == "exams") then
+            return requestedPage, nil
+        end
         return self:pageForCanonical(canonicalId), nil
     end
 
@@ -334,8 +337,8 @@ function AgriLife.Interface6:bindDashboard(startup, dashboard)
     local provisional = startup ~= nil and startup.provisionalLicence or {}
     if career.examRunning == true then
         licenceText = trf("agrilife_dashboard_exam_running_fmt", tonumber(career.examProgress) or 0)
-    elseif startup ~= nil and startup.licenceObtained == true then
-        licenceText = trf("agrilife_dashboard_licence_obtained_fmt", tonumber(career.bestScore) or 0)
+    elseif tostring(career.generalLicence or "") == "obtained" or (startup ~= nil and startup.licenceObtained == true) then
+        licenceText = trf("agrilife_dashboard_licence_obtained_fmt", tonumber(career.lastResultScore) or tonumber(career.bestScore) or 0)
     elseif provisional ~= nil and provisional.enabled == true and provisional.completed ~= true then
         if provisional.expired == true then
             licenceText = tr("agrilife_exam6_state_provisional_expired")
@@ -351,7 +354,7 @@ function AgriLife.Interface6:bindDashboard(startup, dashboard)
     setText(frame.dashCareerReputation, trf("agrilife_dashboard_qualifications_count_fmt", tonumber(career.qualificationCount) or 0))
 
     local administration = cards.administration or {}
-    setText(frame.dashInsuranceState, trf("agrilife_dashboard_administration_compliance_fmt", tonumber(administration.compliance) or 0, tostring(administration.businessStatus or "small_farm")))
+    setText(frame.dashInsuranceState, trf("agrilife_dashboard_administration_compliance_fmt", tonumber(administration.compliance) or 0, (administration.statusLabelKey ~= nil and tr(administration.statusLabelKey) or tostring(administration.businessStatus or "small_farm"))))
     setText(frame.dashInsuranceDetail, trf("agrilife_dashboard_administration_detail_fmt", tonumber(administration.openSanctions) or 0, formatMoney(administration.unpaidAmount or 0), administration.insuranceCompliant == false and tr("agrilife_core_no") or tr("agrilife_core_yes")))
 
     local contracts = cards.contractsMarkets or {}
@@ -413,7 +416,7 @@ function AgriLife.Interface6:showPage(requestedPage)
 
     -- These pages remain implementation details and are not root modules.
     setVisible(frame.companyPage, false)
-    setVisible(frame.xpPage, false)
+    setVisible(frame.xpPage, pageId == "xp")
     setVisible(frame.accidentsPage, false)
     setVisible(frame.leasingPage, false)
     setVisible(frame.usedPage, false)
@@ -426,6 +429,15 @@ function AgriLife.Interface6:showPage(requestedPage)
         setVisible(frame.examTeamPanel, not own)
         setDisabled(frame.examSelfTabButton, own)
         setDisabled(frame.examTeamTabButton, not own)
+    elseif pageId == "xp" then
+        local own = frame.careerSubview ~= "team"
+        setVisible(frame.careerSelfSummaryPanel, own)
+        setVisible(frame.careerSelfStatsPanel, own)
+        setVisible(frame.careerSelfSpecialtiesPanel, own)
+        setVisible(frame.xpStatusText, own)
+        setVisible(frame.careerTeamPanel, not own)
+        setDisabled(frame.careerSelfTabButton, own)
+        setDisabled(frame.careerTeamTabButton, not own)
     elseif pageId == "payroll" then
         local own = frame.payrollSubview ~= "team"
         setVisible(frame.payrollSelfPanel, own)
