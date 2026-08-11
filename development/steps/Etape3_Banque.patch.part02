@@ -1,0 +1,110 @@
+il,
++                loanOriginTracking = self.getRoadmap3LoanDetails ~= nil,
++                refinancing = self.previewRefinance ~= nil and self.requestRefinance ~= nil,
++                transactionHistory = self.getRoadmap3Transactions ~= nil,
++                cashflowForecast = self.getCashflowForecast ~= nil,
++                accounting = self.getAccountingSnapshot ~= nil,
++                fiscalClose = self.closeFiscalYear ~= nil,
++                taxPayment = self.payTax ~= nil,
++                inheritedVanillaDebt = true,
++                earlyRepayment = self.repayEarly ~= nil,
++                restructuring = self.restructureLoan ~= nil,
++                overdraft = self.setOverdraftLimit ~= nil
++            }
++        }
++    end
++
++    function AgriLife.Bank6Service:getRoadmap3Snapshot(farmId)
++        local snapshot = self:getSnapshot(farmId)
++        if snapshot == nil then return nil end
++
++        local relation = self.getRelationshipSnapshot ~= nil and self:getRelationshipSnapshot(farmId) or nil
++        local accounting = self.getAccountingSnapshot ~= nil and self:getAccountingSnapshot(farmId) or nil
++        local debt = self:getRoadmap3DebtSummary(farmId)
++        local checklist = self:getRoadmap3Checklist(farmId)
++
++        return {
++            farmId = tonumber(farmId) or 0,
++            difficulty = {
++                id = tostring(snapshot.bankModeId or "normal"),
++                capacityFactor = tonumber(snapshot.difficultyCapacityFactor) or 1,
++                rateAdjustment = tonumber(snapshot.difficultyRateAdjustment) or 0,
++                setupFeeFactor = tonumber(snapshot.difficultySetupFeeFactor) or 1,
++                contributionRate = tonumber(snapshot.difficultyContributionRate) or 0
++            },
++            identity = {
++                providerSelected = snapshot.providerSelected == true,
++                providerId = tostring(snapshot.providerId or ""),
++                providerName = tostring(snapshot.providerName or ""),
++                providerTier = tonumber(snapshot.providerTier) or 1,
++                providerTierName = tostring(snapshot.providerTierName or ""),
++                advisorSelected = snapshot.advisorSelected == true,
++                advisorId = tostring(snapshot.advisorId or ""),
++                advisorName = tostring(snapshot.advisorName or ""),
++                advisorTitle = tostring(snapshot.advisorTitle or ""),
++                advisorTier = tonumber(snapshot.advisorTier) or 1,
++                advisorTierName = tostring(snapshot.advisorTierName or "")
++            },
++            relationship = relation,
++            credit = {
++                score = tonumber(snapshot.score) or 0,
++                rating = tostring(snapshot.rating or ""),
++                capacity = roundCurrency(snapshot.capacity),
++                bankRelationship = clamp(snapshot.bankRelationship, 0, 100),
++                advisorTrust = clamp(snapshot.advisorTrust, 0, 100),
++                ownerReputation = clamp(snapshot.ownerReputation, 0, 100),
++                companyReputation = clamp(snapshot.companyReputation, 0, 100),
++                pendingApplicationCount = tonumber(snapshot.pendingApplicationCount) or 0,
++                applicationStatus = tostring(snapshot.applicationStatus or "none"),
++                applicationRemainingMs = tonumber(snapshot.applicationRemainingMs) or 0,
++                applicationDecisionScore = tonumber(snapshot.applicationDecisionScore) or 0,
++                applicationDecisionThreshold = tonumber(snapshot.applicationDecisionThreshold) or 0,
++                applicationDecisionReasonCode = tostring(snapshot.applicationDecisionReasonCode or "")
++            },
++            debt = debt,
++            account = self:getRoadmap3ProfessionalAccount(farmId),
++            loans = self:getRoadmap3Loans(farmId, true),
++            transactions = self:getRoadmap3Transactions(farmId, {limit = 20}),
++            accounting = accounting,
++            relationshipTerms = self:getRoadmap3RelationshipTerms(farmId),
++            checklist = checklist
++        }
++    end
++end
++
++if AgriLife.BankModule ~= nil then
++    function AgriLife.BankModule:getRoadmap3Snapshot(farmId)
++        local service = getBankService(self)
++        if service == nil or service.getRoadmap3Snapshot == nil then return nil end
++        if self.core ~= nil and self.core.context ~= nil and not self.core.context.isServer then
++            self:requestSnapshot(farmId, false)
++            return nil
++        end
++        return service:getRoadmap3Snapshot(farmId)
++    end
++
++    function AgriLife.BankModule:getRoadmap3Checklist(farmId)
++        local service = getBankService(self)
++        return service ~= nil and service.getRoadmap3Checklist ~= nil and service:getRoadmap3Checklist(farmId) or nil
++    end
++
++    function AgriLife.BankModule:getRoadmap3Transactions(farmId, filters)
++        local service = getBankService(self)
++        return service ~= nil and service.getRoadmap3Transactions ~= nil and service:getRoadmap3Transactions(farmId, filters) or nil
++    end
++
++    function AgriLife.BankModule:getRoadmap3LoanDetails(farmId, loanId)
++        local service = getBankService(self)
++        return service ~= nil and service.getRoadmap3LoanDetails ~= nil and service:getRoadmap3LoanDetails(farmId, loanId) or nil
++    end
++
++    function AgriLife.BankModule:getRoadmap3FinancingAnalysis(farmId, amount, termMonths, purpose)
++        local service = getBankService(self)
++        return service ~= nil and service.getRoadmap3FinancingAnalysis ~= nil and service:getRoadmap3FinancingAnalysis(farmId, amount, termMonths, purpose) or nil
++    end
++
++    function AgriLife.BankModule:getRoadmap3ProfessionalAccount(farmId)
++        local service = getBankService(self)
++        return service ~= nil and service.getRoadmap3ProfessionalAccount ~= nil and service:getRoadmap3ProfessionalAccount(farmId) or nil
++    end
++end
