@@ -1,71 +1,74 @@
 # Changelog - AgriLife Manager
 
-Toutes les évolutions importantes du projet sont consignées ici.
+Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve désormais les jalons de la branche actuelle au lieu de recopier toutes les notes 0.6.x.
 
-## 0.7.0.0
+## 0.7.8.0 TEST - Administration
 
-- Étape 1 Démarrage : machine d'état centrale pour migration, tutoriel, difficulté, banque, conseiller, examen et carrière prête.
-- Étape 1 Démarrage : logique isolée dans `src/modules/economy/EconomyStartupRoadmap1.lua` afin d'éviter de maintenir un patch géant de `Economy6Service.lua`.
-- Étape 2 Interface : couche UI transversale à six modules dans `src/ui/AgriLifeInterface6.lua`, redirections de navigation et verrouillage visuel cohérent.
-- Étape 3 Banque : extensions de la feuille de route dans `src/modules/bank/BankRoadmap3.lua`, avec dette FS25 héritée séparée, détail des prêts, historique filtrable, prévision de trésorerie, analyse de financement et checklist.
-- Réorganisation GitHub : suppression de l'arborescence active `development/steps/` et de ses patches découpés. Ces fichiers restent disponibles dans l'historique Git.
-- Réorganisation GitHub : la source courante est désormais publiée directement à ses chemins réels. `development/` est réservé aux notes de chantier.
-- Ajout de `.gitignore` pour exclure archives, sauvegardes, logs, caches et fichiers temporaires.
-- Ajout de `docs/REPOSITORY_LAYOUT.md` pour définir une structure de dépôt unique et lisible.
-- Distribution : séparation explicite entre dépôt source officiel et package jouable.
-- Build joueur correspondante : `FS25_AgriLifeManager.zip`, SHA-256 `45a66c117f1525418409c2917d20a1e68ebaf5058425e8240745c6737946d6d2`.
-- Vérification statique : **OK - 91 XML, 80 Lua actifs, 146 callbacks, 210 contrôles, 27 langues, 4 831 clés l10n**.
-- Les tests en jeu restent à poursuivre. La synchronisation du code ne marque pas les étapes comme validées fonctionnellement.
+- Étape 6 Administration écrite et intégrée.
+- Statut d'exploitation évolutif, santé administrative et documents.
+- Contrôles, récidive, régularisation, amendes, restrictions et immobilisation.
+- Assurance et événements de gestion.
+- Contentieux, huissier, plans de paiement, saisie et suspension.
+- Restrictions reliées à Banque, Contrats et Entreprise.
+- Feuille de route, matrice d'implémentation, rapport de vérification et manifeste de synchronisation remis à jour.
+- Certification FS25 réelle volontairement différée.
 
-## 0.6.4.38
+## 0.7.7.0 TEST - Carrière & Qualifications
 
-- Écriture projet : nettoyage du style dans tous les fichiers texte du package.
-- Qualité : le vérificateur de release contrôle le style et la parité l10n.
-- Onboarding : suppression d'un message français codé en dur, remplacé par une clé l10n déjà distribuée.
-- Compte personnel : affichage des montants détaillés au centime et arrondi des mouvements de paie au centime afin que le relevé puisse être recalculé ligne par ligne.
-- Permis provisoire Normal : l'amende de 500 € utilise le type explicite `PROVISIONAL_LICENCE_FINE` pour afficher son libellé dédié dans le relevé personnel.
-- Traductions : suppression de la clé inutilisée et vide `agrilifemanager_fmf_viaSearchUsed` et correction de `agrilifemanager_label_pluralS` en allemand.
-- Contribution GitHub #2 : intégration des corrections sûres sans écraser le référentiel de traduction plus récent de la build courante. Le dialogue tutoriel paginé reste à rebaser et tester séparément.
-- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 208 contrôles, 27 langues, 4 684 clés par langue**.
+- Étape 5 écrite et intégrée.
+- Fiche de carrière durable et XP selon Facile / Normal / Difficile.
+- Séparation stricte XP normal / progression d'examen.
+- Examen agricole en 10 étapes avec historique durable.
+- Qualifications phytosanitaire, manutention, forestier, transport, récolte et travaux publics.
+- Verrous métier selon les règles de difficulté.
+- Certification réelle de la chaîne des examens à faire.
 
-## 0.6.4.30
+## 0.7.6.0 TEST - Entreprise complète
 
-- Examen étape 3/10 : correction du blocage du trajet de 800 m.
-- Étape 3 : lecture directe de l'état de l'équipement assigné pour éviter un faux état actif pendant le déplacement.
-- Étape 4 : lecture directe de l'état de l'équipement assigné.
-- Onboarding : tant que la difficulté n'est pas confirmée, l'entrée ou la prise de contrôle d'un véhicule est bloquée.
-- Aucun changement de schéma de sauvegarde.
+- Étape 4 fermée côté écriture.
+- CDI, CDD, saisonniers, horaires, congés, maladie, absences, heures supplémentaires et évolution salariale.
+- Une personne = une tâche, centre d'ordres et planning.
+- IA native FS25, Courseplay et AutoDrive optionnels avec fallback.
+- Paie unique AgriLife et neutralisation ciblée du coût externe.
+- XP salarié, recrutement, formations, carrière, incidents et réputation.
+- Récupération des tâches après sauvegarde/rechargement.
 
-## 0.6.4.29
+## 0.7.5.0 TEST - Planning Entreprise
 
-- Examen étape 1 : parcours effectué avec le tracteur seul.
-- Étape 2 : l'attelage doit être effectué après le début de l'étape.
-- Étape 3 : préparation du transport renforcée.
-- Étape 4 : validation après une vraie transition vers la position de travail.
+- Vues Planning, Formations, Carrière salarié et Incidents.
+- Prévision de main-d'oeuvre et recommandation de saisonniers.
+- Durée estimée des ordres et pilotage depuis l'interface.
 
-## 0.6.4.28
+## 0.7.4.0 TEST - RH et recrutement
 
-- Banque : correction du chargement des pictogrammes internes.
-- Les 21 pictogrammes Banque possèdent un ID GUI explicite et un chemin résolu après initialisation du GUI.
-- Rendu Banque validé en jeu en 1920x1080.
+- File d'ordres, recrutement, score candidat et offre salariale.
+- Formation, progression de carrière salarié et incidents de travail.
+- Persistance des nouveaux états.
 
-## 0.6.4.27
+## 0.7.3.0 TEST - RH avancée
 
-- Banque : première normalisation du jeu d'icônes internes.
-- Création de `gui/bankicons` et correction du libellé Banque partenaire.
+- Horaires, pauses, plafond journalier, heures supplémentaires, congés, maladie et absences.
+- Renouvellement CDD/saisonnier, augmentation et licenciement.
 
-## 0.6.4.26
+## 0.7.2.0 TEST - Exécution Entreprise
 
-- Correction complémentaire du blocage de l'étape 6/10.
-- L'étape 6 valide l'équipement arrêté et relevé.
-- Examen 1 à 10, obtention du permis, rechargement et isolation entre sauvegardes validés en jeu le 10 août 2026.
+- Registre de temps de travail réel.
+- Exécuteurs AUTO / FS25 / Courseplay / AutoDrive.
+- Fallback vers l'IA native.
+- Ponts de réputation vers Banque et Assurance.
 
-## 0.6.4.25
+## 0.7.1.0 TEST - Noyau Entreprise
 
-- Correction du blocage de l'étape 6/10 après validation du travail.
-- Message de réussite d'une étape affiché plus longtemps.
-- Notification FS25 explicite lors de chaque étape validée.
+- Contrats et affectation unique.
+- Centre d'ordres basé sur le matériel réellement disponible.
+- IA native GOTO / FIELDWORK et paie vanilla neutralisée uniquement pour le job AgriLife concerné.
 
-## Versions antérieures
+## 0.7.0.0 - Étapes 1 à 3
 
-Les versions 0.6.4.x antérieures correspondent aux phases successives de restructuration d'AgriLife Manager : persistance par sauvegarde, migration, Banque, carrière et XP, examens, société, personnel, assurances, atelier, tutoriel et Assistance.
+- Démarrage, Interface de base et Banque regroupés dans la nouvelle base de feuille de route.
+- Architecture source réorganisée pour publier les fichiers actifs à leurs vrais chemins.
+- Trois difficultés uniquement : Facile, Normal, Difficile.
+
+## Historique antérieur
+
+Les builds 0.6.x et leurs corrections restent consultables dans l'historique Git. Elles ne sont plus dupliquées dans le dépôt courant sous forme de dossier `builds/` ou de worklogs datés.
