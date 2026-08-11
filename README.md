@@ -4,7 +4,7 @@
 
 ## État courant
 
-- Version source synchronisée : **0.7.8.0 TEST**
+- Version source synchronisée : **0.7.9.0 TEST**
 - Auteur : **Chez_Squall**
 - Plateforme cible : PC
 - Multijoueur : préparé mais désactivé tant que la campagne réseau n'est pas certifiée
@@ -12,14 +12,14 @@
 
 ### Feuille de route
 
-La feuille de route complète est conservée dans `ROADMAP.md` et fonctionne désormais comme **registre maître additif** : les idées validées ne sont jamais supprimées lors d'une mise à jour. Une mise à jour de feuille de route modifie uniquement l'état des points déjà prévus, ou ajoute une nouvelle idée explicitement validée.
+La feuille de route complète est conservée dans `ROADMAP.md` et fonctionne comme **registre maître additif** : les idées validées ne sont jamais supprimées lors d'une mise à jour. Une mise à jour de feuille de route modifie uniquement l'état des points déjà prévus, ou ajoute une nouvelle idée explicitement validée.
 
 - Étapes 1 à 3 : intégrées, campagne de validation à terminer.
 - Étape 4 Entreprise : écriture complète, certification en jeu à faire.
 - Étape 5 Carrière & Qualifications : écriture complète, certification des examens et qualifications à faire.
 - Étape 6 Administration : écriture complète, certification en jeu à faire.
-- Étape 7 Contrats & Marchés : prochaine passe dédiée.
-- Étape 8 Atelier : fondations présentes, passe dédiée à faire.
+- Étape 7 Contrats & Marchés : écriture complète en 0.7.9.0 TEST, certification en jeu à faire.
+- Étape 8 Atelier : prochaine passe dédiée.
 - Étape 9 Finalisation : fermeture globale et campagne A -> Z.
 
 Voir `ROADMAP.md` pour le détail complet de toutes les idées conservées.
@@ -51,6 +51,6 @@ Les gros assets binaires et contenus tiers ne sont publiés que lorsque leurs dr
 
 ## État de validation
 
-La présence du code sur GitHub signifie qu'il est **écrit et intégré**, pas qu'il est automatiquement certifié dans FS25. Les étapes 4, 5 et 6 nécessitent encore leur campagne de certification en jeu.
+La présence du code sur GitHub signifie qu'il est **écrit et intégré**, pas qu'il est automatiquement certifié dans FS25. Les étapes 4, 5, 6 et 7 nécessitent encore leur campagne de certification en jeu.
 
 © 2026 Chez_Squall.
