@@ -37,6 +37,16 @@ Une issue, une proposition ou une pull request publique ne devient donc pas auto
 - Les archives livrées utilisent le nom `FS25_AgriLifeManager.zip`.
 - Le numéro de version reste inférieur à `1.0.0.0` tant que les grands systèmes ne sont pas terminés et validés.
 
+## Synchronisation GitHub obligatoire
+
+GitHub fait partie du cycle normal de chaque build et ne doit pas être traité comme une étape facultative.
+
+- Toute build de code remise au joueur doit avoir son code source correspondant synchronisé sur GitHub.
+- Le changelog et la documentation concernés doivent être mis à jour dans le même cycle de travail.
+- La synchronisation GitHub doit être vérifiée avant d’annoncer qu’une build est terminée ou prête à tester.
+- Si le ZIP local est plus récent que `main`, la build doit être considérée comme non synchronisée jusqu’à correction.
+- Une livraison n’est complète que lorsque le ZIP, le source GitHub et la documentation décrivent le même état du projet.
+
 ## Style d’écriture
 
 Règle stricte pour tout contenu du projet : commits, PR, releases, README, docs, commentaires de code, textes en jeu, changelog et notes de build.
