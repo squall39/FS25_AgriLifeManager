@@ -1,34 +1,52 @@
-<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
-# AgriLife Manager - matrice d'implémentation 0.7.8.0
+# Matrice d'implémentation - AgriLife Manager
 
-`INTÉGRÉ / À TESTER` signifie que le code est chargé et contrôlé statiquement. `VALIDÉ EN JEU` reste réservé aux scénarios réellement confirmés dans FS25.
+Version suivie : **0.7.8.0 TEST**
 
-| Bloc | État 0.7.8.0 | Résumé |
+Cette matrice complète la feuille de route sans la remplacer. `ROADMAP.md` reste le registre maître additif de toutes les idées validées.
+
+## Règle de maintenance de la feuille de route
+
+Une mise à jour de la feuille de route ne doit jamais supprimer, condenser ou reformuler une idée au point d'en perdre le contenu.
+
+Elle sert uniquement à :
+
+1. changer l'état d'un point déjà prévu ;
+2. ajouter une nouvelle idée explicitement validée ;
+3. préciser un point sans retirer son intention initiale.
+
+L'historique Git n'est pas un substitut à cette règle : les idées validées doivent rester visibles dans la feuille de route courante.
+
+## État actuel
+
+| Étape | État d'écriture | Certification en jeu |
 |---|---|---|
-| Démarrage | INTÉGRÉ / CAMPAGNE À FINIR | Facile/Normal/Difficile, capital, banque, permis provisoire Normal, verrou Difficile, migration et persistance |
-| Interface de base | INTÉGRÉ / À TESTER | tableau de bord 6 cartes, navigation, onboarding, tutoriel, journal, HUD et actions contextuelles |
-| Banque | INTÉGRÉ / À TESTER | banque/conseiller, crédit, dette héritée, comptes pro/perso, comptabilité, fiscalité, prévision et restrictions administratives |
-| Entreprise | ÉCRIT / À CERTIFIER | contrats, RH, planning, paie unique, ordres, IA FS25, Courseplay/AutoDrive optionnels, XP salarié, recrutement, incidents, réputation |
-| Carrière & Qualifications | ÉCRIT / À CERTIFIER | carrière durable, XP par difficulté, permis 10 étapes, historique, qualifications spécialisées et verrous métier |
-| Administration | ÉCRIT / À CERTIFIER | statut d'exploitation, santé administrative, documents, contrôles, récidive, sanctions, assurance, contentieux et huissier |
-| Contrats & Marchés | FONDATIONS PRÉSENTES | passe dédiée étape 7 encore à fermer |
-| Atelier | FONDATIONS PRÉSENTES | passe dédiée étape 8 encore à fermer |
-| Finalisation | INFRASTRUCTURE PRÉSENTE | campagne A -> Z et fermeture étape 9 à faire |
-| Multijoueur | PRÉPARÉ / DÉSACTIVÉ | `supported=false` jusqu'à certification réseau |
+| 1. Démarrage | Intégrée | À terminer |
+| 2. Interface de base | Intégrée | À terminer |
+| 3. Banque | Intégrée | À terminer |
+| 4. Entreprise | Écriture complète | À faire |
+| 5. Carrière & Qualifications | Écriture complète | À faire |
+| 6. Administration | Écriture complète | À faire |
+| 7. Contrats & Marchés | Fondations présentes | À faire |
+| 8. Atelier | Fondations présentes | À faire |
+| 9. Finalisation | À faire | À faire |
 
-## Contrôles de la build 0.7.8.0
+## Priorités validées après stabilisation
 
-- 76 assertions Administration ;
-- 71 assertions Carrière & Qualifications ;
-- 159 assertions Entreprise ;
-- 64 assertions fonctionnelles générales ;
-- 27 langues avec 4 933 clés alignées lors de la build ;
-- 93 Lua du package avec syntaxe contrôlée ;
-- 91 XML parsés ;
-- 87 Lua actifs référencés par `modDesc.xml` ;
-- 156 callbacks UI et 217 contrôles UI comptés ;
-- aucune source `modDesc` manquante lors de la vérification.
+1. Réputation de l'exploitation et du dirigeant.
+2. Comptabilité et fiscalité.
+3. Contrôles administratifs et sanctions.
 
-## Limite
+## Idées transversales validées à conserver
 
-Ces contrôles ne remplacent pas les tests FS25 réels. La feuille de route distingue explicitement écriture/intégration et certification en jeu.
+- Permis et qualifications spécialisées.
+- Gestion réaliste des salariés et de leur carrière.
+- Historique professionnel et grands jalons de carrière.
+- Objectifs de développement de l'exploitation.
+- Incidents administratifs et financiers dynamiques.
+- Notation des contrats et effet sur les futures opportunités.
+- Journal de bord AgriLife.
+- Statut/licence d'exploitation progressif.
+- Chaque nouvelle fonction doit avoir une conséquence réelle en jeu.
+- Multi-fermes et multijoueur plus tard, avec données AgriLife séparées par ferme.
+
+© 2026 Chez_Squall.
