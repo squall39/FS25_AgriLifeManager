@@ -1,0 +1,187 @@
+--- /mnt/data/agrilife_original/src/modules/economy/Economy6Service.lua	2026-08-11 09:53:46.000000000 +0000
++++ /mnt/data/agrilife_step1/src/modules/economy/Economy6Service.lua	2026-08-11 12:14:09.581816268 +0000
+@@ -47,6 +47,19 @@
+ }
+ AgriLife.Economy6Service.MODE_ORDER = { "facile", "normal", "difficile" }
+ 
++-- Roadmap step 1: Démarrage. These values are deliberately independent from
++-- UI page ids so the startup sequence can be consumed by GUI, tests and future
++-- multiplayer code without duplicating the rules in several places.
++AgriLife.Economy6Service.STARTUP_STEP = {
++    MIGRATION = "migration",
++    TUTORIAL = "tutorial",
++    DIFFICULTY = "difficulty",
++    BANK = "bank",
++    ADVISOR = "advisor",
++    EXAM = "exam",
++    READY = "ready"
++}
++
+ AgriLife.Economy6Service.PROFILES = {
+     career_default = { id="career_default", name="Carrière AgriLife", personalCapital=0, socialCapital=0, reputation=50, specialty="management", specialtyXP=0 }
+ }
+@@ -395,6 +408,99 @@
+     return type(access)=="table" and access[moduleId]==true
+ end
+ 
++-- Returns the single authoritative startup step for a farm. The order mirrors
++-- ROADMAP.md exactly: migration acknowledgement, tutorial choice, permanent
++-- difficulty choice, mandatory banking where applicable, mandatory licence in
++-- hard mode, then active career. Normal mode becomes active after bank+advisor
++-- and is handled by the provisional licence lifecycle.
++function AgriLife.Economy6Service:getStartupStep(farmId)
++    local state=self:getFarmState(farmId,true)
++    if state==nil then return AgriLife.Economy6Service.STARTUP_STEP.TUTORIAL end
++
++    if state.existingCareerDetected==true and state.existingCareerAcknowledged~=true then
++        return AgriLife.Economy6Service.STARTUP_STEP.MIGRATION
++    end
++    if state.tutorialChoiceMade~=true then
++        return AgriLife.Economy6Service.STARTUP_STEP.TUTORIAL
++    end
++    if state.modeChosen~=true then
++        return AgriLife.Economy6Service.STARTUP_STEP.DIFFICULTY
++    end
++
++    local policy=self:getModePolicy(farmId)
++    if policy.bankRequired==true then
++        if not self:isBankProviderSelected(farmId) then
++            return AgriLife.Economy6Service.STARTUP_STEP.BANK
++        end
++        if not self:isBankAdvisorSelected(farmId) then
++            return AgriLife.Economy6Service.STARTUP_STEP.ADVISOR
++        end
++    end
++
++    if policy.licenceRequired==true and not self:isLicenceObtained(farmId) then
++        return AgriLife.Economy6Service.STARTUP_STEP.EXAM
++    end
++
++    return AgriLife.Economy6Service.STARTUP_STEP.READY
++end
++
++-- Snapshot dedicated to roadmap step 1. It intentionally derives its values
++-- from Economy, Bank and Exam instead of maintaining a second save state.
++function AgriLife.Economy6Service:getStartupSnapshot(farmId)
++    local state=self:getFarmState(farmId,true)
++    local policy=self:getModePolicy(farmId)
++    local provisional=self:getProvisionalLicenceStatus(farmId)
++    local step=self:getStartupStep(farmId)
++    local blockReason=self:getVehicleControlBlockReason(farmId)
++
++    return {
++        farmId=tonumber(farmId) or 0,
++        step=step,
++        ready=self:isReady(farmId),
++        modeId=state~=nil and state.modeId or "facile",
++        modeChosen=state~=nil and state.modeChosen==true,
++        tutorialChoiceMade=state~=nil and state.tutorialChoiceMade==true,
++        tutorialEnabled=state~=nil and state.tutorialEnabled==true,
++        existingCareerDetected=state~=nil and state.existingCareerDetected==true,
++        existingCareerAcknowledged=state~=nil and state.existingCareerAcknowledged==true,
++        startingMoneyApplied=state~=nil and state.startingMoneyApplied==true,
++        startingMoney=policy.startingMoney,
++        bankRequired=policy.bankRequired==true,
++        bankProviderSelected=self:isBankProviderSelected(farmId),
++        bankAdvisorSelected=self:isBankAdvisorSelected(farmId),
++        licenceRequired=policy.licenceRequired==true,
++        licenceObtained=self:isLicenceObtained(farmId),
++        provisionalLicence=provisional,
++        vehicleBlocked=blockReason~=nil,
++        vehicleBlockReason=blockReason
++    }
++end
++
++-- Defensive invariant check used by static/runtime diagnostics. It never
++-- rewrites career data silently. A broken partial startup must be visible and
++-- repairable instead of being hidden by an automatic reset.
++function AgriLife.Economy6Service:validateStartupState(farmId)
++    local state=self:getFarmState(farmId,false)
++    if state==nil then
++        return AgriLife.Result.ok("ECONOMY_STARTUP_EMPTY","No startup state exists yet")
++    end
++
++    if state.setupCompleted==true and state.modeChosen~=true then
++        return AgriLife.Result.fail("ECONOMY_STARTUP_INVALID_MODE","Setup is complete without a confirmed difficulty",{farmId=farmId})
++    end
++    if state.startingMoneyApplied==true and state.modeChosen~=true then
++        return AgriLife.Result.fail("ECONOMY_STARTUP_INVALID_MONEY","Starting money was applied before the difficulty was confirmed",{farmId=farmId})
++    end
++    if state.modeChosen==true and state.tutorialChoiceMade~=true then
++        return AgriLife.Result.fail("ECONOMY_STARTUP_INVALID_TUTORIAL","Difficulty was confirmed before the tutorial choice",{farmId=farmId})
++    end
++    if state.existingCareerDetected==true and state.modeChosen==true and state.existingCareerAcknowledged~=true then
++        return AgriLife.Result.fail("ECONOMY_STARTUP_INVALID_MIGRATION","Existing career was activated before migration acknowledgement",{farmId=farmId})
++    end
++
++    return AgriLife.Result.ok("ECONOMY_STARTUP_VALID","Startup state is coherent",{farmId=farmId,step=self:getStartupStep(farmId)})
++end
++
+ function AgriLife.Economy6Service:applyStartingMoney(farmId)
+     local state=self:getFarmState(farmId,true)
+     local mode=state~=nil and AgriLife.Economy6Service.MODES[state.modeId] or nil
+@@ -443,6 +549,14 @@
+     if state==nil then return AgriLife.Result.fail("ECONOMY_FARM_NOT_FOUND","Farm not found") end
+     if state.setupCompleted==true then return AgriLife.Result.ok("ECONOMY_MODE_ALREADY_CONFIRMED","Le niveau de difficulté est déjà actif",{modeId=state.modeId}) end
+     if AgriLife.Economy6Service.MODES[state.modeId]==nil then return AgriLife.Result.fail("ECONOMY_MODE_INVALID","Unknown career mode") end
++    -- Step 1 is transactional: do not apply capital or lock the difficulty
++    -- while a mandatory earlier startup decision is still pending.
++    if state.existingCareerDetected==true and state.existingCareerAcknowledged~=true then
++        return AgriLife.Result.fail("ECONOMY_EXISTING_CAREER_ACK_REQUIRED","Acknowledge the existing FS25 career before confirming AgriLife difficulty")
++    end
++    if state.tutorialChoiceMade~=true then
++        return AgriLife.Result.fail("ECONOMY_TUTORIAL_CHOICE_REQUIRED","Choose whether to follow the AgriLife tutorial before confirming difficulty")
++    end
+     local moneyResult=self:applyStartingMoney(farmId)
+     if moneyResult==nil or moneyResult.ok~=true then return moneyResult or AgriLife.Result.fail("ECONOMY_STARTING_MONEY_FAILED","Le capital de départ n'a pas pu être appliqué") end
+     state.modeChosen=true
+@@ -509,6 +623,7 @@
+ function AgriLife.Economy6Service:tryAutoFinalizeStartup(farmId)
+     local state=self:getFarmState(farmId,true)
+     if state==nil or state.setupCompleted==true or state.tutorialChoiceMade~=true or state.modeChosen~=true then return nil end
++    if state.existingCareerDetected==true and state.existingCareerAcknowledged~=true then return nil end
+     local policy=self:getModePolicy(farmId)
+     if policy.bankRequired==true and not self:isBankSelected(farmId) then return nil end
+     local result=self:finalizeSetup(farmId)
+@@ -526,6 +641,7 @@
+     local policy=self:getModePolicy(farmId)
+     local companySatisfied=policy.companyRequired~=true or state.statutesAccepted==true
+     if state.setupCompleted==true and companySatisfied then return AgriLife.Result.ok("ECONOMY_SETUP_ALREADY_DONE","Career setup already completed") end
++    if state.existingCareerDetected==true and state.existingCareerAcknowledged~=true then return AgriLife.Result.fail("ECONOMY_EXISTING_CAREER_ACK_REQUIRED","Acknowledge the existing FS25 career before activating AgriLife") end
+     if state.tutorialChoiceMade~=true then return AgriLife.Result.fail("ECONOMY_TUTORIAL_CHOICE_REQUIRED","Choose whether to follow the AgriLife tutorial before continuing") end
+     if state.modeChosen~=true then return AgriLife.Result.fail("ECONOMY_MODE_CONFIRM_REQUIRED","Validez le niveau de difficulté avant toute autre étape") end
+     if policy.bankRequired==true and not self:isBankSelected(farmId) then return AgriLife.Result.fail("ECONOMY_BANK_REQUIRED","Choose the company bank and advisor before activating this career mode") end
+@@ -600,13 +716,16 @@
+     local state=self:getFarmState(farmId,true)
+     if state.tutorialChoiceMade~=true then return "choice" end
+     if state.tutorialEnabled~=true or state.tutorialCompleted==true then return "inactive" end
+-    if state.existingCareerDetected==true and state.existingCareerAcknowledged~=true then return "migration" end
+-    if state.modeChosen~=true then return "mode" end
++
++    local startupStep=self:getStartupStep(farmId)
++    if startupStep==AgriLife.Economy6Service.STARTUP_STEP.MIGRATION then return "migration" end
++    if startupStep==AgriLife.Economy6Service.STARTUP_STEP.DIFFICULTY then return "mode" end
++    if startupStep==AgriLife.Economy6Service.STARTUP_STEP.BANK then return "bank" end
++    if startupStep==AgriLife.Economy6Service.STARTUP_STEP.ADVISOR then return "advisor" end
++
+     local policy=self:getModePolicy(farmId)
+-    if policy.bankRequired==true and not self:isBankProviderSelected(farmId) then return "bank" end
+-    if policy.bankRequired==true and not self:isBankAdvisorSelected(farmId) then return "advisor" end
+     if state.setupCompleted~=true or (policy.companyRequired==true and state.statutesAccepted~=true) then return "company" end
+-    if policy.licenceRequired==true and not self:isLicenceObtained(farmId) then return "exam" end
++    if startupStep==AgriLife.Economy6Service.STARTUP_STEP.EXAM then return "exam" end
+     return "finish"
+ end
+ 
+--- /mnt/data/agrilife_original/src/modules/economy/EconomyModule.lua	2026-08-11 10:48:03.000000000 +0000
++++ /mnt/data/agrilife_step1/src/modules/economy/EconomyModule.lua	2026-08-11 12:14:34.997212632 +0000
+@@ -32,6 +32,9 @@
+ function AgriLife.EconomyModule:confirmMode(farmId) return self.service:confirmMode(farmId) end
+ function AgriLife.EconomyModule:changeMode(farmId,id) return self.service:changeMode(farmId,id) end
+ function AgriLife.EconomyModule:getModePolicy(farmId) return self.service:getModePolicy(farmId) end
++function AgriLife.EconomyModule:getStartupStep(farmId) return self.service~=nil and self.service:getStartupStep(farmId) or nil end
++function AgriLife.EconomyModule:getStartupSnapshot(farmId) return self.service~=nil and self.service:getStartupSnapshot(farmId) or nil end
++function AgriLife.EconomyModule:validateStartupState(farmId) return self.service~=nil and self.service:validateStartupState(farmId) or AgriLife.Result.fail("ECONOMY_UNAVAILABLE","Economy unavailable") end
+ function AgriLife.EconomyModule:isModuleAvailable(farmId,moduleId) return self.service~=nil and self.service:isModuleAvailable(farmId,moduleId)==true end
+ function AgriLife.EconomyModule:selectStartingProfile(farmId,id) return self.service:selectStartingProfile(farmId,id) end
+ function AgriLife.EconomyModule:confirmStartingProfile(farmId) return self.service:confirmStartingProfile(farmId) end
