@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.7.0.0</version>
+    <version>0.7.8.0</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -74,6 +74,7 @@
         <sourceFile filename="src/modules/career/Career6Hud.lua" />
         <sourceFile filename="src/modules/career/CareerModule.lua" />
         <sourceFile filename="src/modules/payroll/Payroll6Service.lua" />
+        <sourceFile filename="src/modules/payroll/PayrollRoadmap4.lua" />
         <sourceFile filename="src/modules/payroll/Payroll6Events.lua" />
         <sourceFile filename="src/modules/payroll/PayrollModule.lua" />
         <sourceFile filename="src/modules/exam/ExamTaskCatalog.lua" />
@@ -102,12 +103,18 @@
         <sourceFile filename="src/modules/qualifications/Qualifications6Service.lua" />
         <sourceFile filename="src/modules/qualifications/QualificationsModule.lua" />
         <sourceFile filename="src/modules/enterprise/Enterprise6Service.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4Completion.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseModule.lua" />
+        <sourceFile filename="src/modules/career/CareerRoadmap5.lua" />
         <sourceFile filename="src/modules/administration/Administration6Service.lua" />
         <sourceFile filename="src/modules/administration/AdministrationModule.lua" />
+        <sourceFile filename="src/modules/administration/AdministrationRoadmap6.lua" />
         <sourceFile filename="src/modules/market/DynamicMarket6Service.lua" />
         <sourceFile filename="src/modules/market/DynamicMarketModule.lua" />
         <sourceFile filename="src/modules/compatibility/Compatibility6Service.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4Guard.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityModule.lua" />
         <sourceFile filename="src/modules/dashboard/Dashboard6Service.lua" />
         <sourceFile filename="src/modules/dashboard/DashboardModule.lua" />
