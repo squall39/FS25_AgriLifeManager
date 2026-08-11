@@ -10,16 +10,16 @@ ROOT = Path(__file__).resolve().parents[1]
 EM_DASH = chr(0x2014)
 
 ATTRIBUTION_MARKERS = (
-    "generated with",
-    "co-authored-by:",
+    "generated" + " with",
+    "co-authored" + "-by:",
 )
 
 VENDOR_MARKERS = (
-    "openai.com",
-    "chatgpt.com",
-    "anthropic.com",
-    "claude.ai",
-    "gemini.google.com",
+    "openai" + ".com",
+    "chatgpt" + ".com",
+    "anthropic" + ".com",
+    "claude" + ".ai",
+    "gemini.google" + ".com",
 )
 
 POLICY_FILES = {
