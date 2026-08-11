@@ -1,9 +1,9 @@
-# Feuille de route — AgriLife Manager
+# Feuille de route - AgriLife Manager
 
 > **Règle de développement : on termine et valide complètement un bloc avant d’ouvrir le suivant.**  
 > Ordre de travail : **Démarrage → Interface de base → Banque → Entreprise → Carrière & Qualifications → Administration → Contrats & Marchés → Atelier → Finalisation**.
 
-# 1 — Démarrage
+# 1 - Démarrage
 
 Le **Démarrage** est la racine de toute carrière AgriLifeManager. Ce n’est pas un module du tableau de bord : il initialise la sauvegarde, le niveau de difficulté, les obligations de départ et les règles globales qui seront ensuite utilisées par tous les modules.
 
@@ -19,8 +19,10 @@ Le **Démarrage** est la racine de toute carrière AgriLifeManager. Ce n’est p
 - **Compatibilité universelle recherchée : aucune liste fixe de maps, fruits ou multifruits.** AgriLife doit détecter dynamiquement les contenus enregistrés par FS25, la map et les mods lorsque les API du jeu le permettent.
 - **L’économie dynamique doit être commune à tous les modules concernés.** Marchés, coopératives, contrats, productions, location, carburant, foncier, matériel et comptabilité ne doivent pas fonctionner en silos séparés.
 - **Tous les grands systèmes restent disponibles quelle que soit la difficulté.** La difficulté modifie les obligations, coûts, tolérances, délais et conséquences. Le mode Facile reste volontairement plus libre, sans transformer le cœur d’AgriLife en un autre mod.
+- **Style d’écriture : ne jamais utiliser le caractère em dash dans les contenus du projet.** Utiliser un tiret normal, une virgule, des parenthèses, deux-points ou une phrase séparée.
+- **Aucune attribution à une IA ou à un fournisseur d’IA dans les éléments publics du projet.** Les commits, PR, releases, README, docs, commentaires de code et textes en jeu restent attribués uniquement à l’auteur humain. Voir `docs/WRITING_AND_ATTRIBUTION.md`.
 
-## Choix de difficulté — trois niveaux uniquement
+## Choix de difficulté - trois niveaux uniquement
 
 AgriLife Manager conserve **uniquement trois difficultés : Facile, Normal et Difficile**.
 
@@ -110,13 +112,14 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 - [x] Tutoriel mis à jour pour expliquer les différences Facile / Normal / Difficile et l’ordre Banque → Permis lorsque requis.
 - [x] Le mode Normal explique le permis provisoire de 3 mois, les rappels et l’amende de 500 € après échéance.
 - [ ] Revalider complètement l’onboarding dans chacun des trois niveaux de difficulté.
+- [ ] Corriger l’état visuel des onglets désactivés pendant l’onboarding : un onglet `setDisabled` ne doit pas conserver le vert « disponible », afin de ne pas sembler cliquable.
 
 ## Persistance du démarrage
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
 - [x] Nouvelle carrière : capital AgriLife et gestion dédiée du démarrage.
-- [x] Migration des sauvegardes existantes sans écraser leur patrimoine — mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
-- [x] Conservation de la dette FS25 existante comme dette héritée — mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
+- [x] Migration des sauvegardes existantes sans écraser leur patrimoine - mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
+- [x] Conservation de la dette FS25 existante comme dette héritée - mécanisme existant, revalidation terrain encore à faire dans la campagne actuelle.
 - [x] Le niveau Normal, le départ validé et le permis provisoire persistent après sauvegarde/rechargement.
 - [x] La banque et le conseiller sélectionnés dans le parcours Normal restent associés à la carrière après rechargement.
 - [ ] Garantir par test complet qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
@@ -155,7 +158,7 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 - [ ] Remplacer tout libellé générique de type « mouvement personnel » pour l’amende par un libellé explicite **Amende permis provisoire**.
 - [ ] Faire un dernier cycle sauvegarde → rechargement après expiration pour vérifier que l’état expiré et l’amende déjà payée ne se rejouent pas.
 
-### Difficile — prochain test
+### Difficile - prochain test
 
 - [ ] Capital de départ : **50 000 €**.
 - [ ] Banque + conseiller obligatoires.
@@ -166,7 +169,7 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 - [ ] Sauvegarder/recharger en cours d’examen pour vérifier la persistance de l’étape.
 - [ ] Terminer l’examen, sauvegarder/recharger et vérifier que le permis reste obtenu et que l’accès véhicule reste débloqué.
 
-### Ancienne sauvegarde / isolation — à faire après Difficile
+### Ancienne sauvegarde / isolation - à faire après Difficile
 
 - [ ] Charger l’ancienne sauvegarde sans écraser argent, véhicules, terrains, bâtiments ou progression FS25.
 - [ ] Vérifier que la dette FS25 existante est conservée comme dette héritée sans duplication.
@@ -174,11 +177,11 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 
 ---
 
-# 2 — Interface & expérience utilisateur
+# 2 - Interface & expérience utilisateur
 
 L’Interface n’est **pas un module métier**. Elle sert de couche commune pour présenter les six modules joueur et les informations globales de la carrière.
 
-## Tableau de bord — racine de l’information
+## Tableau de bord - racine de l’information
 
 Le tableau de bord conserve la structure visuelle actuelle en **6 cartes**, une par module :
 
@@ -229,10 +232,11 @@ Le **Démarrage** n’est pas une carte. Le bas du tableau de bord peut néanmoi
 - [ ] Ajouter un **Journal de bord AgriLife** retraçant les grands événements de la carrière.
 - [ ] Ajouter des vues lisibles pour tendances de marché, contrats, locations et coûts de production.
 - [ ] Vérifier le HUD permanent, les transitions d’étapes et les erreurs explicites.
+- [ ] Évaluer et intégrer, après rebase sur la build courante, la contribution de dialogue tutoriel paginé proposée dans l’issue GitHub #2.
 
 ---
 
-# 3 — Module Banque
+# 3 - Module Banque
 
 Le module Banque regroupe **Banque & finance + Comptabilité & fiscalité**. Il possède les données financières ; les autres modules peuvent les consulter mais ne doivent pas recréer leur propre logique bancaire ou comptable.
 
@@ -314,7 +318,7 @@ La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois
 
 ---
 
-# 4 — Module Entreprise
+# 4 - Module Entreprise
 
 Le module Entreprise regroupe la gestion de la main-d’œuvre, la paie, les ordres de travail, l’évolution des salariés et la **réputation de l’exploitation/du dirigeant**.
 
@@ -380,7 +384,7 @@ La réputation appartient à l’Entreprise. Banque, Administration, Contrats & 
 
 ---
 
-# 5 — Module Carrière & Qualifications
+# 5 - Module Carrière & Qualifications
 
 Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qualifications spécialisées et historique professionnel**. Les anciennes entrées séparées « Examens » et « XP & Carrière » doivent converger vers ce module unique.
 
@@ -414,7 +418,7 @@ Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qual
 
 ---
 
-# 6 — Module Administration
+# 6 - Module Administration
 
 Le module Administration regroupe **société/statuts administratifs, assurances, conformité, contrôles, sanctions, événements de gestion, huissier et contentieux**.
 
@@ -472,7 +476,7 @@ L’Assurance devient une composante de l’Administration et non une carte/modu
 
 ---
 
-# 7 — Module Contrats & Marchés
+# 7 - Module Contrats & Marchés
 
 Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, économie mondiale, marchés locaux, multifruits, matériel neuf/occasion, intrants, carburants, foncier, locations et productions/usines**.
 
@@ -493,7 +497,7 @@ Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, é
 - [ ] Permettre aux fruits et produits multifruits détectés dynamiquement de générer leurs propres opportunités de marché et contrats lorsqu’ils sont exploitables par les systèmes FS25.
 - [ ] Relier les contrats de qualité aux données réellement disponibles de Precision Farming / Soil Fertilizer sans imposer ces mods.
 
-## Architecture universelle — toutes maps / multifruit
+## Architecture universelle - toutes maps / multifruit
 
 - [ ] Détecter dynamiquement les fruits, fillTypes, produits, points de vente, productions, parcelles et articles magasin enregistrés dans la partie.
 - [ ] Éviter toute liste fermée de cultures ou de maps dans le cœur du système.
@@ -538,7 +542,7 @@ Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, é
 - [ ] Ajouter des opportunités temporaires de vente ou de location lorsque techniquement possible.
 - [ ] Conserver une logique compatible avec la structure propre de chaque map.
 
-## Location dynamique — matériel, champs & usines
+## Location dynamique - matériel, champs & usines
 
 - [ ] Étendre la location dynamique au **matériel, outils, accessoires, champs/parcelles et productions/usines** lorsque le type d’actif peut être géré proprement.
 - [ ] Faire varier tarif, disponibilité, durée, caution/frais et conditions selon marché et difficulté.
@@ -560,7 +564,7 @@ Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, é
 - [ ] Les contrats doivent tenir compte des marchés mais aussi de la réputation, de l’historique et de la difficulté.
 - [ ] Conserver plusieurs acheteurs avec stratégies différentes afin d’éviter un prix unique artificiel.
 
-## Precision Farming & Soil Fertilizer — intégrations enrichies
+## Precision Farming & Soil Fertilizer - intégrations enrichies
 
 - [ ] **Ne pas refaire leur agronomie dans AgriLifeManager.**
 - [ ] Utiliser Precision Farming comme source optionnelle de données agronomiques réellement disponibles.
@@ -580,7 +584,7 @@ Documentation détaillée : **[docs/DYNAMIC_ECONOMY_AGRONOMY.md](docs/DYNAMIC_EC
 
 ---
 
-# 8 — Module Atelier
+# 8 - Module Atelier
 
 Le module Atelier possède tout ce qui concerne l’état, l’entretien, l’usure, les réparations, les immobilisations et l’historique technique du matériel. Les marchés peuvent influencer sa valeur économique mais ne doivent pas dupliquer la logique d’entretien.
 
@@ -595,7 +599,7 @@ Le module Atelier possède tout ce qui concerne l’état, l’entretien, l’us
 
 ---
 
-# 9 — Finalisation
+# 9 - Finalisation
 
 La Finalisation n’est **pas un module joueur**. Elle regroupe les phases techniques nécessaires pour rendre AgriLifeManager stable, compatible, traduisible, migrable, multijoueur et publiable.
 
@@ -605,8 +609,8 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 
 - [ ] Courseplay.
 - [ ] AutoDrive.
-- [ ] Soil Fertilizer — intégration enrichie mais optionnelle.
-- [ ] Precision Farming — intégration enrichie mais optionnelle.
+- [ ] Soil Fertilizer - intégration enrichie mais optionnelle.
+- [ ] Precision Farming - intégration enrichie mais optionnelle.
 - [ ] Autres mods de gestion ou réalisme identifiés pendant les tests.
 - [ ] Vérifier qu’AgriLife continue à fonctionner correctement lorsque ces mods sont absents.
 - [ ] Vérifier l’auto-détection sur plusieurs maps vanilla, modmaps et maps multifruits.
@@ -614,8 +618,8 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 ## Sauvegardes, migration & multijoueur
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
-- [x] Migration des sauvegardes existantes sans écraser leur patrimoine — à revalider dans la campagne Démarrage actuelle.
-- [x] Conservation de la dette FS25 existante comme dette héritée — à revalider dans la campagne Démarrage actuelle.
+- [x] Migration des sauvegardes existantes sans écraser leur patrimoine - à revalider dans la campagne Démarrage actuelle.
+- [x] Conservation de la dette FS25 existante comme dette héritée - à revalider dans la campagne Démarrage actuelle.
 - [x] Nouvelle carrière : capital AgriLife et gestion dédiée du démarrage.
 - [ ] Garantir qu’une nouvelle partie ne récupère jamais la progression AgriLife d’une autre sauvegarde.
 - [ ] Sauvegarder l’état des marchés, locations, contrats et tendances économiques par carrière.
@@ -626,6 +630,20 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 - [ ] Autorité serveur et synchronisation réseau de tous les modules.
 
 ## Traductions, localisation & clés l10n
+
+### Contribution issue GitHub #2 à intégrer proprement
+
+Une contribution externe propose 27 fichiers de traduction alignés, un correctif de texte onboarding codé en dur, un dialogue tutoriel paginé et un outil de contrôle de parité l10n. Cette contribution a été préparée sur une base annonçant **4 636 clés** par langue.
+
+- [ ] Ne pas écraser les traductions de la build courante avec ce ZIP sans comparaison, car le projet a continué à évoluer depuis la base utilisée par le contributeur.
+- [ ] Rebaser les 34 clés manquantes proposées sur le référentiel l10n réellement courant.
+- [ ] Intégrer la clé `agrilife_onboarding_tutorial_first_msg` si elle est toujours nécessaire et supprimer le texte joueur codé en dur correspondant.
+- [ ] Vérifier la correction du libellé allemand `agrilifemanager_label_pluralS`.
+- [ ] Examiner la clé `agrilifemanager_fmf_viaSearchUsed`, vide dans la contribution, puis la définir ou la retirer si elle est réellement inutilisée.
+- [ ] Intégrer ou adapter `tests/l10n_parity_spec.lua` comme contrôle automatique avant build.
+- [ ] Tester le dialogue tutoriel paginé en jeu avant adoption définitive, notamment Prev / Next, compteur de page, fermeture Échap et parcours migration.
+- [ ] Vérifier que les boutons Prev / Next utilisent bien leurs clés l10n directement dans le XML, correctif signalé dans le ZIP reconstruit du contributeur.
+- [ ] Garder l’espagnol `es` et `ea` à vérifier selon la variante régionale réellement attendue par FS25.
 
 ### Référentiel de clés
 
@@ -671,6 +689,7 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 - Réserver les tests rapides intermédiaires aux infrastructures globales critiques : sauvegarde/chargement, onboarding, accès véhicule, synchronisation ou autre mécanisme transversal.
 - Chaque module doit être testé comme un vrai cycle de gameplay complet avec ses conséquences et ses interactions.
 - Un module n’est considéré terminé qu’après : fonctionnalités → interface → liens nécessaires → sauvegarde → difficulté → l10n → tableau de bord → contrôles internes → test joueur → corrections → validation finale.
+- Avant chaque commit, release, documentation ou build : contrôler l’absence du caractère em dash et l’absence de toute attribution à une IA ou à un fournisseur d’IA.
 
 ## Préparation publication
 
@@ -715,4 +734,4 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 
 **Auteur : Chez_Squall**  
 **Projet : FS25_AgriLifeManager**  
-**Statut actuel : développement pré-1.0 — Démarrage en cours de validation, Normal validé, Difficile prochain test**
+**Statut actuel : développement pré-1.0 - Démarrage en cours de validation, Normal validé fonctionnellement, Difficile prochain test**
