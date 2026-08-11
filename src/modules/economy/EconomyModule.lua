@@ -12,7 +12,9 @@ function AgriLife.EconomyModule:start()
         if MessageType==nil or MessageType.PERIOD_CHANGED==nil then return AgriLife.Result.fail("ECONOMY_PERIOD_EVENT_MISSING","PERIOD_CHANGED unavailable") end
         local r=self.core.subscriptions:subscribe(AgriLife.EconomyModule.ID,MessageType.PERIOD_CHANGED,self.service,self.service.onPeriodChanged); if not r.ok then return r end
     end
-    if self.service~=nil and self.service.installDifficultyVehicleEntryGuard~=nil then self.service:installDifficultyVehicleEntryGuard() end
+    if self.service~=nil and self.service.installDifficultyVehicleEntryGuard~=nil then
+        self.service:installDifficultyVehicleEntryGuard()
+    end
     if self.core~=nil and self.core.context~=nil and g_currentMission~=nil and g_currentMission.addUpdateable~=nil then
         self.updateable={update=function(_,dt) if self.service~=nil then self.service:update(dt) end end}
         local ok,result=pcall(g_currentMission.addUpdateable,g_currentMission,self.updateable)
@@ -30,9 +32,6 @@ function AgriLife.EconomyModule:selectMode(farmId,id) return self.service:select
 function AgriLife.EconomyModule:confirmMode(farmId) return self.service:confirmMode(farmId) end
 function AgriLife.EconomyModule:changeMode(farmId,id) return self.service:changeMode(farmId,id) end
 function AgriLife.EconomyModule:getModePolicy(farmId) return self.service:getModePolicy(farmId) end
-function AgriLife.EconomyModule:getStartupStep(farmId) return self.service~=nil and self.service:getStartupStep(farmId) or nil end
-function AgriLife.EconomyModule:getStartupSnapshot(farmId) return self.service~=nil and self.service:getStartupSnapshot(farmId) or nil end
-function AgriLife.EconomyModule:validateStartupState(farmId) return self.service~=nil and self.service:validateStartupState(farmId) or AgriLife.Result.fail("ECONOMY_UNAVAILABLE","Economy unavailable") end
 function AgriLife.EconomyModule:isModuleAvailable(farmId,moduleId) return self.service~=nil and self.service:isModuleAvailable(farmId,moduleId)==true end
 function AgriLife.EconomyModule:selectStartingProfile(farmId,id) return self.service:selectStartingProfile(farmId,id) end
 function AgriLife.EconomyModule:confirmStartingProfile(farmId) return self.service:confirmStartingProfile(farmId) end
