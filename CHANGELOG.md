@@ -2,6 +2,17 @@
 
 Toutes les évolutions importantes du projet sont consignées ici.
 
+## 0.6.4.38
+
+- Écriture projet : suppression du caractère em dash dans tous les fichiers texte du package.
+- Qualité : le vérificateur de release contrôle désormais le style, l’attribution et la parité l10n.
+- Onboarding : suppression d’un message français codé en dur, remplacé par une clé l10n déjà distribuée.
+- Compte personnel : affichage des montants détaillés au centime et arrondi des mouvements de paie au centime afin que le relevé puisse être recalculé ligne par ligne.
+- Permis provisoire Normal : l’amende de 500 € utilise désormais le type explicite `PROVISIONAL_LICENCE_FINE` pour afficher son libellé dédié dans le relevé personnel.
+- Traductions : suppression de la clé inutilisée et vide `agrilifemanager_fmf_viaSearchUsed` et correction de `agrilifemanager_label_pluralS` en allemand.
+- Contribution GitHub #2 : intégration des corrections sûres sans écraser le référentiel de traduction plus récent de la build courante. Le dialogue tutoriel paginé reste à rebaser et tester séparément.
+- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 208 contrôles, 27 langues, 4 684 clés par langue, aucune clé manquante, dupliquée ou vide**.
+
 ## 0.6.4.30
 
 - Examen étape **3/10** : correction du blocage du trajet de 800 m.
