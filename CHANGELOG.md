@@ -2,6 +2,19 @@
 
 Toutes les évolutions importantes du projet sont consignées ici.
 
+## 0.7.0.0
+
+- Étape 1 Démarrage : machine d'état centrale pour migration, tutoriel, difficulté, banque, conseiller, examen et carrière prête.
+- Étape 1 Démarrage : ajout de `getStartupStep()`, `getStartupSnapshot()` et `validateStartupState()` sans créer une seconde source de sauvegarde.
+- Étape 2 Interface : couche UI transversale à six modules, redirections de navigation et verrouillage visuel cohérent.
+- Étape 2 Interface : le tableau de bord utilise le snapshot Démarrage comme source de vérité pour le parcours initial.
+- Étape 3 Banque : snapshot bancaire de la roadmap, dette FS25 héritée séparée, détail des prêts, historique filtrable, prévision de trésorerie, analyse de financement et checklist.
+- Les trois étapes utilisent les services existants comme propriétaires des données et évitent de dupliquer les états de gameplay.
+- Les changements de code sont publiés dans `development/steps/` avec les étapes 2 et 3 découpées en plusieurs parties pour faciliter la lecture et la récupération.
+- Build joueur correspondante : `FS25_AgriLifeManager.zip`, SHA-256 `ee6dbd9f7b841f61738ac601204c70144f6769a637d521e126ecf8e785514939`.
+- Vérification statique : **OK - 91 XML, 79 Lua actifs, 146 callbacks, 210 contrôles, 27 langues, 4 831 clés l10n**.
+- Les tests en jeu restent à poursuivre. Cette synchronisation ne marque pas les étapes comme validées fonctionnellement.
+
 ## 0.6.4.38
 
 - Écriture projet : suppression du caractère em dash dans tous les fichiers texte du package.
