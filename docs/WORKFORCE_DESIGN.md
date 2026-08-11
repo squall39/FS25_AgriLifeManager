@@ -1,4 +1,4 @@
-# Personnel & main-d’œuvre — conception AgriLife Manager
+# Personnel & main-d’œuvre - conception AgriLife Manager
 
 Ce document fixe la conception du futur système Personnel. Le principe central est simple : **les salariés AgriLife sont de vraies ressources de travail, avec un contrat, un coût, des compétences, une disponibilité et une affectation réelle.**
 
@@ -31,7 +31,7 @@ Quand une carrière AgriLife est active :
 
 Cette séparation évite qu’un joueur puisse contourner Personnel, engager un helper parallèle, créer une double paie ou avoir deux systèmes concurrents d’affectation.
 
-**Implémentation initiale : 0.6.4.25 TEST — à valider en jeu.**
+**Implémentation initiale : 0.6.4.25 TEST - à valider en jeu.**
 
 ## 3. Contrats de travail
 
@@ -165,7 +165,7 @@ Les joueurs humains représentent une main-d’œuvre réelle et ne doivent pas 
 
 ## Ordre d’implémentation proposé
 
-1. séparation joueur humain / ouvrier natif tout en conservant le GPS — **base 0.6.4.25 TEST** ;
+1. séparation joueur humain / ouvrier natif tout en conservant le GPS - **base 0.6.4.25 TEST** ;
 2. contrats CDI / CDD / saisonnier ;
 3. état et disponibilité des salariés ;
 4. moteur d’affectation une personne = une tâche ;
