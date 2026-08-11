@@ -1,4 +1,4 @@
-# Économie dynamique & intégrations agronomiques — AgriLife Manager
+# Économie dynamique & intégrations agronomiques - AgriLife Manager
 
 Ce document formalise les décisions validées pour le futur moteur économique dynamique d’AgriLifeManager et ses intégrations avec Precision Farming, Soil Fertilizer, les cartes personnalisées et les systèmes multifruits.
 
