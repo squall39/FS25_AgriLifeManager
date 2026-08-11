@@ -1,30 +1,38 @@
 # Organisation du dépôt
 
-Le dépôt GitHub représente la source de développement lisible d'AgriLife Manager. Il ne doit pas servir de stockage de patches temporaires ou de copies multiples du même code.
+Le dépôt GitHub représente la source lisible et maintenable d'AgriLife Manager. Le ZIP joueur reste un artefact séparé.
 
 ## Racine
 
-- `modDesc.xml` : déclaration FS25 de la version source synchronisée.
-- `src/` : code Lua actif.
-- `gui/` : définitions XML de l'interface lorsque publiables.
-- `translations/` : fichiers l10n lorsque synchronisés.
-- `tests/` : contrôles et tests du projet.
-- `tools/` : outils de vérification et de packaging.
-- `docs/` : documentation technique et conception.
-- `development/` : notes de chantier uniquement, sans copie du source actif.
+- `README.md` : présentation et état courant.
+- `ROADMAP.md` : feuille de route de référence.
+- `CHANGELOG.md` : historique des versions de développement.
+- `modDesc.xml` : déclaration FS25 de la version synchronisée.
+- `CONTRIBUTING.md`, `TESTING.md`, `SOURCE_PUBLICATION.md`, `COPYRIGHT.md` : règles du projet.
 
 ## Source active
 
-Un fichier qui fait partie de la build courante doit être publié à son chemin réel. Les patches découpés ne sont plus utilisés comme représentation principale du code.
+- `src/` : code Lua actif.
+- `gui/` : XML et définitions texte de l'interface publiables.
+- `translations/` : l10n.
+- `data/` : configurations texte.
+- `placeables/` et `vehicles/` : Lua/XML publiables du package.
+- `tests/` : contrôles automatisés.
+- `tools/` : vérification et packaging.
+- `docs/` : documentation technique.
+- `development/` : notes de chantier uniquement, sans copie du source actif.
 
-L'historique Git conserve naturellement les anciennes versions, ce qui évite de multiplier des dossiers `step`, `patch`, `part` ou `backup` dans la branche principale.
+## Ce qui ne doit plus revenir
+
+- dossiers `builds/` servant de seconde archive ;
+- patches découpés ;
+- copies de Lua à plusieurs emplacements ;
+- worklogs datés laissés à la racine ;
+- anciens plans de test liés à une build 0.6.x ;
+- doublons de documents de conception.
+
+L'historique Git conserve les versions précédentes.
 
 ## Assets binaires
 
-Le ZIP joueur contient aussi des textures, formes 3D et autres fichiers binaires. Ils ne sont ajoutés au dépôt public que si leur origine et leurs droits de redistribution sont compatibles avec cette publication.
-
-Le fait qu'un asset soit présent dans une build locale ne suffit pas à autoriser automatiquement sa republication publique.
-
-## Build joueur
-
-Le package destiné à FS25 conserve toujours le nom `FS25_AgriLifeManager.zip`. Le numéro de version est stocké dans `modDesc.xml`, le code de version et le changelog.
+Les assets binaires du package joueur restent séparés lorsque leur publication source n'est pas nécessaire ou que leurs droits de redistribution ne sont pas établis. Le dépôt ne doit pas devenir un miroir lourd du ZIP joueur.
