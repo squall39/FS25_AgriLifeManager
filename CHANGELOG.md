@@ -5,88 +5,67 @@ Toutes les évolutions importantes du projet sont consignées ici.
 ## 0.7.0.0
 
 - Étape 1 Démarrage : machine d'état centrale pour migration, tutoriel, difficulté, banque, conseiller, examen et carrière prête.
-- Étape 1 Démarrage : ajout de `getStartupStep()`, `getStartupSnapshot()` et `validateStartupState()` sans créer une seconde source de sauvegarde.
-- Étape 2 Interface : couche UI transversale à six modules, redirections de navigation et verrouillage visuel cohérent.
-- Étape 2 Interface : le tableau de bord utilise le snapshot Démarrage comme source de vérité pour le parcours initial.
-- Étape 3 Banque : snapshot bancaire de la roadmap, dette FS25 héritée séparée, détail des prêts, historique filtrable, prévision de trésorerie, analyse de financement et checklist.
-- Les trois étapes utilisent les services existants comme propriétaires des données et évitent de dupliquer les états de gameplay.
-- Les changements de code sont publiés dans `development/steps/` avec les étapes 2 et 3 découpées en plusieurs parties pour faciliter la lecture et la récupération.
-- Build joueur correspondante : `FS25_AgriLifeManager.zip`, SHA-256 `ee6dbd9f7b841f61738ac601204c70144f6769a637d521e126ecf8e785514939`.
-- Vérification statique : **OK - 91 XML, 79 Lua actifs, 146 callbacks, 210 contrôles, 27 langues, 4 831 clés l10n**.
-- Les tests en jeu restent à poursuivre. Cette synchronisation ne marque pas les étapes comme validées fonctionnellement.
+- Étape 1 Démarrage : logique isolée dans `src/modules/economy/EconomyStartupRoadmap1.lua` afin d'éviter de maintenir un patch géant de `Economy6Service.lua`.
+- Étape 2 Interface : couche UI transversale à six modules dans `src/ui/AgriLifeInterface6.lua`, redirections de navigation et verrouillage visuel cohérent.
+- Étape 3 Banque : extensions de la feuille de route dans `src/modules/bank/BankRoadmap3.lua`, avec dette FS25 héritée séparée, détail des prêts, historique filtrable, prévision de trésorerie, analyse de financement et checklist.
+- Réorganisation GitHub : suppression de l'arborescence active `development/steps/` et de ses patches découpés. Ces fichiers restent disponibles dans l'historique Git.
+- Réorganisation GitHub : la source courante est désormais publiée directement à ses chemins réels. `development/` est réservé aux notes de chantier.
+- Ajout de `.gitignore` pour exclure archives, sauvegardes, logs, caches et fichiers temporaires.
+- Ajout de `docs/REPOSITORY_LAYOUT.md` pour définir une structure de dépôt unique et lisible.
+- Distribution : séparation explicite entre dépôt source officiel et package jouable.
+- Build joueur correspondante : `FS25_AgriLifeManager.zip`, SHA-256 `45a66c117f1525418409c2917d20a1e68ebaf5058425e8240745c6737946d6d2`.
+- Vérification statique : **OK - 91 XML, 80 Lua actifs, 146 callbacks, 210 contrôles, 27 langues, 4 831 clés l10n**.
+- Les tests en jeu restent à poursuivre. La synchronisation du code ne marque pas les étapes comme validées fonctionnellement.
 
 ## 0.6.4.38
 
-- Écriture projet : suppression du caractère em dash dans tous les fichiers texte du package.
-- Qualité : le vérificateur de release contrôle désormais le style, l’attribution et la parité l10n.
-- Onboarding : suppression d’un message français codé en dur, remplacé par une clé l10n déjà distribuée.
+- Écriture projet : nettoyage du style dans tous les fichiers texte du package.
+- Qualité : le vérificateur de release contrôle le style et la parité l10n.
+- Onboarding : suppression d'un message français codé en dur, remplacé par une clé l10n déjà distribuée.
 - Compte personnel : affichage des montants détaillés au centime et arrondi des mouvements de paie au centime afin que le relevé puisse être recalculé ligne par ligne.
-- Permis provisoire Normal : l’amende de 500 € utilise désormais le type explicite `PROVISIONAL_LICENCE_FINE` pour afficher son libellé dédié dans le relevé personnel.
+- Permis provisoire Normal : l'amende de 500 € utilise le type explicite `PROVISIONAL_LICENCE_FINE` pour afficher son libellé dédié dans le relevé personnel.
 - Traductions : suppression de la clé inutilisée et vide `agrilifemanager_fmf_viaSearchUsed` et correction de `agrilifemanager_label_pluralS` en allemand.
 - Contribution GitHub #2 : intégration des corrections sûres sans écraser le référentiel de traduction plus récent de la build courante. Le dialogue tutoriel paginé reste à rebaser et tester séparément.
-- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 208 contrôles, 27 langues, 4 684 clés par langue, aucune clé manquante, dupliquée ou vide**.
+- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 208 contrôles, 27 langues, 4 684 clés par langue**.
 
 ## 0.6.4.30
 
-- Examen étape **3/10** : correction du blocage du trajet de 800 m.
-- Cause identifiée : `getIsOperating()` sur un outil `Attachable` peut hériter de l’état du tracteur parent dans FS25 et maintenir artificiellement l’outil en état actif pendant le déplacement.
-- L’étape 3 utilise désormais l’état direct de l’équipement assigné : **relevé, éteint et sans traitement WorkArea**.
-- Ajout du diagnostic `Route-state` dans `log.txt` pour connaître précisément `transportReady`, `lowered`, `turnedOn` et `processing`.
-- Étape 4 : lecture directe de l’état de l’équipement assigné afin d’éviter les faux états hérités.
-- Texte étape 3 corrigé : **800 m en position transport** ; suppression de la notion trompeuse de « zone de travail ».
-- Onboarding : tant que la difficulté n’est pas confirmée, l’entrée / prise de contrôle d’un véhicule est bloquée ; un contrôle obtenu par un autre chemin est annulé.
-- Ajout de la clé l10n `agrilife_difficulty_vehicle_locked` dans les traductions distribuées.
+- Examen étape 3/10 : correction du blocage du trajet de 800 m.
+- Étape 3 : lecture directe de l'état de l'équipement assigné pour éviter un faux état actif pendant le déplacement.
+- Étape 4 : lecture directe de l'état de l'équipement assigné.
+- Onboarding : tant que la difficulté n'est pas confirmée, l'entrée ou la prise de contrôle d'un véhicule est bloquée.
 - Aucun changement de schéma de sauvegarde.
-- Vérification statique : **OK - 89 XML, 59 Lua actifs, 129 callbacks, 206 contrôles, 6 ressources modDesc, 73 références de ressources XML**.
 
 ## 0.6.4.29
 
-- Examen étape 1 : parcours désormais strictement effectué avec le tracteur seul.
-- Tout outil attelé pendant l’étape 1 bloque la progression et remet la distance de cette étape à zéro.
-- Étape 2 : l’attelage doit être effectué après le début de l’étape ; un outil déjà attaché ne peut plus la valider automatiquement.
+- Examen étape 1 : parcours effectué avec le tracteur seul.
+- Étape 2 : l'attelage doit être effectué après le début de l'étape.
 - Étape 3 : préparation du transport renforcée.
 - Étape 4 : validation après une vraie transition vers la position de travail.
-- Étapes 5 à 10 et résultat final inchangés.
 
 ## 0.6.4.28
 
-- Banque : correction racine du chargement des pictogrammes internes.
-- Les 21 pictogrammes Banque possèdent un ID GUI explicite et sont résolus en Lua avec un chemin absolu après initialisation du GUI.
-- Textures Banque normalisées en 128×128 DXT5 avec mipmaps.
-- Diagnostic : `Bank pictograms resolved 21/21 with absolute paths`.
-- Rendu Banque validé en jeu en 1920×1080.
+- Banque : correction du chargement des pictogrammes internes.
+- Les 21 pictogrammes Banque possèdent un ID GUI explicite et un chemin résolu après initialisation du GUI.
+- Rendu Banque validé en jeu en 1920x1080.
 
 ## 0.6.4.27
 
-- Banque : première normalisation du jeu d’icônes internes.
-- Création de `gui/bankicons` et correction du libellé `Banque partenaire`.
-- Aucun changement de logique bancaire ni de schéma de sauvegarde.
+- Banque : première normalisation du jeu d'icônes internes.
+- Création de `gui/bankicons` et correction du libellé Banque partenaire.
 
 ## 0.6.4.26
 
-- Correction complémentaire du blocage de l’étape **6/10**.
-- L’étape 6 valide l’action réellement demandée : **équipement arrêté et relevé** ; le repliage n’est plus bloquant.
-- Ajout du diagnostic `Secure-state` dans `log.txt`.
-- Examen 1→10, obtention du permis, rechargement et isolation entre sauvegardes validés en jeu le 10 août 2026.
+- Correction complémentaire du blocage de l'étape 6/10.
+- L'étape 6 valide l'équipement arrêté et relevé.
+- Examen 1 à 10, obtention du permis, rechargement et isolation entre sauvegardes validés en jeu le 10 août 2026.
 
 ## 0.6.4.25
 
-- Correction du blocage de l’étape 6/10 après validation du travail.
-- Message de réussite d’une étape affiché plus longtemps.
+- Correction du blocage de l'étape 6/10 après validation du travail.
+- Message de réussite d'une étape affiché plus longtemps.
 - Notification FS25 explicite lors de chaque étape validée.
-- `gui/icons/success.dds` recompressé en DXT5.
-
-### Personnel - conception conservée, implémentation après stabilisation
-
-La séparation **joueur humain / GPS natif / salariés AgriLife**, la règle **1 salarié disponible = 1 tâche active maximum**, la paie unique AgriLife et le futur centre d’ordres restent validés dans `docs/WORKFORCE_DESIGN.md`. Leur implémentation ne doit pas interrompre la stabilisation actuelle des examens, du HUD, de la persistance, de l’onboarding et des difficultés.
-
-## 0.6.4.24
-
-- Correction du blocage de l’épreuve 5/10 avec preuve de travail/distance de secours.
-- Le HUD conserve l’action exacte à réaliser même en difficulté Difficile.
-- Chaque étape réussie déclenche un état HUD vert avec pictogramme de réussite.
-- Tableau de bord : Banque → Conseiller → Société → Permis.
 
 ## Versions antérieures
 
-Les versions 0.6.4.x antérieures correspondent aux phases successives de restructuration d’AgriLife Manager : persistance par sauvegarde, migration, Banque, carrière/XP, examens, société, personnel, assurances, atelier, tutoriel et Assistance.
+Les versions 0.6.4.x antérieures correspondent aux phases successives de restructuration d'AgriLife Manager : persistance par sauvegarde, migration, Banque, carrière et XP, examens, société, personnel, assurances, atelier, tutoriel et Assistance.

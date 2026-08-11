@@ -1,39 +1,43 @@
 # Copyright et distribution
 
-## Auteur du projet
+## Auteur
 
 **AgriLife Manager**  
-Auteur / créateur : **Chez_Squall**  
+Auteur et créateur : **Chez_Squall**  
 © 2026 Chez_Squall.
 
 Tous les droits sur les éléments originaux créés spécifiquement pour AgriLife Manager sont réservés à Chez_Squall.
 
-## Dépôt source public
+## Dépôt source officiel
 
-À compter du **10 août 2026**, Chez_Squall autorise explicitement la publication sur ce dépôt GitHub du **code source et des fichiers originaux AgriLife Manager** utilisés pour le développement du projet.
+Chez_Squall autorise la publication sur `squall39/FS25_AgriLifeManager` du code source et des fichiers originaux AgriLife Manager utilisés pour le développement du projet.
 
-Le passage du dépôt en public ne change **ni l’ordre de développement, ni les critères de validation, ni la méthode de test** définis dans `ROADMAP.md`.
+La branche `main` doit privilégier les fichiers source à leur emplacement réel : `src/`, `gui/`, `translations/`, `tests/`, `tools/` et documentation. Les copies temporaires, patches de build et archives de travail ne doivent pas remplacer la source active.
 
-La visibilité publique du source ne transforme pas automatiquement une build TEST en version stable ou officielle. Une copie, un fork, un repack ou une build modifiée ne peut pas être présenté comme une version officielle d’AgriLife Manager ou de Chez_Squall.
+La publication du source ne transforme pas automatiquement un commit, un fork ou un snapshot en version officielle prête à jouer.
 
-Les snapshots de développement peuvent conserver des mentions historiques correspondant à leur état au moment où ils ont été créés. En cas de contradiction sur le statut actuel du dépôt, le présent document et la documentation GitHub à jour font référence pour les éléments originaux d’AgriLife Manager.
+## Builds jouables
+
+Le package destiné à Farming Simulator 25 porte le nom `FS25_AgriLifeManager.zip`.
+
+Les canaux de distribution des builds jouables sont décidés par Chez_Squall. La présence du code source sur GitHub ne constitue pas une autorisation de republier une archive modifiée comme version officielle.
+
+Une copie, un fork, un repack ou une build modifiée ne peut pas être présenté comme une version officielle d'AgriLife Manager ou de Chez_Squall.
 
 ## Composants tiers
 
-Les éléments tiers intégrés, adaptés ou référencés par le projet conservent leurs copyrights, crédits, licences et conditions de redistribution respectifs. Aucun copyright tiers ne doit être remplacé par celui de Chez_Squall.
+Les éléments tiers intégrés, adaptés ou référencés conservent leurs copyrights, crédits, licences et conditions de redistribution respectifs.
 
-**L’autorisation de Chez_Squall de publier son propre source ne peut pas accorder de droits supplémentaires sur un composant tiers.** Avant de publier un asset ou composant tiers dans le dépôt, sa redistribution doit donc être compatible avec les droits de son auteur.
+L'autorisation de publier les éléments originaux AgriLife Manager ne donne aucun droit supplémentaire sur un composant tiers. Avant de publier un asset tiers dans ce dépôt, son origine et son droit de redistribution doivent être vérifiés.
 
-## Builds TEST
+Un fichier présent dans une archive locale ne doit donc pas être copié automatiquement vers GitHub si son statut de redistribution n'est pas clair.
 
-Les builds TEST sont des versions de développement susceptibles de contenir des fonctions incomplètes, des bugs ou des migrations de sauvegarde.
+## Fichiers de développement privés ou temporaires
 
-La mise à disposition publique du dépôt ne signifie pas qu’une build TEST quelconque doit être redistribuée comme version stable ou officielle.
+Les sauvegardes FS25, logs, crash dumps, caches, secrets, clés privées, archives de travail et dossiers temporaires ne sont pas destinés au versionnage public.
 
-Les archives de test, sauvegardes, logs et fichiers locaux ne sont pas destinés à être versionnés dans Git. Les packages distribuables doivent passer par le canal de publication retenu par Chez_Squall.
+Le `.gitignore` du dépôt protège ces catégories de fichiers.
 
-## Distribution officielle
+## Référence
 
-Le lien de distribution officiel, les plateformes retenues et les éventuelles conditions de partage des versions publiques seront définis par Chez_Squall, notamment en cohérence avec les exigences applicables de GIANTS/ModHub si le mod y est soumis.
-
-Aucun tiers n’est autorisé à présenter une build modifiée, un repack, un fork ou une version non officielle comme une version officielle de Chez_Squall.
+La feuille de route définit l'état fonctionnel du projet. Le changelog décrit les changements de build. La documentation du dépôt décrit la source réellement publiée.
