@@ -40,16 +40,24 @@ Ne pas créer une seconde représentation permanente du code dans des dossiers d
 - Ne pas retirer les copyrights ou licences tiers.
 - Le package joueur conserve le nom `FS25_AgriLifeManager.zip`.
 - La version reste inférieure à `1.0.0.0` avant validation globale.
+- `ROADMAP.md` est un registre maître additif : ne jamais supprimer une idée validée lors d'une mise à jour.
 
-## Cycle d'une build
+## Cycle obligatoire d'une build
 
-1. Modifier la source active.
+1. Modifier et vérifier la source active.
 2. Exécuter les contrôles disponibles.
-3. Mettre à jour changelog, documentation et feuille de route si nécessaire.
-4. Synchroniser GitHub.
-5. Construire le ZIP joueur séparément.
-6. Ré-extraire et vérifier le ZIP.
-7. Effectuer la certification en jeu lorsque le bloc est prêt.
+3. Mettre à jour l'état des points réellement intégrés dans la feuille de route complète, sans supprimer ni condenser les idées existantes.
+4. Synchroniser cette feuille de route sur GitHub.
+5. Copier la même feuille de route à jour dans `docs/ROADMAP.md` du mod.
+6. Mettre à jour changelog, documentation, version et fichiers concernés.
+7. Synchroniser les sources GitHub nécessaires.
+8. Construire `FS25_AgriLifeManager.zip`.
+9. Ré-extraire le ZIP et vérifier que `docs/ROADMAP.md` correspond à l'état GitHub de la build.
+10. Exécuter les vérifications finales du package.
+11. Seulement ensuite envoyer le ZIP au testeur.
+12. Effectuer la certification en jeu lorsque le bloc est prêt.
+
+**Un ZIP n'est pas considéré prêt à être envoyé si la feuille de route GitHub et la feuille de route embarquée dans le mod ne sont pas synchronisées avec la build.**
 
 ## Écriture et attribution
 
