@@ -1,66 +1,30 @@
-# Farming Simulator / AgriLife development artefacts
-*.log
-log.txt
-log*.txt
-*.crash
-*.dmp
-
-# Savegames / temporary test data
-savegame*/
-savegameBackup*/
-backupSavegame*/
-*.bak
-*.tmp
-*.temp
-*.old
-*.orig
-*~
-
-# Distribution archives
-# Les ZIP publics doivent être publiés via GitHub Releases / canal officiel,
-# pas versionnés dans le dépôt source.
+# Local builds and archives
 *.zip
 *.7z
 *.rar
 *.tar
 *.tar.gz
-*.tgz
+*.tar.xz
 
-# Local Farming Simulator folders that must never be committed
-mods/
-FarmingSimulator2025/
+# Farming Simulator runtime files
+log.txt
+savegame*/
+modsSettings/
+shader_cache/
 
-# Secrets / local environment
-.env
-.env.*
-!.env.example
-*.key
-*.pem
-*.p12
-*.pfx
-credentials*.json
-secrets*.json
-
-# OS / editors
-.DS_Store
-Thumbs.db
-desktop.ini
-.vscode/
-.idea/
-.vs/
-.history/
-*.swp
-*.swo
-
-# Generated caches
+# Development temporary files
 __pycache__/
 *.pyc
+*.pyo
+*.tmp
+*.bak
+*.orig
+*.rej
+.DS_Store
+Thumbs.db
 
-# Local staging / generated folders
-_build/
+# Local staging
 build/
 dist/
-_staging/
-staging/
-temp/
 tmp/
+.temp/
