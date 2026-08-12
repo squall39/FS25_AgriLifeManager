@@ -1,0 +1,1013 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<!-- AgriLife Manager original content: official distribution via KingMods only; share the original publication link. -->
+<GUI name="AgriLifeHomeFrame">
+    <GuiElement profile="fs25_menuContainer" id="responsiveRoot" outputSize="1920px 1080px">
+        <GuiElement profile="fs25_menuHeaderPanel">
+            <Text profile="fs25_menuHeaderTitle" text="$l10n_agrilife_ui6_static_001" position="18px 16px" size="280px 34px" textSize="23px" textBold="true" textColor="0.94 0.98 0.96 1"/>
+            <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="315px 8px" size="6px 48px"/>
+            <Text profile="fs25_menuHeaderTitle" text="$l10n_agrilife_ui6_dashboard_title" position="340px 8px" size="520px 30px" textSize="24px" textBold="true" visible="false"/>
+            <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_dashboard_subtitle" position="340px 34px" size="650px 22px" textSize="13px" textColor="0.68 0.78 0.76 1" visible="false"/>
+            <Text profile="fs25_textDefault" id="headerAccessMode" text="--" position="730px 18px" size="265px 24px" textSize="12px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerVersion" text="--" position="1010px 18px" size="145px 24px" textSize="14px" textAlignment="right" textColor="0.63 0.86 0.08 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerFarm" text="--" position="1170px 18px" size="180px 24px" textSize="14px" textAlignment="right" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerCash" text="--" position="1370px 18px" size="200px 24px" textSize="16px" textBold="true" textAlignment="right" textColor="0.68 0.91 0.24 1" anchors="1 1 0 0"/>
+        </GuiElement>
+        <GuiElement id="responsiveBody" position="0px 62px" size="100% 714px" anchors="0 1 0 0">
+            <Bitmap profile="baseReference" imageColor="0.030 0.047 0.052 0.98" size="100% 100%"/>
+            <GuiElement position="30px 34px" size="250px 646px">
+                <Bitmap profile="baseReference" imageColor="0.028 0.040 0.044 0.995" size="250px 646px"/>
+                <Bitmap profile="baseReference" imageColor="0.18 0.24 0.22 1" position="249px 0px" size="1px 646px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_navigation" position="20px 604px" size="210px 24px" textSize="14px" textBold="true" textColor="0.63 0.86 0.08 1"/>
+                <Bitmap profile="baseReference" id="navDashboardBg" imageColor="0.31 0.45 0.10 1" position="12px 532px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navDashboardAccent" imageColor="0.63 0.86 0.08 1" position="12px 532px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navDashboard" text="" onClick="onClickDashboard" position="12px 532px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navDashboardIcon" imageFilename="$moddir$gui/ui6icons/dashboard.dds" position="25px 541px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navDashboardLabel" text="$l10n_agrilife_ui6_dashboard" position="74px 548px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navBankBg" imageColor="0.045 0.061 0.066 1" position="12px 472px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navBankAccent" imageColor="0.34 0.46 0.12 1" position="12px 472px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navBank" text="" onClick="onClickBank" position="12px 472px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navBankIcon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="25px 481px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navBankLabel" text="$l10n_agrilife_ui6_bank" position="74px 488px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navPayrollBg" imageColor="0.045 0.061 0.066 1" position="12px 412px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navPayrollAccent" imageColor="0.34 0.46 0.12 1" position="12px 412px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navPayroll" text="" onClick="onClickPayroll" position="12px 412px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navPayrollIcon" imageFilename="$moddir$gui/ui6icons/payroll.dds" position="25px 421px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navPayrollLabel" text="$l10n_agrilife_ui6_enterprise" position="74px 428px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navContractsBg" imageColor="0.045 0.061 0.066 1" position="12px 232px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navContractsAccent" imageColor="0.34 0.46 0.12 1" position="12px 232px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navContracts" text="" onClick="onClickContracts" position="12px 232px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navContractsIcon" imageFilename="$moddir$gui/ui6icons/contracts.dds" position="25px 241px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navContractsLabel" text="$l10n_agrilife_ui6_contracts_markets" position="74px 248px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navExamsBg" imageColor="0.045 0.061 0.066 1" position="12px 352px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navExamsAccent" imageColor="0.34 0.46 0.12 1" position="12px 352px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navExams" text="" onClick="onClickExams" position="12px 352px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navExamsIcon" imageFilename="$moddir$gui/ui6icons/exam.dds" position="25px 361px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navExamsLabel" text="$l10n_agrilife_ui6_career_qualifications" position="74px 368px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navXpBg" imageColor="0.045 0.061 0.066 1" position="12px 232px" size="226px 54px" visible="false"/>
+                <Bitmap profile="baseReference" id="navXpAccent" imageColor="0.34 0.46 0.12 1" position="12px 232px" size="5px 54px" visible="false"/>
+                <Button profile="ui6NavHit" id="navXp" text="" onClick="onClickXp" position="12px 232px" size="226px 54px" visible="false"/>
+                <Bitmap profile="ui6Icon" id="navXpIcon" imageFilename="$moddir$gui/ui6icons/career.dds" position="25px 241px" size="36px 36px" visible="true"/>
+                <Text profile="fs25_textDefault" id="navXpLabel" text="$l10n_agrilife_ui6_xp" position="74px 248px" size="154px 24px" textSize="14px" textBold="true" visible="false"/>
+                <Bitmap profile="baseReference" id="navInsuranceBg" imageColor="0.045 0.061 0.066 1" position="12px 292px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navInsuranceAccent" imageColor="0.34 0.46 0.12 1" position="12px 292px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navInsurance" text="" onClick="onClickInsurance" position="12px 292px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navInsuranceIcon" imageFilename="$moddir$gui/ui6icons/insurance.dds" position="25px 301px" size="36px 36px"/>
+                <Text profile="fs25_textDefault" id="navInsuranceLabel" text="$l10n_agrilife_ui6_administration" position="74px 308px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Bitmap profile="baseReference" id="navWorkshopBg" imageColor="0.045 0.061 0.066 1" position="12px 172px" size="226px 54px"/>
+                <Bitmap profile="baseReference" id="navWorkshopAccent" imageColor="0.34 0.46 0.12 1" position="12px 172px" size="5px 54px"/>
+                <Button profile="ui6NavHit" id="navWorkshop" text="" onClick="onClickWorkshop" position="12px 172px" size="226px 54px"/>
+                <Bitmap profile="ui6Icon" id="navWorkshopIcon" imageFilename="$moddir$gui/ui6icons/workshop.dds" position="25px 181px" size="36px 36px"/>
+                <Text profile="fs25_textDefault" id="navWorkshopLabel" text="$l10n_agrilife_ui6_workshop" position="74px 188px" size="154px 24px" textSize="14px" textBold="true"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="tutorialGuideButton" text="$l10n_agrilife_ui6_static_002" onClick="onClickTutorialGuide" position="12px 30px" size="226px 54px" textSize="12px"/>
+                <GuiElement position="12px 18px" size="226px 78px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.038 0.055 0.058 1" size="226px 78px"/>
+                    <Bitmap id="resolvedModImage01" profile="ui6Icon" imageFilename="$moddir$resources/ui/logo_mark.dds" position="14px 18px" size="40px 40px" visible="false"/>
+                    <Text profile="fs25_textDefault" id="sidebarCoreState" text="--" position="64px 44px" size="144px 20px" textSize="14px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_build" position="64px 14px" size="144px 26px" textSize="11px" textColor="0.58 0.68 0.66 1" textWrap="true"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="dashboardPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0">
+                <Bitmap profile="baseReference" imageColor="0.032 0.046 0.050 0.995" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="32px 591px" size="7px 37px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_dashboard_title" position="55px 593px" size="720px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_dashboard_subtitle" position="55px 564px" size="1080px 24px" textSize="15px" textColor="0.66 0.77 0.74 1"/>
+                <GuiElement id="dashboardCardsGroup" position="0px 0px" size="100% 100%">
+                <GuiElement position="32px 350px" size="376px 188px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.074 0.071 1" size="376px 188px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 184px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage02" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.55 0.82 0.12 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_bank" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="24px 96px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankCash" text="--" position="198px 94px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="24px 66px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankDebt" text="--" position="198px 64px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="24px 36px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankScore" text="--" position="198px 34px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Button profile="ui6CardHit" text="" onClick="onClickBank" position="0px 0px" size="376px 188px"/>
+                </GuiElement>
+                <GuiElement position="440px 350px" size="376px 188px">
+                    <Bitmap profile="baseReference" imageColor="0.052 0.070 0.066 1" size="376px 188px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 184px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage03" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/payroll.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.55 0.82 0.12 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_enterprise" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_dashboard_employees" position="24px 96px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.76 1"/>
+                    <Text profile="fs25_textDefault" id="dashExamState" text="--" position="198px 94px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="dashExamProgressLabel" text="$l10n_agrilife_dashboard_orders" position="24px 66px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.76 1"/>
+                    <Text profile="fs25_textDefault" id="dashExamProgress" text="--" position="198px 64px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Text profile="fs25_textDefault" id="dashExamCatalogLabel" text="$l10n_agrilife_dashboard_reputation" position="24px 36px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.76 1"/>
+                    <Text profile="fs25_textDefault" id="dashExamCatalog" text="--" position="198px 34px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Button profile="ui6CardHit" text="" onClick="onClickPayroll" position="0px 0px" size="376px 188px"/>
+                </GuiElement>
+                <GuiElement position="848px 350px" size="376px 188px">
+                    <Bitmap profile="baseReference" imageColor="0.072 0.061 0.045 1" size="376px 188px"/>
+                    <Bitmap profile="baseReference" imageColor="0.96 0.68 0.10 1" position="0px 184px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage04" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/career.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.96 0.68 0.10 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_career_qualifications" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_level" position="24px 96px" size="165px 18px" textSize="12px" textColor="0.76 0.72 0.62 1"/>
+                    <Text profile="fs25_textDefault" id="dashCareerLevel" text="--" position="198px 94px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="1 0.75 0.18 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_dashboard_licence" position="24px 66px" size="165px 18px" textSize="12px" textColor="0.76 0.72 0.62 1"/>
+                    <Text profile="fs25_textDefault" id="dashCareerXp" text="--" position="198px 64px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_dashboard_qualifications" position="24px 36px" size="165px 18px" textSize="12px" textColor="0.76 0.72 0.62 1"/>
+                    <Text profile="fs25_textDefault" id="dashCareerReputation" text="--" position="198px 34px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Button profile="ui6CardHit" text="" onClick="onClickExams" position="0px 0px" size="376px 188px"/>
+                </GuiElement>
+                <GuiElement position="32px 145px" size="376px 174px">
+                    <Bitmap profile="baseReference" imageColor="0.048 0.076 0.063 1" size="376px 174px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 170px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage05" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/insurance.dds" position="18px 106px" size="48px 48px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_administration" position="78px 130px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="dashInsuranceState" text="--" position="24px 74px" size="324px 28px" textSize="16px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="dashInsuranceDetail" text="--" position="24px 30px" size="324px 38px" textSize="13px" textColor="0.66 0.75 0.72 1" textWrap="true"/>
+                    <Button profile="ui6CardHit" text="" onClick="onClickInsurance" position="0px 0px" size="376px 174px"/>
+                </GuiElement>
+                <GuiElement position="440px 145px" size="376px 174px">
+                    <Bitmap profile="baseReference" imageColor="0.050 0.066 0.070 1" size="376px 174px"/>
+                    <Bitmap profile="baseReference" imageColor="0.31 0.78 0.47 1" position="0px 170px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage06" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/contracts.dds" position="18px 106px" size="48px 48px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_contracts_markets" position="78px 130px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="statusValueCard" text="--" position="24px 82px" size="324px 25px" textSize="17px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_dashboard_active_contracts" position="24px 52px" size="120px 18px" textSize="12px" textColor="0.62 0.72 0.70 1"/>
+                    <Text profile="fs25_textDefault" id="valueVersion" text="--" position="148px 50px" size="200px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_dashboard_opportunities" position="24px 26px" size="120px 18px" textSize="12px" textColor="0.62 0.72 0.70 1"/>
+                    <Text profile="fs25_textDefault" id="valueModules" text="--" position="148px 24px" size="80px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="valueErrors" text="--" position="250px 24px" size="98px 20px" textAlignment="right" textSize="14px" textColor="0.92 0.65 0.24 1"/>
+                    <Text profile="fs25_textDefault" id="valueLastSave" text="--" position="240px 78px" size="108px 22px" textAlignment="right" textSize="13px" textColor="0.68 0.80 0.76 1"/>
+                    <Button profile="ui6CardHit" id="companyOpenButton" text="" onClick="onClickContracts" position="0px 0px" size="376px 174px"/>
+                </GuiElement>
+                <GuiElement position="848px 145px" size="376px 174px">
+                    <Bitmap profile="baseReference" imageColor="0.052 0.070 0.064 1" size="376px 174px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 170px" size="376px 4px"/>
+                    <Bitmap id="resolvedModImage07" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/workshop.dds" position="18px 106px" size="48px 48px" imageColor="0.55 0.82 0.12 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_workshop" position="78px 130px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="dashWorkshopState" text="--" position="24px 74px" size="324px 28px" textSize="16px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="dashWorkshopDetail" text="--" position="24px 30px" size="324px 38px" textSize="13px" textColor="0.66 0.75 0.72 1" textWrap="true"/>
+                    <Button profile="ui6CardHit" text="" onClick="onClickWorkshop" position="0px 0px" size="376px 174px"/>
+                </GuiElement>
+                </GuiElement>
+                <GuiElement id="dashboardSetupBar" position="32px 50px" size="1192px 70px">
+                    <Bitmap profile="baseReference" imageColor="0.035 0.052 0.055 1" size="1192px 70px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 0px" size="5px 70px"/>
+                    <Text profile="fs25_textDefault" id="sidebarCoreStateMirror" text="--" position="24px 39px" size="430px 22px" textSize="14px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="dashboardMessage" text="$l10n_agrilife_ui6_dashboard_hint" position="24px 12px" size="430px 22px" textSize="13px" textColor="0.66 0.75 0.72 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="onboardingModeButton" text="$l10n_agrilife_ui6_static_004" onClick="onClickOnboardingMode" position="500px 17px" size="210px 38px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="onboardingActivateButton" text="$l10n_agrilife_ui6_static_005" onClick="onClickOnboardingActivate" position="726px 17px" size="240px 38px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="journalOpenButton" text="$l10n_agrilife_journal_open" onClick="onClickJournal" position="982px 17px" size="180px 38px" textSize="10px"/>
+                </GuiElement>
+                <GuiElement id="tutorialOverlay" position="32px 145px" size="100% 393px" absoluteSizeOffset="64px 0px" anchors="0 1 0 0" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.018 0.032 0.035 1" size="100% 100%"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 0px" size="7px 393px"/>
+                    <Bitmap profile="baseReference" imageColor="0.13 0.18 0.17 1" position="28px 276px" size="1136px 1px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_006" position="28px 343px" size="760px 32px" textSize="24px" textBold="true" textColor="0.94 0.98 0.96 1"/>
+                    <Text profile="fs25_textDefault" id="tutorialProgressText" text="--" position="844px 348px" size="290px 24px" textAlignment="right" textSize="14px" textBold="true" textColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" id="tutorialTitleText" text="--" position="28px 294px" size="1106px 32px" textSize="21px" textBold="true"/>
+
+                    <GuiElement position="28px 62px" size="716px 198px">
+                        <Bitmap profile="baseReference" imageColor="0.030 0.050 0.052 1" size="716px 198px"/>
+                        <Bitmap profile="baseReference" imageColor="0.20 0.27 0.25 1" position="0px 194px" size="716px 4px"/>
+                        <Text profile="fs25_textDefault" id="tutorialBodyText" text="--" position="24px 24px" size="668px 146px" textSize="15px" textColor="0.78 0.87 0.84 1" textWrap="true"/>
+                    </GuiElement>
+
+                    <GuiElement position="768px 62px" size="366px 198px">
+                        <Bitmap profile="baseReference" imageColor="0.055 0.075 0.060 1" size="366px 198px"/>
+                        <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 194px" size="366px 4px"/>
+                        <Text profile="fs25_textDefault" id="tutorialChecklistText" text="--" position="22px 124px" size="322px 48px" textSize="13px" textColor="0.76 0.91 0.55 1" textWrap="true"/>
+                        <Button profile="ui6PrimaryAction" hideKeyboardGlyph="true" id="tutorialModeCycleButton" text="MODE" onClick="onClickOnboardingMode" position="22px 76px" size="322px 38px" textSize="12px" visible="false"/>
+                        <Bitmap profile="baseReference" id="tutorialActionButtonBase" imageColor="0.105 0.165 0.105 1" position="22px 18px" size="322px 48px"/>
+                        <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="22px 62px" size="322px 4px"/>
+                        <Button profile="ui6PrimaryAction" hideKeyboardGlyph="true" id="tutorialActionButton" text="$l10n_agrilife_ui6_static_007" onClick="onClickTutorialAction" position="22px 18px" size="322px 48px" textSize="13px"/>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="bankPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.040 0.057 0.061 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage08" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="54px 576px" size="54px 54px" visible="true" imageColor="0.55 0.82 0.12 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_title" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true" textColor="0.94 0.98 0.96 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_subtitle" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <!-- Dedicated selectors below the title: no overlap with the header and the whole
+                     centre button is an explicit clickable confirmation target. -->
+                <Bitmap id="bankProviderSelectorIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finance.dds" position="32px 535px" size="19px 19px" imageColor="0.63 0.86 0.08 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_provider" position="55px 532px" size="105px 24px" textSize="11px" textBold="true" textColor="0.68 0.79 0.76 1"/>
+                <Button profile="ui6ArrowHit" id="bankProviderPrevButton" text="&lt;" onClick="onClickBankProviderPrev" position="164px 526px" size="38px 34px" textSize="17px"/>
+                <Button profile="ui6ChoiceButton" id="bankProviderButton" text="--" onClick="onClickBankProviderCurrent" position="208px 524px" size="262px 38px" textSize="12px"/>
+                <Button profile="ui6ArrowHit" id="bankProviderNextButton" text="&gt;" onClick="onClickBankProviderNext" position="476px 526px" size="38px 34px" textSize="17px"/>
+
+                <Bitmap id="bankAdvisorSelectorIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/agent.dds" position="632px 535px" size="19px 19px" imageColor="0.63 0.86 0.08 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_advisor" position="653px 532px" size="72px 24px" textSize="12px" textBold="true" textColor="0.68 0.79 0.76 1"/>
+                <Button profile="ui6ArrowHit" id="bankAdvisorPrevButton" text="&lt;" onClick="onClickBankAdvisorPrev" position="726px 526px" size="38px 34px" textSize="17px"/>
+                <Button profile="ui6ChoiceButton" id="bankAdvisorButton" text="--" onClick="onClickBankAdvisor" position="770px 524px" size="300px 38px" textSize="12px"/>
+                <Button profile="ui6ArrowHit" id="bankAdvisorNextButton" text="&gt;" onClick="onClickBankAdvisorNext" position="1076px 526px" size="38px 34px" textSize="17px"/>
+                <GuiElement position="32px 408px" size="1192px 112px">
+                    <Bitmap profile="baseReference" imageColor="0.075 0.095 0.104 1" size="1192px 112px"/>
+                    <Bitmap id="bankSummaryCashIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/cash.dds" position="20px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="40px 70px" size="150px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankCashValue" text="--" position="20px 35px" size="150px 28px" textSize="19px" textBold="true"/>
+                    <Bitmap id="bankSummaryVanillaDebtIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/loan.dds" position="190px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_vanillaDebt" position="210px 70px" size="150px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankVanillaDebtValue" text="--" position="190px 35px" size="150px 28px" textSize="19px" textBold="true"/>
+                    <Bitmap id="bankSummaryDebtIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/loan_doc.dds" position="360px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="380px 70px" size="150px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankDebtValue" text="--" position="360px 35px" size="150px 28px" textSize="19px" textBold="true"/>
+                    <Bitmap id="bankSummaryMonthlyIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/calendar.dds" position="530px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_monthly" position="550px 70px" size="150px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankMonthlyValue" text="--" position="530px 35px" size="150px 28px" textSize="19px" textBold="true"/>
+                    <Bitmap id="bankSummaryScoreIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/credit_score.dds" position="700px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="720px 70px" size="210px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankScoreValue" text="--" position="700px 35px" size="210px 28px" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankSummaryCapacityIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/trend_up.dds" position="930px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_capacity" position="950px 70px" size="130px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankCapacityValue" text="--" position="930px 35px" size="130px 28px" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankSummaryLoansIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finances.dds" position="1080px 73px" size="19px 19px" imageColor="0.60 0.76 0.70 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_loans" position="1100px 70px" size="90px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankLoansValue" text="--" position="1080px 35px" size="90px 28px" textAlignment="center" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_owner_rep_short" position="20px 8px" size="50px 16px" textSize="10px" textColor="0.68 0.77 0.80 1"/>
+                    <Bitmap profile="ui6Icon" id="bankOwnerStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="70px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankOwnerStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="84px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankOwnerStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="98px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankOwnerStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="112px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankOwnerStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="126px 8px" size="12px 12px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_company_rep_short" position="158px 8px" size="56px 16px" textSize="10px" textColor="0.68 0.77 0.80 1"/>
+                    <Bitmap profile="ui6Icon" id="bankCompanyStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="216px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankCompanyStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="230px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankCompanyStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="244px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankCompanyStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="258px 8px" size="12px 12px"/>
+                    <Bitmap profile="ui6Icon" id="bankCompanyStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="272px 8px" size="12px 12px"/>
+                    <Text profile="fs25_textDefault" id="bankProgressValue" text="--" position="304px 2px" size="856px 28px" textSize="9px" textColor="0.63 0.86 0.72 1" textAutoWrap="true"/>
+                </GuiElement>
+                <!-- Bank/advisor quality bars are drawn after the summary card so they stay visible above it. -->
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_reputation_short" position="170px 502px" size="46px 16px" textSize="9px" textColor="0.61 0.73 0.70 1"/>
+                <Bitmap profile="ui6Icon" id="bankProviderStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="218px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="233px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="248px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="263px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="278px 502px" size="14px 14px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_competence_short" position="304px 502px" size="42px 16px" textSize="9px" textColor="0.61 0.73 0.70 1"/>
+                <Bitmap profile="ui6Icon" id="bankProviderSkillStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="348px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderSkillStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="363px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderSkillStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="378px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderSkillStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="393px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankProviderSkillStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="408px 502px" size="14px 14px"/>
+
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_reputation_short" position="770px 502px" size="46px 16px" textSize="9px" textColor="0.61 0.73 0.70 1"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="818px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="833px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="848px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="863px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="878px 502px" size="14px 14px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_competence_short" position="904px 502px" size="42px 16px" textSize="9px" textColor="0.61 0.73 0.70 1"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorSkillStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="948px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorSkillStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="963px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorSkillStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="978px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorSkillStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="993px 502px" size="14px 14px"/>
+                <Bitmap profile="ui6Icon" id="bankAdvisorSkillStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="1008px 502px" size="14px 14px"/>
+                <GuiElement id="bankFinancingPanel" position="32px 92px" size="1192px 284px">
+                    <Bitmap profile="baseReference" imageColor="0.070 0.086 0.094 1" size="1192px 284px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_request_title" position="24px 236px" size="1144px 28px" textSize="21px" textBold="true"/>
+                    <Bitmap id="bankRequestAmountIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/cash.dds" position="24px 195px" size="20px 20px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_amount" position="47px 192px" size="147px 24px" textSize="16px"/>
+                    <Button profile="ui6ArrowHit" id="bankAmountPrev" text="" onClick="onClickBankAmountPrev" position="200px 182px" size="58px 42px"/>
+
+                    <Bitmap profile="ui6Icon" id="bankAmountPrevIcon" imageFilename="$moddir$gui/bankicons/arrow_left.dds" position="219px 193px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="bankAmountValue" text="--" position="270px 188px" size="215px 30px" textAlignment="center" textSize="20px" textBold="true"/>
+                    <Button profile="ui6ArrowHit" id="bankAmountNext" text="" onClick="onClickBankAmountNext" position="497px 182px" size="58px 42px"/>
+
+                    <Bitmap profile="ui6Icon" id="bankAmountNextIcon" imageFilename="$moddir$gui/bankicons/arrow_right.dds" position="516px 193px" size="20px 20px"/>
+                    <Bitmap id="bankRequestTermIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/calendar.dds" position="625px 195px" size="20px 20px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_term" position="648px 192px" size="137px 24px" textSize="16px"/>
+                    <Button profile="ui6ArrowHit" id="bankTermPrev" text="" onClick="onClickBankTermPrev" position="790px 182px" size="58px 42px"/>
+
+                    <Bitmap profile="ui6Icon" id="bankTermPrevIcon" imageFilename="$moddir$gui/bankicons/arrow_left.dds" position="809px 193px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="bankTermValue" text="--" position="860px 188px" size="180px 30px" textAlignment="center" textSize="20px" textBold="true"/>
+                    <Button profile="ui6ArrowHit" id="bankTermNext" text="" onClick="onClickBankTermNext" position="1052px 182px" size="58px 42px"/>
+
+                    <Bitmap profile="ui6Icon" id="bankTermNextIcon" imageFilename="$moddir$gui/bankicons/arrow_right.dds" position="1071px 193px" size="20px 20px"/>
+                    <Bitmap id="bankRequestRateIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/percentage.dds" position="24px 134px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_rate" position="46px 132px" size="168px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankRateValue" text="--" position="210px 132px" size="170px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestMonthlyIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finances.dds" position="410px 134px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_payment" position="432px 132px" size="168px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankPaymentValue" text="--" position="600px 132px" size="170px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestInterestIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/percentage.dds" position="800px 134px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_interest" position="822px 132px" size="143px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankInterestValue" text="--" position="975px 132px" size="165px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestTotalCostIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/cash.dds" position="24px 96px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_total" position="46px 94px" size="168px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankTotalValue" text="--" position="210px 94px" size="170px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestFeesIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finances.dds" position="410px 96px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_setup_fee" position="432px 94px" size="168px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankSetupFeeValue" text="--" position="600px 94px" size="170px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestAccountFeeIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finance.dds" position="800px 96px" size="19px 19px" imageColor="0.58 0.78 0.72 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_monthly_fee_short" position="822px 94px" size="143px 22px" textSize="15px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="bankMonthlyFeePreviewValue" text="--" position="975px 94px" size="165px 22px" textAlignment="right" textSize="18px" textBold="true"/>
+                    <Bitmap id="bankRequestPurposeIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/loan_doc.dds" position="24px 76px" size="18px 18px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_purpose_label" position="43px 76px" size="201px 16px" textSize="10px" textBold="true" textColor="0.68 0.77 0.80 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankPurposeButton" text="$l10n_agrilife_ui6_static_009" onClick="onClickBankPurpose" position="24px 28px" size="220px 44px" textSize="10px"/>
+                    <Bitmap id="bankRequestHintIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/timer.dds" position="264px 50px" size="20px 20px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatusText" text="--" position="288px 36px" size="506px 40px" textSize="12px" textColor="0.78 0.88 0.82 1" textAutoWrap="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRequestButton" text="$l10n_agrilife_bank6_request_button" onClick="onClickBankRequest" position="830px 28px" size="330px 48px" textSize="17px"/>
+                </GuiElement>
+                <GuiElement id="bankStatementPanel" position="32px 92px" size="1192px 284px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.065 0.085 0.091 1" size="1192px 284px"/>
+                    <Bitmap id="bankStatementTitleIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finances.dds" position="22px 247px" size="18px 18px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_title" position="50px 244px" size="410px 22px" textSize="15px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementFeeSummary" text="--" position="470px 245px" size="510px 20px" textAlignment="right" textSize="10px" textColor="0.67 0.78 0.74 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankTaxPayButton" text="$l10n_agrilife_bank_tax_pay" onClick="onClickBankTaxPay" position="992px 239px" size="168px 28px" textSize="9px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_date" position="22px 213px" size="100px 18px" textSize="9px" textBold="true" textColor="0.55 0.65 0.63 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_label" position="132px 213px" size="330px 18px" textSize="9px" textBold="true" textColor="0.55 0.65 0.63 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_tags" position="472px 213px" size="315px 18px" textSize="9px" textBold="true" textColor="0.55 0.65 0.63 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_amount" position="800px 213px" size="150px 18px" textAlignment="right" textSize="9px" textBold="true" textColor="0.55 0.65 0.63 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank_statement_balance" position="970px 213px" size="190px 18px" textAlignment="right" textSize="9px" textBold="true" textColor="0.55 0.65 0.63 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementDate1" text="--" position="22px 174px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel1" text="--" position="132px 174px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags1" text="" position="472px 174px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount1" text="--" position="800px 174px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance1" text="--" position="970px 174px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 169px" size="1140px 1px"/>                    <Text profile="fs25_textDefault" id="bankStatementDate2" text="--" position="22px 145px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel2" text="--" position="132px 145px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags2" text="" position="472px 145px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount2" text="--" position="800px 145px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance2" text="--" position="970px 145px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 140px" size="1140px 1px"/>                    <Text profile="fs25_textDefault" id="bankStatementDate3" text="--" position="22px 116px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel3" text="--" position="132px 116px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags3" text="" position="472px 116px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount3" text="--" position="800px 116px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance3" text="--" position="970px 116px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 111px" size="1140px 1px"/>                    <Text profile="fs25_textDefault" id="bankStatementDate4" text="--" position="22px 87px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel4" text="--" position="132px 87px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags4" text="" position="472px 87px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount4" text="--" position="800px 87px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance4" text="--" position="970px 87px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 82px" size="1140px 1px"/>                    <Text profile="fs25_textDefault" id="bankStatementDate5" text="--" position="22px 58px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel5" text="--" position="132px 58px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags5" text="" position="472px 58px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount5" text="--" position="800px 58px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance5" text="--" position="970px 58px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 53px" size="1140px 1px"/>                    <Text profile="fs25_textDefault" id="bankStatementDate6" text="--" position="22px 29px" size="100px 18px" textSize="10px" textColor="0.60 0.70 0.68 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementLabel6" text="--" position="132px 29px" size="330px 18px" textSize="11px" textColor="0.86 0.92 0.89 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementTags6" text="" position="472px 29px" size="315px 18px" textSize="9px" textColor="0.63 0.86 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankStatementAmount6" text="--" position="800px 29px" size="150px 18px" textAlignment="right" textSize="11px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="bankStatementBalance6" text="--" position="970px 29px" size="190px 18px" textAlignment="right" textSize="10px" textColor="0.72 0.82 0.79 1"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.15 0.16 1" position="20px 24px" size="1140px 1px"/>
+                </GuiElement>
+                <GuiElement position="32px 8px" size="1192px 76px">
+                    <Bitmap profile="baseReference" imageColor="0.058 0.076 0.082 1" size="1192px 76px"/>
+                    <Button profile="ui6ChoiceButton" hideKeyboardGlyph="true" id="bankProAccountButton" text="$l10n_agrilife_bank_tab_financing" onClick="onClickBankProAccount" position="12px 40px" size="142px 28px" textSize="10px"/>
+                    <Button profile="ui6ChoiceButton" hideKeyboardGlyph="true" id="bankPersonalAccountButton" text="$l10n_agrilife_bank_tab_statement" onClick="onClickBankPersonalAccount" position="160px 40px" size="142px 28px" textSize="10px"/>
+                    <Bitmap id="bankAccountTitleIcon" profile="ui6Icon" imageFilename="$moddir$gui/bankicons/finance.dds" position="318px 49px" size="19px 19px" imageColor="0.63 0.86 0.08 1"/>
+                    <Text profile="fs25_textDefault" id="bankAccountTitle" text="--" position="340px 48px" size="190px 18px" textSize="13px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="bankAccountSummary" text="--" position="340px 24px" size="828px 20px" textSize="10px" textColor="0.76 0.86 0.82 1"/>
+                    <Text profile="fs25_textDefault" id="bankAdvancedLoanValue" text="--" position="12px 14px" size="290px 18px" textSize="10px" textColor="0.70 0.80 0.77 1"/>
+                    <Text profile="fs25_textDefault" id="bankOverdraftValue" text="--" position="12px 1px" size="290px 14px" textSize="9px" textColor="0.56 0.67 0.64 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRelationshipTermButton" text="$l10n_agrilife_bank_relationship_term" onClick="onClickBankRelationshipTerm" position="310px 1px" size="106px 24px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRelationshipActionButton" text="$l10n_agrilife_bank_relationship_sign" onClick="onClickBankRelationshipAction" position="422px 1px" size="118px 24px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRelationshipTerminateButton" text="$l10n_agrilife_bank_relationship_terminate" onClick="onClickBankRelationshipTerminate" position="546px 1px" size="108px 24px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRefinanceButton" text="$l10n_agrilife_bank_refinance" onClick="onClickBankRefinance" position="660px 1px" size="94px 24px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankEarlyRepayButton" text="$l10n_agrilife_ui6_static_010" onClick="onClickBankEarlyRepay" position="760px 1px" size="128px 24px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankRestructureButton" text="$l10n_agrilife_ui6_static_011" onClick="onClickBankRestructure" position="894px 1px" size="138px 24px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="bankOverdraftButton" text="$l10n_agrilife_ui6_static_012" onClick="onClickBankOverdraft" position="1038px 1px" size="142px 24px" textSize="9px"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="examPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.040 0.057 0.061 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage09" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/exam.dds" position="54px 576px" size="54px 54px" visible="true" imageColor="0.55 0.82 0.12 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_career_qualifications" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true" textColor="0.94 0.98 0.96 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_subtitle" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.82 1"/>
+                <GuiElement position="32px 416px" size="1192px 104px" id="examSelfSummaryPanel">
+                    <Bitmap profile="baseReference" imageColor="0.075 0.095 0.104 1" size="1192px 104px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_license" position="22px 65px" size="160px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examLicenseValue" text="--" position="22px 31px" size="230px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_state" position="278px 65px" size="160px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examStateValue" text="--" position="278px 31px" size="210px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_attempts" position="512px 65px" size="160px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examAttemptsValue" text="--" position="512px 31px" size="140px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_bestScore" position="682px 65px" size="170px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examBestScoreValue" text="--" position="682px 31px" size="160px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_catalog" position="870px 65px" size="150px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examCatalogValue" text="--" position="870px 31px" size="125px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_exam6_fee" position="1015px 65px" size="130px 20px" textSize="14px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examFeeValue" text="--" position="1015px 31px" size="150px 28px" textSize="19px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 142px" size="1192px 244px" id="examSelfTaskPanel">
+                    <Bitmap profile="baseReference" imageColor="0.070 0.086 0.094 1" size="1192px 244px"/>
+                    <Text profile="fs25_textDefault" id="examTaskTitle" text="--" position="24px 197px" size="1144px 30px" textSize="22px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="examScenarioValue" text="--" position="24px 163px" size="1144px 26px" textSize="16px" textColor="0.72 0.82 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="examObjectiveValue" text="--" position="24px 112px" size="1144px 46px" textSize="17px" textWrap="true"/>
+                    <Text profile="fs25_textDefault" id="examCriterionValue" text="--" position="24px 67px" size="1144px 40px" textSize="15px" textColor="0.75 0.83 0.80 1" textWrap="true"/>
+                    <Text profile="fs25_textDefault" id="examProgressValue" text="--" position="24px 24px" size="730px 30px" textSize="18px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examActionButton" text="$l10n_agrilife_exam6_start" onClick="onClickExamAction" position="830px 18px" size="330px 48px"/>
+                </GuiElement>
+                <GuiElement position="32px 58px" size="1192px 62px" id="examSelfStatusPanel">
+                    <Bitmap profile="baseReference" imageColor="0.060 0.135 0.108 1" size="1192px 62px"/>
+                    <Bitmap profile="baseReference" imageColor="0.76 0.88 0.10 1" position="0px 0px" size="7px 62px"/>
+                    <Text profile="fs25_textDefault" id="examStatusText" text="--" position="24px 17px" size="610px 30px" textSize="15px" textColor="0.82 0.91 0.86 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="qualificationSelectButton" text="--" onClick="onClickQualificationSelect" position="644px 12px" size="282px 38px" textSize="9px"/>
+                    <Text profile="fs25_textDefault" id="examCertificationValue" text="--" position="932px 18px" size="1px 1px" visible="false"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examCertificationButton" text="$l10n_agrilife_qualification_train" onClick="onClickQualificationTrain" position="936px 12px" size="232px 38px" textSize="10px"/>
+                </GuiElement>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examSelfTabButton" text="$l10n_agrilife_people6_my_profile" onClick="onClickExamSelfTab" position="32px 526px" size="180px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamTabButton" text="$l10n_agrilife_people6_team_profiles" onClick="onClickExamTeamTab" position="222px 526px" size="210px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerSwitchButton" text="$l10n_agrilife_career5_switch_career" onClick="onClickCareerQualificationsCareer" position="450px 526px" size="270px 34px" textSize="11px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examHudVisibleButton" text="$l10n_agrilife_ui6_static_014" onClick="onClickExamHudVisible" position="746px 526px" size="150px 34px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examHudLockButton" text="$l10n_agrilife_ui6_static_015" onClick="onClickExamHudLock" position="908px 526px" size="150px 34px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examHudPositionButton" text="$l10n_agrilife_ui6_static_016" onClick="onClickExamHudPosition" position="1070px 526px" size="154px 34px" textSize="8px"/>
+                <GuiElement id="examTeamPanel" position="32px 58px" size="1192px 458px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.050 0.065 0.072 1" size="1192px 458px"/>
+                    <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 0px" size="7px 458px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_people6_team_profiles" position="24px 414px" size="390px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="examTeamSubtitle" text="$l10n_agrilife_people6_team_hint" position="430px 416px" size="730px 24px" textAlignment="right" textSize="13px" textColor="0.68 0.79 0.80 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamRow1" text="--" onClick="onClickExamTeamRow1" textSize="14px" position="24px 344px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamRow2" text="--" onClick="onClickExamTeamRow2" textSize="14px" position="24px 286px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamRow3" text="--" onClick="onClickExamTeamRow3" textSize="14px" position="24px 228px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamRow4" text="--" onClick="onClickExamTeamRow4" textSize="14px" position="24px 170px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamRow5" text="--" onClick="onClickExamTeamRow5" textSize="14px" position="24px 112px" size="1144px 46px"/>
+                    <Button profile="ui6ArrowHit" id="examTeamPrevButton" text="" onClick="onClickExamTeamPrev" position="24px 30px" size="50px 38px"/>
+
+                    <Bitmap profile="ui6Icon" id="examTeamPrevButtonIcon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="37px 39px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="examTeamPageValue" text="1 / 1" position="82px 38px" size="140px 24px" textAlignment="center" textSize="14px"/>
+                    <Button profile="ui6ArrowHit" id="examTeamNextButton" text="" onClick="onClickExamTeamNext" position="230px 30px" size="50px 38px"/>
+
+                    <Bitmap profile="ui6Icon" id="examTeamNextButtonIcon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="243px 39px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="examTeamSelectionText" text="--" position="310px 36px" size="560px 28px" textSize="14px" textColor="0.72 0.84 0.80 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examTeamDeleteButton" text="$l10n_agrilife_people6_delete_profile" onClick="onClickExamTeamDelete" position="900px 24px" size="268px 46px"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="xpPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.054 0.050 0.044 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.96 0.68 0.10 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage10" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/career.dds" position="54px 576px" size="54px 54px" visible="true" imageColor="0.96 0.68 0.10 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_title" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true" textColor="0.94 0.98 0.96 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_subtitle" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.82 0.76 0.65 1"/>
+                <GuiElement position="32px 442px" size="1192px 84px" id="careerSelfSummaryPanel">
+                    <Bitmap profile="baseReference" imageColor="0.075 0.095 0.104 1" size="1192px 84px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_level" position="20px 50px" size="230px 18px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpLevelValue" text="--" position="20px 18px" size="260px 27px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_totalXp" position="320px 50px" size="200px 18px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpTotalValue" text="--" position="320px 18px" size="200px 27px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_levelProgress" position="610px 50px" size="190px 18px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpProgressValue" text="--" position="610px 18px" size="160px 27px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_reputation" position="900px 50px" size="180px 18px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpReputationValue" text="--" position="900px 18px" size="180px 27px" textSize="18px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 318px" size="1192px 104px" id="careerSelfStatsPanel">
+                    <Bitmap profile="baseReference" imageColor="0.070 0.086 0.094 1" size="1192px 104px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_stats_title" position="20px 74px" size="200px 20px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_hours" position="20px 45px" size="120px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpHoursValue" text="--" position="20px 17px" size="130px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_distance" position="180px 45px" size="120px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpDistanceValue" text="--" position="180px 17px" size="130px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_area" position="340px 45px" size="120px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpAreaValue" text="--" position="340px 17px" size="130px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_harvest" position="500px 45px" size="120px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpHarvestValue" text="--" position="500px 17px" size="130px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_transport" position="660px 45px" size="130px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpTransportValue" text="--" position="660px 17px" size="140px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_maintenance" position="830px 45px" size="140px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpMaintenanceValue" text="--" position="830px 17px" size="140px 24px" textSize="16px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_exams" position="1010px 45px" size="140px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="xpExamsValue" text="--" position="1010px 17px" size="140px 24px" textSize="16px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 74px" size="1192px 224px" id="careerSelfSpecialtiesPanel">
+                    <Bitmap profile="baseReference" imageColor="0.070 0.086 0.094 1" size="1192px 224px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_career6_specialties_title" position="20px 190px" size="1150px 22px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="xpSpec1Label" text="--" position="20px 152px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec1Value" text="--" position="240px 152px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec2Label" text="--" position="20px 116px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec2Value" text="--" position="240px 116px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec3Label" text="--" position="20px 80px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec3Value" text="--" position="240px 80px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec4Label" text="--" position="20px 44px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec4Value" text="--" position="240px 44px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec5Label" text="--" position="620px 152px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec5Value" text="--" position="840px 152px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec6Label" text="--" position="620px 116px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec6Value" text="--" position="840px 116px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec7Label" text="--" position="620px 80px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec7Value" text="--" position="840px 80px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec8Label" text="--" position="620px 44px" size="220px 20px" textSize="14px"/>
+                    <Text profile="fs25_textDefault" id="xpSpec8Value" text="--" position="840px 44px" size="330px 20px" textAlignment="right" textSize="14px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="xpStatusText" text="--" position="32px 24px" size="1192px 32px" textSize="14px" textColor="0.72 0.84 0.78 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerSelfTabButton" text="$l10n_agrilife_people6_my_profile" onClick="onClickCareerSelfTab" position="32px 526px" size="180px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamTabButton" text="$l10n_agrilife_people6_team_profiles" onClick="onClickCareerTeamTab" position="222px 526px" size="210px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="examSwitchButton" text="$l10n_agrilife_career5_switch_exam" onClick="onClickCareerQualificationsExam" position="450px 526px" size="270px 34px" textSize="11px"/>
+                <GuiElement id="careerTeamPanel" position="32px 58px" size="1192px 458px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.050 0.065 0.072 1" size="1192px 458px"/>
+                    <Bitmap profile="baseReference" imageColor="0.96 0.68 0.10 1" position="0px 0px" size="7px 458px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_people6_team_profiles" position="24px 414px" size="390px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="careerTeamSubtitle" text="$l10n_agrilife_people6_team_hint" position="430px 416px" size="730px 24px" textAlignment="right" textSize="13px" textColor="0.68 0.79 0.80 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamRow1" text="--" onClick="onClickCareerTeamRow1" textSize="14px" position="24px 344px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamRow2" text="--" onClick="onClickCareerTeamRow2" textSize="14px" position="24px 286px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamRow3" text="--" onClick="onClickCareerTeamRow3" textSize="14px" position="24px 228px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamRow4" text="--" onClick="onClickCareerTeamRow4" textSize="14px" position="24px 170px" size="1144px 46px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamRow5" text="--" onClick="onClickCareerTeamRow5" textSize="14px" position="24px 112px" size="1144px 46px"/>
+                    <Button profile="ui6ArrowHit" id="careerTeamPrevButton" text="" onClick="onClickCareerTeamPrev" position="24px 30px" size="50px 38px"/>
+
+                    <Bitmap profile="ui6Icon" id="careerTeamPrevButtonIcon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="37px 39px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="careerTeamPageValue" text="1 / 1" position="82px 38px" size="140px 24px" textAlignment="center" textSize="14px"/>
+                    <Button profile="ui6ArrowHit" id="careerTeamNextButton" text="" onClick="onClickCareerTeamNext" position="230px 30px" size="50px 38px"/>
+
+                    <Bitmap profile="ui6Icon" id="careerTeamNextButtonIcon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="243px 39px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="careerTeamSelectionText" text="--" position="310px 36px" size="560px 28px" textSize="14px" textColor="0.72 0.84 0.80 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="careerTeamDeleteButton" text="$l10n_agrilife_people6_delete_profile" onClick="onClickCareerTeamDelete" position="900px 24px" size="268px 46px"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="payrollPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.037 0.052 0.056 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.22 0.78 0.52 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage11" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/payroll.dds" position="54px 576px" size="54px 54px" visible="true" imageColor="0.10 0.72 0.80 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_enterprise" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_subtitle" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSelfTabButton" text="$l10n_agrilife_payroll6_my_account" onClick="onClickPayrollSelfTab" position="32px 526px" size="180px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamTabButton" text="$l10n_agrilife_payroll6_team_pay" onClick="onClickPayrollTeamTab" position="222px 526px" size="210px 34px" textSize="13px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseCandidateButton" text="$l10n_agrilife_enterprise_candidate" onClick="onClickEnterpriseCandidate" position="800px 526px" size="130px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseHireButton" text="$l10n_agrilife_enterprise_hire" onClick="onClickEnterpriseHire" position="940px 526px" size="130px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseRefreshButton" text="$l10n_agrilife_enterprise_refresh" onClick="onClickEnterpriseRefresh" position="1080px 526px" size="144px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollRecruitCdiButton" text="" position="0px 0px" size="1px 1px" visible="false"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollRecruitCddButton" text="" position="0px 0px" size="1px 1px" visible="false"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollRecruitApprenticeButton" text="" position="0px 0px" size="1px 1px" visible="false"/>
+
+                <GuiElement id="payrollSelfPanel" position="32px 92px" size="1192px 418px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.073 0.078 1" size="1192px 418px"/>
+                    <Bitmap profile="ui6Icon" id="payrollSelfPersonIcon" imageFilename="$moddir$gui/ui6icons/person.dds" position="28px 354px" size="42px 42px" imageColor="0.86 0.92 0.90 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfNameValue" text="--" position="82px 362px" size="506px 32px" textSize="23px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfRoleValue" text="--" position="680px 364px" size="470px 28px" textAlignment="right" textSize="17px" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_balance" position="28px 300px" size="220px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfBalanceValue" text="--" position="28px 262px" size="260px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_salary" position="330px 300px" size="220px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfSalaryValue" text="--" position="330px 262px" size="260px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_recommended" position="630px 300px" size="220px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfRecommendedValue" text="--" position="630px 262px" size="260px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_arrears" position="930px 300px" size="220px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfArrearsValue" text="--" position="930px 262px" size="220px 30px" textSize="21px" textBold="true"/>
+                    <Bitmap profile="baseReference" imageColor="0.12 0.18 0.17 1" position="28px 224px" size="1136px 2px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_level_reputation" position="28px 182px" size="260px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfCareerValue" text="--" position="28px 146px" size="300px 28px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_salary_mode" position="390px 182px" size="240px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfModeValue" text="--" position="390px 146px" size="260px 28px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_payment_history" position="730px 182px" size="240px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfHistoryValue" text="--" position="730px 116px" size="420px 58px" textSize="14px" textBold="true" textWrap="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_private_spending_title" position="28px 96px" size="420px 22px" textSize="15px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="payrollSelfPrivateHint" text="--" position="28px 14px" size="1110px 76px" textSize="11px" textColor="0.72 0.84 0.78 1" textWrap="true"/>
+                </GuiElement>
+
+                <GuiElement id="payrollTeamPanel" position="32px 92px" size="1192px 418px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.073 0.078 1" size="1192px 418px"/>
+                    <GuiElement position="18px 316px" size="1156px 84px">
+                        <Bitmap profile="baseReference" imageColor="0.064 0.084 0.088 1" size="1156px 84px"/>
+                        <Text profile="fs25_textDefault" id="payrollCompanyValue" text="--" position="18px 42px" size="350px 28px" textSize="18px" textBold="true"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseViewButton" text="$l10n_agrilife_enterprise_view_overview" onClick="onClickEnterpriseView" position="18px 8px" size="170px 28px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseVehicleButton" text="--" onClick="onClickEnterpriseVehicle" position="370px 42px" size="240px 30px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseWorkButton" text="--" onClick="onClickEnterpriseWorkType" position="620px 42px" size="210px 30px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseFieldButton" text="--" onClick="onClickEnterpriseField" position="840px 42px" size="150px 30px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseOrderButton" text="$l10n_agrilife_enterprise_order_create" onClick="onClickEnterpriseOrderAction" position="1000px 42px" size="138px 30px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseCancelOrderButton" text="$l10n_agrilife_enterprise_order_cancel" onClick="onClickEnterpriseCancelOrder" position="1000px 8px" size="138px 28px" textSize="8px"/>
+                        <Text profile="fs25_textDefault" id="enterpriseOrderStateText" text="--" position="370px 8px" size="610px 28px" textSize="9px" textColor="0.67 0.91 0.45 1"/>
+                        <Button profile="ui6ArrowHit" id="legalFormPrevButton" text="" onClick="onClickLegalFormPrev" position="420px 26px" size="38px 34px" visible="false"/>
+
+                        <Bitmap profile="ui6Icon" id="legalFormPrevButtonIcon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="429px 33px" size="20px 20px" visible="false"/>
+                        <Text profile="fs25_textDefault" id="payrollLegalFormValue" text="--" position="470px 32px" size="210px 26px" textAlignment="center" textSize="16px" textBold="true" visible="false"/>
+                        <Button profile="ui6ArrowHit" id="legalFormNextButton" text="" onClick="onClickLegalFormNext" position="692px 26px" size="38px 34px" visible="false"/>
+
+                        <Bitmap profile="ui6Icon" id="legalFormNextButtonIcon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="701px 33px" size="20px 20px" visible="false"/>
+                        <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_monthly_total" position="790px 52px" size="180px 18px" textSize="12px" textColor="0.68 0.77 0.80 1"/>
+                        <Text profile="fs25_textDefault" id="payrollTotalValue" text="--" position="790px 24px" size="180px 24px" textSize="17px" textBold="true"/>
+                        <Text profile="fs25_textDefault" id="payrollCountValue" text="--" position="1040px 27px" size="90px 28px" textAlignment="right" textSize="18px" textBold="true"/>
+                    </GuiElement>
+                    <GuiElement position="18px 18px" size="690px 282px">
+                        <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_team" position="8px 252px" size="320px 24px" textSize="17px" textBold="true"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamRow1" text="--" onClick="onClickPayrollTeamRow1" textSize="14px" position="8px 204px" size="660px 38px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamRow2" text="--" onClick="onClickPayrollTeamRow2" textSize="14px" position="8px 162px" size="660px 38px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamRow3" text="--" onClick="onClickPayrollTeamRow3" textSize="14px" position="8px 120px" size="660px 38px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamRow4" text="--" onClick="onClickPayrollTeamRow4" textSize="14px" position="8px 78px" size="660px 38px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTeamRow5" text="--" onClick="onClickPayrollTeamRow5" textSize="14px" position="8px 36px" size="660px 38px"/>
+                        <Button profile="ui6ArrowHit" id="payrollTeamPrevButton" text="" onClick="onClickPayrollTeamPrev" position="8px 0px" size="44px 32px"/>
+
+                        <Bitmap profile="ui6Icon" id="payrollTeamPrevButtonIcon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="18px 6px" size="20px 20px"/>
+                        <Text profile="fs25_textDefault" id="payrollTeamPageValue" text="1 / 1" position="60px 6px" size="110px 20px" textAlignment="center" textSize="13px"/>
+                        <Button profile="ui6ArrowHit" id="payrollTeamNextButton" text="" onClick="onClickPayrollTeamNext" position="178px 0px" size="44px 32px"/>
+
+                        <Bitmap profile="ui6Icon" id="payrollTeamNextButtonIcon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="188px 6px" size="20px 20px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollOvertimeButton" text="$l10n_agrilife_ui6_static_020" onClick="onClickPayrollOvertime" position="238px 0px" size="82px 32px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollAbsenceButton" text="$l10n_agrilife_ui6_static_021" onClick="onClickPayrollAbsence" position="326px 0px" size="82px 32px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollLeaveButton" text="$l10n_agrilife_ui6_static_022" onClick="onClickPayrollLeave" position="414px 0px" size="82px 32px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSickButton" text="$l10n_agrilife_ui6_static_023" onClick="onClickPayrollSick" position="502px 0px" size="82px 32px" textSize="8px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSettleButton" text="$l10n_agrilife_ui6_static_024" onClick="onClickPayrollSettle" position="590px 0px" size="78px 32px" textSize="8px"/>
+                    </GuiElement>
+                    <GuiElement position="728px 18px" size="446px 282px">
+                        <Bitmap profile="baseReference" imageColor="0.046 0.063 0.067 1" size="446px 282px"/>
+                        <Text profile="fs25_textDefault" text="$l10n_agrilife_payroll6_selected" position="16px 252px" size="200px 20px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedNameValue" text="--" position="16px 220px" size="260px 28px" textSize="19px" textBold="true"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedRoleValue" text="--" position="285px 222px" size="145px 24px" textAlignment="right" textSize="14px" textColor="0.67 0.91 0.45 1"/>
+                        <Bitmap profile="ui6Icon" id="payrollWorkerStar1" imageFilename="$moddir$gui/icons/star_empty.dds" position="16px 202px" size="14px 14px"/>
+                        <Bitmap profile="ui6Icon" id="payrollWorkerStar2" imageFilename="$moddir$gui/icons/star_empty.dds" position="34px 202px" size="14px 14px"/>
+                        <Bitmap profile="ui6Icon" id="payrollWorkerStar3" imageFilename="$moddir$gui/icons/star_empty.dds" position="52px 202px" size="14px 14px"/>
+                        <Bitmap profile="ui6Icon" id="payrollWorkerStar4" imageFilename="$moddir$gui/icons/star_empty.dds" position="70px 202px" size="14px 14px"/>
+                        <Bitmap profile="ui6Icon" id="payrollWorkerStar5" imageFilename="$moddir$gui/icons/star_empty.dds" position="88px 202px" size="14px 14px"/>
+                        <Text profile="fs25_textDefault" id="payrollWorkerStarsValue" text="--" position="110px 202px" size="170px 14px" textSize="9px" textColor="0.76 0.86 0.82 1"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedSalaryValue" text="--" position="16px 178px" size="180px 24px" textSize="17px" textBold="true"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedRecommendedValue" text="--" position="220px 178px" size="210px 24px" textAlignment="right" textSize="15px"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedRangeValue" text="--" position="16px 146px" size="414px 22px" textSize="13px" textColor="0.68 0.77 0.80 1"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedBalanceValue" text="--" position="16px 114px" size="190px 22px" textSize="14px"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedArrearsValue" text="--" position="220px 114px" size="210px 22px" textAlignment="right" textSize="14px"/>
+                        <Text profile="fs25_textDefault" id="payrollSelectedModeValue" text="--" position="16px 96px" size="414px 18px" textSize="11px" textColor="0.67 0.91 0.45 1"/>
+                        <Text profile="fs25_textDefault" id="payrollAttendanceValue" text="--" position="16px 78px" size="414px 17px" textSize="10px" textColor="0.68 0.77 0.80 1"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollRolePrevButton" text="$l10n_agrilife_payroll6_role_prev" onClick="onClickPayrollRolePrev" position="16px 44px" size="88px 30px" textSize="11px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollRoleNextButton" text="$l10n_agrilife_payroll6_role_next" onClick="onClickPayrollRoleNext" position="108px 44px" size="88px 30px" textSize="11px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSalaryAutoButton" text="$l10n_agrilife_payroll6_salary_auto_button" onClick="onClickPayrollSalaryAuto" position="202px 44px" size="104px 30px" textSize="11px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollActiveButton" text="$l10n_agrilife_payroll6_suspend_pay" onClick="onClickPayrollActive" position="312px 44px" size="118px 30px" textSize="11px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSalaryDownButton" text="-100 €" onClick="onClickPayrollSalaryDown" position="16px 7px" size="88px 29px" textSize="12px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollSalaryUpButton" text="+100 €" onClick="onClickPayrollSalaryUp" position="110px 7px" size="88px 29px" textSize="12px"/>
+                        <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="payrollTerminateButton" text="$l10n_agrilife_payroll6_terminate" onClick="onClickPayrollTerminate" position="204px 7px" size="226px 29px" textSize="11px"/>
+                        <GuiElement id="enterpriseDetailOverlay" position="0px 0px" size="446px 282px" visible="false">
+                            <Bitmap profile="baseReference" imageColor="0.046 0.063 0.067 1" size="446px 282px"/>
+                            <Text profile="fs25_textDefault" id="enterpriseDetailTitle" text="--" position="16px 246px" size="414px 24px" textSize="17px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                            <Text profile="fs25_textDefault" id="enterpriseDetailText" text="--" position="16px 58px" size="414px 180px" textSize="11px" textColor="0.76 0.86 0.82 1" textWrap="true"/>
+                            <Button profile="ui6ArrowHit" id="enterpriseDetailPrevButton" text="" onClick="onClickEnterpriseDetailPrev" position="16px 12px" size="44px 34px"/>
+                            <Bitmap profile="ui6Icon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="27px 19px" size="20px 20px"/>
+                            <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="enterpriseDetailActionButton" text="--" onClick="onClickEnterpriseDetailAction" position="72px 12px" size="302px 34px" textSize="9px"/>
+                            <Button profile="ui6ArrowHit" id="enterpriseDetailNextButton" text="" onClick="onClickEnterpriseDetailNext" position="386px 12px" size="44px 34px"/>
+                            <Bitmap profile="ui6Icon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="397px 19px" size="20px 20px"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="payrollStatusText" text="--" position="32px 42px" size="1192px 38px" textSize="14px" textColor="0.72 0.84 0.78 1" textWrap="true"/>
+            </GuiElement>
+            <GuiElement id="contractsPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.040 0.050 0.057 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.20 0.67 0.86 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage12" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/contracts.dds" position="54px 576px" size="54px 54px" visible="true" imageColor="0.20 0.67 0.86 1"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_contracts_markets" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_subtitle" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <Text profile="fs25_textDefault" id="marketSummaryText" text="--" position="32px 530px" size="610px 24px" textSize="11px" textColor="0.72 0.84 0.86 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="marketViewButton" text="$l10n_agrilife_market_view" onClick="onClickMarketView" position="660px 524px" size="170px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="marketRentButton" text="$l10n_agrilife_market_rent" onClick="onClickMarketRent" position="840px 524px" size="170px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="marketTerminateButton" text="$l10n_agrilife_market_terminate" onClick="onClickMarketTerminate" position="1020px 524px" size="204px 34px" textSize="9px"/>
+                <Button profile="ui6ArrowHit" id="marketRowPrevButton" text="" onClick="onClickMarketRowPrev" position="660px 484px" size="44px 32px"/>
+                <Bitmap profile="ui6Icon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="672px 490px" size="20px 20px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="marketPurchaseButton" text="$l10n_agrilife_market_buy" onClick="onClickMarketPurchase" position="716px 484px" size="154px 32px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="marketSellButton" text="$l10n_agrilife_market_sell" onClick="onClickMarketSell" position="882px 484px" size="154px 32px" textSize="8px"/>
+                <Button profile="ui6ArrowHit" id="marketRowNextButton" text="" onClick="onClickMarketRowNext" position="1048px 484px" size="44px 32px"/>
+                <Bitmap profile="ui6Icon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="1060px 490px" size="20px 20px"/>
+                <GuiElement position="32px 430px" size="1192px 94px">
+                    <Bitmap profile="baseReference" imageColor="0.064 0.084 0.092 1" size="1192px 94px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_stations" position="30px 56px" size="150px 18px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="contractsStationCount" text="--" position="30px 24px" size="150px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_offers" position="300px 56px" size="150px 18px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferCount" text="--" position="300px 24px" size="150px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_active" position="570px 56px" size="150px 18px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="contractsActiveCount" text="--" position="570px 24px" size="150px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_completed" position="840px 56px" size="150px 18px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="contractsCompletedCount" text="--" position="840px 24px" size="150px 26px" textSize="19px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 172px" size="1192px 224px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.072 0.082 1" size="1192px 224px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_contracts6_offer_title" position="20px 186px" size="250px 24px" textSize="17px" textBold="true"/>
+                    <Button profile="ui6ArrowHit" id="contractsPrevButton" text="" onClick="onClickContractPrev" position="900px 182px" size="40px 34px"/>
+
+                    <Bitmap profile="ui6Icon" id="contractsPrevButtonIcon" imageFilename="$moddir$gui/icons/arrow_left.dds" position="910px 189px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferIndex" text="--" position="950px 188px" size="150px 24px" textAlignment="center" textSize="14px"/>
+                    <Button profile="ui6ArrowHit" id="contractsNextButton" text="" onClick="onClickContractNext" position="1110px 182px" size="40px 34px"/>
+
+                    <Bitmap profile="ui6Icon" id="contractsNextButtonIcon" imageFilename="$moddir$gui/icons/arrow_right.dds" position="1120px 189px" size="20px 20px"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferStation" text="--" position="20px 140px" size="560px 28px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferGoods" text="--" position="610px 140px" size="540px 28px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferTerms" text="--" position="20px 94px" size="1130px 30px" textSize="15px"/>
+                    <Text profile="fs25_textDefault" id="contractsOfferPrice" text="--" position="20px 50px" size="780px 30px" textSize="15px" textColor="0.48 0.82 0.96 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="contractsNegotiateButton" text="$l10n_agrilife_contracts7_negotiate" onClick="onClickContractNegotiate" position="748px 36px" size="158px 48px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="contractsAcceptButton" text="$l10n_agrilife_contracts6_accept" onClick="onClickContractAccept" position="920px 36px" size="230px 48px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="contractsStatusText" text="--" position="32px 104px" size="1192px 46px" textSize="14px" textColor="0.72 0.84 0.86 1" textWrap="true"/>
+            </GuiElement>
+            <GuiElement id="insurancePage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.036 0.057 0.048 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage13" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/insurance.dds" position="54px 576px" size="54px 54px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_administration" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_025" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <Text profile="fs25_textDefault" id="administrationStatusText" text="--" position="32px 536px" size="620px 24px" textSize="12px" textColor="0.72 0.84 0.77 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationControlButton" text="$l10n_agrilife_admin_control" onClick="onClickAdministrationControl" position="670px 524px" size="170px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationSanctionButton" text="$l10n_agrilife_admin_pay_sanction" onClick="onClickAdministrationPaySanction" position="850px 524px" size="180px 34px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationEventButton" text="$l10n_agrilife_admin_resolve_event" onClick="onClickAdministrationResolveEvent" position="1040px 524px" size="184px 34px" textSize="9px"/>
+                <Text profile="fs25_textDefault" id="administrationDetailText" text="--" position="32px 500px" size="620px 28px" textSize="9px" textAutoWrap="true" textColor="0.68 0.79 0.76 1"/>
+                <Text profile="fs25_textDefault" id="administrationRestrictionText" text="--" position="32px 468px" size="620px 28px" textSize="9px" textAutoWrap="true" textColor="0.91 0.70 0.38 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationUpgradeButton" text="$l10n_agrilife_admin_upgrade_status" onClick="onClickAdministrationUpgradeStatus" position="670px 482px" size="132px 28px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationRegularizeButton" text="$l10n_agrilife_admin_regularize" onClick="onClickAdministrationRegularize" position="810px 482px" size="132px 28px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationPaymentPlanButton" text="$l10n_agrilife_admin_payment_plan" onClick="onClickAdministrationPaymentPlan" position="950px 482px" size="132px 28px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="administrationContestButton" text="$l10n_agrilife_admin_contest_case" onClick="onClickAdministrationContestCase" position="1090px 482px" size="134px 28px" textSize="8px"/>
+                <GuiElement position="32px 366px" size="1192px 90px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.082 0.067 1" size="1192px 90px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_026" position="22px 62px" size="180px 18px" textSize="12px" textColor="0.68 0.78 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="insuranceActiveValue" text="--" position="22px 25px" size="180px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_027" position="280px 62px" size="180px 18px" textSize="12px" textColor="0.68 0.78 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="insuranceMonthlyValue" text="--" position="280px 25px" size="200px 30px" textSize="20px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_028" position="550px 62px" size="190px 18px" textSize="12px" textColor="0.68 0.78 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="insuranceClaimsValue" text="--" position="550px 25px" size="180px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_029" position="820px 62px" size="170px 18px" textSize="12px" textColor="0.68 0.78 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="insuranceBonusValue" text="--" position="820px 25px" size="180px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="insuranceCoverageValue" text="--" position="1005px 24px" size="165px 44px" textSize="12px" textAlignment="right" textColor="0.67 0.91 0.45 1" textWrap="true"/>
+                </GuiElement>
+                <GuiElement position="32px 112px" size="1192px 238px">
+                    <Bitmap profile="baseReference" imageColor="0.050 0.078 0.063 1" size="1192px 238px"/>
+                    <Bitmap id="resolvedModImage14" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/insurance.dds" position="24px 164px" size="54px 54px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_030" position="94px 188px" size="430px 26px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_031" position="24px 138px" size="150px 20px" textSize="13px" textColor="0.68 0.78 0.73 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceCategoryButton" text="--" onClick="onClickInsuranceCategory" position="24px 88px" size="330px 42px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_032" position="390px 138px" size="150px 20px" textSize="13px" textColor="0.68 0.78 0.73 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceTierButton" text="--" onClick="onClickInsuranceTier" position="390px 88px" size="260px 42px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_033" position="686px 138px" size="170px 20px" textSize="13px" textColor="0.68 0.78 0.73 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceValueButton" text="--" onClick="onClickInsuranceValue" position="686px 88px" size="220px 42px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="insuranceQuoteValue" text="--" position="934px 96px" size="230px 34px" textAlignment="right" textSize="18px" textBold="true" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" id="insurancePlaceholderStatus" text="--" position="24px 25px" size="790px 42px" textSize="14px" textColor="0.72 0.82 0.77 1" textWrap="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceBuyButton" text="$l10n_agrilife_ui6_static_034" onClick="onClickInsuranceBuy" position="860px 20px" size="304px 48px" textSize="17px"/>
+                </GuiElement>
+                <GuiElement position="32px 34px" size="1192px 66px">
+                    <Bitmap profile="baseReference" imageColor="0.046 0.070 0.059 1" size="1192px 66px"/>
+                    <Text profile="fs25_textDefault" id="insuranceManageValue" text="--" position="16px 10px" size="490px 48px" textSize="10px" textColor="0.72 0.82 0.77 1" textWrap="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insurancePolicyNextButton" text="$l10n_agrilife_ui6_static_035" onClick="onClickInsurancePolicyNext" position="520px 14px" size="98px 38px" textSize="7px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceCancelButton" text="$l10n_agrilife_ui6_static_036" onClick="onClickInsuranceCancel" position="624px 14px" size="98px 38px" textSize="7px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceFileClaimButton" text="$l10n_agrilife_ui6_static_037" onClick="onClickInsuranceFileClaim" position="728px 14px" size="104px 38px" textSize="7px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceClaimNextButton" text="$l10n_agrilife_ui6_static_038" onClick="onClickInsuranceClaimNext" position="838px 14px" size="104px 38px" textSize="7px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceAssessButton" text="$l10n_agrilife_ui6_static_039" onClick="onClickInsuranceAssess" position="948px 14px" size="104px 38px" textSize="7px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="insuranceAppealButton" text="$l10n_agrilife_ui6_static_040" onClick="onClickInsuranceAppeal" position="1058px 14px" size="118px 38px" textSize="7px"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="workshopPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.040 0.057 0.052 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap id="resolvedModImage15" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/workshop.dds" position="54px 576px" size="54px 54px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_workshop" position="124px 594px" size="1090px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_041" position="124px 562px" size="1090px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8ViewButton" text="$l10n_agrilife_workshop8_view_fleet" onClick="onClickWorkshop8View" position="1010px 548px" size="214px 34px" textSize="9px"/>
+                <GuiElement position="32px 434px" size="1192px 90px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.074 0.067 1" size="1192px 90px"/>
+                    <Text profile="fs25_textDefault" id="workshopSummaryValue" text="--" position="22px 48px" size="735px 26px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="assetsSummaryValue" text="--" position="22px 16px" size="735px 24px" textSize="14px" textColor="0.70 0.80 0.76 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8ProviderButton" text="--" onClick="onClickWorkshop8Provider" position="775px 50px" size="122px 30px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8QualityButton" text="--" onClick="onClickWorkshop8Quality" position="905px 50px" size="122px 30px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8UrgencyButton" text="--" onClick="onClickWorkshop8Urgency" position="1035px 50px" size="135px 30px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8MechanicButton" text="--" onClick="onClickWorkshop8Mechanic" position="775px 14px" size="395px 30px" textSize="8px"/>
+                </GuiElement>
+                <GuiElement position="32px 220px" size="580px 190px">
+                    <Bitmap profile="baseReference" imageColor="0.050 0.069 0.063 1" size="580px 190px"/>
+                    <Bitmap id="resolvedModImage16" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/workshop.dds" position="20px 122px" size="48px 48px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_042" position="84px 142px" size="350px 24px" textSize="17px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopVehicleButton" text="--" onClick="onClickWorkshopVehicle" position="20px 83px" size="540px 38px" textSize="12px"/>
+                    <Text profile="fs25_textDefault" id="workshopVehicleState" text="--" position="20px 54px" size="540px 22px" textSize="12px" textColor="0.70 0.80 0.76 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopDiagnoseButton" text="$l10n_agrilife_ui6_static_043" onClick="onClickWorkshopDiagnose" position="20px 14px" size="128px 32px" textSize="10px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopServiceButton" text="$l10n_agrilife_ui6_static_044" onClick="onClickWorkshopService" position="156px 14px" size="128px 32px" textSize="10px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopRepairButton" text="$l10n_agrilife_ui6_static_045" onClick="onClickWorkshopRepair" position="292px 14px" size="128px 32px" textSize="10px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopTyresButton" text="$l10n_agrilife_ui6_static_046" onClick="onClickWorkshopTyres" position="428px 14px" size="132px 32px" textSize="10px"/>
+                </GuiElement>
+                <GuiElement position="644px 220px" size="580px 190px">
+                    <Bitmap profile="baseReference" imageColor="0.048 0.065 0.060 1" size="580px 190px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_047" position="20px 146px" size="350px 24px" textSize="17px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedOfferButton" text="--" onClick="onClickUsedOffer" position="20px 93px" size="540px 42px" textSize="12px"/>
+                    <Text profile="fs25_textDefault" id="usedOfferState" text="--" position="20px 58px" size="540px 28px" textSize="12px" textColor="0.70 0.80 0.76 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedInspectButton" text="$l10n_agrilife_ui6_static_048" onClick="onClickUsedInspect" position="20px 14px" size="170px 34px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedBuyButton" text="$l10n_agrilife_ui6_static_049" onClick="onClickUsedBuy" position="202px 14px" size="170px 34px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseCreateButton" text="$l10n_agrilife_ui6_static_050" onClick="onClickLeaseCreate" position="384px 14px" size="176px 34px" textSize="10px"/>
+                </GuiElement>
+                <GuiElement id="workshop8Overlay" position="32px 220px" size="1192px 190px" visible="false">
+                    <Bitmap profile="baseReference" imageColor="0.046 0.064 0.058 0.98" size="1192px 190px"/>
+                    <Text profile="fs25_textDefault" id="workshop8DetailTitle" text="--" position="22px 154px" size="1148px 24px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="workshop8DetailText" text="--" position="22px 52px" size="1148px 96px" textSize="12px" textColor="0.72 0.82 0.78 1" textWrap="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8PrevButton" text="$l10n_agrilife_workshop8_prev" onClick="onClickWorkshop8Prev" position="22px 12px" size="130px 32px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8NextButton" text="$l10n_agrilife_workshop8_next" onClick="onClickWorkshop8Next" position="162px 12px" size="130px 32px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8ActionButton" text="--" onClick="onClickWorkshop8Action" position="830px 12px" size="165px 32px" textSize="8px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshop8Action2Button" text="--" onClick="onClickWorkshop8Action2" position="1005px 12px" size="165px 32px" textSize="8px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="workshopPlaceholderStatus" text="--" position="32px 152px" size="1192px 48px" textSize="14px" textColor="0.70 0.80 0.76 1" textWrap="true"/>
+                <GuiElement position="32px 86px" size="1192px 50px">
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopAccidentsButton" text="$l10n_agrilife_ui6_static_051" onClick="onClickAccidents" position="0px 4px" size="282px 42px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopLeasingButton" text="$l10n_agrilife_ui6_static_052" onClick="onClickLeasing" position="302px 4px" size="282px 42px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopUsedButton" text="$l10n_agrilife_ui6_static_047" onClick="onClickUsed" position="604px 4px" size="282px 42px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="workshopInsuranceButton" text="$l10n_agrilife_ui6_static_053" onClick="onClickInsurance" position="906px 4px" size="286px 42px" textSize="11px"/>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement id="companyPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.036 0.052 0.050 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.31 0.78 0.47 1" position="32px 587px" size="7px 43px"/>
+                <Bitmap profile="ui6Icon" imageFilename="$moddir$resources/ui/logo_mark.dds" position="54px 576px" size="54px 54px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_054" position="124px 594px" size="760px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_055" position="124px 562px" size="950px 26px" textSize="15px" textColor="0.68 0.79 0.76 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" text="$l10n_agrilife_ui6_static_056" onClick="onClickDashboard" position="968px 576px" size="256px 44px" textSize="10px"/>
+                <GuiElement position="32px 434px" size="1192px 92px">
+                    <Bitmap profile="baseReference" imageColor="0.055 0.078 0.073 1" size="1192px 92px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_057" position="22px 60px" size="150px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyNameValue" text="--" position="22px 26px" size="280px 28px" textSize="19px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_058" position="330px 60px" size="170px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyLegalValue" text="--" position="330px 28px" size="180px 25px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_059" position="540px 60px" size="150px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyCapitalValue" text="--" position="540px 28px" size="180px 25px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_060" position="750px 60px" size="160px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyProfileValue" text="--" position="750px 34px" size="200px 20px" textSize="14px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="companyModeValue" text="--" position="750px 12px" size="200px 20px" textSize="12px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_061" position="1000px 60px" size="150px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyAssociateValue" text="--" position="1000px 28px" size="160px 25px" textSize="17px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 190px" size="580px 218px">
+                    <Bitmap profile="baseReference" imageColor="0.047 0.070 0.066 1" size="580px 218px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_062" position="20px 180px" size="500px 24px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_063" position="20px 146px" size="170px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyPersonalBalanceValue" text="--" position="20px 112px" size="200px 28px" textSize="19px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyPersonalBankValue" text="--" onClick="onClickCompanyPersonalBank" position="238px 106px" size="320px 34px" textSize="9px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_064" position="20px 82px" size="170px 18px" textSize="11px" textColor="0.65 0.77 0.73 1"/>
+                    <Text profile="fs25_textDefault" id="companyHousingValue" text="--" position="20px 54px" size="300px 23px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="companyPrivateVehicleValue" text="--" position="330px 54px" size="228px 23px" textAlignment="right" textSize="13px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyHousingButton" text="$l10n_agrilife_ui6_static_064" onClick="onClickCompanyHousing" position="20px 10px" size="168px 34px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyPrivateVehicleButton" text="$l10n_agrilife_ui6_static_065" onClick="onClickCompanyPrivateVehicle" position="196px 10px" size="176px 34px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyExpenseButton" text="$l10n_agrilife_ui6_static_066" onClick="onClickCompanyExpense" position="380px 10px" size="178px 34px" textSize="9px"/>
+                </GuiElement>
+                <GuiElement position="644px 190px" size="580px 218px">
+                    <Bitmap profile="baseReference" imageColor="0.068 0.060 0.047 1" size="580px 218px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_067" position="20px 180px" size="500px 24px" textSize="17px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_068" position="20px 146px" size="180px 18px" textSize="11px" textColor="0.78 0.72 0.60 1"/>
+                    <Text profile="fs25_textDefault" id="companyTaxValue" text="--" position="20px 114px" size="200px 26px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_069" position="270px 146px" size="160px 18px" textSize="11px" textColor="0.78 0.72 0.60 1"/>
+                    <Text profile="fs25_textDefault" id="companyLegalDebtValue" text="--" position="270px 114px" size="150px 26px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="companyLegalStageValue" text="--" position="430px 116px" size="128px 22px" textAlignment="right" textSize="13px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_070" position="20px 62px" size="538px 36px" textSize="12px" textColor="0.78 0.72 0.60 1" textWrap="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyLegalFormButton" text="$l10n_agrilife_ui6_static_071" onClick="onClickCompanyLegalForm" position="20px 10px" size="270px 36px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="legalSettleButton" text="$l10n_agrilife_ui6_static_072" onClick="onClickLegalSettle" position="310px 10px" size="248px 36px" textSize="10px"/>
+                </GuiElement>
+                <GuiElement position="32px 74px" size="1192px 92px">
+                    <Bitmap profile="baseReference" imageColor="0.043 0.061 0.060 1" size="1192px 92px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_073" position="18px 60px" size="320px 20px" textSize="13px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="companyLedgerValue" text="--" position="18px 10px" size="1156px 48px" textSize="11px" textColor="0.69 0.79 0.76 1" textWrap="true"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="companyStatusText" text="--" position="32px 24px" size="412px 36px" textSize="12px" textColor="0.72 0.84 0.78 1" textWrap="true"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyCapitalContributionButton" text="$l10n_agrilife_ui6_static_074" onClick="onClickCompanyCapitalContribution" position="464px 22px" size="176px 36px" textSize="9px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyAssociateAddButton" text="$l10n_agrilife_ui6_static_075" onClick="onClickCompanyAssociateAdd" position="652px 22px" size="180px 36px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyAssociateRemoveButton" text="$l10n_agrilife_ui6_static_076" onClick="onClickCompanyAssociateRemove" position="844px 22px" size="176px 36px" textSize="8px"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="companyReconcileButton" text="$l10n_agrilife_ui6_static_077" onClick="onClickCompanyReconcile" position="1032px 22px" size="192px 36px" textSize="8px"/>
+            </GuiElement>
+            <GuiElement id="accidentsPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.061 0.041 0.038 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.92 0.35 0.20 1" position="32px 587px" size="7px 43px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_078" position="55px 594px" size="700px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_079" position="55px 562px" size="900px 26px" textSize="15px" textColor="0.82 0.71 0.68 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" text="$l10n_agrilife_ui6_static_080" onClick="onClickWorkshop" position="1000px 576px" size="224px 44px" textSize="10px"/>
+                <GuiElement position="32px 434px" size="1192px 92px">
+                    <Bitmap profile="baseReference" imageColor="0.082 0.057 0.052 1" size="1192px 92px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_081" position="28px 60px" size="180px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentCountValue" text="--" position="28px 24px" size="180px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_028" position="400px 60px" size="200px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentClaimsValue" text="--" position="400px 24px" size="200px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_082" position="800px 60px" size="220px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentPayoutValue" text="--" position="800px 24px" size="260px 30px" textSize="21px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 176px" size="1192px 232px">
+                    <Bitmap profile="baseReference" imageColor="0.073 0.050 0.047 1" size="1192px 232px"/>
+                    <Text profile="fs25_textDefault" id="accidentVehicleValue" text="--" position="22px 190px" size="800px 28px" textSize="20px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" text="$l10n_agrilife_ui6_static_083" onClick="onClickAccidentNext" position="920px 184px" size="248px 36px" textSize="10px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_084" position="22px 150px" size="150px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentDamageValue" text="--" position="22px 120px" size="220px 25px" textSize="18px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_085" position="300px 150px" size="150px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentCauseValue" text="--" position="300px 120px" size="250px 25px" textSize="16px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_086" position="600px 150px" size="150px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentResponsibleValue" text="--" position="600px 120px" size="250px 25px" textSize="16px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_087" position="900px 150px" size="150px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentClaimValue" text="--" position="900px 120px" size="250px 25px" textSize="16px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_088" position="22px 82px" size="180px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="accidentDowntimeValue" text="--" position="22px 50px" size="220px 26px" textSize="17px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="accidentClaimButton" text="$l10n_agrilife_ui6_static_089" onClick="onClickAccidentClaim" position="600px 42px" size="266px 42px" textSize="10px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="accidentExpertiseButton" text="$l10n_agrilife_ui6_static_090" onClick="onClickAccidentExpertise" position="884px 42px" size="284px 42px" textSize="10px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="accidentStatusText" text="--" position="32px 94px" size="1192px 58px" textSize="14px" textColor="0.84 0.74 0.70 1" textWrap="true"/>
+            </GuiElement>
+            <GuiElement id="leasingPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.035 0.058 0.052 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.22 0.73 0.58 1" position="32px 587px" size="7px 43px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_091" position="55px 594px" size="850px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_092" position="55px 562px" size="900px 26px" textSize="15px" textColor="0.66 0.80 0.75 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" text="$l10n_agrilife_ui6_static_080" onClick="onClickWorkshop" position="1000px 576px" size="224px 44px" textSize="10px"/>
+                <GuiElement position="32px 334px" size="1192px 192px">
+                    <Bitmap profile="baseReference" imageColor="0.049 0.079 0.071 1" size="1192px 192px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_093" position="20px 156px" size="280px 24px" textSize="18px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseOfferValue" text="--" onClick="onClickLeaseOffer" position="20px 104px" size="520px 42px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_094" position="570px 138px" size="180px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="leaseAssetValue" text="--" position="570px 108px" size="190px 25px" textSize="18px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseTermValue" text="--" onClick="onClickLeaseTerm" position="790px 104px" size="170px 42px" textSize="11px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseDepositValue" text="--" onClick="onClickLeaseDeposit" position="980px 104px" size="190px 42px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="leasePreviewValue" text="--" position="20px 56px" size="780px 30px" textSize="14px" textColor="0.67 0.91 0.75 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseCreateAdvancedButton" text="$l10n_agrilife_ui6_static_095" onClick="onClickLeaseCreateAdvanced" position="840px 32px" size="330px 50px" textSize="10px"/>
+                </GuiElement>
+                <GuiElement position="32px 132px" size="1192px 176px">
+                    <Bitmap profile="baseReference" imageColor="0.044 0.069 0.064 1" size="1192px 176px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_026" position="20px 140px" size="190px 20px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="leaseActiveCountValue" text="--" position="20px 104px" size="100px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_096" position="170px 140px" size="200px 20px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="leaseMonthlyValue" text="--" position="170px 104px" size="220px 30px" textSize="21px" textBold="true"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseCurrentValue" text="--" onClick="onClickLeaseNext" position="420px 100px" size="750px 42px" textSize="12px"/>
+                    <Text profile="fs25_textDefault" id="leaseCurrentDetailValue" text="--" position="420px 66px" size="750px 26px" textSize="13px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseBuyoutButton" text="$l10n_agrilife_ui6_static_097" onClick="onClickLeaseBuyout" position="660px 14px" size="240px 40px" textSize="10px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="leaseReturnButton" text="$l10n_agrilife_ui6_static_098" onClick="onClickLeaseReturn" position="920px 14px" size="250px 40px" textSize="10px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="leaseStatusText" text="--" position="32px 52px" size="1192px 58px" textSize="14px" textColor="0.70 0.83 0.78 1" textWrap="true"/>
+            </GuiElement>
+            <GuiElement id="usedPage" position="304px 34px" size="100% 646px" absoluteSizeOffset="334px 0px" anchors="0 1 0 0" visible="false">
+                <Bitmap profile="baseReference" imageColor="0.062 0.052 0.036 1" size="100% 100%"/>
+                <Bitmap profile="baseReference" imageColor="0.87 0.65 0.18 1" position="32px 587px" size="7px 43px"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_099" position="55px 594px" size="800px 34px" textSize="25px" textBold="true"/>
+                <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_100" position="55px 562px" size="900px 26px" textSize="15px" textColor="0.82 0.76 0.64 1"/>
+                <Button profile="ui6ActionButton" hideKeyboardGlyph="true" text="$l10n_agrilife_ui6_static_080" onClick="onClickWorkshop" position="1000px 576px" size="224px 44px" textSize="10px"/>
+                <GuiElement position="32px 434px" size="1192px 92px">
+                    <Bitmap profile="baseReference" imageColor="0.080 0.068 0.047 1" size="1192px 92px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_101" position="28px 60px" size="170px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="usedCountValue" text="--" position="28px 24px" size="170px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_102" position="400px 60px" size="170px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="usedPurchasedValue" text="--" position="400px 24px" size="170px 30px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_103" position="800px 60px" size="180px 18px" textSize="11px"/>
+                    <Text profile="fs25_textDefault" id="usedInspectionCountValue" text="--" position="800px 24px" size="180px 30px" textSize="21px" textBold="true"/>
+                </GuiElement>
+                <GuiElement position="32px 174px" size="1192px 232px">
+                    <Bitmap profile="baseReference" imageColor="0.074 0.063 0.044 1" size="1192px 232px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedNameValue" text="--" onClick="onClickUsedNextPage" position="20px 170px" size="800px 44px" textSize="13px"/>
+                    <Text profile="fs25_textDefault" id="usedPriceValue" text="--" position="850px 178px" size="310px 30px" textAlignment="right" textSize="21px" textBold="true" textColor="0.94 0.78 0.30 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_104" position="20px 132px" size="240px 20px" textSize="12px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="usedHistoryValue" text="--" position="20px 94px" size="1140px 30px" textSize="15px"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_static_105" position="20px 62px" size="220px 20px" textSize="12px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="usedRiskValue" text="--" position="20px 26px" size="760px 30px" textSize="15px" textColor="0.91 0.75 0.30 1"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedInspectPageButton" text="$l10n_agrilife_ui6_static_106" onClick="onClickUsedInspectPage" position="800px 18px" size="190px 48px" textSize="9px"/>
+                    <Button profile="ui6ActionButton" hideKeyboardGlyph="true" id="usedBuyPageButton" text="$l10n_agrilife_ui6_static_107" onClick="onClickUsedBuyPage" position="1000px 18px" size="170px 48px" textSize="10px"/>
+                </GuiElement>
+                <Text profile="fs25_textDefault" id="usedStatusText" text="--" position="32px 88px" size="1192px 62px" textSize="14px" textColor="0.82 0.76 0.64 1" textWrap="true"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+    <GUIProfiles>
+        <!-- Transparent hit areas become visibly highlighted on mouse-over/focus. -->
+        <Profile name="ui6NavHit" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0 0 0 0"/>
+            <imageDisabledColor value="0 0 0 0"/>
+            <imageSelectedColor value="0 0 0 0"/>
+            <imageHighlightedColor value="0.50 0.76 0.08 0.18"/>
+            <imageFocusedColor value="0.42 0.64 0.07 0.14"/>
+            <imagePressedColor value="0.60 0.88 0.10 0.24"/>
+        </Profile>
+        <Profile name="ui6CardHit" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0 0 0 0"/>
+            <imageHighlightedColor value="0.50 0.76 0.08 0.38"/>
+            <imageFocusedColor value="0.42 0.64 0.07 0.34"/>
+            <imagePressedColor value="0.60 0.88 0.10 0.48"/>
+        </Profile>
+        <Profile name="ui6ArrowHit" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0.075 0.105 0.105 1"/>
+            <textColor value="0.94 0.98 0.96 1"/>
+            <imageHighlightedColor value="0.50 0.76 0.08 0.48"/>
+            <imageFocusedColor value="0.42 0.64 0.07 0.42"/>
+            <imagePressedColor value="0.60 0.88 0.10 0.58"/>
+        </Profile>
+        <!-- Primary guided action: always visible as a real rectangular control,
+             with a stronger hover/focus overlay than ordinary actions. -->
+        <Profile name="ui6PrimaryAction" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0 0 0 0"/>
+            <imageHighlightedColor value="0.50 0.76 0.08 0.78"/>
+            <imageFocusedColor value="0.42 0.64 0.07 0.70"/>
+            <imagePressedColor value="0.61 0.89 0.10 0.90"/>
+            <imageSelectedColor value="0.42 0.64 0.07 0.78"/>
+            <textColor value="0.96 0.99 0.95 1"/>
+            <textHighlightedColor value="1 1 1 1"/>
+            <textSelectedColor value="1 1 1 1"/>
+            <textHighlightedBold value="true"/>
+            <focusOnHighlight value="true"/>
+        </Profile>
+        <!-- All real actions keep the native FS25 button texture but with a much
+             stronger hover/focus state so clickable answers are unmistakable. -->
+        <Profile name="ui6ChoiceButton" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0.11 0.15 0.14 1"/>
+            <imageHighlightedColor value="0.58 0.82 0.10 1"/>
+            <imageFocusedColor value="0.48 0.70 0.08 1"/>
+            <imagePressedColor value="0.66 0.91 0.12 1"/>
+            <imageSelectedColor value="0.48 0.70 0.08 1"/>
+            <textColor value="0.94 0.98 0.96 1"/>
+            <textHighlightedColor value="1 1 1 1"/>
+            <textSelectedColor value="1 1 1 1"/>
+            <textHighlightedBold value="true"/>
+            <focusOnHighlight value="true"/>
+        </Profile>
+        <Profile name="ui6ActionButton" extends="baseReference">
+            <isFocusable value="true"/>
+            <imageColor value="0.075 0.105 0.105 1"/>
+            <textColor value="0.94 0.98 0.96 1"/>
+            <imageHighlightedColor value="0.52 0.78 0.08 1"/>
+            <imageFocusedColor value="0.42 0.64 0.07 1"/>
+            <imagePressedColor value="0.61 0.89 0.10 1"/>
+            <imageSelectedColor value="0.42 0.64 0.07 1"/>
+            <textHighlightedColor value="1 1 1 1"/>
+            <textSelectedColor value="1 1 1 1"/>
+            <textHighlightedBold value="true"/>
+            <focusOnHighlight value="true"/>
+        </Profile>
+        <Profile name="ui6Icon" extends="baseReference">
+            <imageSliceId value="noSlice"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>
