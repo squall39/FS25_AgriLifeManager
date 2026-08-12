@@ -1,6 +1,6 @@
 # Registre maître des idées validées et état d’intégration
 
-> Ce registre **complète** la feuille de route sans la remplacer. Les sections historiques ci-dessus restent la description détaillée de référence. Le registre sert uniquement à savoir rapidement ce qui est intégré, partiel, restant à intégrer ou encore à certifier dans FS25.
+> Ce registre **complète** la feuille de route sans la remplacer. Les sections historiques restent la description détaillée de référence. Le registre sert uniquement à savoir rapidement ce qui est intégré, partiel, restant à intégrer ou encore à certifier dans FS25.
 >
 > **Statuts code :** `Intégrée` = logique présente dans la build de référence ; `Partiellement intégrée` = briques existantes mais flux validé incomplet ; `À intégrer` = idée validée non encore implémentée ; `Désactivée` = infrastructure présente mais non publiée.  
 > **Certification :** `À certifier` signifie que l’écriture/code ne vaut pas encore validation réelle dans Farming Simulator 25.
@@ -49,18 +49,27 @@
 | WRK-005 | Atelier interne avec compétences et temps d’intervention | Atelier | Intégrée | Oui | À certifier |
 | WRK-006 | Entretien périodique et conséquences d’un retard | Atelier | Intégrée | Oui | À certifier |
 | WRK-007 | Contrôle technique, contre-visite et sécurité | Atelier | Intégrée | Oui | À certifier |
-| WRK-008 | Dépannage/remorquage vers concessionnaire ou atelier de l’exploitation | Atelier | Partiellement intégrée | Oui | À certifier |
-| WRK-009 | Palettes physiques de pièces commandées, livraison/retrait, stock et consommation | Atelier | Partiellement intégrée | Oui | À certifier |
-| WRK-010 | Réparation maison moins chère via économie de main-d’œuvre, avec atelier/qualification/temps requis | Atelier | Partiellement intégrée | Oui | À certifier |
-| WRK-011 | Suppression du camion de service achetable par le joueur | Atelier | À intégrer | Oui | À certifier |
-| WRK-012 | Kit terrain limité au diagnostic et dépannage d’urgence, sans réparation magique des casses lourdes | Atelier | Partiellement intégrée | Oui | À certifier |
-| WRK-013 | Assurance calculée selon cause, contrat, franchise, responsabilité et historique d’entretien | Atelier / Administration | Partiellement intégrée | Oui | À certifier |
-| WRK-014 | Assistance/remorquage couvert séparément selon la garantie souscrite | Atelier / Assurance | Partiellement intégrée | Oui | À certifier |
-| WRK-015 | Réparation maison indemnisée uniquement sur dépenses admissibles réelles, jamais de bénéfice d’assurance | Atelier / Assurance | À intégrer | Oui | À certifier |
+| WRK-008 | Dépannage/remorquage vers concessionnaire ou atelier de l’exploitation | Atelier | Intégrée | Oui | À certifier |
+| WRK-009 | Palettes physiques de pièces commandées, livraison/retrait, stock et consommation | Atelier | Intégrée | Oui | À certifier |
+| WRK-010 | Réparation maison moins chère via économie de main-d’œuvre, avec atelier/qualification/temps requis | Atelier | Intégrée | Oui | À certifier |
+| WRK-011 | Suppression du camion de service achetable par le joueur | Atelier | Intégrée | Oui | À certifier |
+| WRK-012 | Kit terrain limité au diagnostic et dépannage d’urgence, sans réparation magique des casses lourdes | Atelier | Intégrée | Oui | À certifier |
+| WRK-013 | Assurance calculée selon cause, contrat, franchise, responsabilité et historique d’entretien | Atelier / Administration | Intégrée | Oui | À certifier |
+| WRK-014 | Assistance/remorquage couvert séparément selon la garantie souscrite | Atelier / Assurance | Intégrée | Oui | À certifier |
+| WRK-015 | Réparation maison indemnisée uniquement sur dépenses admissibles réelles, jamais de bénéfice d’assurance | Atelier / Assurance | Intégrée | Oui | À certifier |
 | WRK-016 | Accidents, constats, responsabilité et bonus-malus durable | Atelier / Assurance | Intégrée | Oui | À certifier |
 | WRK-017 | Historique technique, inspection occasion et influence sur valeur de revente | Atelier / Marchés | Intégrée | Oui | À certifier |
-| WRK-018 | Couverture Atelier de tout le parc maintenable : véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids | Atelier | Partiellement intégrée | Oui | À certifier |
-| WRK-019 | Verrouillage réel du redémarrage lors d’une casse lourde | Atelier | Partiellement intégrée | Oui | À certifier |
+| WRK-018 | Couverture Atelier de tout le parc maintenable : véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids | Atelier | Intégrée | Oui | À certifier |
+| WRK-019 | Verrouillage réel du redémarrage lors d’une casse lourde | Atelier | Intégrée | Oui | À certifier |
+| WRK-020 | Réparation interne volontairement 2 à 3 fois plus longue que chez le concessionnaire selon outillage et compétence | Atelier | Intégrée | Oui | À certifier |
+| WRK-021 | Matériel de remplacement temporaire concessionnaire pendant réparation, avec location du marché en fallback | Atelier / Marchés | Intégrée | Oui | À certifier |
+| WRK-022 | Usure mécanique comportementale AgriLife comme autorité unique, avec neutralisation de l’usure/réparation vanilla | Atelier | Intégrée | Oui | À certifier |
+| WRK-023 | Collisions traitées comme dommages événementiels séparés de l’usure, localisés et proportionnés à l’intensité | Atelier / Assurance | Intégrée | Oui | À certifier |
+| ENE-001 | Consommation carburant/énergie comportementale selon puissance, charge réelle, régime, conduite, état mécanique et difficulté, reliée au marché dynamique | Atelier / Marchés | Intégrée | Oui | À certifier |
+| INS-001 | Constat factuel rempli par le joueur conducteur ou automatiquement par l’ouvrier IA avant toute décision d’assurance | Assurance / Atelier | Intégrée | Oui | À certifier |
+| INS-002 | Décisions assurance et banque engageant l’exploitation réservées exclusivement au patron/propriétaire | Assurance / Banque | Intégrée | Oui | À certifier |
+| INS-003 | Classement économique en épave selon valeur réelle avant sinistre et coût de réparation, avec indemnité et radiation définitive après acceptation du patron | Assurance / Atelier / Actifs | Intégrée | Oui | À certifier |
+| OPS-001 | Horaires centralisés : banque 08-12/14-18, concessionnaire 08-19, atelier personnel 24/7, usines 08-19, points de vente 08-12/14-18 | Global / Économie | Intégrée | Oui | À certifier |
 | FIN-001 | Sauvegardes, migrations, backup et isolation des carrières | Finalisation | Intégrée | Oui | À certifier |
 | FIN-002 | Compatibilité universelle sans liste fixe de maps/fruits, fallbacks autonomes | Finalisation | Intégrée | Oui | À certifier |
 | FIN-003 | 27 langues en parité structurelle et audits automatiques | Finalisation / l10n | Intégrée | Oui | Relecture native à poursuivre |
