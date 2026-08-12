@@ -46,3 +46,7 @@ Le contrôle ci-dessous ne signifie pas automatiquement qu’une chaîne est mal
 ## Décision pour le tutoriel 0.9.1.0
 
 Le tutoriel de départ et le menu Assistance ne reposent plus sur les anciennes pages 1/8. Ils partagent les mêmes clés l10n, ce qui évite qu’une règle soit corrigée dans le tutoriel mais reste obsolète dans l’aide FS25. Les règles de difficulté sont alignées sur le code actif : tous les grands modules sont accessibles dans Facile, Normal et Difficile ; les obligations, coûts, tolérances, délais et conséquences varient selon le mode.
+
+## Synchronisation Atelier / Assurance
+
+Les sujets 10 et 11 du tutoriel ont été révisés dans les **27 langues** pour refléter le dépannage/remorquage, la réparation maison avec pièces physiques et la logique d’assurance. `Échap > Assistance` réutilise exactement ces mêmes clés.

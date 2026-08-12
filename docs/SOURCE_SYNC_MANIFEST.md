@@ -65,3 +65,7 @@ Les DDS, PNG, I3D, SHAPES et autres gros assets nécessaires au ZIP joueur ne so
 ## Règle de synchronisation
 
 Une build livrée doit porter le même numéro de version, le même état de roadmap et la même liste de sources actives entre le package et GitHub. Les idées validées restent additives et ne sont jamais supprimées lors d'une simple mise à jour d'avancement.
+
+## Règle de synchronisation conversation -> projet
+
+Une décision explicitement validée doit être enregistrée dans la roadmap et son registre maître. Si elle change le comportement joueur, tutoriel et Assistance sont mis à jour dans toutes les langues distribuées. GitHub et la build de référence doivent ensuite refléter la même décision. Une idée non codée reste `À intégrer` ou `Partiellement intégrée`.

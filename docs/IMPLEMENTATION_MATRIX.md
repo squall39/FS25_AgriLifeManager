@@ -72,3 +72,7 @@ L'étape 9 côté écriture ne vaut pas certification finale. Les essais FS25 r�
 La passe 0.9.1.0 ferme les derniers scripts métier identifiés dans les étapes 1 à 3. Les cases restant ouvertes dans `ROADMAP.md` représentent désormais des tests FS25, validations visuelles, compatibilités réelles, relectures ou critères de publication. Elles ne sont pas considérées comme du code métier manquant.
 
 **Écriture fonctionnelle hors tests : 100 % pour Facile, Normal et Difficile.**
+
+## Synchronisation des idées validées
+
+Le registre maître ajouté à `ROADMAP.md` distingue l’état du code, la présence dans le tutoriel/Assistance et la certification FS25. Le flux panne immobilisante -> dépannage/remorquage -> concessionnaire ou atelier -> pièces physiques -> réparation -> assurance est actuellement **partiellement intégré** ; le retrait du camion joueur et la finalisation de la réparation maison restent à intégrer/certifier.

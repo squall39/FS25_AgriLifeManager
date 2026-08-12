@@ -2,6 +2,13 @@
 
 Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les principaux jalons de la branche actuelle.
 
+## 0.9.1.0 TEST - Synchronisation des idées validées
+
+- Registre maître additif des idées et de leur état.
+- Règle permanente conversation -> roadmap -> tutoriel/Assistance -> GitHub -> build.
+- Flux Atelier validé : remorquage, palettes de pièces, réparation maison et assurance cohérente.
+- Camion de service joueur marqué `À intégrer` pour suppression ; kit terrain limité aux urgences.
+
 ## 0.9.1.0 TEST - Tutoriel, Assistance et localisation
 
 - Guide de départ reconstruit en 13 sujets suivant l'ordre réel d'une carrière AgriLife.

@@ -39,11 +39,13 @@ AgriLife doit rester utilisable sans mod tiers. Les intégrations détectées pe
 
 L'absence d'un de ces mods ne doit pas empêcher AgriLife de charger.
 
-## Atelier et assurance
+## Atelier, dépannage, pièces et assurance
 
-Un accident peut produire un constat, une décision de responsabilité et un devis Atelier. La prise en charge dépend ensuite de la responsabilité retenue. Le bonus-malus est modifié seulement lorsque la responsabilité le justifie.
+Une panne légère peut encore permettre de rejoindre l’atelier ou le concessionnaire. Une panne immobilisante peut nécessiter un dépannage ou un remorquage. Le flux validé prévoit le choix entre concessionnaire et atelier de l’exploitation lorsqu’il est suffisamment équipé.
 
-Les délais de pièces, immobilisations et réparations continuent d'exister même lorsqu'une assurance prend une partie des coûts en charge.
+La réparation maison repose sur des pièces réellement commandées au concessionnaire, retirées ou livrées sur palettes puis consommées dans le stock atelier. Elle réduit surtout le coût de main-d’œuvre, mais exige compétences, équipement, pièces et temps. Les casses lourdes peuvent rester réservées au professionnel. Le camion atelier achetable par le joueur doit être retiré ; le kit terrain reste limité aux urgences.
+
+L’assurance ne paie pas automatiquement toute panne. Elle tient compte de la cause, du contrat, de la franchise, de la responsabilité, de l’entretien et des alertes ignorées. Le remorquage peut être couvert séparément. Pour une réparation maison, seules les dépenses admissibles réellement engagées peuvent être indemnisées : l’assurance ne doit jamais créer de bénéfice.
 
 ## Version TEST
 
