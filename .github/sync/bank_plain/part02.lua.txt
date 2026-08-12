@@ -1,0 +1,100 @@
+        local rows = {}
+        for _, providerId in ipairs(Bank.PROVIDER_ORDER or {}) do
+            local provider = self:getProvider(providerId)
+            local access = self:getProviderAccess(farmId, providerId)
+            local risk = self:getProviderRiskProfile(farmId, providerId)
+            local bestAdvisor = nil
+            for _, advisorId in ipairs(Bank.ADVISOR_ORDER or {}) do
+                local compatibility = self:getAdvisorCompatibility(farmId, advisorId, providerId, purpose)
+                if compatibility.compatible and (bestAdvisor == nil or compatibility.compatibilityScore > bestAdvisor.compatibilityScore) then bestAdvisor = compatibility end
+            end
+            local indicativeRate = clamp(0.055 + (provider.rateAdjustment or 0) + (self:getBankDifficultyPolicy(farmId).rateAdjustment or 0) + self:getMarketFinancingPressure(farmId, purpose).rateAdjustment, 0.02, 0.20)
+            table.insert(rows, {
+                providerId=providerId,
+                providerName=provider.name,
+                providerTier=provider.tier,
+                available=access ~= nil and access.unlocked == true,
+                lockCode=access ~= nil and access.code or "",
+                risk=risk,
+                bestAdvisorId=bestAdvisor ~= nil and bestAdvisor.advisorId or "",
+                advisorCompatibility=bestAdvisor ~= nil and bestAdvisor.compatibilityScore or 0,
+                purpose=purpose,
+                requestedAmount=round(amount),
+                requestedTermMonths=termMonths,
+                indicativeAnnualRate=indicativeRate,
+                monthlyAccountFee=round(provider.monthlyFee or 0)
+            })
+        end
+        table.sort(rows, function(a,b)
+            if a.available ~= b.available then return a.available == true end
+            if a.advisorCompatibility ~= b.advisorCompatibility then return a.advisorCompatibility > b.advisorCompatibility end
+            return a.indicativeAnnualRate < b.indicativeAnnualRate
+        end)
+        return rows
+    end
+
+    function Bank:calculateAnnualRate(farmId, amount, termMonths)
+        local rate = baseCalculateAnnualRate(self, farmId, amount, termMonths)
+        local purpose = self._roadmap3PurposeContext or "cash"
+        local market = self:getMarketFinancingPressure(farmId, purpose)
+        return clamp(rate + market.rateAdjustment, 0.018, 0.22)
+    end
+
+    function Bank:calculateCapacity(farmId)
+        local capacity = baseCalculateCapacity(self, farmId)
+        local purpose = self._roadmap3PurposeContext or "cash"
+        local market = self:getMarketFinancingPressure(farmId, purpose)
+        local accounting = self.getAdvancedAccountingSnapshot ~= nil and self:getAdvancedAccountingSnapshot(farmId, false) or nil
+        local cafFactor = 1
+        if accounting ~= nil then
+            local caf = tonumber(accounting.selfFinancingCapacity) or 0
+            local debtService = math.max(1, tonumber(self:getMonthlyObligations(farmId)) or 0) * 12
+            if caf > debtService * 2 then cafFactor = 1.08 elseif caf > debtService then cafFactor = 1.04 elseif caf < 0 then cafFactor = 0.82 elseif caf < debtService * 0.5 then cafFactor = 0.92 end
+        end
+        return round(clamp(capacity * market.capacityFactor * cafFactor, 0, Bank.MAX_CASH_LOAN))
+    end
+
+    function Bank:calculateReviewHours(farmId)
+        local hours = baseCalculateReviewHours(self, farmId)
+        local risk = self:getProviderRiskProfile(farmId, self:getFarmState(farmId, true).providerId)
+        local speedFactor = clamp(1.25 - (risk.studySpeed / 100) * 0.50, 0.75, 1.12)
+        return clamp(hours * speedFactor, 4.0, 20.0)
+    end
+
+    function Bank:getAccountSeparationAudit(farmId)
+        local modeId = tostring(self:getCareerModeId(farmId) or "normal")
+        local tolerance = modeId == "facile" and 3 or (modeId == "normal" and 1 or 0)
+        local violations = {}
+        for _, entry in ipairs(self:getEconomyLedger(farmId)) do
+            local category = string.upper(tostring(entry.category or ""))
+            local source = string.upper(tostring(entry.source or ""))
+            local personalCategory = category:find("PERSONAL", 1, true) ~= nil or category == "HOUSING" or category == "PROVISIONAL_LICENCE_FINE"
+            if personalCategory and source ~= "PERSONAL" and source ~= "AGRILIFE" and source ~= "PERIOD" then
+                table.insert(violations, {id=entry.id, category=entry.category, source=entry.source, amount=entry.amount, periodKey=entry.periodKey})
+            end
+        end
+        local excess = math.max(0, #violations - tolerance)
+        return {modeId=modeId, tolerance=tolerance, violationCount=#violations, excessViolations=excess, compliant=excess == 0, financingPenalty=math.min(12, excess * (modeId == "difficile" and 4 or 2.5)), rows=violations}
+    end
+
+    function Bank:assessLoanApplication(farmId, amount, purpose)
+        self._roadmap3PurposeContext = tostring(purpose or "cash")
+        local assessment = baseAssessLoanApplication(self, farmId, amount, purpose)
+        self._roadmap3PurposeContext = nil
+        if type(assessment) ~= "table" then return assessment end
+        local market = self:getMarketFinancingPressure(farmId, purpose)
+        local advanced = self.getAdvancedAccountingSnapshot ~= nil and self:getAdvancedAccountingSnapshot(farmId, false) or nil
+        local accountingAdjustment = 0
+        if advanced ~= nil then
+            if (advanced.selfFinancingCapacity or 0) > 0 then accountingAdjustment = accountingAdjustment + math.min(5, (advanced.selfFinancingCapacity or 0) / 50000) end
+            if (advanced.overdueTax or 0) > 0 then accountingAdjustment = accountingAdjustment - math.min(12, (advanced.overdueTax or 0) / 1500) end
+            if (advanced.netIncome or 0) < 0 then accountingAdjustment = accountingAdjustment - 5 end
+        end
+        local separation = self:getAccountSeparationAudit(farmId)
+        local adjusted = clamp((tonumber(assessment.score) or 0) + market.decisionAdjustment + accountingAdjustment - (separation.financingPenalty or 0), 0, 100)
+        assessment.baseDecisionScore = tonumber(assessment.score) or 0
+        assessment.marketAdjustment = market.decisionAdjustment
+        assessment.accountingAdjustment = round(accountingAdjustment)
+        assessment.accountSeparationPenalty = round(-(separation.financingPenalty or 0))
+        assessment.accountSeparation = separation
+        assessment.marketPressure = market
