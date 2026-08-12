@@ -26,8 +26,15 @@ for anchor, marker, block in blocks:
             raise SystemExit('Roadmap anchor missing: ' + anchor.strip())
         text = text.replace(anchor, block, 1)
 
-if '# Registre maître des idées validées et état d’intégration' not in text:
-    footer = '\n---\n\n**Auteur : Chez_Squall**'
+registry_heading = '# Registre maître des idées validées et état d’intégration'
+footer = '\n---\n\n**Auteur : Chez_Squall**'
+registry_start = text.find(registry_heading)
+if registry_start >= 0:
+    footer_start = text.find(footer, registry_start)
+    if footer_start < 0:
+        raise SystemExit('Roadmap registry footer anchor missing')
+    text = text[:registry_start] + registry + text[footer_start:]
+else:
     if footer not in text:
         raise SystemExit('Roadmap footer anchor missing')
     text = text.replace(footer, '\n---\n\n' + registry + '\n---\n\n**Auteur : Chez_Squall**', 1)
