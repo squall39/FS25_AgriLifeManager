@@ -28,7 +28,7 @@ jobs:
           python3 tools/audit_093_systems.py
       - name: Remove transfer helpers
         run: |
-          rm -rf tools/overlay_093_payload tools/overlay_092_payload
+          rm -rf tools/overlay_093_code tools/overlay_093_l10n tools/overlay_092_payload
           rm -f tools/overlay_093_ready.txt tools/apply_093_overlay_runner.py tools/apply_092_overlay_runner.py
           rm -f .github/workflows/apply-093-overlay.yml .github/workflows/apply-092-overlay.yml
       - name: Commit synchronized 0.9.3.0 source
