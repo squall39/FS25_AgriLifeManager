@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<!-- AgriLife Manager Assistance: content is fully localized and shares the startup tutorial source keys. -->
+<helpLines>
+    <category title="$l10n_agrilife_tutorial_dialog_title">
+        <page title="$l10n_agrilife_tutorial_topic_01_title" iconSliceId="agriLifeHelpIcons.overview">
+            <paragraph>
+                <image filename="gui/help/overview.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_01_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_02_title" iconSliceId="agriLifeHelpIcons.difficulty">
+            <paragraph>
+                <image filename="gui/help/difficulty.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_02_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_03_title" iconSliceId="agriLifeHelpIcons.firststeps">
+            <paragraph>
+                <image filename="gui/help/firststeps.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_03_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_04_title" iconSliceId="agriLifeHelpIcons.finance">
+            <paragraph>
+                <image filename="gui/help/finance.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_04_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_05_title" iconSliceId="agriLifeHelpIcons.tax">
+            <paragraph>
+                <image filename="gui/help/tax.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_05_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_06_title" iconSliceId="agriLifeHelpIcons.firststeps">
+            <paragraph>
+                <image filename="gui/help/firststeps.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_06_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_07_title" iconSliceId="agriLifeHelpIcons.settings">
+            <paragraph>
+                <image filename="gui/help/settings.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_07_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_08_title" iconSliceId="agriLifeHelpIcons.legal">
+            <paragraph>
+                <image filename="gui/help/legal.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_08_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_09_title" iconSliceId="agriLifeHelpIcons.factory">
+            <paragraph>
+                <image filename="gui/help/factory.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_09_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_10_title" iconSliceId="agriLifeHelpIcons.insurance">
+            <paragraph>
+                <image filename="gui/help/insurance.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_10_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_11_title" iconSliceId="agriLifeHelpIcons.maintenance">
+            <paragraph>
+                <image filename="gui/help/maintenance.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_11_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_12_title" iconSliceId="agriLifeHelpIcons.overview">
+            <paragraph>
+                <image filename="gui/help/overview.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_12_body" />
+            </paragraph>
+        </page>
+        <page title="$l10n_agrilife_tutorial_topic_13_title" iconSliceId="agriLifeHelpIcons.faq">
+            <paragraph>
+                <image filename="gui/help/faq.dds" uvs="0px 0px 1024px 512px" displaySize="512px 256px" aspectRatio="2" size="1024 512" />
+            </paragraph>
+            <paragraph>
+                <text text="$l10n_agrilife_tutorial_topic_13_body" />
+            </paragraph>
+        </page>
+    </category>
+</helpLines>

@@ -2,31 +2,66 @@
 
 Version de référence : **0.9.1.0 TEST**
 
-Le package joueur reste la source de vérité exécutable. GitHub publie les sources texte maintenables et la feuille de route complète. Une synchronisation de source ne vaut jamais certification en jeu.
+Le package joueur reste la source de vérité exécutable. Le dépôt GitHub publie les sources texte maintenables et la feuille de route complète. Une synchronisation de source ne vaut jamais certification en jeu.
+
 
 ## Fermeture d'écriture 0.9.1.0
 
-Publiés sur GitHub :
+- `src/modules/bank/BankRoadmap3Completion.lua` : financement marché/difficulté, consultation, comptabilité avancée, fiscalité, amortissements, bilan et CAF ;
+- `src/modules/economy/EconomyAccountingRoadmapCompletion.lua` : métadonnées et filtres du grand livre ;
+- `src/modules/dashboard/DashboardRoadmapWritingCompletion.lua` : synthèses finance/carrière ;
+- `src/ui/AgriLifeRoadmapWritingCompletionUI.lua` : affichages Banque/Carrière ;
+- `src/ui/AgriLifeInterfaceRoadmap2Completion.lua` : politique responsive ;
+- `tools/audit_roadmap_writing_completion.py` : gate dédié à la fermeture d'écriture ;
+- `tests/roadmap_writing_completion_spec.lua` : contrôle statique Lua de la présence des briques ;
+- `docs/ROADMAP.md` : statut 0.9.1.0 additif, sans suppression d'idées.
 
-- `src/modules/bank/BankRoadmap3Completion.lua`, source exact vérifié par SHA-256 ;
-- `src/modules/economy/EconomyAccountingRoadmapCompletion.lua` ;
-- `src/modules/dashboard/DashboardRoadmapWritingCompletion.lua` ;
-- `src/ui/AgriLifeRoadmapWritingCompletionUI.lua` ;
-- `src/ui/AgriLifeInterfaceRoadmap2Completion.lua` ;
-- `tools/audit_roadmap_writing_completion.py` ;
-- `tests/roadmap_writing_completion_spec.lua` ;
-- `src/core/AgriLifeVersion.lua` en 0.9.1.0 ;
-- `modDesc.xml`, source exact du package vérifié par SHA-256 ;
-- `ROADMAP.md`, copie maître exacte du `docs/ROADMAP.md` embarqué, vérifiée par SHA-256.
 
-## Limites du miroir public
+## Tutoriel / Assistance 0.9.1.0
 
-Le dépôt n'est pas un miroir binaire complet du ZIP joueur. Certains gros fichiers historiques, les 27 fichiers de traduction complets et les assets binaires restent garantis dans le package source de vérité lorsqu'ils ne sont pas publiés séparément sur GitHub. Le `modDesc.xml` du dépôt peut donc référencer des fichiers actifs présents dans le package mais non exposés dans ce miroir texte partiel.
+- `src/ui/AgriLifeTutorialRoadmapCompletion.lua` : guide initial 13 pages et raccordement au parcours guidé, sans réécrire le HomeFrame historique ;
+- `gui/helpLine.xml` : Assistance FS25 reconstruite sur les mêmes clés l10n que le guide ;
+- `tools/verify_release.py` : gate mis à jour pour les 13 rubriques et l'Assistance localisée ;
+- `docs/L10N_AUDIT.md` : parité des 27 langues et dette linguistique héritée ;
+- `translations/` : 5 047 clés par langue dans le package joueur, sans clé manquante ou vide.
 
-Cette limitation ne change pas la règle de build : la roadmap, la version et les sources nouvelles de la passe doivent être cohérentes avec le ZIP livré.
+Le dépôt public peut rester un miroir texte partiel. Le ZIP joueur 0.9.1.0 reste la source de vérité exécutable pour les fichiers `gui/`, les traductions complètes et les assets.
 
-## État fonctionnel
+## Source Étape 9
 
-**Écriture fonctionnelle hors tests : 100 % pour Facile, Normal et Difficile.**
+- `src/core/AgriLifeNetworkRoadmap9.lua` ;
+- `src/core/AgriLifeMigrationManager.lua` ;
+- `src/core/AgriLifePersistence.lua` ;
+- `src/core/AgriLifeCore.lua` ;
+- `src/modules/compatibility/CompatibilityRoadmap9.lua` ;
+- `src/modules/finalization/FinalizationRoadmap9.lua` ;
+- `tests/finalization_roadmap9_spec.lua` ;
+- `tools/audit_l10n_usage.py` ;
+- `tools/audit_publication.py` ;
+- `tools/package_release.py` ;
+- `tools/verify_release.py` ;
+- `docs/GLOSSARY.md` ;
+- `docs/USER_GUIDE.md` ;
+- `docs/THIRD_PARTY_COMPONENTS.md` ;
+- `docs/PUBLICATION_CHECKLIST.md` ;
+- `docs/STEP9_FINALIZATION.md` ;
+- `docs/ROADMAP.md` complet et additif ;
+- `modDesc.xml` et `src/core/AgriLifeVersion.lua` en 0.9.1.0 ;
+- `translations/` avec 27 langues en parité.
 
-Les validations restantes sont des certifications FS25, relectures, essais de compatibilité, contrôles visuels ou critères de publication.
+## Fonctionnement du packaging
+
+`tools/package_release.py` propose deux profils :
+
+- `test` : conserve les tests, outils et documents de développement utiles ;
+- `public` : retire les tests et outils du ZIP joueur tout en conservant le contenu nécessaire au mod.
+
+Les deux profils passent d'abord par les gates XML/Lua/l10n/publication.
+
+## Assets binaires
+
+Les DDS, PNG, I3D, SHAPES et autres gros assets nécessaires au ZIP joueur ne sont pas automatiquement republiés dans le dépôt public. Leur publication source dépend de leur origine et des droits de redistribution.
+
+## Règle de synchronisation
+
+Une build livrée doit porter le même numéro de version, le même état de roadmap et la même liste de sources actives entre le package et GitHub. Les idées validées restent additives et ne sont jamais supprimées lors d'une simple mise à jour d'avancement.

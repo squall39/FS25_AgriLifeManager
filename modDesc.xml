@@ -143,6 +143,7 @@
         <sourceFile filename="src/modules/finalization/FinalizationRoadmap9.lua" />
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
+        <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
         <sourceFile filename="src/ui/AgriLifeRoadmapWritingCompletionUI.lua" />
         <sourceFile filename="src/ui/AgriLifeInterfaceRoadmap2Completion.lua" />
         <sourceFile filename="src/ui/AgriLifeStep7UI.lua" />

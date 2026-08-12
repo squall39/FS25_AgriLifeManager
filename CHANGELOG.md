@@ -2,6 +2,17 @@
 
 Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les principaux jalons de la branche actuelle.
 
+## 0.9.1.0 TEST - Tutoriel, Assistance et localisation
+
+- Guide de départ reconstruit en 13 sujets suivant l'ordre réel d'une carrière AgriLife.
+- Explications harmonisées pour Banque, Entreprise, comptabilité/fiscalité, Carrière/Qualifications, personnel, Administration, Contrats/Marchés, Assurance, Atelier, parc, leasing, occasion, journal et sauvegarde.
+- Règles Facile / Normal / Difficile alignées sur le code actif : tous les grands modules restent accessibles ; les obligations, coûts, tolérances, délais et conséquences varient selon le mode.
+- Assistance FS25 reconstruite sur les mêmes clés l10n que le tutoriel afin d'éviter toute divergence future.
+- Suppression des textes français codés en dur dans l'Assistance.
+- 27 langues alignées à 5 047 clés, sans clé manquante, valeur vide, doublon ni placeholder incompatible.
+- Audit linguistique ajouté pour distinguer la parité structurelle des anciennes chaînes nécessitant encore une relecture humaine.
+- Gate de release mis à jour pour contrôler les 13 rubriques et leur présence dans l'Assistance.
+
 ## 0.9.1.0 TEST - Fermeture de l'écriture fonctionnelle
 
 - Les derniers scripts métier identifiés dans Démarrage, Interface et Banque sont écrits et intégrés.

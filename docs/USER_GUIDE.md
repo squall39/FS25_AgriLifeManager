@@ -1,6 +1,6 @@
 # Guide utilisateur AgriLife Manager
 
-Version de développement : **0.9.0.0 TEST**
+Version de développement : **0.9.1.0 TEST**
 
 AgriLife Manager ajoute une couche de gestion de carrière complète à Farming Simulator 25. Les systèmes sont reliés entre eux : une mauvaise décision peut avoir des conséquences financières, administratives, commerciales, humaines ou techniques.
 
@@ -16,7 +16,7 @@ Le guide initial peut être consulté en pages depuis l'interface AgriLife.
 
 ## Les six modules joueur
 
-1. **Banque** : trésorerie, relation bancaire, financement et finances.
+1. **Banque** : trésorerie, relation bancaire, financement, grand livre, comptabilité, fiscalité, amortissements, bilan et prévisions.
 2. **Entreprise** : salariés, paie, planning, ordres de travail et réputation.
 3. **Carrière & Qualifications** : XP, examens, permis et qualifications.
 4. **Administration** : société, conformité, assurances, contrôles, sanctions et contentieux.
@@ -48,3 +48,9 @@ Les délais de pièces, immobilisations et réparations continuent d'exister mê
 ## Version TEST
 
 Une version TEST signifie que les systèmes sont écrits et intégrés, mais qu'ils peuvent encore nécessiter une certification complète en jeu avant publication stable.
+
+## Tutoriel de départ 0.9.1.0
+
+Le guide de départ comporte 13 pages et suit l'ordre réel de la carrière : difficulté, démarrage/migration, banque/conseiller, entreprise/comptabilité/fiscalité, carrière/XP/qualifications/permis, personnel/paie, administration/réputation, contrats/marchés, assurances/accidents, atelier/parc/leasing/occasion, tableau de bord/journal/sauvegarde/compatibilité, puis routine quotidienne.
+
+Le menu **Échap > Assistance** utilise les mêmes clés de traduction que ce guide. Une modification du contenu de référence met donc à jour les deux surfaces ensemble. Tous les grands modules restent disponibles en Facile, Normal et Difficile ; la difficulté modifie les obligations, coûts, tolérances, délais et conséquences.
