@@ -1,0 +1,100 @@
+            local amount = round((asset.depreciableBase / math.max(1, asset.usefulLifeMonths)) * months)
+            if amount > 0 then
+                total = total + amount
+                local elapsedBeforeYear = math.max(0, math.min(asset.usefulLifeMonths, firstPeriod - asset.acquisitionPeriodKey))
+                local accumulatedBefore = round(asset.depreciableBase / asset.usefulLifeMonths * elapsedBeforeYear)
+                table.insert(rows, {assetId=asset.assetId, name=asset.name, months=months, annualDepreciation=amount, accumulatedBefore=accumulatedBefore, carryingValueAfter=round(math.max(asset.salvageValue, asset.acquisitionCost - accumulatedBefore - amount)), usefulLifeMonths=asset.usefulLifeMonths, salvageValue=asset.salvageValue})
+            end
+        end
+        return {fiscalYear=fiscalYear, total=round(total), rows=rows}
+    end
+
+    function Bank:getProfessionalAccountingForYear(farmId, fiscalYear)
+        fiscalYear = math.max(0, math.floor(tonumber(fiscalYear) or fiscalYearFromPeriodKey(self:getCurrentPeriodKey())))
+        local firstPeriod, lastPeriod = periodRangeForFiscalYear(fiscalYear)
+        local revenue, otherIncome, expenses, financeExpenses, taxesPaid = 0, 0, 0, 0, 0
+        local investmentCash, financingCash, equityCash, balanceCash = 0, 0, 0, 0
+        local movements, byCategory = 0, {}
+        local profitability = {}
+        for _, key in ipairs(PROFITABILITY_KEYS) do profitability[key] = {income=0, expense=0, net=0} end
+
+        for _, entry in ipairs(self:getEconomyLedger(farmId)) do
+            local periodKey = tonumber(entry.periodKey) or 0
+            if self:isProfessionalLedgerEntry(entry) and periodKey >= firstPeriod and periodKey <= lastPeriod then
+                local amount = round(entry.amount)
+                local accountingCategory = tostring(entry.accountingCategory or entry.category or "OTHER")
+                local rule = self:getAccountingRule(accountingCategory, amount)
+                byCategory[accountingCategory] = round((byCategory[accountingCategory] or 0) + amount)
+                movements = movements + 1
+                if rule.group == "revenue" then revenue = revenue + math.max(0, amount)
+                elseif rule.group == "otherIncome" then otherIncome = otherIncome + math.max(0, amount)
+                elseif rule.group == "expense" then expenses = expenses + math.abs(math.min(0, amount))
+                elseif rule.group == "financeExpense" then financeExpenses = financeExpenses + math.abs(math.min(0, amount))
+                elseif rule.group == "tax" then taxesPaid = taxesPaid + math.abs(math.min(0, amount))
+                elseif rule.group == "investment" then investmentCash = investmentCash + amount
+                elseif rule.group == "financing" then financingCash = financingCash + amount
+                elseif rule.group == "equity" then equityCash = equityCash + amount
+                elseif rule.group == "balance" then balanceCash = balanceCash + amount end
+
+                local bucket = profitability[rule.profitability] or profitability.other
+                if rule.group == "revenue" or rule.group == "otherIncome" then bucket.income = round(bucket.income + math.max(0, amount))
+                elseif rule.group == "expense" or rule.group == "financeExpense" then bucket.expense = round(bucket.expense + math.abs(math.min(0, amount))) end
+                bucket.net = round(bucket.income - bucket.expense)
+            end
+        end
+
+        local depreciation = self:getDepreciationForYear(farmId, fiscalYear)
+        local cashOperatingProfit = round(revenue + otherIncome - expenses - financeExpenses)
+        local operatingProfit = round(revenue - expenses - depreciation.total)
+        local profitBeforeTax = round(cashOperatingProfit - depreciation.total)
+        local modePolicy = self:getEconomyPolicy(farmId) or {}
+        local estimatedIncomeTax = round(math.max(0, profitBeforeTax) * clamp(modePolicy.taxRate or 0, 0, 0.60))
+        local netIncome = round(profitBeforeTax - estimatedIncomeTax)
+        local selfFinancingCapacity = round(netIncome + depreciation.total)
+        return {
+            fiscalYear=fiscalYear, revenue=round(revenue + otherIncome), operatingRevenue=round(revenue), otherIncome=round(otherIncome),
+            cashExpenses=round(expenses + financeExpenses), operatingExpenses=round(expenses), financeExpenses=round(financeExpenses), taxesPaid=round(taxesPaid),
+            depreciation=depreciation.total, depreciationSchedule=depreciation.rows, operatingProfit=operatingProfit, cashProfit=cashOperatingProfit,
+            profitBeforeTax=profitBeforeTax, profit=profitBeforeTax, estimatedIncomeTax=estimatedIncomeTax, taxPayments=round(taxesPaid), netIncome=netIncome, selfFinancingCapacity=selfFinancingCapacity,
+            movementCount=movements, byCategory=byCategory, profitability=profitability, investmentCash=round(investmentCash),
+            financingCash=round(financingCash), equityCash=round(equityCash), balanceCash=round(balanceCash)
+        }
+    end
+
+    function Bank:getOwnedMarketAssetValues(farmId)
+        local market = self:getMarketService()
+        local farmlandValue, productionValue, farmlandCount, productionCount = 0, 0, 0, 0
+        if market ~= nil and market.getFarmlandMarketRows ~= nil then
+            local ok, rows = pcall(market.getFarmlandMarketRows, market, farmId)
+            if ok and type(rows) == "table" then
+                for _, row in ipairs(rows) do
+                    local owner = row.ownerFarmId
+                    if owner == nil and market.getFarmlandOwner ~= nil then owner = market:getFarmlandOwner(row.id) end
+                    if tonumber(owner) == tonumber(farmId) then farmlandCount = farmlandCount + 1; farmlandValue = farmlandValue + math.max(0, tonumber(row.marketPrice) or tonumber(row.basePrice) or 0) end
+                end
+            end
+        end
+        if market ~= nil and market.getProductionMarketRows ~= nil then
+            local ok, rows = pcall(market.getProductionMarketRows, market, farmId)
+            if ok and type(rows) == "table" then
+                for _, row in ipairs(rows) do
+                    local owner = row.ownerFarmId
+                    if owner == nil and market.getProductionOwner ~= nil then owner = market:getProductionOwner(row.id) end
+                    if tonumber(owner) == tonumber(farmId) then productionCount = productionCount + 1; productionValue = productionValue + math.max(0, tonumber(row.marketValue) or tonumber(row.referenceValue) or 0) end
+                end
+            end
+        end
+        return {farmland=round(farmlandValue), productions=round(productionValue), farmlandCount=farmlandCount, productionCount=productionCount, total=round(farmlandValue+productionValue)}
+    end
+
+    function Bank:getBalanceSheet(farmId, fiscalYear)
+        fiscalYear = math.max(0, math.floor(tonumber(fiscalYear) or fiscalYearFromPeriodKey(self:getCurrentPeriodKey())))
+        local farm = self:getFarm(farmId)
+        local cash = round(farm ~= nil and farm.money or 0)
+        local grossEquipment, accumulatedDepreciation = 0, 0
+        local _, yearEnd = periodRangeForFiscalYear(fiscalYear)
+        for _, asset in ipairs(self:getDepreciableAssets(farmId)) do
+            if asset.acquisitionPeriodKey <= yearEnd then
+                grossEquipment = grossEquipment + asset.acquisitionCost
+                local elapsed = math.max(0, math.min(asset.usefulLifeMonths, yearEnd - asset.acquisitionPeriodKey + 1))
+                accumulatedDepreciation = accumulatedDepreciation + math.min(asset.depreciableBase, asset.depreciableBase / asset.usefulLifeMonths * elapsed)
