@@ -1,0 +1,44 @@
+name: Sync Step 9 roadmap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/STEP9_ROADMAP.md
+      - .github/workflows/sync-step9-roadmap.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Replace only Step 9 in master roadmap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root = Path('ROADMAP.md')
+          step = Path('docs/STEP9_ROADMAP.md').read_text(encoding='utf-8').rstrip() + '\n\n'
+          text = root.read_text(encoding='utf-8')
+          start = text.index('# 9 - Finalisation')
+          end = text.index('## Architecture finale du menu joueur')
+          text = text[:start] + step + text[end:]
+          old = '> **État code 0.8.1.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration, 7 Contrats & Marchés et 8 Atelier, Concessionnaire & Gestion technique du parc sont écrites et intégrées. Le pont Constats -> Responsabilité -> Atelier -> Assurance ainsi que le bonus-malus assurance sont également écrits et intégrés. Leur certification FS25 réelle reste à effectuer avant de fermer leurs cases de validation terrain.'
+          new = "> **État code 0.9.0.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration, 7 Contrats & Marchés, 8 Atelier et 9 Finalisation sont écrites et intégrées côté code. La certification FS25 réelle et les points historiques encore ouverts des étapes 1 à 3 restent distincts de cet état d'écriture."
+          text = text.replace(old, new)
+          text = text.replace('**Statut actuel : développement pré-1.0 - Étapes 4, 5, 6, 7 et 8 écrites/intégrées ; certification FS25 réelle à poursuivre avant validation finale.**', '**Statut actuel : développement pré-1.0 - Étapes 4 à 9 écrites/intégrées côté code ; points historiques 1 à 3 et certification FS25 réelle encore à fermer avant validation finale.**')
+          root.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit synchronized roadmap
+        run: |
+          if git diff --quiet -- ROADMAP.md; then exit 0; fi
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add ROADMAP.md
+          git commit -m "Synchronize Step 9 master roadmap"
+          git push
