@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.7.9.0</version>
+    <version>0.8.1.0</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -30,7 +30,7 @@
         <text name="actionIC_Animation"><en>Interactive controls</en><de>Interaktive Steuerung</de><fr>Commandes interactives</fr><it>Comandi interattivi</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="actionIC_IC"><en>Interactive control</en><de>Interaktive Bedienung</de><fr>Commande interactive</fr><it>Controllo interattivo</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="input_AGRILIFE_FIELD_KIT"><en>Use field service kit</en><de>Feldservice-Kit verwenden</de><fr>Utiliser le kit de service mobile</fr><it>Usa il kit di assistenza mobile</it><ct>使用行動維修工具組</ct><cs>使用移动维修工具组</cs></text>
-        <text name="input_AGRILIFE_SERVICE_TRUCK"><en>Use service truck</en><de>Servicefahrzeug verwenden</de><fr>Utiliser le camion atelier</fr><it>Usa il camion officina</it><ct>使用維修卡車</ct><cs>使用维修卡车</cs></text>
+        <text name="input_AGRILIFE_SERVICE_TRUCK"><en>Use service truck</en><de>Servicefahrzeug verwenden</de><fr>Utiliser le camion atelier</fr><it>Usa il camion officina</it><ct>使用維修卡車</ct><cs>使用维修车</cs></text>
     </l10n>
     <fillTypes filename="data/fillTypes.xml" />
     <actions>
@@ -101,6 +101,7 @@
         <sourceFile filename="src/modules/assets/AssetLifecycle6Service.lua" />
         <sourceFile filename="src/modules/assets/AssetLifecycleModule.lua" />
         <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap7.lua" />
+        <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap8.lua" />
         <sourceFile filename="src/modules/legal/Legal6Service.lua" />
         <sourceFile filename="src/modules/legal/LegalModule.lua" />
         <sourceFile filename="src/modules/journal/Journal6Service.lua" />
@@ -118,6 +119,7 @@
         <sourceFile filename="src/modules/market/DynamicMarket6Service.lua" />
         <sourceFile filename="src/modules/market/DynamicMarketModule.lua" />
         <sourceFile filename="src/modules/market/DynamicMarketRoadmap7.lua" />
+        <sourceFile filename="src/modules/market/DynamicMarketRoadmap8.lua" />
         <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7.lua" />
         <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7Events.lua" />
         <sourceFile filename="src/modules/compatibility/Compatibility6Service.lua" />
@@ -125,6 +127,10 @@
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4Guard.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityModule.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap7.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap8.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopRoadmap8.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceClaimsLiability8.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceBonusMalus8.lua" />
         <sourceFile filename="src/modules/dashboard/Dashboard6Service.lua" />
         <sourceFile filename="src/modules/dashboard/DashboardModule.lua" />
         <sourceFile filename="src/modules/finalization/Finalization6Service.lua" />
@@ -132,6 +138,7 @@
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
         <sourceFile filename="src/ui/AgriLifeStep7UI.lua" />
+        <sourceFile filename="src/ui/AgriLifeStep8UI.lua" />
         <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
         <sourceFile filename="src/core/AgriLifeCore.lua" />
