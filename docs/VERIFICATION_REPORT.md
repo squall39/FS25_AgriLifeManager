@@ -1,45 +1,30 @@
 <!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
-# AgriLife Manager 0.9.0.0 - rapport de vérification
+# AgriLife Manager 0.9.1.0 - rapport de vérification
 
 Date : 12 août 2026.
 
 ## Portée
 
-La build 0.9.0.0 ajoute l'étape 9 Finalisation côté écriture. Cette vérification reste hors jeu et ne vaut pas certification FS25.
+La build 0.9.1.0 ferme les derniers scripts métier identifiés dans Démarrage, Interface et Banque après l'étape 9. Cette vérification reste hors jeu et ne vaut pas certification FS25.
 
-## Finalisation 9
+## Fermeture écriture 0.9.1.0
 
-Sont intégrés : schéma de sauvegarde 4, migration 3 -> 4, identité de carrière, suivi de récupération backup, historique de migration, audit de couverture save/load, contrôle d'isolation multi-fermes, squelette réseau serveur autoritaire avec séparation par ferme, publication multijoueur bloquée, audit de compatibilités optionnelles, audit dynamique des contenus de map, tutoriel paginé rebasé, audits l10n et publication, documentation utilisateur et packaging TEST/PUBLIC.
+Banque/Comptabilité/Fiscalité sont complétées par des profils bancaires enrichis, l'influence du marché sur le financement, des offres de consultation, un grand livre avec métadonnées et filtres, la séparation correcte résultat/investissement/financement, les amortissements, le bilan, la capacité d'autofinancement, la rentabilité par activité et la fiscalité enrichie. L'interface reçoit aussi les synthèses financières, l'historique carrière et une politique responsive prudente.
 
-## Compatibilités
+## Contrôles réellement exécutés hors jeu
 
-Courseplay, AutoDrive, Precision Farming, Soil Fertilizer, MudSystem et Advanced Damage System restent optionnels. Leur absence ne crée aucune dépendance dure. Une donnée externe indisponible doit dégrader uniquement l'enrichissement concerné.
+- `audit_roadmap_writing_completion.py` : OK, 5 sources de fermeture actives, 27 langues, 5 019 clés ;
+- `verify_release.py` : OK, 91 XML, 108 Lua actifs, 170 callbacks, 229 contrôles ;
+- `audit_l10n_usage.py` : OK ;
+- `audit_publication.py` : OK ;
+- `writing_style_spec.py` : OK ;
+- aucune source active manquante dans `modDesc.xml` ;
+- contrôle structurel des cinq nouveaux Lua : OK.
 
-## Localisation
-
-Les 27 langues distribuées restent alignées. Le gate l10n vérifie maintenant parité, doublons, valeurs vides, placeholders et clés statiquement référencées dans Lua/XML. Le bouton Précédent du tutoriel paginé possède désormais sa clé dans les 27 langues.
-
-## Contrôles hors jeu
-
-- Finalisation 9 : 39 assertions ;
-- fonctionnel général : 64 assertions ;
-- Entreprise : 159 assertions ;
-- Carrière & Qualifications : 71 assertions ;
-- Administration : 76 assertions ;
-- Contrats & Marchés : 103 assertions ;
-- Atelier 8 : 168 assertions ;
-- inspection occasion : 21 assertions ;
-- Constats/Responsabilité : 76 assertions ;
-- Bonus-malus : 51 assertions ;
-- parité l10n : 27 langues, 5 011 clés ;
-- XML : 91 ;
-- Lua actifs : 103 ;
-- callbacks UI : 170 ;
-- contrôles UI : 229 ;
-- sources `modDesc.xml` manquantes : 0 ;
-- audit publication : OK ;
-- audit usages l10n : OK.
+Aucun runtime Lua/luac n'est disponible dans l'environnement de construction de cette passe. Les specs Lua dédiées sont donc présentes mais ne sont pas déclarées comme exécutées ici.
 
 ## État
 
-Étapes 4 à 9 : **écrites et intégrées côté code, certification en jeu différée**. Les étapes 1 à 3 conservent plusieurs points historiques avancés à terminer avant de pouvoir considérer l'ensemble du mod fonctionnellement complet.
+**Écriture fonctionnelle hors tests : 100 % pour Facile, Normal et Difficile.**
+
+Cela ne vaut pas validation finale. Les tests FS25 réels, la sauvegarde/rechargement, les compatibilités, les résolutions d'écran, le multijoueur et les critères de publication restent à certifier séparément.
