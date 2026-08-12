@@ -1,21 +1,17 @@
 <!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
-# AgriLife Manager 0.7.9.0 - rapport de vérification
+# AgriLife Manager 0.8.0.0 - rapport de vérification
 
-Date : 11 août 2026.
+Date : 12 août 2026.
 
 ## Portée
 
-La build 0.7.9.0 contient les étapes 1 à 3 déjà intégrées et ferme côté écriture les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration et 7 Contrats & Marchés. Cette vérification est statique et comportementale hors jeu. Elle ne vaut pas certification FS25.
+La build 0.8.0.0 conserve les étapes précédentes et ferme côté écriture l'étape 8 Atelier, Concessionnaire & Gestion technique du parc. Cette vérification est statique et comportementale hors jeu. Elle ne vaut pas certification FS25.
 
-## Étape 7 - Contrats & Marchés
+## Étape 8 - Atelier, Concessionnaire & Gestion technique du parc
 
-Sont intégrés : engagements commerciaux, négociation de prix/volume/délai, acheteurs et coopératives, surfaces conseillées, notation A-E, relations acheteurs, pénalités selon difficulté, marchés mondial et local, découverte dynamique maps/multifruits, hooks de prix réversibles, marché du neuf et de l'occasion, stocks et délais de livraison, intrants, carburants/énergie, foncier, productions/usines, locations, opportunités temporaires, rentabilité et enrichissements optionnels Precision Farming / Soil Fertilizer avec fallback vanilla.
+Sont intégrés : suivi de tout le parc, composants adaptés, usure/stress selon usage réel, pannes fonctionnelles par gravité, diagnostics et symptômes, pièces OEM/adaptables/reconditionnées/occasion, marché dynamique des pièces relié à l'étape 7, commandes et délais persistants, concessionnaire/SAV, atelier interne et compétences mécaniques, révision annuelle, contrôle technique tous les deux ans, contre-visite, immobilisation, dépannage, continuité d'activité, garanties, assurance, carnet de vie, valeur de revente, inspection technique de l'occasion et campagnes de rappel constructeur.
 
-## Étapes précédentes
-
-- Étape 4 Entreprise : contrats CDI/CDD/saisonnier, RH, planning, paie unique, ordres, IA et réputation intégrés.
-- Étape 5 Carrière & Qualifications : carrière durable, XP, permis et qualifications intégrés.
-- Étape 6 Administration : statut, conformité, contrôles, sanctions, assurance et contentieux intégrés.
+Advanced Damage System reste l'autorité mécanique lorsque son état est détectable. MudSystem reste l'autorité sur ses pneus/crevaisons exploitables. AgriLife ne copie ni ne remplace leurs moteurs et conserve un fallback autonome.
 
 ## Contrôles statiques et comportementaux
 
@@ -24,15 +20,16 @@ Sont intégrés : engagements commerciaux, négociation de prix/volume/délai, a
 - Carrière & Qualifications : 71 assertions ;
 - Administration : 76 assertions ;
 - Contrats & Marchés : 103 assertions ;
-- Lua du package : 100 avec syntaxe contrôlée ;
+- Atelier 8 : 168 assertions ;
+- Inspection occasion Atelier 8 : 21 assertions ;
 - XML : 91 ;
-- Lua actifs : 93 ;
-- callbacks UI : 161 ;
-- contrôles UI : 217 ;
+- Lua actifs : 98 ;
+- callbacks UI : 170 ;
+- contrôles UI : 229 ;
 - langues : 27 ;
-- clés l10n : 4 961 ;
-- sources `modDesc.xml` manquantes : 0.
+- clés l10n : 5 002 ;
+- sources `modDesc.xml` manquantes dans le package vérifié : 0.
 
 ## État
 
-Étapes 4, 5, 6 et 7 : **écrites et intégrées, certification en jeu différée**. La prochaine passe fonctionnelle de feuille de route est l'étape 8 Atelier.
+Étapes 4, 5, 6, 7 et 8 : **écrites et intégrées, certification en jeu différée**. La prochaine phase fonctionnelle de la feuille de route est l'étape 9 Finalisation, après poursuite des certifications terrain prévues.
