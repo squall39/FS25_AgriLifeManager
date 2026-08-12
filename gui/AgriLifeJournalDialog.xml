@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<GUI onOpen="onOpen">
+    <GuiElement profile="newLayer" />
+    <Bitmap profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement profile="dialogBg" id="dialogElement" size="900px 680px">
+        <ThreePartBitmap profile="fs25_dialogBgMiddle" />
+        <ThreePartBitmap profile="fs25_dialogBgTop" />
+        <ThreePartBitmap profile="fs25_dialogBgBottom" />
+        <GuiElement profile="fs25_dialogContentContainer">
+            <Text profile="fs25_dialogTitle" id="dialogTitle" position="0px -28px" text="$l10n_agrilife_journal_dialog_title"/>
+            <Text profile="fs25_textDefault" id="summaryText" position="0px -68px" size="840px 44px" textSize="12px" textColor="0.63 0.86 0.45 1" textAutoWrap="true"/>
+            <GuiElement position="0px -122px" size="840px 440px">
+                <Bitmap profile="baseReference" imageColor="0.043 0.061 0.066 0.99" size="840px 440px"/>
+                <Text profile="fs25_textDefault" id="bodyText" position="24px -24px" size="792px 392px" textSize="13px" textColor="0.88 0.93 0.91 1" textAutoWrap="true"/>
+            </GuiElement>
+        </GuiElement>
+        <BoxLayout profile="fs25_dialogButtonBox">
+            <Button profile="buttonBack" id="closeButton" text="$l10n_agrilife_journal_dialog_close" onClick="onClickClose" />
+        </BoxLayout>
+    </GuiElement>
+</GUI>
