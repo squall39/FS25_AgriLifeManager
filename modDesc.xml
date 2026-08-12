@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.1.0</version>
+    <version>0.9.3.0</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -30,19 +30,14 @@
         <text name="actionIC_Animation"><en>Interactive controls</en><de>Interaktive Steuerung</de><fr>Commandes interactives</fr><it>Comandi interattivi</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="actionIC_IC"><en>Interactive control</en><de>Interaktive Bedienung</de><fr>Commande interactive</fr><it>Controllo interattivo</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="input_AGRILIFE_FIELD_KIT"><en>Use field service kit</en><de>Feldservice-Kit verwenden</de><fr>Utiliser le kit de service mobile</fr><it>Usa il kit di assistenza mobile</it><ct>使用行動維修工具組</ct><cs>使用移动维修工具组</cs></text>
-        <text name="input_AGRILIFE_SERVICE_TRUCK"><en>Use service truck</en><de>Servicefahrzeug verwenden</de><fr>Utiliser le camion atelier</fr><it>Usa il camion officina</it><ct>使用維修卡車</ct><cs>使用维修卡车</cs></text>
     </l10n>
     <fillTypes filename="data/fillTypes.xml" />
     <actions>
         <action name="AGRILIFE_FIELD_KIT" category="ONFOOT VEHICLE" axisType="HALF" />
-        <action name="AGRILIFE_SERVICE_TRUCK" category="VEHICLE" axisType="HALF" />
     </actions>
     <inputBinding>
         <actionBinding action="AGRILIFE_FIELD_KIT">
             <binding device="KB_MOUSE_DEFAULT" input="KEY_o" />
-        </actionBinding>
-        <actionBinding action="AGRILIFE_SERVICE_TRUCK">
-            <binding device="KB_MOUSE_DEFAULT" input="KEY_r" />
         </actionBinding>
     </inputBinding>
     <extraSourceFiles>
@@ -61,6 +56,7 @@
         <sourceFile filename="src/ui/AgriLifeMiniPdaProgress.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialDialog.lua" />
         <sourceFile filename="src/ui/AgriLifeJournalDialog.lua" />
+        <sourceFile filename="src/ui/AgriLifeAccidentStatementDialog.lua" />
         <sourceFile filename="src/ui/AgriLifeHelpIntegration6.lua" />
         <sourceFile filename="src/modules/company/Company6Service.lua" />
         <sourceFile filename="src/modules/company/Company6Events.lua" />
@@ -133,8 +129,17 @@
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap8.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap9.lua" />
         <sourceFile filename="src/modules/workshop/WorkshopRoadmap8.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopRoadmap81Completion.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopRecoveryRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopPhysicalPartsRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopTurnaroundLoanerRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopBehavioralWearRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/workshop/VehicleEnergyRoadmapCompletion.lua" />
         <sourceFile filename="src/modules/insurance/InsuranceClaimsLiability8.lua" />
         <sourceFile filename="src/modules/insurance/InsuranceBonusMalus8.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceWorkshopRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceAccidentAuthorityRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/economy/OperationalHoursRoadmapCompletion.lua" />
         <sourceFile filename="src/modules/dashboard/Dashboard6Service.lua" />
         <sourceFile filename="src/modules/dashboard/DashboardModule.lua" />
         <sourceFile filename="src/modules/dashboard/DashboardRoadmapWritingCompletion.lua" />
@@ -155,15 +160,10 @@
     </extraSourceFiles>
     <specializations>
         <specialization name="FieldServiceKit6" className="FieldServiceKit6" filename="vehicles/FieldServiceKit6.lua" />
-        <specialization name="ServiceTruck6" className="ServiceTruck6" filename="vehicles/ServiceTruck6.lua" />
     </specializations>
     <vehicleTypes>
         <type name="agriLifeManagerFieldServiceKit" parent="base" filename="$dataS/scripts/vehicles/Vehicle.lua">
             <specialization name="FieldServiceKit6" />
-        </type>
-        <type name="agriLifeManagerServiceTruck" parent="carFillable" filename="$dataS/scripts/vehicles/Vehicle.lua">
-            <specialization name="ServiceTruck6" />
-            <specialization name="fillTriggerVehicle" />
         </type>
     </vehicleTypes>
     <materialTemplates id="brandColor" name="Brand Material" parentTemplateFilename="$data/shared/detailLibrary/materialTemplates.xml">
@@ -183,12 +183,10 @@
         </type>
     </placeableTypes>
     <brands>
-        <brand name="GMC" title="GMC" image="gui/icons/brand_gmc.dds" />
     </brands>
     <storeItems>
         <storeItem xmlFilename="placeables/OilTank.xml" />
         <storeItem xmlFilename="vehicles/fieldServiceKit/fieldServiceKit.xml" />
-        <storeItem xmlFilename="vehicles/serviceTruck/serviceTruck.xml" />
         <storeItem xmlFilename="vehicles/sparePartsPallet/sparePartsPallet.xml" />
     </storeItems>
 </modDesc>
