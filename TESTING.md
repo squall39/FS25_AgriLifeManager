@@ -1,66 +1,48 @@
 # Tests - AgriLife Manager
 
-Version de référence : **0.9.2.0 TEST**
+Version de référence : **0.9.3.0 TEST**
 
 ## Principe
 
-Une fonction peut être écrite et intégrée sans être certifiée en jeu. Les contrôles statiques, audits Python et specs Lua éliminent les défauts évidents, mais la validation finale exige FS25, sauvegarde/rechargement, contrôle visuel et lecture du `log.txt`.
+Une fonction peut être écrite et intégrée sans être certifiée en jeu. Les contrôles statiques éliminent les défauts évidents, mais la validation finale exige FS25, sauvegarde/rechargement, contrôle visuel et lecture du `log.txt`.
 
 Le statut **ÉCRIT / À CERTIFIER** ne doit jamais être confondu avec **VALIDÉ EN JEU**.
 
-## Feuille de route active de la campagne de test
+## Feuille de route active
 
-La campagne 0.9.2.0 doit suivre `docs/FS25_TEST_ROADMAP_0.9.2.0.md`.
+La campagne active suit `docs/FS25_TEST_ROADMAP_0.9.3.0.md`.
 
-Cette feuille de route est volontairement séparée de `ROADMAP.md` : elle ne décrit pas les fonctions à développer, mais uniquement **l’ordre de certification en jeu**.
-
-Ordre obligatoire de la campagne principale :
+Ordre principal :
 
 1. préparation commune ;
-2. **Facile** — validation fonctionnelle générale avec contraintes minimales ;
-3. **Normal** — banque/conseiller obligatoires et permis provisoire ;
-4. **Difficile** — permis/assurance obligatoires, verrous et conséquences renforcées ;
+2. **Facile** ;
+3. **Normal** ;
+4. **Difficile** ;
 5. comparaison directe des trois difficultés ;
 6. compatibilités/maps ;
 7. UI, langues, logs et décision finale.
 
-Chaque difficulté possède un **GATE**. Tant qu’un bug bloquant empêche ce gate de passer, la campagne ne continue pas vers la difficulté suivante.
+Chaque difficulté possède un **GATE**. Tant qu’un défaut bloquant empêche ce gate de passer, la campagne ne continue pas vers la difficulté suivante.
 
-## Périmètre 0.9.2.0 prioritaire
+## Périmètre prioritaire 0.9.3.0
 
-La certification doit couvrir en particulier la fermeture Atelier 8.1 :
+En plus de toute la fermeture Atelier 8.1 de la 0.9.2.0, la certification doit maintenant couvrir :
 
-- véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids ;
-- pannes légères, immobilisantes et casses lourdes ;
-- verrou réel du redémarrage ;
-- kit terrain limité aux urgences ;
-- dépannage/remorquage et choix de destination ;
-- commandes et palettes physiques de pièces ;
-- huiles et lubrifiants ;
-- réparation personnelle et concessionnaire ;
-- délai personnel de 2 à 3 fois celui du concessionnaire selon atelier/compétence ;
-- matériel de remplacement concessionnaire et location de secours ;
-- assurance mécanique, assistance/remorquage, franchise et dépenses réellement engagées ;
-- absence du camion de service joueur.
+- usure mécanique comportementale AgriLife et neutralisation de l’usure mécanique vanilla comme source de réparation ;
+- séparation usure progressive / collision événementielle ;
+- consommation carburant/énergie selon puissance, charge, régime, comportement, état mécanique et difficulté ;
+- constat d’accident manuel pour un conducteur joueur et automatique pour un ouvrier IA ;
+- décisions Assurance/Banque sensibles réservées au patron/propriétaire ;
+- classement perte totale/épave avec acceptation explicite du patron ;
+- horaires : Banque 08:00-12:00 / 14:00-18:00, concessionnaire 08:00-19:00, atelier personnel 24/7, usines 08:00-19:00, points de vente 08:00-12:00 / 14:00-18:00 ;
+- sauvegarde/rechargement de tous les nouveaux états 0.9.3.0.
 
-## Certification complémentaire
-
-Le protocole historique détaillé A à Z reste disponible dans `docs/FS25_CERTIFICATION_A_TO_Z.md` pour les scénarios complémentaires et les contrôles de profondeur. En cas de divergence d’ordre, la campagne active 0.9.2.0 suit d’abord `docs/FS25_TEST_ROADMAP_0.9.2.0.md`.
+Le protocole historique A à Z reste disponible dans `docs/FS25_CERTIFICATION_A_TO_Z.md` pour les contrôles complémentaires.
 
 ## Multijoueur
 
-L’infrastructure réseau existe mais la publication multijoueur reste désactivée. Aucun scénario multi ne doit faire passer le statut public à compatible tant que la certification réseau dédiée n’a pas été réalisée.
+La publication multijoueur reste désactivée. L’architecture multi-fermes est prévue, mais aucun statut public de compatibilité réseau ne doit être déclaré avant la campagne serveur dédiée.
 
-## Critère de validation d’un scénario
+## Critère de validation
 
-Un scénario n’est marqué **VALIDÉ EN JEU** que si :
-
-1. le résultat observé correspond au résultat attendu ;
-2. la sauvegarde/recharge ne casse pas l’état concerné lorsqu’il est persistant ;
-3. le `log.txt` ne contient pas d’erreur Lua liée au mod ;
-4. aucune régression UI bloquante n’est observée ;
-5. les preuves minimales utiles sont conservées.
-
-## Règle de roadmap
-
-Une case de `ROADMAP.md` exigeant une validation terrain reste ouverte tant que la certification FS25 correspondante n’a pas été effectuée, même si son code est déjà écrit.
+Un scénario n’est **VALIDÉ EN JEU** que si le résultat correspond à l’attendu, que la persistance tient après reload lorsque nécessaire, que le `log.txt` ne montre pas d’erreur AgriLife liée au scénario et qu’aucune régression UI bloquante n’est observée.
