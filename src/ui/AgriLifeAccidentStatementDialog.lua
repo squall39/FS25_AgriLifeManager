@@ -5,6 +5,23 @@ AgriLife = AgriLife or {}
 AgriLife.AccidentStatementDialog = {}
 AgriLife.AccidentStatementDialog_mt = Class(AgriLife.AccidentStatementDialog, DialogElement)
 
+-- FS25 1.21 compatibility: custom controllers are FrameElement descendants, but
+-- some runtime builds do not expose registerControls through the custom dialog
+-- metatable at constructor time. Call the FrameElement implementation directly
+-- as a safe fallback so IDs are still exposed after g_gui:loadGui().
+local function registerDialogControls(controller, controlIds)
+    if controller ~= nil and type(controller.registerControls) == "function" then
+        controller:registerControls(controlIds)
+        return
+    end
+    if controller ~= nil and FrameElement ~= nil and type(FrameElement.registerControls) == "function" then
+        controller.controlIDs = controller.controlIDs or {}
+        FrameElement.registerControls(controller, controlIds)
+        return
+    end
+    error("AgriLife dialog controller cannot register GUI controls")
+end
+
 local function tr(key, fallback)
     if g_i18n ~= nil and g_i18n.getText ~= nil then
         local value = g_i18n:getText(key)
@@ -69,7 +86,7 @@ end
 
 function AgriLife.AccidentStatementDialog.new()
     local self = DialogElement.new(nil, AgriLife.AccidentStatementDialog_mt)
-    self:registerControls({
+    registerDialogControls(self, {
         "accidentSelector", "emptyText", "statementPanel", "vehicleText", "otherText", "contactText",
         "incidentTypeText", "locationText", "circumstanceSelector", "impactSelector", "observationSelector",
         "statusText", "resultText", "submitButton"
