@@ -1,50 +1,42 @@
-# Matrice d'implémentation - AgriLife Manager
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+# AgriLife Manager - matrice d'implémentation 0.8.0.0
 
-Version suivie : **0.7.9.0 TEST**
+Cette matrice complète la feuille de route sans la remplacer. La feuille de route reste le registre maître additif de toutes les idées validées.
 
-Cette matrice complète la feuille de route sans la remplacer. `ROADMAP.md` reste le registre maître additif de toutes les idées validées.
+`INTÉGRÉ / À TESTER` signifie que le code est chargé et contrôlé statiquement. `ÉCRIT / À CERTIFIER` signifie que le bloc est écrit et intégré mais que sa certification FS25 réelle reste à faire. `VALIDÉ EN JEU` reste réservé aux scénarios réellement confirmés dans FS25.
 
 ## Règle de maintenance de la feuille de route
 
-Une mise à jour de la feuille de route ne doit jamais supprimer, condenser ou reformuler une idée au point d'en perdre le contenu.
+Une mise à jour ne doit jamais supprimer, condenser ou reformuler une idée au point d'en perdre le contenu. Elle sert uniquement à changer l'état d'un point déjà prévu, ajouter une idée explicitement validée ou préciser son avancement sans retirer son intention initiale.
 
-Elle sert uniquement à :
-
-1. changer l'état d'un point déjà prévu ;
-2. ajouter une nouvelle idée explicitement validée ;
-3. préciser un point sans retirer son intention initiale.
-
-L'historique Git n'est pas un substitut à cette règle : les idées validées doivent rester visibles dans la feuille de route courante.
-
-## État actuel
-
-| Étape | État d'écriture | Certification en jeu |
+| Bloc | État 0.8.0.0 | Résumé |
 |---|---|---|
-| 1. Démarrage | Intégrée | À terminer |
-| 2. Interface de base | Intégrée | À terminer |
-| 3. Banque | Intégrée | À terminer |
-| 4. Entreprise | Écriture complète | À faire |
-| 5. Carrière & Qualifications | Écriture complète | À faire |
-| 6. Administration | Écriture complète | À faire |
-| 7. Contrats & Marchés | Écriture complète | À faire |
-| 8. Atelier | Fondations présentes | À faire |
-| 9. Finalisation | À faire | À faire |
+| Démarrage | INTÉGRÉ / CAMPAGNE À FINIR | Facile/Normal/Difficile, capital, banque, permis provisoire Normal, verrou Difficile, migration et persistance |
+| Interface de base | INTÉGRÉ / À TESTER | tableau de bord 6 cartes, navigation, onboarding, tutoriel, journal, HUD et actions contextuelles |
+| Banque | INTÉGRÉ / À TESTER | banque/conseiller, crédit, dette héritée, comptes pro/perso, comptabilité, fiscalité, prévision et restrictions administratives |
+| Entreprise | ÉCRIT / À CERTIFIER | contrats, RH, planning, paie unique, ordres, IA FS25, Courseplay/AutoDrive optionnels, XP salarié, recrutement, incidents, réputation |
+| Carrière & Qualifications | ÉCRIT / À CERTIFIER | carrière durable, XP par difficulté, permis 10 étapes, historique, qualifications spécialisées et verrous métier |
+| Administration | ÉCRIT / À CERTIFIER | statut d'exploitation, santé administrative, documents, contrôles, récidive, sanctions, assurance, contentieux et huissier |
+| Contrats & Marchés | ÉCRIT / À CERTIFIER | engagements commerciaux, négociation, notation A-E, relations acheteurs, marchés mondial/local, multifruits, neuf/occasion, intrants, énergie, foncier, locations, productions et PF/Soil optionnels |
+| Atelier, Concessionnaire & Gestion technique | ÉCRIT / À CERTIFIER | composants, usure/stress, pannes fonctionnelles, pièces dynamiques, délais, garage interne/SAV, révisions, contrôle technique, rappels, dépannage, assurance, historique, occasion et ponts ADS/MudSystem |
+| Finalisation | INFRASTRUCTURE PRÉSENTE | campagne A -> Z et fermeture étape 9 à faire |
+| Multijoueur | PRÉPARÉ / DÉSACTIVÉ | `supported=false` jusqu'à certification réseau |
 
-## Étape 7 - écriture 0.7.9.0
+## Contrôles de la build 0.8.0.0
 
-- engagements commerciaux et négociation ;
-- acheteurs, coopératives et relations durables ;
-- notation A-E et conséquences sur réputation/offres ;
-- marché mondial et marchés locaux ;
-- détection dynamique maps, fruits, multifruits, fillTypes, points de vente, productions, parcelles et articles magasin ;
-- marché du neuf et de l'occasion avec disponibilité et délais ;
-- intrants, consommables, carburants et énergie ;
-- foncier, achats/ventes, opportunités et locations ;
-- productions/usines, valeur et rentabilité ;
-- Precision Farming et Soil Fertilizer optionnels sans dupliquer leur agronomie ;
-- persistance des marchés, contrats, relations et transactions.
-
-Ces éléments restent à certifier dans FS25 avant fermeture des cases détaillées de `ROADMAP.md`.
+- 168 assertions Atelier 8 ;
+- 21 assertions inspection technique occasion ;
+- 103 assertions Contrats & Marchés ;
+- 76 assertions Administration ;
+- 71 assertions Carrière & Qualifications ;
+- 159 assertions Entreprise ;
+- 64 assertions fonctionnelles générales ;
+- tests comportementaux généraux validés ;
+- 27 langues avec 5 002 clés alignées ;
+- 91 XML parsés ;
+- 98 Lua actifs référencés par `modDesc.xml` ;
+- 170 callbacks UI et 229 contrôles UI comptés ;
+- aucune source `modDesc` manquante dans le package vérifié.
 
 ## Priorités validées après stabilisation
 
@@ -52,17 +44,6 @@ Ces éléments restent à certifier dans FS25 avant fermeture des cases détaill
 2. Comptabilité et fiscalité.
 3. Contrôles administratifs et sanctions.
 
-## Idées transversales validées à conserver
+## Limite
 
-- Permis et qualifications spécialisées.
-- Gestion réaliste des salariés et de leur carrière.
-- Historique professionnel et grands jalons de carrière.
-- Objectifs de développement de l'exploitation.
-- Incidents administratifs et financiers dynamiques.
-- Notation des contrats et effet sur les futures opportunités.
-- Journal de bord AgriLife.
-- Statut/licence d'exploitation progressif.
-- Chaque nouvelle fonction doit avoir une conséquence réelle en jeu.
-- Multi-fermes et multijoueur plus tard, avec données AgriLife séparées par ferme.
-
-© 2026 Chez_Squall.
+Ces contrôles ne remplacent pas les tests FS25 réels. L'étape 8 reste à certifier avec sauvegarde/rechargement, log propre et essais avec/sans MudSystem et Advanced Damage System.
