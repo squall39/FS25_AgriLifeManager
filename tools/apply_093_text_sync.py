@@ -9,7 +9,7 @@ import tarfile
 ROOT = Path.cwd()
 PAYLOAD_DIR = ROOT / "tools" / "sync093_text_payload"
 PARTS = sorted(PAYLOAD_DIR.glob("part*.b64"))
-EXPECTED_PARTS = 6
+EXPECTED_PARTS = 10
 EXPECTED_SHA256 = "77becffca8c0e33a0b70b786cf64883ad07a517d572b2dfa47c938dedded611d"
 
 if len(PARTS) != EXPECTED_PARTS:
