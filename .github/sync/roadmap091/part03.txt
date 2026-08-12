@@ -1,0 +1,141 @@
+- [ ] Neutraliser le coût horaire de l’ouvrier vanilla lorsqu’une tâche est liée à un salarié AgriLife.
+- [ ] Intégration optionnelle Courseplay par détection/hooks, sans modifier Courseplay.
+- [ ] Intégration optionnelle AutoDrive par détection/hooks, sans modifier AutoDrive.
+- [ ] Prévoir un retour propre au fonctionnement autonome si un mod tiers devient temporairement incompatible.
+- [ ] Valider la séparation joueur humain / GPS natif / salariés AgriLife.
+
+## Expérience & évolution des salariés
+
+- [ ] Chaque salarié gagne de l’expérience uniquement grâce au travail réellement effectué.
+- [ ] Compétence générale + spécialités : sol, semis, fertilisation, récolte, transport, élevage, mécanique, etc.
+- [ ] Progression selon temps de travail, type de tâche, réussite, incidents et difficulté.
+- [ ] Le niveau de compétence influence salaire et évolution sans bonus irréalistes.
+- [ ] Conserver l’historique de carrière du salarié dans la sauvegarde.
+
+## Réputation de l’exploitation
+
+La réputation appartient à l’Entreprise. Banque, Administration, Contrats & Marchés et autres systèmes la **consultent**, mais ne doivent pas recréer leur propre moteur de réputation.
+
+- [ ] Créer une réputation globale de l’exploitation et du dirigeant.
+- [ ] Faire évoluer la réputation à partir d’actions réelles : contrats, retards, dettes, incidents, examens, qualité du travail et gestion.
+- [ ] Conserver l’historique des événements ayant modifié la réputation.
+- [ ] Utiliser la réputation dans Banque, Conseiller, Contrats, Coopératives, Assurance et futurs contentieux.
+- [ ] Débloquer progressivement de meilleures opportunités lorsque la réputation est solide.
+- [ ] Permettre de reconstruire progressivement une réputation dégradée.
+- [ ] Faire varier gains, pertes et seuils de réputation selon la difficulté.
+- [ ] Afficher les principaux facteurs expliquant la note de réputation.
+
+---
+
+# 5 - Module Carrière & Qualifications
+
+> **État code 0.7.7.0 TEST :** l’ensemble des scripts prévus pour l’étape 5 est écrit et intégré. Les cases restent ouvertes jusqu’à la certification réelle des examens, qualifications et sauvegarde/rechargement.
+
+Le module Carrière & Qualifications regroupe **XP joueur, examens, permis, qualifications spécialisées et historique professionnel**. Les anciennes entrées séparées « Examens » et « XP & Carrière » doivent converger vers ce module unique.
+
+## Carrière & XP
+
+- [x] Structure carrière / XP.
+- [ ] Ajouter une fiche de carrière durable : heures, hectares, travaux, examens, contrats, incidents et grandes étapes.
+- [ ] Faire dépendre la vitesse d’XP et la progression du profil Facile / Normal / Difficile.
+- [ ] Conserver une séparation stricte entre progression XP normale et progression des examens.
+
+## Examens & permis
+
+- [x] Structure examens.
+- [x] HUD d’examen avec étape, action, progression, note et erreurs.
+- [x] Panneau de réussite vert + consigne suivante.
+- [x] Affichage persistant de la dernière erreur d’examen.
+- [x] Correction logique du retour du matériel dans sa zone d’origine.
+- [x] Progression de secours pour certains travaux réels : outil compatible actif/abaissé + déplacement réel.
+- [x] État provisoire Normal relié au Démarrage : 3 mois, rappels 6 h, expiration et sanction personnelle.
+- [ ] Revalider toute la chaîne réelle des 10 étapes sur une partie complète en Difficile lors de la prochaine session.
+- [ ] Valider définitivement l’épreuve 5 « cultivation » dans la campagne de test actuelle.
+- [ ] Vérifier les étapes 6/10 à 10/10 : retour, dételage, parking et sortie.
+- [ ] Vérifier chaque outil et chaque type de travail comptabilisé.
+- [ ] Faire varier frais d’inscription, tolérance, notation et exigences selon Facile / Normal / Difficile.
+- [ ] Après réussite, le Tableau de bord doit afficher **PERMIS OBTENU / RÉUSSI** avec score/résultat et historique utile, jamais seulement « Disponible ».
+
+## Qualifications spécialisées
+
+- [ ] Ajouter des qualifications spécialisées : pulvérisation/phytosanitaire, télescopique, forestier, transport agricole ou autres catégories pertinentes.
+- [ ] Faire dépendre l’accès à certaines activités professionnelles des qualifications réellement obtenues lorsque cela est cohérent avec le niveau choisi.
+
+---
+
+# 6 - Module Administration
+
+> **État code 0.7.8.0 TEST :** l’ensemble des scripts prévus pour l’étape 6 est écrit et intégré. Les cases restent ouvertes jusqu’à la certification complète en jeu des statuts, contrôles, sanctions, assurances et contentieux.
+
+Le module Administration regroupe **société/statuts administratifs, assurances, conformité, contrôles, sanctions, événements de gestion, huissier et contentieux**.
+
+## Société & administration
+
+- [x] Base du module Société.
+- [ ] Faire dépendre obligations, coûts, formalités et délais de Facile / Normal / Difficile.
+- [ ] Gestion plus profonde de la structure juridique.
+- [ ] Utiliser la santé administrative de l’entreprise dans Banque, Contrats, Assurance et Contentieux.
+
+## Statut d’exploitation évolutif
+
+- [ ] Créer un statut professionnel progressif : **petite exploitation → exploitation professionnelle → entreprise agricole → grande entreprise**.
+- [ ] Conditions d’évolution : expérience, réputation, capital, examens, conformité et activité réelle.
+- [ ] Donner à chaque statut des droits, opportunités et obligations supplémentaires.
+
+## Contrôles administratifs & sanctions
+
+- [ ] Contrôles de conformité de l’exploitation.
+- [ ] Vérifier permis, assurances, documents et obligations réellement applicables au niveau choisi.
+- [ ] Prévoir avertissement, régularisation, amende ou immobilisation selon gravité et difficulté.
+- [ ] Historiser contrôles et récidives.
+- [ ] Faire varier fréquence, seuils et sévérité des contrôles selon la difficulté.
+- [ ] Faire influencer les sanctions par le comportement antérieur et la réputation.
+- [ ] Chaque sanction doit avoir une cause identifiable par le joueur.
+- [ ] Reprendre plus tard les sanctions personnelles impayées (ex. amende de permis Normal non réglable) sans ponction silencieuse sur la société.
+
+## Événements de gestion
+
+- [ ] Échéance, facture imprévue, contrôle, réparation lourde, absence salarié ou autre incident crédible.
+- [ ] Adapter fréquence et sévérité à la difficulté.
+- [ ] Donner plusieurs solutions réalistes lorsque c’est possible.
+
+## Assurances
+
+L’Assurance devient une composante de l’Administration et non une carte/module séparé du tableau de bord.
+
+- [x] Base de l’écran Assurance.
+- [ ] Contrats différenciés par formule, capital et risque.
+- [ ] Sinistres et franchises.
+- [ ] Impact du comportement, de la réputation, de l’historique et de la difficulté sur les primes.
+- [ ] Interaction avec atelier, véhicules, bâtiments et exploitation.
+- [ ] Faire varier primes, franchises, exclusions et tolérances selon Facile / Normal / Difficile.
+
+## Huissier & contentieux
+
+- [ ] Retards et incidents de paiement.
+- [ ] Relances et mises en demeure.
+- [ ] Transmission au système Huissier/Contentieux.
+- [ ] Frais, échéanciers et procédures.
+- [ ] Conséquences sur réputation, banque, contrats et société.
+- [ ] Mécanismes de sortie réalistes : régularisation, négociation, restructuration.
+- [ ] Prendre en compte les dettes fiscales et administratives.
+- [ ] Faire varier délais, frais, tolérances et escalade selon la difficulté.
+
+---
+
+# 7 - Module Contrats & Marchés
+
+> **État code 0.7.9.0 TEST :** l’ensemble des scripts prévus pour l’étape 7 est écrit et intégré : engagements commerciaux, négociation, acheteurs/coopératives, notation A-E, marché mondial/local, détection maps/multifruits, neuf/occasion, intrants, carburants/énergie, foncier, locations, productions/usines et enrichissements Precision Farming / Soil Fertilizer. Les cases restent ouvertes jusqu’à la certification FS25 réelle, sauvegarde/rechargement et contrôle du log.
+
+Le module Contrats & Marchés regroupe **contrats commerciaux, coopératives, économie mondiale, marchés locaux, multifruits, matériel neuf/occasion, intrants, carburants, foncier, locations et productions/usines**.
+
+## Contrats commerciaux & coopératives
+
+- [x] Base des contrats commerciaux.
+- [ ] Passer d’une logique de mission à de vrais engagements commerciaux.
+- [ ] Prix, volumes, délais, pénalités et qualité négociés.
+- [ ] Contrats possibles avant semis/plantation.
+- [ ] Acheteurs et coopératives multiples.
+- [ ] Impact du conseiller, de la réputation et de l’historique.
+- [ ] Surfaces conseillées / volumes prévisionnels.
+- [ ] Notation de contrat selon respect des délais, qualité du travail, incidents et conditions remplies.
