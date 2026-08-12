@@ -44,9 +44,11 @@ Les résultats sont suivis dans `docs/TEST_RESULTS_0.9.3.0.md` et `docs/TEST_RES
 
 ## GitHub
 
-`main` conserve la documentation, les audits et les sources qui ont pu être matérialisées par le connecteur. La build ZIP ci-dessus reste la **référence exécutable exacte** utilisée pour les tests.
+`main` est aligné sur la **version 0.9.3.1** pour le `modDesc`, la version Lua, le HomeFrame, son XML, le gestionnaire UI, le dialogue paginé, l'Historique AgriLife, le constat d'accident, le protocole F02, les résultats de test et l'audit correctif. Les anciens helpers/payloads/workflows one-shot utilisés pour transférer ces fichiers ont été supprimés, tout comme le résidu `brand_gmc.png`.
 
-Le connecteur GitHub de cette session ne permet pas d'importer directement en masse l'arborescence locale complète, notamment les gros binaires et certains fichiers source/l10n absents de `main`. Il ne faut donc pas présenter `main` comme un miroir octet-par-octet du ZIP tant qu'un transfert dédié n'a pas été réalisé. Les corrections F02 et leur état de test sont néanmoins documentés sur `main` avec leur hash de build.
+La build ZIP ci-dessus reste la **référence exécutable exacte** utilisée pour les tests. Le connecteur GitHub de cette session ne permet pas d'importer directement en masse l'arborescence locale complète : les 27 XML de traduction distribués et les gros binaires DDS/I3D de la build ne sont donc pas déclarés comme un miroir octet-par-octet de `main`. Ils restent certifiés dans le ZIP joueur par les audits locaux.
+
+L'ancien workflow GitHub qui reconstruisait un ZIP de test depuis la très ancienne base `0.6.4.32` a été retiré : il n'était plus reproductible avec l'architecture actuelle et pouvait produire un résultat trompeur. Il sera préférable de ne réintroduire un build automatique que lorsqu'une base complète 0.9.x sera réellement disponible dans le dépôt ou dans une release de référence.
 
 ## Multijoueur
 
