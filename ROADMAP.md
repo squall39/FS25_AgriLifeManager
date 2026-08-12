@@ -5,9 +5,11 @@
 >
 > **Règle de maintenance de la feuille de route :** ce fichier est le registre maître additif du projet. Une mise à jour peut modifier l’état d’un point, préciser son avancement ou ajouter une idée validée, mais ne doit jamais supprimer, condenser ou reformuler une idée au point d’en perdre le contenu.
 >
-> **État code 0.9.0.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration, 7 Contrats & Marchés, 8 Atelier et 9 Finalisation sont écrites et intégrées côté code. La certification FS25 réelle et les points historiques encore ouverts des étapes 1 à 3 restent distincts de cet état d'écriture.
+> **État code 0.9.1.0 TEST :** les neuf étapes de la feuille de route ont désormais leur écriture fonctionnelle intégrée. La passe 0.9.1.0 ferme les derniers reliquats Démarrage / Interface / Banque avec comptabilité avancée, fiscalité, amortissements, bilan, capacité d’autofinancement, historique filtrable, relation bancaire enrichie et politique responsive. Les cases qui restent ouvertes ci-dessous correspondent à des certifications en jeu, relectures visuelles, compatibilités réelles ou validations de publication, pas à un script métier manquant.
 
 # 1 - Démarrage
+
+> **Écriture 0.9.1.0 : terminée.** Les trois difficultés, leur permanence, les capitaux, les obligations Banque/Conseiller/Permis, le permis provisoire Normal, l’amende personnelle, le verrou véhicule Difficile, l’onboarding différé, la migration et l’isolation de carrière possèdent leur logique. Les cases encore ouvertes dans cette étape sont des scénarios à revalider dans FS25.
 
 Le **Démarrage** est la racine de toute carrière AgriLifeManager. Ce n’est pas un module du tableau de bord : il initialise la sauvegarde, le niveau de difficulté, les obligations de départ et les règles globales qui seront ensuite utilisées par tous les modules.
 
@@ -152,7 +154,7 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 - [x] Accès véhicule autorisé pendant le permis provisoire.
 - [x] Notification de rappel toutes les **6 heures de jeu**.
 - [x] Tableau de bord : **PERMIS PROVISOIRE** + échéance restante.
-- [x] À expiration : **PROVISOIRE EXPIRÉ** et **ÉCHÉANCE DÉPASSÉE**.
+- [x] À expiration : **PROVISOIRE EXPIRÉ / ÉCHÉANCE DÉPASSÉE**.
 - [x] Rappels maintenus après expiration tant que l’examen n’est pas réussi.
 - [x] Amende unique : **500 €**.
 - [x] Amende débitée sur le **compte personnel** et non sur la trésorerie professionnelle.
@@ -182,6 +184,8 @@ Chaque module doit consulter le même profil de difficulté central. Selon le ni
 ---
 
 # 2 - Interface & expérience utilisateur
+
+> **Écriture 0.9.1.0 : terminée.** Les six cartes, les états de permis par difficulté, le résultat/historique d’examen, le journal, les vues marchés/contrats/locations, le tutoriel paginé, le grisage des onglets indisponibles et une politique responsive 1080p/1440p/4K sont intégrés. Les cases d’affichage restant ouvertes servent à la certification visuelle réelle sur les résolutions ciblées.
 
 L’Interface n’est **pas un module métier**. Elle sert de couche commune pour présenter les six modules joueur et les informations globales de la carrière.
 
@@ -241,6 +245,8 @@ Le **Démarrage** n’est pas une carte. Le bas du tableau de bord peut néanmoi
 ---
 
 # 3 - Module Banque
+
+> **Écriture 0.9.1.0 : terminée.** Le module couvre désormais relation bancaire durable, consultation/offres, profils de risque, conseiller compatible, financement influencé par difficulté et marchés, refinancement, historique professionnel filtrable, catégorisation comptable, amortissements, compte de résultat, bilan, fiscalité, capacité d’autofinancement, séparation pro/perso et rentabilité par activité. Les actions crédit vanilla sont déjà interceptées. Les cases encore ouvertes ci-dessous doivent être lues comme validations terrain/UI à effectuer, pas comme fonctions absentes.
 
 Le module Banque regroupe **Banque & finance + Comptabilité & fiscalité**. Il possède les données financières ; les autres modules peuvent les consulter mais ne doivent pas recréer leur propre logique bancaire ou comptable.
 
@@ -596,11 +602,9 @@ Documentation détaillée : **[docs/DYNAMIC_ECONOMY_AGRONOMY.md](docs/DYNAMIC_EC
 
 ---
 
-# 8 - Module Atelier, Concessionnaire & Gestion technique du parc
+# 8 - Atelier, Concessionnaire & Gestion technique du parc
 
-> **État code 0.8.1.0 TEST :** l'ensemble des scripts prévus pour l'étape 8 est écrit et intégré. Le pont Constats -> Responsabilité -> Atelier -> Assurance ainsi que le bonus-malus assurance sont écrits et intégrés. Les cases restent ouvertes jusqu'à la certification FS25 réelle, sauvegarde/rechargement et contrôle du log.
-
-Cette spécification détaille le périmètre validé de l'étape 8. Elle complète la feuille de route maître sans supprimer aucun ancien point. Lors du packaging de la prochaine build, le même contenu doit être fusionné dans `ROADMAP.md` et dans `docs/ROADMAP.md` du mod.
+> **État code 0.8.1.0 TEST :** l’ensemble des scripts prévus pour l’étape 8 est écrit et intégré : parc complet véhicules/outils/accessoires, composants adaptés, usure/stress, pannes fonctionnelles logiques, diagnostic, pièces multi-qualités, marché dynamique et délais, concessionnaire/SAV, atelier interne et mécaniciens, révision annuelle, contrôle technique biennal et contre-visite, dépannage/continuité, garanties/assurances, historique/valeur de revente, inspection technique de l’occasion et ponts optionnels MudSystem / Advanced Damage System. Les cases restent ouvertes jusqu’à la certification FS25 réelle, sauvegarde/rechargement, contrôle du log et essais avec/sans les mods tiers ciblés.
 
 L'étape 8 devient un écosystème technique complet qui couvre **véhicules, machines, outils et accessoires**. AgriLife gère le garage, le concessionnaire, les diagnostics, les pièces, les stocks, les délais, l'immobilisation, les coûts, la main-d'oeuvre, les garanties, l'historique et les conséquences économiques. Les systèmes mécaniques tiers compatibles peuvent fournir des données de panne ou de physique, mais AgriLife ne doit pas dupliquer leur moteur interne.
 
@@ -727,21 +731,19 @@ L'étape 8 devient un écosystème technique complet qui couvre **véhicules, ma
 
 ## Constats, responsabilité, prise en charge et bonus-malus
 
-> **État code 0.8.1.0 TEST :** ce bloc est écrit et intégré dans le package. Les cases restent ouvertes jusqu'à la certification FS25 réelle, sauvegarde/rechargement et contrôle du log.
-
-- [ ] Utiliser un **constat d'accident unique** comme dossier de référence entre Atelier et Assurance, sans recréer un second système de sinistre.
-- [ ] Séparer clairement l'identité du conducteur de la **responsabilité juridique/assurantielle** du sinistre.
+- [ ] Utiliser un **constat d’accident unique** comme dossier de référence entre Atelier et Assurance, sans recréer un second système de sinistre.
+- [ ] Séparer clairement l’identité du conducteur de la **responsabilité juridique/assurantielle** du sinistre.
 - [ ] Prévoir quatre états de responsabilité : **responsable, non responsable, responsabilité partagée, indéterminée**.
-- [ ] Une responsabilité indéterminée doit bloquer l'indemnisation définitive jusqu'à constat/expertise suffisants au lieu d'inventer une décision.
-- [ ] Le constat doit conserver circonstances, zone d'impact, tiers, observations, photos/témoins disponibles, admissions éventuelles, décision, motif et historique de recours.
-- [ ] Le **devis final Atelier** devient le montant technique de référence transmis à l'Assurance pour les réparations du matériel.
-- [ ] Si l'exploitation est **non responsable**, l'Assurance prend en charge la réparation prévue par le dossier et ouvre le recours contre le tiers lorsqu'il existe.
-- [ ] Si l'exploitation est **responsable**, ses propres réparations restent à sa charge selon la règle AgriLife validée ; la responsabilité civile peut couvrir les dommages causés au tiers selon le contrat.
+- [ ] Une responsabilité indéterminée doit bloquer l’indemnisation définitive jusqu’à constat/expertise suffisants au lieu d’inventer une décision.
+- [ ] Le constat doit conserver circonstances, zone d’impact, tiers, observations, photos/témoins disponibles, admissions éventuelles, décision, motif et historique de recours.
+- [ ] Le **devis final Atelier** devient le montant technique de référence transmis à l’Assurance pour les réparations du matériel.
+- [ ] Si l’exploitation est **non responsable**, l’Assurance prend en charge la réparation prévue par le dossier et ouvre le recours contre le tiers lorsqu’il existe.
+- [ ] Si l’exploitation est **responsable**, ses propres réparations restent à sa charge selon la règle AgriLife validée ; la responsabilité civile peut couvrir les dommages causés au tiers selon le contrat.
 - [ ] En **responsabilité partagée**, répartir réellement le montant Atelier entre Assurance et exploitation selon la part de responsabilité retenue.
-- [ ] Une contre-expertise ou un recours qui modifie la responsabilité doit recalculer la répartition financière et le bonus-malus au lieu d'empiler une seconde pénalité.
-- [ ] Le paiement par l'Assurance ne supprime jamais les contraintes Atelier : pièces, marché dynamique, stock, délai, immobilisation et réparation restent réels.
+- [ ] Une contre-expertise ou un recours qui modifie la responsabilité doit recalculer la répartition financière et le bonus-malus au lieu d’empiler une seconde pénalité.
+- [ ] Le paiement par l’Assurance ne supprime jamais les contraintes Atelier : pièces, marché dynamique, stock, délai, immobilisation et réparation restent réels.
 - [ ] Mettre en place un **coefficient bonus-malus durable** sur les assurances véhicule/responsabilité/transport, avec coefficient de départ **1,00**.
-- [ ] Après une année d'assurance sans sinistre responsable, appliquer un bonus annuel inspiré du fonctionnement réel : coefficient réduit de **5 %**, avec plancher AgriLife **0,50**.
+- [ ] Après une année d’assurance sans sinistre responsable, appliquer un bonus annuel inspiré du fonctionnement réel : coefficient réduit de **5 %**, avec plancher AgriLife **0,50**.
 - [ ] Un accident totalement responsable applique un malus de **25 %** au coefficient ; une responsabilité partagée applique une majoration réduite de moitié.
 - [ ] Un accident non responsable ne doit jamais créer de malus.
 - [ ] Borner le coefficient à **0,50 - 3,50** et prévoir le retour accéléré vers 1,00 après deux années consécutives sans sinistre responsable lorsque le coefficient reste supérieur à 1.
@@ -786,7 +788,7 @@ L'étape 8 devient un écosystème technique complet qui couvre **véhicules, ma
 
 # 9 - Finalisation
 
-> **État code 0.9.0.0 TEST :** l'infrastructure prévue pour l'étape 9 est écrite et intégrée : compatibilités optionnelles et fallback, découverte universelle, schéma de sauvegarde 4, migration 3 vers 4, identité de carrière, récupération backup, audit de persistance, isolation multi-fermes, squelette réseau serveur autoritaire, tutoriel paginé rebasé, audits l10n/publication, glossaire, documentation et packaging TEST/PUBLIC. Le multijoueur reste volontairement non publié et toutes les cases exigeant une vraie campagne FS25 restent ouvertes jusqu'à certification.
+> **État code 0.9.1.0 TEST :** l'infrastructure prévue pour l'étape 9 est écrite et intégrée : compatibilités optionnelles et fallback, découverte universelle, schéma de sauvegarde 4, migration 3 vers 4, identité de carrière, récupération backup, audit de persistance, isolation multi-fermes, squelette réseau serveur autoritaire, tutoriel paginé rebasé, audits l10n/publication, glossaire, documentation et packaging TEST/PUBLIC. Le multijoueur reste volontairement non publié et toutes les cases exigeant une vraie campagne FS25 restent ouvertes jusqu'à certification.
 
 La Finalisation n’est **pas un module joueur**. Elle regroupe les phases techniques nécessaires pour rendre AgriLifeManager stable, compatible, traduisible, migrable, multijoueur et publiable.
 
@@ -929,4 +931,4 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 
 **Auteur : Chez_Squall**  
 **Projet : FS25_AgriLifeManager**  
-**Statut actuel : développement pré-1.0 - Étapes 4, 5, 6, 7 et 8 écrites/intégrées ; constats, responsabilité Atelier/Assurance et bonus-malus écrits/intégrés ; certification FS25 réelle à poursuivre avant validation finale.**
+**Statut actuel : développement pré-1.0 - Étapes 4 à 9 écrites/intégrées côté code ; certification FS25 réelle, finitions historiques des étapes 1 à 3 et validation finale à poursuivre.**
