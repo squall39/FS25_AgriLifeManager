@@ -1016,6 +1016,7 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 | WRK-016 | Accidents, constats, responsabilité et bonus-malus durable | Atelier / Assurance | Intégrée | Oui | À certifier |
 | WRK-017 | Historique technique, inspection occasion et influence sur valeur de revente | Atelier / Marchés | Intégrée | Oui | À certifier |
 | WRK-018 | Couverture Atelier de tout le parc maintenable : véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids | Atelier | Partiellement intégrée | Oui | À certifier |
+| WRK-019 | Verrouillage réel du redémarrage lors d’une casse lourde | Atelier | Partiellement intégrée | Oui | À certifier |
 | FIN-001 | Sauvegardes, migrations, backup et isolation des carrières | Finalisation | Intégrée | Oui | À certifier |
 | FIN-002 | Compatibilité universelle sans liste fixe de maps/fruits, fallbacks autonomes | Finalisation | Intégrée | Oui | À certifier |
 | FIN-003 | 27 langues en parité structurelle et audits automatiques | Finalisation / l10n | Intégrée | Oui | Relecture native à poursuivre |
@@ -1027,6 +1028,7 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 - Toute nouvelle idée validée reçoit un ID ou complète une ligne existante sans supprimer l’historique détaillé de la roadmap.
 - Une idée passe à `Intégrée` uniquement lorsque le code correspondant est réellement présent dans la build de référence.
 - Une idée intégrée mais non testée reste explicitement `À certifier`.
+- Tout écart fonctionnel découvert par audit statique reçoit un statut explicite tant qu’il n’est pas réellement corrigé dans la build.
 - Si une idée modifie le comportement expliqué au joueur, ses textes de tutoriel et d’Assistance sont modifiés dans la même passe et dans toutes les langues distribuées.
 - La prochaine build et GitHub doivent refléter le même état avant qu’une synchronisation soit considérée terminée.
 
