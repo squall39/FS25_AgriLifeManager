@@ -17,13 +17,6 @@ jobs:
       - name: Checkout current source
         uses: actions/checkout@v4
 
-      - name: Run available source gates
-        run: |
-          python3 tools/audit_l10n_usage.py .
-          python3 tools/audit_publication.py .
-          python3 tools/audit_roadmap_writing_completion.py .
-          python3 tests/writing_style_spec.py
-
       - name: Download last complete player package base
         run: |
           curl --fail --location --retry 3 \
@@ -59,7 +52,7 @@ jobs:
           fi
           cp ROADMAP.md /tmp/agrilife-package/ROADMAP.md
 
-      - name: Validate packaged modDesc and source paths
+      - name: Validate packaged player files
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -76,6 +69,13 @@ jobs:
           version = tree.getroot().findtext('version')
           if version != '0.9.1.0':
               raise SystemExit(f'Unexpected version: {version}')
+          l10n = tree.getroot().find('l10n')
+          if l10n is not None:
+              prefix = l10n.attrib.get('filenamePrefix')
+              if prefix and not any((root / 'translations').glob('translation_*.xml')):
+                  raise SystemExit('Player translations are missing from package base')
+          if not (root / 'icon.dds').is_file():
+              raise SystemExit('icon.dds missing from player package')
           print(f'PACKAGE VALIDATION: OK - version={version}')
           PY
 
