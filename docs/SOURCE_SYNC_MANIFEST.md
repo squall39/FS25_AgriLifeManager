@@ -1,41 +1,34 @@
 # Synchronisation du source GitHub
 
-Version de référence : **0.7.9.0 TEST**
+Version package de référence : **0.8.0.0 TEST**
 
-Le package joueur et le dépôt GitHub utilisent les mêmes chemins pour les fichiers de source et de configuration publiables. La feuille de route complète est synchronisée automatiquement à chaque nouveau ZIP.
+Le package joueur reste la source de vérité exécutable. GitHub publie la source texte maintenable lorsque le connecteur permet un transfert exact du fichier. Il ne faut jamais publier une copie tronquée ou reconstruite approximativement d'un gros fichier uniquement pour afficher un miroir artificiellement « complet ».
 
-## Source de l'étape 7
+## Étape 8
 
-- `src/modules/market/DynamicMarketRoadmap7.lua` ;
-- `src/modules/contracts/CommercialContractsRoadmap7.lua` ;
-- `src/modules/contracts/CommercialContractsRoadmap7Events.lua` ;
-- `src/modules/assets/AssetLifecycleRoadmap7.lua` ;
-- `src/modules/compatibility/CompatibilityRoadmap7.lua` ;
-- `src/ui/AgriLifeStep7UI.lua` ;
-- `gui/AgriLifeHomeFrame.xml` ;
-- `tests/contracts_markets_roadmap7_spec.lua` ;
-- `tools/verify_release.py` ;
-- `modDesc.xml` ;
-- `src/core/AgriLifeVersion.lua` ;
-- `translations/` avec les clés Étape 7 ;
-- `docs/ROADMAP.md` complet et additif.
+Documentation déjà synchronisée :
 
-## Source publiée
+- `docs/STEP8_WORKSHOP_ROADMAP.md` : cahier des charges complet et additif ;
+- `docs/STEP8_IMPLEMENTATION_STATUS.md` : état 0.8.0.0 et contrôles ;
+- `docs/IMPLEMENTATION_MATRIX.md` : Étape 8 écrite / à certifier ;
+- `docs/VERIFICATION_REPORT.md` : résultats de vérification 0.8.0.0 ;
+- `README.md` : état projet 0.8.0.0.
 
-- `src/` : Lua actif ;
-- `gui/` : XML et définitions texte de l'interface ;
-- `translations/` : l10n distribuée ;
-- `tests/` : tests statiques et comportementaux ;
-- `tools/` : vérification de release ;
-- `data/` : configuration texte ;
-- `placeables/` et `vehicles/` : Lua/XML publiables ;
-- `docs/` : documentation technique et feuille de route ;
-- `CHANGELOG.md` côté dépôt, dérivé du `CHANGELOG.txt` du package.
+Le package 0.8.0.0 contient également les sources Étape 8 suivantes aux chemins du `modDesc.xml` :
+
+- `src/modules/workshop/WorkshopRoadmap8.lua` ;
+- `src/modules/market/DynamicMarketRoadmap8.lua` ;
+- `src/modules/assets/AssetLifecycleRoadmap8.lua` ;
+- `src/modules/compatibility/CompatibilityRoadmap8.lua` ;
+- `src/ui/AgriLifeStep8UI.lua` ;
+- mises à jour UI, tests, l10n et `modDesc.xml`.
+
+Le gros fichier `WorkshopRoadmap8.lua`, les traductions complètes et certains fichiers UI ne doivent être marqués « synchronisés GitHub » qu'après transfert exact. Le connecteur utilisé dans cette session n'accepte pas directement un chemin de fichier local pour ces gros contenus texte. Le dépôt documente donc explicitement cette limite au lieu de prétendre à tort que le miroir est complet.
 
 ## Assets binaires
 
 Les DDS, PNG, I3D, SHAPES et autres gros assets nécessaires au ZIP joueur ne sont pas automatiquement republiés dans le dépôt public. Ils restent dans le package lorsqu'ils sont nécessaires au fonctionnement du mod. Leur publication source dépend de leur origine et des droits de redistribution.
 
-## Règle de synchronisation
+## Règle de feuille de route
 
-Une build n'est considérée prête à être envoyée que lorsque `ROADMAP.md` sur GitHub et `docs/ROADMAP.md` dans le package décrivent le même registre maître et le même état d'avancement. Une synchronisation de source ne vaut jamais certification en jeu.
+Les idées validées restent additives. `docs/STEP8_WORKSHOP_ROADMAP.md` conserve la totalité des idées Étape 8 validées et `docs/ROADMAP.md` du package 0.8.0.0 contient la section fusionnée complète. La certification en jeu reste distincte de l'écriture du code.
