@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
+<modDesc descVersion="111">
+    <author>Chez_Squall</author>
+    <version>0.9.1.0</version>
+    <title>
+        <en>AgriLife Manager</en>
+        <de>AgriLife Manager</de>
+        <fr>AgriLife Manager</fr>
+        <it>AgriLife Manager</it>
+        <ct>AgriLife Manager</ct>
+        <cs>AgriLife Manager</cs>
+    </title>
+    <description>
+        <en>Complete AgriLife Manager career suite: official onboarding, careers, exams, payroll, banking, commercial contracts, insurance, workshop, accidents, leasing and used vehicles. © 2026 Chez_Squall. Official distribution only through KingMods; share only the original publication link: https://www.kingmods.net/fr/</en>
+        <de>Vollständige AgriLife-Manager-Karrieresuite mit Gründung, Karriere, Prüfungen, Lohn, Bank, Verträgen, Versicherung, Werkstatt, Unfällen, Leasing und Gebrauchtmarkt. © 2026 Chez_Squall. Offizielle Verbreitung nur über KingMods; bitte ausschließlich den Original-Link teilen: https://www.kingmods.net/fr/</de>
+        <fr>Suite de carrière AgriLife Manager complète : création officielle, carrière, examens, paie, banque, contrats, assurances, atelier, accidents, leasing et marché de l'occasion. © 2026 Chez_Squall. Distribution officielle uniquement via KingMods ; partagez uniquement le lien de publication d’origine sur https://www.kingmods.net/fr/</fr>
+        <it>Suite completa AgriLife Manager: avvio ufficiale, carriera, esami, stipendi, banca, contratti, assicurazioni, officina, incidenti, leasing e mercato dell'usato. © 2026 Chez_Squall. Distribuzione ufficiale esclusivamente tramite KingMods; condividere solo il link originale di pubblicazione: https://www.kingmods.net/fr/</it>
+        <ct>完整的 AgriLife Manager 農業職涯套件：正式建立、職涯、考試、薪資、銀行、商業合約、保險、維修廠、事故、租賃與二手市場。 © 2026 Chez_Squall。僅透過 KingMods 官方發布；請只分享原始發布連結：https://www.kingmods.net/fr/</ct>
+        <cs>完整的 AgriLife Manager 农业职业套件：正式建立、职业、考试、薪资、银行、商业合同、保险、维修厂、事故、租赁与二手市场。 © 2026 Chez_Squall。仅通过 KingMods 官方发布；请只分享原始发布链接：https://www.kingmods.net/fr/</cs>
+    </description>
+    <iconFilename>icon.dds</iconFilename>
+    <multiplayer supported="false" />
+    <l10n filenamePrefix="translations/translation">
+        <text name="action_activateService"><en>Open service doors</en><de>Servicetüren öffnen</de><fr>Ouvrir les portes de service</fr><it>Apri le porte di servizio</it><ct>開啟維修門</ct><cs>开启维修门</cs></text>
+        <text name="action_deactivateService"><en>Close service doors</en><de>Servicetüren schließen</de><fr>Fermer les portes de service</fr><it>Chiudi le porte di servizio</it><ct>關閉維修門</ct><cs>关闭维修门</cs></text>
+        <text name="action_showMarkers"><en>Show workshop markers</en><de>Werkstattmarkierungen anzeigen</de><fr>Afficher les repères d'atelier</fr><it>Mostra i marcatori dell’officina</it><ct>顯示維修廠標記</ct><cs>显示维修厂标记</cs></text>
+        <text name="action_hideMarkers"><en>Close service doors</en><de>Werkstattmarkierungen masquer</de><fr>Masquer les repères d'atelier</fr><it>Nascondi i marcatori dell’officina</it><ct>隱藏維修廠標記</ct><cs>隐藏维修厂标记</cs></text>
+        <text name="actionIC_Animation"><en>Interactive controls</en><de>Interaktive Steuerung</de><fr>Commandes interactives</fr><it>Comandi interattivi</it><ct>互動控制</ct><cs>互动控制</cs></text>
+        <text name="actionIC_IC"><en>Interactive control</en><de>Interaktive Bedienung</de><fr>Commande interactive</fr><it>Controllo interattivo</it><ct>互動控制</ct><cs>互动控制</cs></text>
+        <text name="input_AGRILIFE_FIELD_KIT"><en>Use field service kit</en><de>Feldservice-Kit verwenden</de><fr>Utiliser le kit de service mobile</fr><it>Usa il kit di assistenza mobile</it><ct>使用行動維修工具組</ct><cs>使用移动维修工具组</cs></text>
+        <text name="input_AGRILIFE_SERVICE_TRUCK"><en>Use service truck</en><de>Servicefahrzeug verwenden</de><fr>Utiliser le camion atelier</fr><it>Usa il camion officina</it><ct>使用維修卡車</ct><cs>使用维修卡车</cs></text>
+    </l10n>
+    <fillTypes filename="data/fillTypes.xml" />
+    <actions>
+        <action name="AGRILIFE_FIELD_KIT" category="ONFOOT VEHICLE" axisType="HALF" />
+        <action name="AGRILIFE_SERVICE_TRUCK" category="VEHICLE" axisType="HALF" />
+    </actions>
+    <inputBinding>
+        <actionBinding action="AGRILIFE_FIELD_KIT">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_o" />
+        </actionBinding>
+        <actionBinding action="AGRILIFE_SERVICE_TRUCK">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_r" />
+        </actionBinding>
+    </inputBinding>
+    <extraSourceFiles>
+        <sourceFile filename="src/core/AgriLifeVersion.lua" />
+        <sourceFile filename="src/core/AgriLifeLogger.lua" />
+        <sourceFile filename="src/core/AgriLifeResult.lua" />
+        <sourceFile filename="src/core/AgriLifeLifecycle.lua" />
+        <sourceFile filename="src/core/AgriLifeMissionContext.lua" />
+        <sourceFile filename="src/core/AgriLifeSettings.lua" />
+        <sourceFile filename="src/core/AgriLifeSubscriptionManager.lua" />
+        <sourceFile filename="src/core/AgriLifeModuleContract.lua" />
+        <sourceFile filename="src/core/AgriLifeModuleRegistry.lua" />
+        <sourceFile filename="src/core/AgriLifeMigrationManager.lua" />
+        <sourceFile filename="src/core/AgriLifePersistence.lua" />
+        <sourceFile filename="src/core/AgriLifeNetworkRoadmap9.lua" />
+        <sourceFile filename="src/ui/AgriLifeMiniPdaProgress.lua" />
+        <sourceFile filename="src/ui/AgriLifeTutorialDialog.lua" />
+        <sourceFile filename="src/ui/AgriLifeJournalDialog.lua" />
+        <sourceFile filename="src/ui/AgriLifeHelpIntegration6.lua" />
+        <sourceFile filename="src/modules/company/Company6Service.lua" />
+        <sourceFile filename="src/modules/company/Company6Events.lua" />
+        <sourceFile filename="src/modules/company/CompanyModule.lua" />
+        <sourceFile filename="src/modules/people/People6Service.lua" />
+        <sourceFile filename="src/modules/people/People6Events.lua" />
+        <sourceFile filename="src/modules/people/PeopleModule.lua" />
+        <sourceFile filename="src/modules/bank/Bank6Service.lua" />
+        <sourceFile filename="src/modules/bank/Bank6Events.lua" />
+        <sourceFile filename="src/modules/bank/BankModule.lua" />
+        <sourceFile filename="src/modules/bank/BankRoadmap3.lua" />
+        <sourceFile filename="src/modules/bank/BankRoadmap3Completion.lua" />
+        <sourceFile filename="src/modules/career/Career6Service.lua" />
+        <sourceFile filename="src/modules/career/Career6Events.lua" />
+        <sourceFile filename="src/modules/career/CareerWorkTracker.lua" />
+        <sourceFile filename="src/modules/career/CareerTransportTracker.lua" />
+        <sourceFile filename="src/modules/career/Career6Hud.lua" />
+        <sourceFile filename="src/modules/career/CareerModule.lua" />
+        <sourceFile filename="src/modules/payroll/Payroll6Service.lua" />
+        <sourceFile filename="src/modules/payroll/PayrollRoadmap4.lua" />
+        <sourceFile filename="src/modules/payroll/Payroll6Events.lua" />
+        <sourceFile filename="src/modules/payroll/PayrollModule.lua" />
+        <sourceFile filename="src/modules/exam/ExamTaskCatalog.lua" />
+        <sourceFile filename="src/modules/exam/Exam6Service.lua" />
+        <sourceFile filename="src/modules/exam/Exam6Events.lua" />
+        <sourceFile filename="src/modules/exam/Exam6Hud.lua" />
+        <sourceFile filename="src/modules/exam/ExamModule.lua" />
+        <sourceFile filename="src/modules/contracts/CommercialContracts6Service.lua" />
+        <sourceFile filename="src/modules/contracts/CommercialContracts6Events.lua" />
+        <sourceFile filename="src/modules/contracts/CommercialContractsModule.lua" />
+        <sourceFile filename="src/modules/economy/Economy6Service.lua" />
+        <sourceFile filename="src/modules/economy/EconomyModule.lua" />
+        <sourceFile filename="src/modules/economy/EconomyAccountingRoadmapCompletion.lua" />
+        <sourceFile filename="src/modules/economy/EconomyStartupRoadmap1.lua" />
+        <sourceFile filename="src/modules/integrity/Integrity6Service.lua" />
+        <sourceFile filename="src/modules/integrity/IntegrityModule.lua" />
+        <sourceFile filename="src/modules/insurance/Insurance6Service.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceModule.lua" />
