@@ -3,7 +3,7 @@
 AgriLife = AgriLife or {}
 
 AgriLife.Version = {
-    MOD = "0.7.9.0",
+    MOD = "0.8.1.0",
     SAVE_SCHEMA = 3,
     SETTINGS_SCHEMA = 2,
     DISPLAY_NAME = "AgriLife Manager",
