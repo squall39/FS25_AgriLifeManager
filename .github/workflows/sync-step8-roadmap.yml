@@ -1,0 +1,38 @@
+name: Sync Step 8 roadmap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/STEP8_WORKSHOP_ROADMAP.md
+      - docs/STEP8_INSURANCE_CLAIMS.md
+      - tools/sync_step8_roadmap.py
+      - .github/workflows/sync-step8-roadmap.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Synchronize roadmap
+        run: python3 tools/sync_step8_roadmap.py
+
+      - name: Commit synchronized roadmap
+        run: |
+          if git diff --quiet -- ROADMAP.md; then
+            echo "ROADMAP.md already synchronized"
+            exit 0
+          fi
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add ROADMAP.md
+          git commit -m "Synchronize Step 8 master roadmap"
+          git push
