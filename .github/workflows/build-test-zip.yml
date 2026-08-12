@@ -14,8 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current source
+      - name: Checkout complete source history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Download last complete player package base
         run: |
@@ -52,6 +54,97 @@ jobs:
           fi
           cp ROADMAP.md /tmp/agrilife-package/ROADMAP.md
 
+      - name: Restore active sources from Git history when needed
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import xml.etree.ElementTree as ET
+
+          repo = Path.cwd()
+          package = Path('/tmp/agrilife-package')
+          tree = ET.parse(package / 'modDesc.xml')
+          restored = []
+          unresolved = []
+
+          for node in tree.findall('.//sourceFile'):
+              rel = node.attrib.get('filename')
+              if not rel:
+                  continue
+              target = package / rel
+              if target.is_file():
+                  continue
+
+              proc = subprocess.run(
+                  ['git', 'log', '--all', '-1', '--format=%H', '--', rel],
+                  cwd=repo,
+                  text=True,
+                  capture_output=True,
+                  check=False,
+              )
+              commit = proc.stdout.strip()
+              if not commit:
+                  unresolved.append(rel)
+                  continue
+
+              blob = subprocess.run(
+                  ['git', 'show', f'{commit}:{rel}'],
+                  cwd=repo,
+                  capture_output=True,
+                  check=False,
+              )
+              if blob.returncode != 0:
+                  unresolved.append(rel)
+                  continue
+
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(blob.stdout)
+              restored.append((rel, commit[:10]))
+
+          for rel, commit in restored:
+              print(f'RESTORED {rel} from {commit}')
+          print(f'RESTORED_COUNT={len(restored)}')
+          if unresolved:
+              raise SystemExit('Unresolved active sources: ' + ', '.join(unresolved))
+          PY
+
+      - name: Restore newest historical translations when available
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+
+          repo = Path.cwd()
+          package = Path('/tmp/agrilife-package')
+          paths = subprocess.run(
+              ['git', 'log', '--all', '--name-only', '--pretty=format:', '--', 'translations'],
+              cwd=repo,
+              text=True,
+              capture_output=True,
+              check=False,
+          ).stdout.splitlines()
+          paths = sorted({p.strip() for p in paths if p.strip().startswith('translations/translation_') and p.strip().endswith('.xml')})
+          restored = 0
+          for rel in paths:
+              commit = subprocess.run(
+                  ['git', 'log', '--all', '-1', '--format=%H', '--', rel],
+                  cwd=repo,
+                  text=True,
+                  capture_output=True,
+                  check=False,
+              ).stdout.strip()
+              if not commit:
+                  continue
+              blob = subprocess.run(['git', 'show', f'{commit}:{rel}'], cwd=repo, capture_output=True, check=False)
+              if blob.returncode != 0:
+                  continue
+              target = package / rel
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(blob.stdout)
+              restored += 1
+          print(f'HISTORICAL_TRANSLATIONS_RESTORED={restored}')
+          PY
+
       - name: Validate packaged player files
         run: |
           python3 - <<'PY'
@@ -73,7 +166,7 @@ jobs:
           if l10n is not None:
               prefix = l10n.attrib.get('filenamePrefix')
               if prefix and not any((root / 'translations').glob('translation_*.xml')):
-                  raise SystemExit('Player translations are missing from package base')
+                  raise SystemExit('Player translations are missing from package')
           if not (root / 'icon.dds').is_file():
               raise SystemExit('icon.dds missing from player package')
           print(f'PACKAGE VALIDATION: OK - version={version}')
