@@ -1,0 +1,128 @@
+- [ ] Vérifier le HUD permanent, les transitions d’étapes et les erreurs explicites.
+- [ ] Évaluer et intégrer, après rebase sur la build courante, la contribution de dialogue tutoriel paginé proposée dans l’issue GitHub #2.
+
+---
+
+# 3 - Module Banque
+
+> **Écriture 0.9.1.0 : terminée.** Le module couvre désormais relation bancaire durable, consultation/offres, profils de risque, conseiller compatible, financement influencé par difficulté et marchés, refinancement, historique professionnel filtrable, catégorisation comptable, amortissements, compte de résultat, bilan, fiscalité, capacité d’autofinancement, séparation pro/perso et rentabilité par activité. Les actions crédit vanilla sont déjà interceptées. Les cases encore ouvertes ci-dessous doivent être lues comme validations terrain/UI à effectuer, pas comme fonctions absentes.
+
+Le module Banque regroupe **Banque & finance + Comptabilité & fiscalité**. Il possède les données financières ; les autres modules peuvent les consulter mais ne doivent pas recréer leur propre logique bancaire ou comptable.
+
+**Règle de chantier : le module Banque devra être terminé de A à Z et validé avant d’ouvrir le chantier Entreprise.**
+
+## Banque, conseiller & relation bancaire
+
+- [x] Base Banque et Conseiller.
+- [x] Choix banque + conseiller utilisé comme prérequis réel du Démarrage en Normal.
+- [x] Demande de crédit avec délai d’étude basé sur l’horloge de jeu FS25.
+- [x] Décision réelle : acceptation, refus ou validation conditionnelle selon le dossier.
+- [x] Persistance du dossier bancaire en sauvegarde.
+- [x] Une seule demande active à la fois.
+- [x] Objet du financement sélectionnable.
+- [x] Profils bancaires et conseillers différenciés.
+- [x] Réputation et compétence affichées séparément en étoiles.
+- [x] Qualité intrinsèque du professionnel séparée de la relation/confiance personnelle du joueur.
+- [ ] Faire dépendre toutes les règles bancaires du profil Facile / Normal / Difficile.
+- [ ] Ajouter/affiner solidité bancaire, politique de risque, sévérité et rapidité d’étude.
+- [ ] Ajouter des raisons détaillées de décision et journaliser les facteurs déterminants.
+- [ ] Faire varier taux, plafond, durée, garanties et délai selon banque, conseiller, objet, dossier et difficulté.
+- [ ] Intégrer les tendances économiques et les marchés dans certaines décisions de financement.
+
+## Contrat bancaire durable
+
+La banque et le conseiller ne doivent pas rester des sélecteurs libres une fois la relation engagée. Cette partie est volontairement laissée au chantier **Banque**, pas au Démarrage.
+
+- [ ] Ajouter une phase de consultation/offre avant engagement.
+- [ ] Permettre au joueur de choisir une banque et un conseiller compatibles avec son dossier.
+- [ ] Signer un **contrat bancaire à durée déterminée** entre exploitation, banque et conseiller.
+- [ ] Une fois le contrat signé, verrouiller l’accès aux autres banques/conseillers pendant la durée du contrat.
+- [ ] Afficher clairement la banque, le conseiller, le statut du contrat et le temps restant dans Banque et sur le Tableau de bord.
+- [ ] Permettre le renouvellement naturel du contrat à échéance.
+- [ ] Permettre un changement de banque à échéance.
+- [ ] Permettre une rupture volontaire anticipée avec conséquences réelles : frais éventuels, baisse de confiance/réputation bancaire et interdiction temporaire de revenir dans la banque quittée.
+- [ ] Permettre une résiliation anticipée par la banque en cas de situation grave : mauvaise réputation, incidents répétés, déficit/découvert excessif, impayés ou autres critères cohérents.
+- [ ] Conserver les prêts existants liés à leur banque d’origine même après changement d’établissement.
+- [ ] Prévoir refinancement/rachat de dette lorsqu’une autre banque accepte de reprendre le dossier.
+- [ ] Sauvegarder et synchroniser complètement la relation bancaire.
+
+## Comptes & finances de base
+
+- [x] Base du compte professionnel.
+- [x] Base du compte personnel.
+- [x] Début de relevé/mouvements sur le compte professionnel.
+- [x] Relevé personnel enrichi : capital initial, paies, brut, retenues, net versé, logement, frais bancaires personnels, sanctions et solde après mouvement.
+- [x] Séparation vérifiée entre compte professionnel et compte personnel pour l’amende du permis provisoire Normal.
+- [ ] Harmoniser tous les arrondis monétaires affichés afin que le relevé soit recalculable ligne par ligne sans écart visuel.
+- [ ] Historique complet des transactions avec catégories/tags.
+- [ ] Filtres par période, catégorie, fournisseur, contrat et type de flux.
+- [ ] Détail des prêts : capital, restant dû, taux, mensualité, échéance, durée, coût total et remboursement anticipé.
+- [ ] Affichage séparé de la dette FS25 héritée sur les sauvegardes existantes.
+- [ ] Prévision de trésorerie et capacité d’emprunt.
+- [ ] Refinancement / renégociation via conseiller.
+
+## Comptabilité & fiscalité
+
+- [ ] Construire un véritable exercice comptable AgriLife.
+- [ ] Chiffre d’affaires, produits, charges, salaires, assurances, intérêts, entretien et autres dépenses catégorisés.
+- [ ] Bénéfice/perte de l’exercice.
+- [ ] Amortissement du matériel et des investissements lorsque pertinent.
+- [ ] Bilan simplifié : trésorerie, dettes, actifs et résultat.
+- [ ] Fiscalité adaptée à Facile / Normal / Difficile.
+- [ ] Échéances fiscales et paiement depuis le compte professionnel.
+- [ ] Clôture d’exercice avec récapitulatif annuel.
+- [ ] Historique pluriannuel des résultats.
+- [ ] Utiliser résultats, endettement et capacité d’autofinancement dans les décisions bancaires.
+- [ ] Séparation pro/perso plus contraignante à mesure que la difficulté augmente.
+- [ ] Conséquences réelles en cas d’impayé fiscal ou de trésorerie insuffisante.
+- [ ] Intégrer achats, ventes, locations, carburants, intrants, contrats et productions au calcul réel de rentabilité.
+
+## Menu Finances vanilla FS25
+
+- [x] Blocage fonctionnel des nouvelles opérations de crédit vanilla.
+- [ ] Intercepter les actions avant comptabilisation FS25.
+- [ ] Supprimer/désactiver visuellement les commandes Emprunter / Rembourser dans le menu Finances vanilla.
+- [ ] Préserver le reste des informations financières utiles du jeu.
+- [ ] À terme, faire d’AgriLife → Banque → Finances la page financière principale.
+
+---
+
+# 4 - Module Entreprise
+
+> **État code 0.7.6.0 TEST :** l’ensemble des scripts prévus pour l’étape 4 est écrit et intégré. Les cases de cette section restent ouvertes jusqu’à la certification complète en jeu, sauvegarde/rechargement et contrôle du log.
+
+Le module Entreprise regroupe la gestion de la main-d’œuvre, la paie, les ordres de travail, l’évolution des salariés et la **réputation de l’exploitation/du dirigeant**.
+
+## Salariés & contrats de travail
+
+- [x] Structure Personnel / Équipe & paie.
+- [x] Base des employés AgriLife.
+- [x] Compétences visuelles en étoiles.
+- [ ] Renommer/réorganiser l’entrée actuelle **Salaires & Personnel** en **Entreprise** lorsque ce chantier sera ouvert.
+- [ ] Ajouter trois types de contrats : **CDI, CDD et saisonnier**.
+- [ ] Fiche salarié complète : contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, expérience et historique.
+- [ ] Disponibilité, horaires, pauses, heures supplémentaires, congés, maladie et absences.
+- [ ] Promotion, augmentation, renouvellement, fin de contrat et licenciement.
+- [ ] Faire varier coûts employeur, contraintes et tolérances selon la difficulté.
+
+## Une personne = une tâche réelle
+
+- [ ] **1 salarié disponible = 1 tâche automatisée active maximum.**
+- [ ] Empêcher qu’un même salarié soit affecté simultanément à plusieurs véhicules/tâches.
+- [ ] Libérer automatiquement le salarié à la fin, l’arrêt ou l’annulation de sa tâche.
+- [ ] Afficher clairement : disponible / affecté / en pause / absent / congé / malade.
+
+## Centre d’ordres AgriLife
+
+- [ ] Sélection visuelle : **salarié → véhicule → outil → travail → champ/destination**.
+- [ ] Proposer les travaux compatibles avec le véhicule et l’outil réellement attaché.
+- [ ] S’appuyer sur l’IA native FS25 lorsque le travail demandé est supporté par le jeu.
+- [ ] Commandes : démarrer, mettre en pause, reprendre, arrêter/rappeler.
+- [ ] Afficher état, progression, champ/destination, véhicule et outil utilisés.
+- [ ] Ne jamais simuler un travail impossible.
+
+## Paie unique & intégrations d’exécution
+
+AgriLife devient la source unique de paie des salariés enregistrés afin d’éviter de payer deux fois un même ouvrier lorsqu’une tâche est exécutée par FS25, Courseplay ou AutoDrive.
+
+- [ ] Faire d’AgriLife l’unique moteur de salaire des employés enregistrés dans Entreprise.
