@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<!-- AgriLife Manager original content: official distribution via KingMods only; share the original publication link. -->
+<GUI onOpen="onOpen" onCreate="onCreate">
+    <GuiElement profile="newLayer" />
+    <Bitmap profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement profile="dialogBg" id="dialogElement" size="1120px 790px">
+        <ThreePartBitmap profile="fs25_dialogBgMiddle" />
+        <ThreePartBitmap profile="fs25_dialogBgTop" />
+        <ThreePartBitmap profile="fs25_dialogBgBottom" />
+        <GuiElement profile="fs25_dialogContentContainer">
+            <Text profile="fs25_dialogTitle" position="0px -22px" text="$l10n_agrilifemanager_accident_title"/>
+            <Text profile="radSubtitle" position="0px -50px" text="$l10n_agrilifemanager_accident_subtitle"/>
+            <MultiTextOption profile="radWideSelector" id="accidentSelector" position="0px -82px" onClick="onAccidentChanged"/>
+            <Text profile="radEmpty" id="emptyText" position="0px -245px" text="$l10n_agrilifemanager_accident_none"/>
+            <GuiElement profile="radPanel" id="statementPanel" position="0px -125px">
+                <Bitmap profile="radPanelBg"/>
+                <Bitmap profile="radAccent" position="0px 0px"/>
+                <Text profile="radSectionTitle" position="0px -15px" text="$l10n_agrilifemanager_accident_statementTitle"/>
+                <Text profile="radLabel" position="-285px -55px" text="$l10n_agrilifemanager_accident_vehicle"/>
+                <Text profile="radValue" id="vehicleText" position="-80px -55px" text=""/>
+                <Text profile="radLabel" position="-285px -82px" text="$l10n_agrilifemanager_accident_other"/>
+                <Text profile="radValue" id="otherText" position="-80px -82px" text=""/>
+                <Text profile="radContact" id="contactText" position="205px -68px" text=""/>
+                <Text profile="radMeta" id="incidentTypeText" position="-205px -112px" text=""/>
+                <Text profile="radMeta" id="locationText" position="205px -112px" text=""/>
+                <Text profile="radFieldLabel" position="-270px -155px" text="$l10n_agrilifemanager_accident_circumstance"/>
+                <MultiTextOption profile="radField" id="circumstanceSelector" position="-270px -179px"/>
+                <Text profile="radFieldLabel" position="0px -155px" text="$l10n_agrilifemanager_accident_impact"/>
+                <MultiTextOption profile="radField" id="impactSelector" position="0px -179px"/>
+                <Text profile="radFieldLabel" position="270px -155px" text="$l10n_agrilifemanager_accident_observation"/>
+                <MultiTextOption profile="radField" id="observationSelector" position="270px -179px"/>
+                <Text profile="radStatus" id="statusText" position="0px -240px" text=""/>
+                <Text profile="radResult" id="resultText" position="0px -282px" text=""/>
+            </GuiElement>
+        </GuiElement>
+        <BoxLayout profile="fs25_dialogButtonBox">
+            <Button profile="buttonActivate" id="submitButton" text="$l10n_agrilifemanager_accident_submit" onClick="onSubmitStatement"/>
+            <Button profile="buttonBack" text="$l10n_agrilifemanager_button_close" onClick="onClickBack"/>
+        </BoxLayout>
+    </GuiElement>
+    <GUIProfiles>
+        <Profile name="radSubtitle" extends="fs25_textDefault" with="anchorTopCenter"><size value="960px 28px"/><textSize value="14px"/><textAlignment value="center"/><textColor value="0.68 0.73 0.8 1"/></Profile>
+        <Profile name="radWideSelector" extends="fs25_multiTextOption" with="anchorTopCenter"><size value="930px 40px"/></Profile>
+        <Profile name="radEmpty" extends="fs25_textDefault" with="anchorTopCenter"><size value="760px 45px"/><textSize value="18px"/><textAlignment value="center"/><textColor value="0.75 0.78 0.82 1"/></Profile>
+        <Profile name="radPanel" extends="emptyPanel" with="anchorTopCenter"><size value="980px 500px"/></Profile>
+        <Profile name="radPanelBg" extends="baseReference" with="anchorTopCenter"><size value="980px 500px"/><imageColor value="0.045 0.055 0.072 0.98"/></Profile>
+        <Profile name="radAccent" extends="baseReference" with="anchorTopCenter"><size value="840px 5px"/><imageColor value="0.95 0.55 0.08 1"/></Profile>
+        <Profile name="radSectionTitle" extends="fs25_textDefault" with="anchorTopCenter"><size value="900px 32px"/><textSize value="18px"/><textBold value="true"/><textAlignment value="center"/></Profile>
+        <Profile name="radLabel" extends="fs25_textDefault" with="anchorTopCenter"><size value="190px 26px"/><textSize value="14px"/><textBold value="true"/><textAlignment value="left"/><textColor value="0.68 0.73 0.8 1"/></Profile>
+        <Profile name="radValue" extends="fs25_textDefault" with="anchorTopCenter"><size value="330px 28px"/><textSize value="15px"/><textAlignment value="left"/></Profile>
+        <Profile name="radContact" extends="fs25_textDefault" with="anchorTopCenter"><size value="330px 50px"/><textSize value="14px"/><textAlignment value="center"/><textWrap value="true"/><textColor value="1 0.72 0.25 1"/></Profile>
+        <Profile name="radMeta" extends="fs25_textDefault" with="anchorTopCenter"><size value="380px 24px"/><textSize value="14px"/><textBold value="true"/><textAlignment value="center"/><textColor value="0.48 0.82 0.94 1"/></Profile>
+        <Profile name="radFieldLabel" extends="fs25_textDefault" with="anchorTopCenter"><size value="240px 20px"/><textSize value="11px"/><textBold value="true"/><textAlignment value="center"/></Profile>
+        <Profile name="radField" extends="fs25_multiTextOption" with="anchorTopCenter"><size value="270px 38px"/><textSize value="13px"/></Profile>
+        <Profile name="radStatus" extends="fs25_textDefault" with="anchorTopCenter"><size value="880px 34px"/><textSize value="17px"/><textBold value="true"/><textAlignment value="center"/><textColor value="0.95 0.55 0.08 1"/></Profile>
+        <Profile name="radResult" extends="fs25_textDefault" with="anchorTopCenter"><size value="880px 72px"/><textSize value="15px"/><textAlignment value="center"/><textWrap value="true"/><textColor value="0.75 0.82 0.9 1"/></Profile>
+    </GUIProfiles>
+</GUI>
