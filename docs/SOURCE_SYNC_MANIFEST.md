@@ -4,7 +4,6 @@ Version de référence : **0.9.1.0 TEST**
 
 Le package joueur reste la source de vérité exécutable. Le dépôt GitHub publie les sources texte maintenables et la feuille de route complète. Une synchronisation de source ne vaut jamais certification en jeu.
 
-
 ## Fermeture d'écriture 0.9.1.0
 
 - `src/modules/bank/BankRoadmap3Completion.lua` : financement marché/difficulté, consultation, comptabilité avancée, fiscalité, amortissements, bilan et CAF ;
@@ -15,7 +14,6 @@ Le package joueur reste la source de vérité exécutable. Le dépôt GitHub pub
 - `tools/audit_roadmap_writing_completion.py` : gate dédié à la fermeture d'écriture ;
 - `tests/roadmap_writing_completion_spec.lua` : contrôle statique Lua de la présence des briques ;
 - `docs/ROADMAP.md` : statut 0.9.1.0 additif, sans suppression d'idées.
-
 
 ## Tutoriel / Assistance 0.9.1.0
 
@@ -69,3 +67,12 @@ Une build livrée doit porter le même numéro de version, le même état de roa
 ## Règle de synchronisation conversation -> projet
 
 Une décision explicitement validée doit être enregistrée dans la roadmap et son registre maître. Si elle change le comportement joueur, tutoriel et Assistance sont mis à jour dans toutes les langues distribuées. GitHub et la build de référence doivent ensuite refléter la même décision. Une idée non codée reste `À intégrer` ou `Partiellement intégrée`.
+
+## Audit statique des scripts - 2026-08-12
+
+- `docs/STATIC_SCRIPT_AUDIT_0.9.1.0.md` conserve l'inventaire détaillé étape par étape.
+- Package de référence audité : 122 Lua au total, dont **109 Lua runtime actifs** et **13 Lua de tests volontairement non chargés**.
+- Aucun Lua runtime présent n'est oublié du `modDesc.xml`.
+- Les manques actuels ne sont pas des fichiers déjà présents mais non installés : ce sont des complétions fonctionnelles Atelier/Assurance encore à écrire.
+- La couverture Atelier validée inclut véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids ; le dépannage physique terrain doit encore être généralisé au-delà des seuls matériels motorisés.
+- La build TEST synchronisée après audit possède le SHA-256 `157f3e3b277650155e5ed1b4fdd64e054ffc2ae9e3e4fa5edcd81a5b8236a932` et contient 466 fichiers.
