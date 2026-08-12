@@ -27,7 +27,7 @@ jobs:
           mkdir -p /tmp/agrilife-package
           unzip -q /tmp/agrilife-base.zip -d /tmp/agrilife-package
 
-      - name: Overlay current 0.9.1.0 maintained source
+      - name: Overlay current 0.9.3.1 maintained source
         run: |
           mkdir -p /tmp/agrilife-package/src
           cp -a src/. /tmp/agrilife-package/src/
@@ -160,7 +160,7 @@ jobs:
           if missing:
               raise SystemExit('Missing source files: ' + ', '.join(missing))
           version = tree.getroot().findtext('version')
-          if version != '0.9.1.0':
+          if version != '0.9.3.1':
               raise SystemExit(f'Unexpected version: {version}')
           l10n = tree.getroot().find('l10n')
           if l10n is not None:
@@ -183,7 +183,7 @@ jobs:
       - name: Upload TEST ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: FS25_AgriLifeManager-0.9.1.0-TEST
+          name: FS25_AgriLifeManager-0.9.3.1-TEST
           path: FS25_AgriLifeManager.zip
           if-no-files-found: error
           compression-level: 0
