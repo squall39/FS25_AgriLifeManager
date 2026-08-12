@@ -59,6 +59,7 @@
 | WRK-015 | Réparation maison indemnisée uniquement sur dépenses admissibles réelles, jamais de bénéfice d’assurance | Atelier / Assurance | À intégrer | Oui | À certifier |
 | WRK-016 | Accidents, constats, responsabilité et bonus-malus durable | Atelier / Assurance | Intégrée | Oui | À certifier |
 | WRK-017 | Historique technique, inspection occasion et influence sur valeur de revente | Atelier / Marchés | Intégrée | Oui | À certifier |
+| WRK-018 | Couverture Atelier de tout le parc maintenable : véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids | Atelier | Partiellement intégrée | Oui | À certifier |
 | FIN-001 | Sauvegardes, migrations, backup et isolation des carrières | Finalisation | Intégrée | Oui | À certifier |
 | FIN-002 | Compatibilité universelle sans liste fixe de maps/fruits, fallbacks autonomes | Finalisation | Intégrée | Oui | À certifier |
 | FIN-003 | 27 langues en parité structurelle et audits automatiques | Finalisation / l10n | Intégrée | Oui | Relecture native à poursuivre |
