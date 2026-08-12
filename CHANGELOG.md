@@ -2,6 +2,22 @@
 
 Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les jalons de la branche actuelle au lieu de recopier toutes les notes 0.6.x.
 
+## 0.8.0.0 TEST - Atelier, Concessionnaire & Gestion technique du parc
+
+- Étape 8 écrite et intégrée côté package.
+- Suivi technique de tout le parc : véhicules, machines, outils et accessoires.
+- Composants adaptés au matériel, usure/stress et pannes fonctionnelles avec conséquences logiques.
+- Diagnostics, symptômes, devis, immobilisation, dépannage et continuité d'activité.
+- Pièces OEM, adaptables, reconditionnées et occasion.
+- Marché dynamique des pièces branché sur le moteur économique de l'étape 7, avec stock, rareté, pénuries et livraisons standard/prioritaire/express.
+- Concessionnaire/SAV, campagnes de rappel et garanties.
+- Atelier interne relié aux compétences mécaniques des salariés et au niveau d'infrastructure.
+- Révision annuelle obligatoire et contrôle technique tous les deux ans avec défauts et contre-visite.
+- Assurance, carnet de vie, valeur de revente et inspection technique des occasions.
+- Intégrations optionnelles MudSystem et Advanced Damage System par capacités, sans dépendance dure ni duplication de leur moteur.
+- 168 assertions Atelier 8 et 21 assertions inspection occasion, avec non-régression des étapes précédentes.
+- Certification FS25 réelle volontairement différée.
+
 ## 0.7.9.0 TEST - Contrats & Marchés
 
 - Étape 7 Contrats & Marchés écrite et intégrée.
@@ -22,7 +38,6 @@ Le détail historique des anciennes builds reste disponible dans l'historique Gi
 - Assurance et événements de gestion.
 - Contentieux, huissier, plans de paiement, saisie et suspension.
 - Restrictions reliées à Banque, Contrats et Entreprise.
-- Feuille de route, matrice d'implémentation, rapport de vérification et manifeste de synchronisation remis à jour.
 - Certification FS25 réelle volontairement différée.
 
 ## 0.7.7.0 TEST - Carrière & Qualifications
@@ -31,9 +46,7 @@ Le détail historique des anciennes builds reste disponible dans l'historique Gi
 - Fiche de carrière durable et XP selon Facile / Normal / Difficile.
 - Séparation stricte XP normal / progression d'examen.
 - Examen agricole en 10 étapes avec historique durable.
-- Qualifications phytosanitaire, manutention, forestier, transport, récolte et travaux publics.
-- Verrous métier selon les règles de difficulté.
-- Certification réelle de la chaîne des examens à faire.
+- Qualifications spécialisées et verrous métier.
 
 ## 0.7.6.0 TEST - Entreprise complète
 
@@ -41,46 +54,9 @@ Le détail historique des anciennes builds reste disponible dans l'historique Gi
 - CDI, CDD, saisonniers, horaires, congés, maladie, absences, heures supplémentaires et évolution salariale.
 - Une personne = une tâche, centre d'ordres et planning.
 - IA native FS25, Courseplay et AutoDrive optionnels avec fallback.
-- Paie unique AgriLife et neutralisation ciblée du coût externe.
+- Paie unique AgriLife.
 - XP salarié, recrutement, formations, carrière, incidents et réputation.
-- Récupération des tâches après sauvegarde/rechargement.
-
-## 0.7.5.0 TEST - Planning Entreprise
-
-- Vues Planning, Formations, Carrière salarié et Incidents.
-- Prévision de main-d'oeuvre et recommandation de saisonniers.
-- Durée estimée des ordres et pilotage depuis l'interface.
-
-## 0.7.4.0 TEST - RH et recrutement
-
-- File d'ordres, recrutement, score candidat et offre salariale.
-- Formation, progression de carrière salarié et incidents de travail.
-- Persistance des nouveaux états.
-
-## 0.7.3.0 TEST - RH avancée
-
-- Horaires, pauses, plafond journalier, heures supplémentaires, congés, maladie et absences.
-- Renouvellement CDD/saisonnier, augmentation et licenciement.
-
-## 0.7.2.0 TEST - Exécution Entreprise
-
-- Registre de temps de travail réel.
-- Exécuteurs AUTO / FS25 / Courseplay / AutoDrive.
-- Fallback vers l'IA native.
-- Ponts de réputation vers Banque et Assurance.
-
-## 0.7.1.0 TEST - Noyau Entreprise
-
-- Contrats et affectation unique.
-- Centre d'ordres basé sur le matériel réellement disponible.
-- IA native GOTO / FIELDWORK et paie vanilla neutralisée uniquement pour le job AgriLife concerné.
-
-## 0.7.0.0 - Étapes 1 à 3
-
-- Démarrage, Interface de base et Banque regroupés dans la nouvelle base de feuille de route.
-- Architecture source réorganisée pour publier les fichiers actifs à leurs vrais chemins.
-- Trois difficultés uniquement : Facile, Normal, Difficile.
 
 ## Historique antérieur
 
-Les builds 0.6.x et leurs corrections restent consultables dans l'historique Git. Elles ne sont plus dupliquées dans le dépôt courant sous forme de dossier `builds/` ou de worklogs datés.
+Les builds antérieures restent consultables dans l'historique Git.
