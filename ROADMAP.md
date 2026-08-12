@@ -5,7 +5,7 @@
 >
 > **Règle de maintenance de la feuille de route :** ce fichier est le registre maître additif du projet. Une mise à jour peut modifier l’état d’un point, préciser son avancement ou ajouter une idée validée, mais ne doit jamais supprimer, condenser ou reformuler une idée au point d’en perdre le contenu.
 >
-> **État code 0.8.1.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration, 7 Contrats & Marchés et 8 Atelier, Concessionnaire & Gestion technique du parc sont écrites et intégrées. Le pont Constats -> Responsabilité -> Atelier -> Assurance ainsi que le bonus-malus assurance sont également écrits et intégrés. Leur certification FS25 réelle reste à effectuer avant de fermer leurs cases de validation terrain.
+> **État code 0.9.0.0 TEST :** les étapes 4 Entreprise, 5 Carrière & Qualifications, 6 Administration, 7 Contrats & Marchés, 8 Atelier et 9 Finalisation sont écrites et intégrées côté code. La certification FS25 réelle et les points historiques encore ouverts des étapes 1 à 3 restent distincts de cet état d'écriture.
 
 # 1 - Démarrage
 
@@ -786,9 +786,13 @@ L'étape 8 devient un écosystème technique complet qui couvre **véhicules, ma
 
 # 9 - Finalisation
 
+> **État code 0.9.0.0 TEST :** l'infrastructure prévue pour l'étape 9 est écrite et intégrée : compatibilités optionnelles et fallback, découverte universelle, schéma de sauvegarde 4, migration 3 vers 4, identité de carrière, récupération backup, audit de persistance, isolation multi-fermes, squelette réseau serveur autoritaire, tutoriel paginé rebasé, audits l10n/publication, glossaire, documentation et packaging TEST/PUBLIC. Le multijoueur reste volontairement non publié et toutes les cases exigeant une vraie campagne FS25 restent ouvertes jusqu'à certification.
+
 La Finalisation n’est **pas un module joueur**. Elle regroupe les phases techniques nécessaires pour rendre AgriLifeManager stable, compatible, traduisible, migrable, multijoueur et publiable.
 
 ## Compatibilités PC optionnelles
+
+> **Écriture 0.9.0.0 :** matrice Courseplay/AutoDrive/PF/Soil/MudSystem/ADS, fallback autonome et audit dynamique du contenu runtime intégrés. Les essais réels avec plusieurs combinaisons de mods/maps restent à certifier.
 
 AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir une dépendance dure.
 
@@ -801,6 +805,8 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 - [ ] Vérifier l’auto-détection sur plusieurs maps vanilla, modmaps et maps multifruits.
 
 ## Sauvegardes, migration & multijoueur
+
+> **Écriture 0.9.0.0 :** schéma 4, migration 3->4, identité de carrière, suivi backup, couverture de persistance, séparation multi-fermes et enveloppes réseau serveur autoritaires intégrés. `multiplayer supported="false"` reste obligatoire jusqu'à la campagne réseau réelle.
 
 - [x] État AgriLife enregistré dans la sauvegarde carrière FS25.
 - [x] Migration des sauvegardes existantes sans écraser leur patrimoine - à revalider dans la campagne Démarrage actuelle.
@@ -815,6 +821,8 @@ AgriLife Manager doit rester autonome : aucune compatibilité ne doit devenir un
 - [ ] Autorité serveur et synchronisation réseau de tous les modules.
 
 ## Traductions, localisation & clés l10n
+
+> **Écriture 0.9.0.0 :** le dialogue tutoriel paginé est rebasé sur la source courante, Prev/Next sont localisés directement, les 27 langues sont en parité et les audits de clés utilisées, valeurs vides, doublons et placeholders font partie du gate de packaging. La relecture native et les essais écran restent à certifier.
 
 ### Contribution issue GitHub #2 à intégrer proprement
 
@@ -877,6 +885,8 @@ Une contribution externe propose 27 fichiers de traduction alignés, un correcti
 - Avant chaque commit, release, documentation ou build : contrôler l’absence du caractère em dash et l’absence de toute attribution à une IA ou à un fournisseur d’IA.
 
 ## Préparation publication
+
+> **Écriture 0.9.0.0 :** `verify_release.py`, `audit_l10n_usage.py`, `audit_publication.py` et `package_release.py` constituent le gate de packaging TEST/PUBLIC. La publication stable reste interdite tant que les validations en jeu et licences finales ne sont pas fermées.
 
 Objectif final : version PC propre et publiable, notamment pour soumission officielle GIANTS/ModHub si elle respecte les exigences applicables au moment de la soumission.
 
