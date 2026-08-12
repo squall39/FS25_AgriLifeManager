@@ -1,0 +1,49 @@
+name: Sync exact 0.9.1.0 modDesc
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sync-moddesc-091-exact.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch version and completion sources
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('modDesc.xml')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('<version>0.9.0.0</version>', '<version>0.9.1.0</version>', 1)
+          insertions = [
+              ('        <sourceFile filename="src/modules/bank/BankRoadmap3.lua" />\n', '        <sourceFile filename="src/modules/bank/BankRoadmap3Completion.lua" />\n'),
+              ('        <sourceFile filename="src/modules/economy/EconomyModule.lua" />\n', '        <sourceFile filename="src/modules/economy/EconomyAccountingRoadmapCompletion.lua" />\n'),
+              ('        <sourceFile filename="src/modules/dashboard/DashboardModule.lua" />\n', '        <sourceFile filename="src/modules/dashboard/DashboardRoadmapWritingCompletion.lua" />\n'),
+              ('        <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />\n', '        <sourceFile filename="src/ui/AgriLifeRoadmapWritingCompletionUI.lua" />\n        <sourceFile filename="src/ui/AgriLifeInterfaceRoadmap2Completion.lua" />\n'),
+          ]
+          for anchor, addition in insertions:
+              if addition.strip().splitlines()[0] in text:
+                  continue
+              if anchor not in text:
+                  raise SystemExit(f'modDesc anchor missing: {anchor.strip()}')
+              text = text.replace(anchor, anchor + addition, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+          echo "2567145943d944953c9ee7b5f0fc7eba0de689e451543563a650f1c50c2ada6a  modDesc.xml" | sha256sum -c -
+          rm -f .github/workflows/sync-moddesc-091-exact.yml
+      - name: Commit exact modDesc
+        run: |
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add modDesc.xml .github/workflows/sync-moddesc-091-exact.yml
+          git commit -m "Synchronize exact 0.9.1.0 modDesc"
+          git push
