@@ -1,0 +1,108 @@
+- [ ] Faire influencer cette notation sur les futures offres et la réputation.
+- [ ] Faire varier exigences, marges de tolérance et pénalités selon la difficulté.
+- [ ] **Brancher les contrats et coopératives sur le moteur de marché dynamique.**
+- [ ] Faire évoluer prix proposés, volumes recherchés, primes, pénalités et opportunités selon offre, demande, saison, marché et réputation.
+- [ ] Permettre aux fruits et produits multifruits détectés dynamiquement de générer leurs propres opportunités de marché et contrats lorsqu’ils sont exploitables par les systèmes FS25.
+- [ ] Relier les contrats de qualité aux données réellement disponibles de Precision Farming / Soil Fertilizer sans imposer ces mods.
+
+## Architecture universelle - toutes maps / multifruit
+
+- [ ] Détecter dynamiquement les fruits, fillTypes, produits, points de vente, productions, parcelles et articles magasin enregistrés dans la partie.
+- [ ] Éviter toute liste fermée de cultures ou de maps dans le cœur du système.
+- [ ] Supporter les multifruits ajoutés par la map ou par des mods dès lors qu’ils sont correctement enregistrés dans FS25.
+- [ ] Détecter les productions/usines et leurs entrées/sorties lorsqu’elles utilisent les systèmes accessibles de FS25.
+- [ ] Prévoir un fallback propre : un contenu non détectable est ignoré sans casser AgriLifeManager.
+
+## Marché mondial des productions et produits
+
+- [ ] Créer une tendance mondiale et des tendances locales pour les productions vendables.
+- [ ] Faire varier les prix selon offre/demande, saison, stocks simulés, événements et activité économique.
+- [ ] Éviter les fluctuations absurdes : bornes, inertie et retour progressif vers un prix de référence.
+- [ ] Relier prix mondiaux, prix locaux, points de vente, coopératives, contrats et rentabilité.
+- [ ] Permettre aux produits issus de productions/usines d’entrer dans le marché dynamique.
+- [ ] Prendre en compte les multifruits détectés sans configuration manuelle systématique.
+
+## Marché mondial du neuf et de l’occasion
+
+- [ ] Marché dynamique des tracteurs, véhicules, outils et accessoires.
+- [ ] Faire varier disponibilité, délais et prix du neuf selon demande et catégorie.
+- [ ] Marché de l’occasion avec âge, heures, état, entretien, réparations, région simulée, rareté et demande.
+- [ ] Faire varier la valeur de revente selon état réel et situation du marché.
+- [ ] Inclure les articles de magasin compatibles détectés dynamiquement plutôt qu’une liste figée.
+
+## Consommables, palettes & big bags
+
+- [ ] Marché dynamique des palettes, big bags, semences, engrais, amendements, consommables et autres intrants enregistrés.
+- [ ] Faire varier prix et disponibilité en fonction de la demande, de la saison et des tensions de marché.
+- [ ] Relier le coût réel des intrants à la comptabilité et à la marge des productions/contrats.
+
+## Carburants & énergie
+
+- [ ] Prix dynamique du diesel et des autres énergies/carburants détectables.
+- [ ] Faire évoluer les prix dans le temps avec inertie et événements crédibles.
+- [ ] Répercuter le coût du carburant sur coûts de production, transport, travaux et rentabilité.
+- [ ] Faire varier l’impact selon Facile / Normal / Difficile sans créer de prix incohérents.
+
+## Foncier / champs dynamiques
+
+- [ ] Marché foncier dynamique à partir des parcelles disponibles sur la map.
+- [ ] Faire varier valeur des terres selon surface, potentiel économique, localisation disponible, rareté et contexte de marché.
+- [ ] Ajouter des opportunités temporaires de vente ou de location lorsque techniquement possible.
+- [ ] Conserver une logique compatible avec la structure propre de chaque map.
+
+## Location dynamique - matériel, champs & usines
+
+- [ ] Étendre la location dynamique au **matériel, outils, accessoires, champs/parcelles et productions/usines** lorsque le type d’actif peut être géré proprement.
+- [ ] Faire varier tarif, disponibilité, durée, caution/frais et conditions selon marché et difficulté.
+- [ ] Prévoir location courte, saisonnière ou plus longue lorsque pertinente.
+- [ ] Intégrer les loyers dans la comptabilité, la trésorerie et les décisions bancaires.
+- [ ] Prévoir conséquences réalistes en cas de retard, dégradation ou rupture de contrat de location.
+- [ ] Ne jamais forcer une location sur un actif qu’une map ou un mod tiers ne permet pas de gérer de manière sûre.
+
+## Productions / usines
+
+- [ ] Intégrer achat, vente et location des productions/usines au moteur économique lorsque leur propriété peut être pilotée proprement.
+- [ ] Faire varier leur valeur selon capacité, rentabilité potentielle, intrants, débouchés et contexte de marché.
+- [ ] Relier coût des intrants, prix des sorties, entretien/charges et rentabilité réelle de la production.
+
+## Contrats & coopératives reliés au marché
+
+- [ ] Le marché mondial influence les besoins des coopératives et acheteurs.
+- [ ] Une forte demande peut augmenter prix, volumes recherchés ou primes ; une surproduction peut les réduire.
+- [ ] Les contrats doivent tenir compte des marchés mais aussi de la réputation, de l’historique et de la difficulté.
+- [ ] Conserver plusieurs acheteurs avec stratégies différentes afin d’éviter un prix unique artificiel.
+
+## Precision Farming & Soil Fertilizer - intégrations enrichies
+
+- [ ] **Ne pas refaire leur agronomie dans AgriLifeManager.**
+- [ ] Utiliser Precision Farming comme source optionnelle de données agronomiques réellement disponibles.
+- [ ] Utiliser Soil Fertilizer comme source optionnelle pour les données de sol, fertilisation, intrants et qualité qu’il expose de manière exploitable.
+- [ ] Transformer ces données en conséquences AgriLife : coûts, rentabilité, conditions contractuelles, primes qualité, réputation, contrôles et historique.
+- [ ] Relier le prix dynamique des intrants aux coûts de production issus de Soil Fertilizer lorsque pertinent.
+- [ ] Permettre à certains contrats/coopératives d’imposer des critères agronomiques uniquement lorsqu’ils peuvent être mesurés de façon fiable.
+- [ ] Si PF ou Soil Fertilizer est absent, conserver un fonctionnement AgriLife complet basé sur FS25 vanilla.
+- [ ] Si une donnée externe devient indisponible ou change après une mise à jour, désactiver seulement l’enrichissement concerné sans casser la sauvegarde.
+- [ ] **La difficulté AgriLife modifie les conséquences économiques/administratives, pas artificiellement les lois agronomiques de PF ou Soil Fertilizer.**
+
+## Chaîne économique de référence
+
+**sol / pratiques → intrants → coût de production → rendement / qualité → marché mondial → marchés locaux → coopératives / usines → contrats → comptabilité → banque → réputation**
+
+Documentation détaillée : **[docs/DYNAMIC_ECONOMY_AGRONOMY.md](docs/DYNAMIC_ECONOMY_AGRONOMY.md)**.
+
+---
+
+# 8 - Atelier, Concessionnaire & Gestion technique du parc
+
+> **État code 0.8.1.0 TEST :** l’ensemble des scripts prévus pour l’étape 8 est écrit et intégré : parc complet véhicules/outils/accessoires, composants adaptés, usure/stress, pannes fonctionnelles logiques, diagnostic, pièces multi-qualités, marché dynamique et délais, concessionnaire/SAV, atelier interne et mécaniciens, révision annuelle, contrôle technique biennal et contre-visite, dépannage/continuité, garanties/assurances, historique/valeur de revente, inspection technique de l’occasion et ponts optionnels MudSystem / Advanced Damage System. Les cases restent ouvertes jusqu’à la certification FS25 réelle, sauvegarde/rechargement, contrôle du log et essais avec/sans les mods tiers ciblés.
+
+L'étape 8 devient un écosystème technique complet qui couvre **véhicules, machines, outils et accessoires**. AgriLife gère le garage, le concessionnaire, les diagnostics, les pièces, les stocks, les délais, l'immobilisation, les coûts, la main-d'oeuvre, les garanties, l'historique et les conséquences économiques. Les systèmes mécaniques tiers compatibles peuvent fournir des données de panne ou de physique, mais AgriLife ne doit pas dupliquer leur moteur interne.
+
+## Principes fondamentaux
+
+- [x] Base de l'Atelier.
+- [x] État du matériel et opérations de maintenance.
+- [ ] Étendre le suivi technique à **tout le parc** : tracteurs, véhicules, moissonneuses, automoteurs, remorques, outils attelés, accessoires, chargeurs, outils PTO, matériels hydrauliques et autres équipements détectables.
+- [ ] Aucun équipement compatible ne doit être traité comme un simple objet sans historique technique lorsqu'AgriLife peut l'identifier de manière sûre.
+- [ ] Une panne doit toujours avoir une **conséquence fonctionnelle logique**, proportionnée au composant touché et à sa gravité.
+- [ ] Ne jamais réduire une panne à un simple pourcentage rouge sans effet réel.
