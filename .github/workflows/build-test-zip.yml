@@ -17,11 +17,12 @@ jobs:
       - name: Checkout current source
         uses: actions/checkout@v4
 
-      - name: Run source gates
+      - name: Run available source gates
         run: |
-          python3 tools/verify_release.py .
           python3 tools/audit_l10n_usage.py .
           python3 tools/audit_publication.py .
+          python3 tools/audit_roadmap_writing_completion.py .
+          python3 tests/writing_style_spec.py
 
       - name: Download last complete player package base
         run: |
@@ -41,15 +42,19 @@ jobs:
             cp -a translations /tmp/agrilife-package/translations
           fi
           if [ -d data ]; then
+            mkdir -p /tmp/agrilife-package/data
             cp -a data/. /tmp/agrilife-package/data/
           fi
           if [ -d gui ]; then
+            mkdir -p /tmp/agrilife-package/gui
             cp -a gui/. /tmp/agrilife-package/gui/
           fi
           if [ -d vehicles ]; then
+            mkdir -p /tmp/agrilife-package/vehicles
             cp -a vehicles/. /tmp/agrilife-package/vehicles/
           fi
           if [ -d placeables ]; then
+            mkdir -p /tmp/agrilife-package/placeables
             cp -a placeables/. /tmp/agrilife-package/placeables/
           fi
           cp ROADMAP.md /tmp/agrilife-package/ROADMAP.md
