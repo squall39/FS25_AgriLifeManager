@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - tools/sync_validated_ideas.py
+      - docs/IDEA_REGISTRY.md
 
 permissions:
   contents: write
