@@ -1,0 +1,100 @@
+    FS25_ASSET_SALE = {group="balance", account="ASSET_DISPOSAL", profitability="equipment"},
+    FS25_LAND_SALE = {group="balance", account="LAND_DISPOSAL", profitability="land"},
+    FS25_INPUT_PURCHASE = {group="expense", account="INPUTS", profitability="productions"},
+    FS25_ENERGY_COST = {group="expense", account="ENERGY", profitability="productions"},
+    FS25_VEHICLE_COST = {group="expense", account="VEHICLE_RUNNING", profitability="equipment"},
+    FS25_PRODUCTION_COST = {group="expense", account="PRODUCTION_COSTS", profitability="productions"},
+    FS25_CONTRACT_COST = {group="expense", account="CONTRACT_COSTS", profitability="contracts"},
+    FS25_LABOUR_COST = {group="expense", account="LABOUR", profitability="labour"},
+    FS25_RENTAL_COST = {group="expense", account="RENTAL", profitability="rentals"},
+    FS25_ANIMAL_COST = {group="expense", account="ANIMAL_COSTS", profitability="productions"},
+    FS25_EQUIPMENT_PURCHASE = {group="investment", account="EQUIPMENT_PURCHASE", profitability="equipment"},
+    FS25_LAND_PURCHASE = {group="investment", account="LAND_PURCHASE", profitability="land"},
+    FS25_LOAN_MOVEMENT = {group="financing", account="LOAN_MOVEMENT", profitability="finance"},
+    FS25_OTHER_INCOME = {group="otherIncome", account="OTHER_INCOME", profitability="other"},
+    FS25_OTHER_EXPENSE = {group="expense", account="OTHER_EXPENSE", profitability="other"}
+}
+
+local PROFITABILITY_KEYS = {"contracts", "productions", "inputs", "land", "equipment", "rentals", "workshop", "labour", "insurance", "administration", "finance", "tax", "other"}
+
+if AgriLife.Bank6Service ~= nil then
+    local Bank = AgriLife.Bank6Service
+    local baseCalculateAnnualRate = Bank.calculateAnnualRate
+    local baseCalculateCapacity = Bank.calculateCapacity
+    local baseCalculateReviewHours = Bank.calculateReviewHours
+    local baseAssessLoanApplication = Bank.assessLoanApplication
+    local baseProfessionalAccounting = Bank.getProfessionalAccountingForYear
+    local baseAccountingSnapshot = Bank.getAccountingSnapshot
+    local baseCloseFiscalYear = Bank.closeFiscalYear
+    local baseSaveFarm = Bank.saveFarm
+    local baseLoadFarm = Bank.loadFarm
+    local baseGetSnapshot = Bank.getSnapshot
+
+    function Bank:getEconomyPolicy(farmId)
+        local economy = self.core ~= nil and self.core.registry ~= nil and self.core.registry.instances ~= nil and self.core.registry.instances.economy or nil
+        return economy ~= nil and economy.getModePolicy ~= nil and economy:getModePolicy(farmId) or {}
+    end
+
+    function Bank:getMarketService()
+        local market = self.core ~= nil and self.core.registry ~= nil and self.core.registry.instances ~= nil and self.core.registry.instances.market or nil
+        return market ~= nil and (market.service or market) or nil
+    end
+
+    function Bank:getMarketFinancingPressure(farmId, purpose)
+        local market = self:getMarketService()
+        purpose = tostring(purpose or "cash")
+        if market == nil or market.getCategoryMultiplier == nil then
+            return {index=1, trend=0, rateAdjustment=0, capacityFactor=1, decisionAdjustment=0, category="none"}
+        end
+        local category = "commodities"
+        if purpose == "land" then category = "land"
+        elseif purpose == "equipment" then category = "vehicles_new"
+        elseif purpose == "building" or purpose == "production" then category = "productions"
+        elseif purpose == "refinancing" then category = "rentals"
+        elseif purpose == "cash" then category = "inputs" end
+        local index = clamp(market:getCategoryMultiplier(farmId, category), 0.55, 1.70)
+        local snapshot = market.getSnapshot ~= nil and market:getSnapshot(farmId) or nil
+        local item = snapshot ~= nil and snapshot.categories ~= nil and snapshot.categories[category] or nil
+        local trend = clamp(item ~= nil and item.trend or 0, -0.30, 0.30)
+        local stress = clamp((index - 1) * 0.75 + trend * 1.5, -0.30, 0.35)
+        return {
+            category = category,
+            index = index,
+            trend = trend,
+            stress = stress,
+            rateAdjustment = clamp(stress * 0.018, -0.0040, 0.0075),
+            capacityFactor = clamp(1 - math.max(0, stress) * 0.22 + math.max(0, -stress) * 0.08, 0.90, 1.06),
+            decisionAdjustment = clamp(-stress * 12, -5, 4)
+        }
+    end
+
+    function Bank:getProviderRiskProfile(farmId, providerId)
+        local provider = self:getProvider(providerId)
+        local modeId = tostring(self:getCareerModeId(farmId) or "normal")
+        local competence = clamp(provider.competenceStars or provider.stars or provider.tier or 3, 1, 5)
+        local reputation = clamp(provider.reputationStars or provider.stars or provider.tier or 3, 1, 5)
+        local solidity = clamp(55 + competence * 7 + reputation * 4 + (provider.tier or 1) * 3, 55, 100)
+        local appetite = clamp(58 + ((provider.capacityFactor or 1) - 1) * 170 - ((provider.minimumScore or 500) - 500) * 0.05, 25, 90)
+        local severity = clamp(48 + ((provider.minimumScore or 500) - 500) * 0.055 - ((provider.capacityFactor or 1) - 1) * 70, 20, 90)
+        if provider.agricultural == true then appetite = clamp(appetite + 5, 25, 95) end
+        if modeId == "facile" then severity = clamp(severity - 8, 15, 90)
+        elseif modeId == "difficile" then severity = clamp(severity + 10, 20, 98) end
+        local speed = clamp(50 + competence * 7 - severity * 0.18, 25, 90)
+        return {providerId=provider.id, solidity=round(solidity), riskAppetite=round(appetite), severity=round(severity), studySpeed=round(speed), agricultural=provider.agricultural == true}
+    end
+
+    function Bank:getAdvisorCompatibility(farmId, advisorId, providerId, purpose)
+        local advisor = self:getAdvisor(advisorId)
+        local provider = self:getProvider(providerId)
+        local providerAccess = self:getProviderAccess(farmId, provider.id)
+        local advisorAccess = self:getAdvisorAccess(farmId, advisor.id)
+        local purposeMatched = advisor.preferredPurposes ~= nil and advisor.preferredPurposes[tostring(purpose or "cash")] == true
+        local compatible = providerAccess ~= nil and providerAccess.unlocked == true and advisorAccess ~= nil and advisorAccess.unlocked == true and (advisor.minimumProviderTier or 1) <= (provider.tier or 1)
+        local score = clamp((advisor.competenceStars or advisor.stars or 3) * 12 + (advisor.reputationStars or advisor.stars or 3) * 8 + (purposeMatched and 15 or 0), 0, 100)
+        return {advisorId=advisor.id, providerId=provider.id, compatible=compatible, purposeMatched=purposeMatched, compatibilityScore=round(score), providerAccess=providerAccess, advisorAccess=advisorAccess}
+    end
+
+    function Bank:getBankConsultationOffers(farmId, purpose, amount, termMonths)
+        purpose = tostring(purpose or "cash")
+        amount = math.max(0, tonumber(amount) or 0)
+        termMonths = math.max(12, math.floor(tonumber(termMonths) or 36))
