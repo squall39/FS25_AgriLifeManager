@@ -1,29 +1,44 @@
 # Synchronisation du source GitHub
 
-Version de référence : **0.8.1.0 TEST**
+Version de référence : **0.9.0.0 TEST**
 
-Le package joueur reste la source de vérité exécutable. GitHub publie le source texte maintenable et la feuille de route additive.
+Le package joueur reste la source de vérité exécutable. Le dépôt GitHub publie les sources texte maintenables et la feuille de route complète. Une synchronisation de source ne vaut jamais certification en jeu.
 
-## Source 0.8.1.0 - constats et bonus-malus
+## Source Étape 9
 
-- `src/modules/insurance/InsuranceClaimsLiability8.lua` : source exact réassemblé sur GitHub avec contrôle du hash avant commit ;
-- `src/modules/insurance/InsuranceBonusMalus8.lua` ;
-- `src/ui/AgriLifeHomeFrame.lua` dans le package ;
-- `tests/claims_liability_roadmap8_spec.lua` dans le package ;
-- `tests/insurance_bonus_malus8_spec.lua` dans le package ;
-- `translations/` avec les clés d'affichage responsabilité/bonus-malus dans le package ;
-- `docs/STEP8_INSURANCE_CLAIMS.md` ;
-- `ROADMAP.md` maître reconstruit automatiquement à partir du cahier Étape 8 sans supprimer les autres étapes ;
-- `modDesc.xml` et `src/core/AgriLifeVersion.lua` en 0.8.1.0.
+- `src/core/AgriLifeNetworkRoadmap9.lua` ;
+- `src/core/AgriLifeMigrationManager.lua` ;
+- `src/core/AgriLifePersistence.lua` ;
+- `src/core/AgriLifeCore.lua` ;
+- `src/modules/compatibility/CompatibilityRoadmap9.lua` ;
+- `src/modules/finalization/FinalizationRoadmap9.lua` ;
+- `tests/finalization_roadmap9_spec.lua` ;
+- `tools/audit_l10n_usage.py` ;
+- `tools/audit_publication.py` ;
+- `tools/package_release.py` ;
+- `tools/verify_release.py` ;
+- `docs/GLOSSARY.md` ;
+- `docs/USER_GUIDE.md` ;
+- `docs/THIRD_PARTY_COMPONENTS.md` ;
+- `docs/PUBLICATION_CHECKLIST.md` ;
+- `docs/STEP9_FINALIZATION.md` ;
+- `docs/ROADMAP.md` complet et additif ;
+- `modDesc.xml` et `src/core/AgriLifeVersion.lua` en 0.9.0.0 ;
+- `translations/` avec 27 langues en parité.
 
-## Feuille de route
+## Fonctionnement du packaging
 
-Le workflow `sync-step8-roadmap.yml` fusionne le cahier Atelier et le bloc Constats/Assurance dans la section 8 de `ROADMAP.md`. Les étapes 1 à 7 et 9 restent hors de cette zone de remplacement. Les cases de certification terrain restent ouvertes tant que les scénarios ne sont pas validés dans FS25.
+`tools/package_release.py` propose deux profils :
 
-## Package
+- `test` : conserve les tests, outils et documents de développement utiles ;
+- `public` : retire les tests et outils du ZIP joueur tout en conservant le contenu nécessaire au mod.
 
-Le ZIP 0.8.1.0 contient la roadmap complète sous `docs/ROADMAP.md`, les deux moteurs Assurance 8, l'interface mise à jour, les 27 traductions et les tests. Une synchronisation GitHub ne vaut jamais certification en jeu.
+Les deux profils passent d'abord par les gates XML/Lua/l10n/publication.
 
 ## Assets binaires
 
-Les DDS, PNG, I3D, SHAPES et autres assets nécessaires au ZIP joueur ne sont pas automatiquement republiés dans le dépôt public. Leur publication dépend de leur origine et des droits de redistribution.
+Les DDS, PNG, I3D, SHAPES et autres gros assets nécessaires au ZIP joueur ne sont pas automatiquement republiés dans le dépôt public. Leur publication source dépend de leur origine et des droits de redistribution.
+
+## Règle de synchronisation
+
+Une build livrée doit porter le même numéro de version, le même état de roadmap et la même liste de sources actives entre le package et GitHub. Les idées validées restent additives et ne sont jamais supprimées lors d'une simple mise à jour d'avancement.
