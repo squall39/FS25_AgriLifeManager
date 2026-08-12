@@ -4,7 +4,8 @@
 
 ## État courant
 
-- Version source synchronisée : **0.7.9.0 TEST**
+- Package de travail actuel : **0.8.0.0 TEST**
+- Miroir source GitHub : synchronisation Étape 8 en cours, ne pas confondre avec la certification en jeu
 - Auteur : **Chez_Squall**
 - Plateforme cible : PC
 - Multijoueur : préparé mais désactivé tant que la campagne réseau n'est pas certifiée
@@ -12,17 +13,17 @@
 
 ### Feuille de route
 
-La feuille de route complète est conservée dans `ROADMAP.md` et fonctionne comme **registre maître additif** : les idées validées ne sont jamais supprimées lors d'une mise à jour. Une mise à jour de feuille de route modifie uniquement l'état des points déjà prévus, ou ajoute une nouvelle idée explicitement validée.
+La feuille de route complète fonctionne comme **registre maître additif** : les idées validées ne sont jamais supprimées lors d'une mise à jour. Une mise à jour modifie uniquement l'état des points déjà prévus, précise leur avancement ou ajoute une nouvelle idée explicitement validée.
 
 - Étapes 1 à 3 : intégrées, campagne de validation à terminer.
 - Étape 4 Entreprise : écriture complète, certification en jeu à faire.
 - Étape 5 Carrière & Qualifications : écriture complète, certification des examens et qualifications à faire.
 - Étape 6 Administration : écriture complète, certification en jeu à faire.
-- Étape 7 Contrats & Marchés : écriture complète en 0.7.9.0 TEST, certification en jeu à faire.
-- Étape 8 Atelier : prochaine passe dédiée.
+- Étape 7 Contrats & Marchés : écriture complète, certification en jeu à faire.
+- Étape 8 Atelier, Concessionnaire & Gestion technique du parc : écriture complète en 0.8.0.0 TEST, certification en jeu à faire.
 - Étape 9 Finalisation : fermeture globale et campagne A -> Z.
 
-Voir `ROADMAP.md` pour le détail complet de toutes les idées conservées.
+La spécification complète de l'étape 8 est conservée dans `docs/STEP8_WORKSHOP_ROADMAP.md` et son état d'implémentation dans `docs/STEP8_IMPLEMENTATION_STATUS.md`.
 
 ## Organisation du dépôt
 
@@ -35,7 +36,7 @@ Le dépôt publie la source texte maintenable du mod aux mêmes chemins que le p
 - `tools/` : vérification de release ;
 - `data/`, `placeables/`, `vehicles/` : configurations et scripts texte publiables ;
 - `docs/` : documentation technique ;
-- `modDesc.xml` : descripteur de la version source courante.
+- `modDesc.xml` : descripteur de la version source courante lorsqu'il est synchronisé avec le package.
 
 Les gros assets binaires et contenus tiers ne sont publiés que lorsque leurs droits de redistribution sont vérifiés.
 
@@ -51,6 +52,6 @@ Les gros assets binaires et contenus tiers ne sont publiés que lorsque leurs dr
 
 ## État de validation
 
-La présence du code sur GitHub signifie qu'il est **écrit et intégré**, pas qu'il est automatiquement certifié dans FS25. Les étapes 4, 5, 6 et 7 nécessitent encore leur campagne de certification en jeu.
+La présence d'un système dans le code signifie qu'il est **écrit et intégré**, pas qu'il est automatiquement certifié dans FS25. Les étapes 4 à 8 nécessitent encore leur campagne de certification en jeu.
 
 © 2026 Chez_Squall.
