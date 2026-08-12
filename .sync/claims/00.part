@@ -1,0 +1,220 @@
+-- Copyright (C) 2026 Chez_Squall. All rights reserved.
+-- AgriLife Manager - Step 8 accident statements, liability and workshop/insurance settlement bridge.
+AgriLife = AgriLife or {}
+
+local Insurance = AgriLife.Insurance6Service
+local Workshop = AgriLife.Workshop6Service
+if Insurance == nil then return end
+
+Insurance.LIABILITY_STATUS = {
+    UNKNOWN = "UNKNOWN",
+    NOT_RESPONSIBLE = "NOT_RESPONSIBLE",
+    RESPONSIBLE = "RESPONSIBLE",
+    SHARED = "SHARED"
+}
+
+local function round(value)
+    return math.floor((tonumber(value) or 0) * 100 + 0.5) / 100
+end
+
+local function clamp(value, minimum, maximum)
+    value = tonumber(value) or minimum
+    return math.max(minimum, math.min(maximum, value))
+end
+
+local function text(value, default)
+    value = tostring(value or "")
+    if value ~= "" then return value end
+    return default or ""
+end
+
+local function bool(value)
+    return value == true
+end
+
+local function upper(value)
+    return string.upper(text(value))
+end
+
+local function lower(value)
+    return string.lower(text(value))
+end
+
+local function isAccidentCause(cause)
+    local value = lower(cause)
+    return value:find("accident", 1, true) ~= nil
+        or value:find("collision", 1, true) ~= nil
+        or value:find("impact", 1, true) ~= nil
+        or value:find("crash", 1, true) ~= nil
+        or value:find("technical_accident", 1, true) ~= nil
+end
+
+local function normalizedLiability(status, share)
+    status = upper(status)
+    if status == Insurance.LIABILITY_STATUS.NOT_RESPONSIBLE then return status, 0 end
+    if status == Insurance.LIABILITY_STATUS.RESPONSIBLE then return status, 1 end
+    if status == Insurance.LIABILITY_STATUS.SHARED then
+        share = clamp(share or 0.5, 0.01, 0.99)
+        return status, share
+    end
+    return Insurance.LIABILITY_STATUS.UNKNOWN, 0
+end
+
+function Insurance:getClaim(farmId, claimId)
+    claimId = tostring(claimId or "")
+    for _, claim in ipairs(self:getState(farmId, true).claims or {}) do
+        if tostring(claim.id or "") == claimId then return claim end
+    end
+    return nil
+end
+
+function Insurance:getActivePolicyByCategory(farmId, category)
+    category = tostring(category or "")
+    for _, policy in ipairs(self:getState(farmId, true).policies or {}) do
+        if tostring(policy.category or "") == category and tostring(policy.status or "") == "active" then return policy end
+    end
+    return nil
+end
+
+function Insurance:initializeLiabilityClaim(farmId, claim)
+    if type(claim) ~= "table" then return claim end
+    claim.driverProfileId = text(claim.driverProfileId, claim.responsibleProfileId)
+    claim.liabilityStatus, claim.liabilityShare = normalizedLiability(claim.liabilityStatus, claim.liabilityShare)
+    claim.liabilityReason = text(claim.liabilityReason)
+    claim.liabilitySource = text(claim.liabilitySource)
+    claim.accidentId = text(claim.accidentId)
+    claim.workshopJobId = text(claim.workshopJobId)
+    claim.repairEstimate = math.max(0, tonumber(claim.repairEstimate) or 0)
+    claim.repairEstimateFinal = claim.repairEstimateFinal == true
+    claim.estimateSource = text(claim.estimateSource, claim.repairEstimate > 0 and "ACCIDENT" or "")
+    claim.insurerRepairShare = math.max(0, tonumber(claim.insurerRepairShare) or 0)
+    claim.ownerRepairShare = math.max(0, tonumber(claim.ownerRepairShare) or 0)
+    claim.thirdPartyPresent = claim.thirdPartyPresent == true
+    claim.thirdPartyId = text(claim.thirdPartyId)
+    claim.thirdPartyDamageAmount = math.max(0, tonumber(claim.thirdPartyDamageAmount) or 0)
+    claim.thirdPartyLiabilityPayout = math.max(0, tonumber(claim.thirdPartyLiabilityPayout) or 0)
+    claim.ownerThirdPartyShare = math.max(0, tonumber(claim.ownerThirdPartyShare) or 0)
+    claim.liabilityPolicyId = text(claim.liabilityPolicyId)
+    claim.recourseAmount = math.max(0, tonumber(claim.recourseAmount) or 0)
+    claim.recourseStatus = text(claim.recourseStatus, "NONE")
+    claim.liabilityDecisionPeriodKey = math.max(0, math.floor(tonumber(claim.liabilityDecisionPeriodKey) or 0))
+    claim.liabilityAppealed = claim.liabilityAppealed == true
+    claim.appliedMalusShare = clamp(claim.appliedMalusShare or 0, 0, 1)
+    claim.statement = type(claim.statement) == "table" and claim.statement or {}
+    claim.statement.circumstanceCode = text(claim.statement.circumstanceCode)
+    claim.statement.notes = text(claim.statement.notes)
+    claim.statement.impactZone = text(claim.statement.impactZone)
+    claim.statement.thirdPartyId = text(claim.statement.thirdPartyId, claim.thirdPartyId)
+    claim.statement.photoCount = math.max(0, math.floor(tonumber(claim.statement.photoCount) or 0))
+    claim.statement.witnessCount = math.max(0, math.floor(tonumber(claim.statement.witnessCount) or 0))
+    claim.statement.playerAdmission = claim.statement.playerAdmission == true
+    claim.statement.thirdPartyAdmission = claim.statement.thirdPartyAdmission == true
+    claim.statement.officialFaultShare = claim.statement.officialFaultShare ~= nil and clamp(claim.statement.officialFaultShare, 0, 1) or nil
+    return claim
+end
+
+function Insurance:calculateLiabilityAllocation(farmId, claim)
+    claim = self:initializeLiabilityClaim(farmId, claim)
+    local status, faultShare = normalizedLiability(claim.liabilityStatus, claim.liabilityShare)
+    local estimate = round(math.max(0, tonumber(claim.repairEstimate) or tonumber(claim.damageAmount) or 0))
+    local insurerRepair = 0
+    local ownerRepair = estimate
+    local recourse = 0
+
+    if status == Insurance.LIABILITY_STATUS.NOT_RESPONSIBLE then
+        insurerRepair = estimate
+        ownerRepair = 0
+        recourse = estimate
+    elseif status == Insurance.LIABILITY_STATUS.SHARED then
+        insurerRepair = round(estimate * (1 - faultShare))
+        ownerRepair = round(estimate - insurerRepair)
+        recourse = insurerRepair
+    elseif status == Insurance.LIABILITY_STATUS.RESPONSIBLE then
+        insurerRepair = 0
+        ownerRepair = estimate
+    end
+
+    local thirdPartyDamage = round(math.max(0, tonumber(claim.thirdPartyDamageAmount) or 0))
+    local thirdPartyCovered = 0
+    local ownerThirdParty = 0
+    local liabilityPolicy = self:getActivePolicyByCategory(farmId, "liability")
+    if thirdPartyDamage > 0 and faultShare > 0 then
+        local responsibleThirdPartyDamage = round(thirdPartyDamage * faultShare)
+        if liabilityPolicy ~= nil then
+            thirdPartyCovered = round(responsibleThirdPartyDamage * clamp(liabilityPolicy.coverage or 1, 0, 1))
+            ownerThirdParty = round(math.max(0, responsibleThirdPartyDamage - thirdPartyCovered))
+            claim.liabilityPolicyId = tostring(liabilityPolicy.id or "")
+        else
+            ownerThirdParty = responsibleThirdPartyDamage
+            claim.liabilityPolicyId = ""
+        end
+    end
+
+    claim.liabilityStatus = status
+    claim.liabilityShare = faultShare
+    claim.repairEstimate = estimate
+    claim.insurerRepairShare = insurerRepair
+    claim.ownerRepairShare = ownerRepair
+    claim.thirdPartyLiabilityPayout = thirdPartyCovered
+    claim.ownerThirdPartyShare = ownerThirdParty
+    claim.recourseAmount = recourse
+    if recourse > 0 and claim.thirdPartyPresent then
+        claim.recourseStatus = claim.recourseStatus == "RECOVERED" and "RECOVERED" or "PENDING"
+    elseif recourse <= 0 then
+        claim.recourseStatus = "NONE"
+    end
+
+    return {
+        status = status,
+        faultShare = faultShare,
+        repairEstimate = estimate,
+        insurerRepairShare = insurerRepair,
+        ownerRepairShare = ownerRepair,
+        thirdPartyDamageAmount = thirdPartyDamage,
+        thirdPartyLiabilityPayout = thirdPartyCovered,
+        ownerThirdPartyShare = ownerThirdParty,
+        recourseAmount = recourse,
+        liabilityPolicyId = claim.liabilityPolicyId
+    }
+end
+
+function Insurance:applyLiabilityMalus(farmId, claim)
+    local state = self:getState(farmId, true)
+    local previous = clamp(claim.appliedMalusShare or 0, 0, 1)
+    local current = claim.liabilityStatus == Insurance.LIABILITY_STATUS.UNKNOWN and 0 or clamp(claim.liabilityShare or 0, 0, 1)
+    local delta = current - previous
+    if math.abs(delta) > 0.0001 then
+        state.bonusMalus = clamp((tonumber(state.bonusMalus) or 1) + delta * 0.10, 0.60, 1.80)
+        claim.appliedMalusShare = current
+    end
+end
+
+function Insurance:setLiabilityDecision(farmId, claimId, status, faultShare, reason, source)
+    local claim = self:getClaim(farmId, claimId)
+    if claim == nil then return AgriLife.Result.fail("INSURANCE_LIABILITY_CLAIM_MISSING", "Claim not found") end
+    if claim.requiresLiability ~= true then return AgriLife.Result.fail("INSURANCE_LIABILITY_NOT_REQUIRED", "Liability decision is not required for this claim") end
+    if claim.status == "paid" and claim.liabilityAppealed ~= true then return AgriLife.Result.fail("INSURANCE_LIABILITY_ALREADY_SETTLED", "Liability cannot be changed after settlement without an appeal") end
+
+    local normalizedStatus, normalizedShare = normalizedLiability(status, faultShare)
+    claim.liabilityStatus = normalizedStatus
+    claim.liabilityShare = normalizedShare
+    claim.liabilityReason = text(reason, normalizedStatus == Insurance.LIABILITY_STATUS.UNKNOWN and "Responsabilité à déterminer" or "Décision issue du constat")
+    claim.liabilitySource = text(source, "EXPERTISE")
+    claim.liabilityDecisionPeriodKey = normalizedStatus == Insurance.LIABILITY_STATUS.UNKNOWN and 0 or self:getPeriodKey()
+    claim.liabilityAppealed = false
+    self:calculateLiabilityAllocation(farmId, claim)
+    self:applyLiabilityMalus(farmId, claim)
+    self:recordEconomy(farmId, "INSURANCE_LIABILITY_DECISION", 0, string.format("%s/%s/%.2f", tostring(claim.id), normalizedStatus, normalizedShare))
+    return AgriLife.Result.ok("INSURANCE_LIABILITY_DECIDED", "Accident liability decision recorded", self:getClaimLiabilitySnapshot(farmId, claim.id))
+end
+
+function Insurance:submitAccidentStatement(farmId, claimId, statement)
+    local claim = self:getClaim(farmId, claimId)
+    if claim == nil then return AgriLife.Result.fail("INSURANCE_STATEMENT_CLAIM_MISSING", "Claim not found") end
+    statement = type(statement) == "table" and statement or {}
+    claim = self:initializeLiabilityClaim(farmId, claim)
+    local target = claim.statement
+    target.circumstanceCode = text(statement.circumstanceCode, target.circumstanceCode)
+    target.notes = text(statement.notes, target.notes)
+    target.impactZone = text(statement.impactZone, target.impactZone)
+    target.thirdPartyId = text(statement.thirdPartyId, target.thirdPartyId)
