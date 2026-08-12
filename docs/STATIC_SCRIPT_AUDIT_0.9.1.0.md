@@ -129,6 +129,8 @@ Recommandation : spécialisation de type `vehicles/SparePartsOrderPallet6.lua` o
 
 **WRK-08J - comparatif de choix incomplet.** `AgriLifeStep8UI.lua` permet `DEALER/INTERNAL`, mais pas encore le comparatif complet pièces, main-d'œuvre, délai, remorquage, assurance, franchise et reste à charge.
 
+**WRK-08K - verrou de redémarrage lourd incomplet.** Les défauts critiques moteur utilisent bien `stopEngine=true` et `lockStart=true`, et `applyTechnicalEffects()` coupe un moteur déjà démarré. En revanche, aucun hook runtime distinct n'intercepte statiquement la commande de démarrage suivante. Une casse moteur lourde n'est donc pas encore garantie comme impossible à redémarrer jusqu'à réparation. Il faut un verrou moteur persistant relié à l'état `agriLifeImmobilized` / `lockStart`, retiré uniquement après réparation ou état technique redevenu compatible.
+
 ### Priorités d'écriture
 
 1. Complétion Recovery/Towing autour de `WorkshopRoadmap8.lua`.
@@ -139,6 +141,7 @@ Recommandation : spécialisation de type `vehicles/SparePartsOrderPallet6.lua` o
 6. Retrait runtime de `ServiceTruck6.lua`, du storeItem et des dialogues actifs.
 7. Complétion `AgriLifeStep8UI.lua` pour comparatif et destination.
 8. Filtre commun `isMaintainableAsset()` couvrant explicitement véhicules, remorques, outils, accessoires, chargeurs et masses/poids.
+9. Verrou runtime persistant empêchant réellement le redémarrage lors d’une casse lourde.
 
 Statut étape 8 : **socle avancé installé ; nouvelles décisions validées encore partielles**.
 
@@ -158,6 +161,6 @@ Le multijoueur est **installé comme infrastructure mais volontairement désacti
 
 Le mod n'a pas un problème de scripts oubliés dans l'archive. **Le runtime actuel est complet du point de vue du chargement.**
 
-Les travaux restant à écrire sans attendre un test FS25 sont principalement les complétions de l'étape 8 : remorquage réel, choix de destination, palette physique de commande, cohérence de la réparation interne, suppression du camion de service, limitation du kit terrain, couverture physique des outils/accessoires, filtre des objets maintenables et assurance Atelier/remorquage conforme aux dépenses réelles.
+Les travaux restant à écrire sans attendre un test FS25 sont principalement les complétions de l'étape 8 : remorquage réel, choix de destination, palette physique de commande, cohérence de la réparation interne, suppression du camion de service, limitation du kit terrain, couverture physique des outils/accessoires, filtre des objets maintenables, verrou réel de redémarrage en casse lourde et assurance Atelier/remorquage conforme aux dépenses réelles.
 
 Ces éléments doivent être traités avant de pouvoir considérer le registre des nouvelles idées Atelier comme `Intégrée`.
