@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- Copyright (C) 2026 Chez_Squall. All rights reserved. -->
+<GUI onOpen="onOpen" onClose="onClose">
+    <GuiElement profile="newLayer" />
+    <Bitmap profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement profile="dialogBg" id="dialogElement" size="820px 610px">
+        <ThreePartBitmap profile="fs25_dialogBgMiddle" />
+        <ThreePartBitmap profile="fs25_dialogBgTop" />
+        <ThreePartBitmap profile="fs25_dialogBgBottom" />
+        <GuiElement profile="fs25_dialogContentContainer">
+            <Text profile="fs25_dialogTitle" id="dialogTitle" position="0px -28px" text="$l10n_agrilife_tutorial_dialog_title"/>
+            <Text profile="fs25_textDefault" id="pageText" position="0px -66px" size="760px 24px" textAlignment="center" textSize="14px" textColor="0.63 0.86 0.45 1" />
+            <GuiElement position="0px -102px" size="760px 382px">
+                <Bitmap profile="baseReference" imageColor="0.055 0.074 0.081 0.98" size="760px 382px"/>
+                <Text profile="fs25_textDefault" id="bodyText" position="30px -30px" size="700px 322px" textSize="16px" textColor="0.88 0.93 0.91 1" textAutoWrap="true" />
+            </GuiElement>
+        </GuiElement>
+        <BoxLayout profile="fs25_dialogButtonBox">
+            <Button profile="buttonBack" id="closeButton" text="$l10n_agrilife_tutorial_close" onClick="onClickClose" />
+            <Bitmap profile="fs25_dialogButtonBoxSeparator"/>
+            <Button profile="buttonOK" id="prevButton" text="$l10n_agrilife_tutorial_prev" onClick="onClickPrevious" />
+            <Bitmap profile="fs25_dialogButtonBoxSeparator"/>
+            <Button profile="buttonOK" id="nextButton" text="$l10n_agrilife_tutorial_next" onClick="onClickNext" />
+        </BoxLayout>
+    </GuiElement>
+</GUI>
