@@ -27,12 +27,12 @@ jobs:
 
       - name: Overlay current 0.9.1.0 maintained source
         run: |
-          rm -rf /tmp/agrilife-package/src
-          cp -a src /tmp/agrilife-package/src
+          mkdir -p /tmp/agrilife-package/src
+          cp -a src/. /tmp/agrilife-package/src/
           cp modDesc.xml /tmp/agrilife-package/modDesc.xml
           if [ -d translations ]; then
-            rm -rf /tmp/agrilife-package/translations
-            cp -a translations /tmp/agrilife-package/translations
+            mkdir -p /tmp/agrilife-package/translations
+            cp -a translations/. /tmp/agrilife-package/translations/
           fi
           if [ -d data ]; then
             mkdir -p /tmp/agrilife-package/data
