@@ -1,0 +1,35 @@
+name: Apply AgriLife 0.9.3.1 UIManager
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/sync/0931-uimanager.READY'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply UIManager corrective source
+        run: python tools/apply_0931_uimanager.py
+      - name: Validate UIManager
+        run: |
+          test -f src/ui/AgriLifeUIManager.lua
+          grep -q 'loadTutorialDialog' src/ui/AgriLifeUIManager.lua
+          grep -q 'loadJournalDialog' src/ui/AgriLifeUIManager.lua
+          grep -q 'loadAccidentStatementDialog' src/ui/AgriLifeUIManager.lua
+      - name: Commit UIManager source
+        run: |
+          rm -f .github/sync/0931-uimanager.READY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+          else
+            git commit -m 'Synchronize 0.9.3.1 F02 UI manager source'
+            git push origin HEAD:main
+          fi
