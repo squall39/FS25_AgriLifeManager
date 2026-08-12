@@ -2,6 +2,21 @@
 
 Le détail historique des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les jalons de la branche actuelle au lieu de recopier toutes les notes 0.6.x.
 
+## 0.8.1.0 TEST - Constats, responsabilité Atelier/Assurance & bonus-malus
+
+- Constat accident enrichi : conducteur séparé de la responsabilité, tiers, circonstances, preuves, décision et recours persistants.
+- Responsabilité : responsable, non responsable, partagée ou indéterminée ; aucune indemnisation définitive sans décision exploitable.
+- Le devis Atelier final devient la référence de réparation et répartit réellement la charge entre Assurance et exploitation.
+- Non responsable : réparation prise en charge par l'Assurance avec recours tiers lorsqu'il existe ; aucun malus.
+- Responsable : réparations propres à la charge de l'exploitation selon la règle AgriLife ; la responsabilité civile peut couvrir les dommages tiers.
+- Responsabilité partagée : ventilation proportionnelle et demi-malus.
+- Contre-expertise/recours : nouvelle décision recalculée sans double pénalité.
+- Bonus-malus durable : coefficient 1,00, bonus annuel, malus selon responsabilité, bornes et protection du bonus maximal.
+- Les primes véhicule, responsabilité civile et transport suivent réellement le coefficient.
+- Historique, persistance, interface Assurance et feuille de route additive mis à jour.
+- 76 assertions constats/responsabilité et 51 assertions bonus-malus, avec non-régression des étapes précédentes.
+- Certification FS25 réelle volontairement différée.
+
 ## 0.8.0.0 TEST - Atelier, Concessionnaire & Gestion technique du parc
 
 - Étape 8 écrite et intégrée côté package.
