@@ -1,78 +1,61 @@
 # Synchronisation du source GitHub
 
-Version de référence : **0.9.1.0 TEST**
+Version de référence : **0.9.3.0 TEST**
 
-Le package joueur reste la source de vérité exécutable. Le dépôt GitHub publie les sources texte maintenables et la feuille de route complète. Une synchronisation de source ne vaut jamais certification en jeu.
+Build jouable de référence : `FS25_AgriLifeManager_0.9.3.0_TEST_final.zip`  
+SHA-256 : `303a1f11111e8e8d40be65f5e93081dec0686e89e2c69d05ba2f10521202a7fa`
 
-## Fermeture d'écriture 0.9.1.0
+Le package joueur reste la source de vérité exécutable. Le dépôt GitHub conserve les sources maintenables, la feuille de route, le registre d’idées, les audits et l’historique utile. Une synchronisation de source ne vaut jamais certification en jeu.
 
-- `src/modules/bank/BankRoadmap3Completion.lua` : financement marché/difficulté, consultation, comptabilité avancée, fiscalité, amortissements, bilan et CAF ;
-- `src/modules/economy/EconomyAccountingRoadmapCompletion.lua` : métadonnées et filtres du grand livre ;
-- `src/modules/dashboard/DashboardRoadmapWritingCompletion.lua` : synthèses finance/carrière ;
-- `src/ui/AgriLifeRoadmapWritingCompletionUI.lua` : affichages Banque/Carrière ;
-- `src/ui/AgriLifeInterfaceRoadmap2Completion.lua` : politique responsive ;
-- `tools/audit_roadmap_writing_completion.py` : gate dédié à la fermeture d'écriture ;
-- `tests/roadmap_writing_completion_spec.lua` : contrôle statique Lua de la présence des briques ;
-- `docs/ROADMAP.md` : statut 0.9.1.0 additif, sans suppression d'idées.
+## Inventaire de référence 0.9.3.0
 
-## Tutoriel / Assistance 0.9.1.0
+- 424 fichiers dans la build TEST ;
+- 116 `extraSourceFiles` dans `modDesc.xml` ;
+- 2 spécialisations Lua locales supplémentaires (`FieldServiceKit6`, `OilServicePoint6`) ;
+- **118 Lua runtime actifs** ;
+- 131 fichiers Lua dans le projet, dont 13 tests/specs non chargés en runtime ;
+- 84 XML ;
+- 27 langues ;
+- 5 023 clés l10n par langue.
 
-- `src/ui/AgriLifeTutorialRoadmapCompletion.lua` : guide initial 13 pages et raccordement au parcours guidé, sans réécrire le HomeFrame historique ;
-- `gui/helpLine.xml` : Assistance FS25 reconstruite sur les mêmes clés l10n que le guide ;
-- `tools/verify_release.py` : gate mis à jour pour les 13 rubriques et l'Assistance localisée ;
-- `docs/L10N_AUDIT.md` : parité des 27 langues et dette linguistique héritée ;
-- `translations/` : 5 047 clés par langue dans le package joueur, sans clé manquante ou vide.
+## Fermeture Atelier 8.1
 
-Le dépôt public peut rester un miroir texte partiel. Le ZIP joueur 0.9.1.0 reste la source de vérité exécutable pour les fichiers `gui/`, les traductions complètes et les assets.
+Les modules de fermeture 0.9.2 restent la base de l’Atelier 0.9.3 :
 
-## Source Étape 9
+- `WorkshopRoadmap81Completion.lua` : parc maintenable complet et verrou casse lourde ;
+- `WorkshopRecoveryRoadmapCompletion.lua` : dépannage/remorquage vers concessionnaire ou atelier ;
+- `WorkshopPhysicalPartsRoadmapCompletion.lua` : commandes/palettes physiques et stock atelier ;
+- `WorkshopTurnaroundLoanerRoadmapCompletion.lua` : délai atelier personnel 2 à 3 fois supérieur, prêt concessionnaire et location de secours ;
+- `InsuranceWorkshopRoadmapCompletion.lua` : couverture selon cause, assistance séparée et dépenses réellement engagées.
 
-- `src/core/AgriLifeNetworkRoadmap9.lua` ;
-- `src/core/AgriLifeMigrationManager.lua` ;
-- `src/core/AgriLifePersistence.lua` ;
-- `src/core/AgriLifeCore.lua` ;
-- `src/modules/compatibility/CompatibilityRoadmap9.lua` ;
-- `src/modules/finalization/FinalizationRoadmap9.lua` ;
-- `tests/finalization_roadmap9_spec.lua` ;
-- `tools/audit_l10n_usage.py` ;
-- `tools/audit_publication.py` ;
-- `tools/package_release.py` ;
-- `tools/verify_release.py` ;
-- `docs/GLOSSARY.md` ;
-- `docs/USER_GUIDE.md` ;
-- `docs/THIRD_PARTY_COMPONENTS.md` ;
-- `docs/PUBLICATION_CHECKLIST.md` ;
-- `docs/STEP9_FINALIZATION.md` ;
-- `docs/ROADMAP.md` complet et additif ;
-- `modDesc.xml` et `src/core/AgriLifeVersion.lua` en 0.9.1.0 ;
-- `translations/` avec 27 langues en parité.
+Le camion de service achetable par le joueur est supprimé. Les huiles, lubrifiants, cuves et points de service utiles restent conservés.
 
-## Fonctionnement du packaging
+## Nouveaux systèmes 0.9.3.0
 
-`tools/package_release.py` propose deux profils :
+- `WorkshopBehavioralWearRoadmapCompletion.lua` : usure comportementale AgriLife et neutralisation de l’usure/réparation vanilla comme autorité mécanique concurrente ;
+- `VehicleEnergyRoadmapCompletion.lua` : consommation carburant/énergie selon puissance, charge, régime, comportement, état mécanique et difficulté ;
+- `InsuranceAccidentAuthorityRoadmapCompletion.lua` : constat joueur/IA, autorité du patron et classement perte totale/épave ;
+- `OperationalHoursRoadmapCompletion.lua` : horaires centralisés Banque, concessionnaire, atelier personnel, usines et points de vente ;
+- `AgriLifeAccidentStatementDialog.lua` : interface de constat pour conducteur joueur.
 
-- `test` : conserve les tests, outils et documents de développement utiles ;
-- `public` : retire les tests et outils du ZIP joueur tout en conservant le contenu nécessaire au mod.
+## Documentation et campagne active
 
-Les deux profils passent d'abord par les gates XML/Lua/l10n/publication.
+- `docs/IDEA_REGISTRY.md` : état d’intégration réel jusqu’à WRK-023 / ENE-001 / INS-003 / OPS-001 ;
+- `ROADMAP.md` et `docs/ROADMAP.md` : registre synchronisé automatiquement et conservé de manière additive ;
+- `docs/FS25_TEST_ROADMAP_0.9.3.0.md` : campagne active Facile → Normal → Difficile ;
+- `TESTING.md` : pointe sur la campagne 0.9.3.0 ;
+- `docs/PROJECT_SYNC_STATUS.md` : statut courant de la build et du dépôt.
 
 ## Assets binaires
 
-Les DDS, PNG, I3D, SHAPES et autres gros assets nécessaires au ZIP joueur ne sont pas automatiquement republiés dans le dépôt public. Leur publication source dépend de leur origine et des droits de redistribution.
+La build de référence contient environ 54 Mo de DDS/PNG/I3D et autres assets binaires. Le connecteur GitHub utilisé dans cette session ne permet pas de verser directement en masse l’arborescence binaire locale. Ces fichiers ne doivent donc pas être déclarés comme un miroir GitHub complet tant qu’un transfert binaire dédié n’a pas été réalisé.
 
-## Règle de synchronisation
+Leur source exécutable de vérité reste le ZIP 0.9.3.0 validé. Les fichiers binaires devenus inutiles ne doivent pas être rajoutés sur `main` ; les restes du camion de service sont exclus.
 
-Une build livrée doit porter le même numéro de version, le même état de roadmap et la même liste de sources actives entre le package et GitHub. Les idées validées restent additives et ne sont jamais supprimées lors d'une simple mise à jour d'avancement.
+## Nettoyage GitHub 2026-08-12
 
-## Règle de synchronisation conversation -> projet
+Les anciens runners, workflows et payloads one-shot de synchronisation 0.9.3 incomplets ont été supprimés de `main`. Les documents historiques utiles (anciens audits et anciennes roadmaps de test) sont conservés volontairement pour traçabilité.
 
-Une décision explicitement validée doit être enregistrée dans la roadmap et son registre maître. Si elle change le comportement joueur, tutoriel et Assistance sont mis à jour dans toutes les langues distribuées. GitHub et la build de référence doivent ensuite refléter la même décision. Une idée non codée reste `À intégrer` ou `Partiellement intégrée`.
+## Règle de synchronisation conversation → projet
 
-## Audit statique des scripts - 2026-08-12
-
-- `docs/STATIC_SCRIPT_AUDIT_0.9.1.0.md` conserve l'inventaire détaillé étape par étape.
-- Package de référence audité : 122 Lua au total, dont **109 Lua runtime actifs** et **13 Lua de tests volontairement non chargés**.
-- Aucun Lua runtime présent n'est oublié du `modDesc.xml`.
-- Les manques actuels ne sont pas des fichiers déjà présents mais non installés : ce sont des complétions fonctionnelles Atelier/Assurance encore à écrire.
-- La couverture Atelier validée inclut véhicules, automoteurs, remorques, outils, accessoires, chargeurs et masses/poids ; le dépannage physique terrain doit encore être généralisé au-delà des seuls matériels motorisés.
-- La build TEST synchronisée après audit possède le SHA-256 `157f3e3b277650155e5ed1b4fdd64e054ffc2ae9e3e4fa5edcd81a5b8236a932` et contient 466 fichiers.
+Une décision explicitement validée doit être enregistrée dans la roadmap et son registre maître. Si elle change le comportement joueur, tutoriel et Assistance sont mis à jour dans toutes les langues distribuées. GitHub et la build de référence doivent ensuite refléter la même décision. Une fonction codée mais non certifiée reste `À certifier`.
