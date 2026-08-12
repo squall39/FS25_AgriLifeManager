@@ -72,5 +72,6 @@
 - Toute nouvelle idée validée reçoit un ID ou complète une ligne existante sans supprimer l’historique détaillé de la roadmap.
 - Une idée passe à `Intégrée` uniquement lorsque le code correspondant est réellement présent dans la build de référence.
 - Une idée intégrée mais non testée reste explicitement `À certifier`.
+- Tout écart fonctionnel découvert par audit statique reçoit un statut explicite tant qu’il n’est pas réellement corrigé dans la build.
 - Si une idée modifie le comportement expliqué au joueur, ses textes de tutoriel et d’Assistance sont modifiés dans la même passe et dans toutes les langues distribuées.
 - La prochaine build et GitHub doivent refléter le même état avant qu’une synchronisation soit considérée terminée.
