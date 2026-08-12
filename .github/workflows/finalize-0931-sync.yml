@@ -1,0 +1,58 @@
+name: Finalize AgriLife 0.9.3.1 sync
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/sync/FINALIZE_0931'
+permissions:
+  contents: write
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Finalize 0.9.3.1 corrective tree
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          mod = Path('modDesc.xml')
+          text = mod.read_text(encoding='utf-8')
+          text = text.replace('<version>0.9.3.0</version>', '<version>0.9.3.1</version>', 1)
+          mod.write_text(text, encoding='utf-8')
+
+          old = Path('docs/FS25_TEST_ROADMAP_0.9.3.0.md')
+          new = Path('docs/FS25_TEST_ROADMAP_0.9.3.1.md')
+          if old.is_file():
+              text = old.read_text(encoding='utf-8').replace('0.9.3.0', '0.9.3.1')
+              marker = '# PHASE 1 - FACILE\n'
+              note = '\n> **Correctif 0.9.3.1 :** F01 a été validé sur la 0.9.3.0. Le correctif F02 ne change pas les règles économiques du mode Facile, mais le tutoriel paginé doit être recontrôlé au démarrage. F02 doit être rejoué intégralement avant de poursuivre vers F03.\n'
+              if marker in text and note.strip() not in text:
+                  text = text.replace(marker, marker + note, 1)
+              new.write_text(text, encoding='utf-8')
+          PY
+          rm -f gui/icons/brand_gmc.png
+          rm -f .github/workflows/apply-0931-homeframe.yml
+          rm -f .github/workflows/apply-0931-uimanager.yml
+          rm -f .github/sync/FINALIZE_0931
+          rm -f .github/workflows/finalize-0931-sync.yml
+      - name: Validate final corrective metadata
+        run: |
+          grep -q '<version>0.9.3.1</version>' modDesc.xml
+          grep -q 'MOD = "0.9.3.1"' src/core/AgriLifeVersion.lua
+          test -f docs/FS25_TEST_ROADMAP_0.9.3.1.md
+          test -f src/ui/AgriLifeHomeFrame.lua
+          test -f src/ui/AgriLifeJournalDialog.lua
+          test -f src/ui/AgriLifeTutorialDialog.lua
+          test -f src/ui/AgriLifeUIManager.lua
+          test -f gui/AgriLifeHomeFrame.xml
+          test -f gui/AgriLifeJournalDialog.xml
+          test ! -e gui/icons/brand_gmc.png
+      - name: Commit finalized 0.9.3.1 source state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Finalize AgriLife Manager 0.9.3.1 F02 corrective sync'
+          git push origin HEAD:main
