@@ -1,0 +1,92 @@
+        <sourceFile filename="src/modules/workshop/Workshop6Service.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopModule.lua" />
+        <sourceFile filename="src/modules/assets/AssetLifecycle6Service.lua" />
+        <sourceFile filename="src/modules/assets/AssetLifecycleModule.lua" />
+        <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap7.lua" />
+        <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap8.lua" />
+        <sourceFile filename="src/modules/legal/Legal6Service.lua" />
+        <sourceFile filename="src/modules/legal/LegalModule.lua" />
+        <sourceFile filename="src/modules/journal/Journal6Service.lua" />
+        <sourceFile filename="src/modules/journal/JournalModule.lua" />
+        <sourceFile filename="src/modules/qualifications/Qualifications6Service.lua" />
+        <sourceFile filename="src/modules/qualifications/QualificationsModule.lua" />
+        <sourceFile filename="src/modules/enterprise/Enterprise6Service.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4Completion.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseModule.lua" />
+        <sourceFile filename="src/modules/career/CareerRoadmap5.lua" />
+        <sourceFile filename="src/modules/administration/Administration6Service.lua" />
+        <sourceFile filename="src/modules/administration/AdministrationModule.lua" />
+        <sourceFile filename="src/modules/administration/AdministrationRoadmap6.lua" />
+        <sourceFile filename="src/modules/market/DynamicMarket6Service.lua" />
+        <sourceFile filename="src/modules/market/DynamicMarketModule.lua" />
+        <sourceFile filename="src/modules/market/DynamicMarketRoadmap7.lua" />
+        <sourceFile filename="src/modules/market/DynamicMarketRoadmap8.lua" />
+        <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7.lua" />
+        <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7Events.lua" />
+        <sourceFile filename="src/modules/compatibility/Compatibility6Service.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4Guard.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityModule.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap7.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap8.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap9.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopRoadmap8.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceClaimsLiability8.lua" />
+        <sourceFile filename="src/modules/insurance/InsuranceBonusMalus8.lua" />
+        <sourceFile filename="src/modules/dashboard/Dashboard6Service.lua" />
+        <sourceFile filename="src/modules/dashboard/DashboardModule.lua" />
+        <sourceFile filename="src/modules/dashboard/DashboardRoadmapWritingCompletion.lua" />
+        <sourceFile filename="src/modules/finalization/Finalization6Service.lua" />
+        <sourceFile filename="src/modules/finalization/FinalizationModule.lua" />
+        <sourceFile filename="src/modules/finalization/FinalizationRoadmap9.lua" />
+        <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
+        <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
+        <sourceFile filename="src/ui/AgriLifeRoadmapWritingCompletionUI.lua" />
+        <sourceFile filename="src/ui/AgriLifeInterfaceRoadmap2Completion.lua" />
+        <sourceFile filename="src/ui/AgriLifeStep7UI.lua" />
+        <sourceFile filename="src/ui/AgriLifeStep8UI.lua" />
+        <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
+        <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
+        <sourceFile filename="src/core/AgriLifeCore.lua" />
+        <sourceFile filename="src/bootstrap/AgriLifeBootstrap.lua" />
+    </extraSourceFiles>
+    <specializations>
+        <specialization name="FieldServiceKit6" className="FieldServiceKit6" filename="vehicles/FieldServiceKit6.lua" />
+        <specialization name="ServiceTruck6" className="ServiceTruck6" filename="vehicles/ServiceTruck6.lua" />
+    </specializations>
+    <vehicleTypes>
+        <type name="agriLifeManagerFieldServiceKit" parent="base" filename="$dataS/scripts/vehicles/Vehicle.lua">
+            <specialization name="FieldServiceKit6" />
+        </type>
+        <type name="agriLifeManagerServiceTruck" parent="carFillable" filename="$dataS/scripts/vehicles/Vehicle.lua">
+            <specialization name="ServiceTruck6" />
+            <specialization name="fillTriggerVehicle" />
+        </type>
+    </vehicleTypes>
+    <materialTemplates id="brandColor" name="Brand Material" parentTemplateFilename="$data/shared/detailLibrary/materialTemplates.xml">
+        <template name="RAM_SILVER" title="Silver" usage="2" colorScale="1 1 1" parentTemplate="silverScratched" />
+        <template name="RIM_DARK_STEEL" title="Dark Steel" usage="2" colorScale="0.35 0.35 0.40" parentTemplate="silverScratched" />
+        <template name="RIM_ALU" title="Aluminium" usage="2" colorScale="0.65 0.65 0.75" parentTemplate="copperScratched" />
+        <template name="DARK_CHROME" title="Dark Chrome" usage="2" colorScale=".65 .65 .65" parentTemplate="chrome" />
+        <template name="PLAST1" title="Dark plastic" usage="2" colorScale="0.02 0.02 0.02" parentTemplate="plasticPaintedBlack" />
+        <template name="PLAST2" title="Dark plastic 2" usage="2" colorScale="0.03 0.03 0.03" parentTemplate="plasticPaintedShinyBlack" />
+    </materialTemplates>
+    <placeableSpecializations>
+        <specialization name="OilServicePoint6" className="OilServicePoint6" filename="placeables/OilServicePoint6.lua" />
+    </placeableSpecializations>
+    <placeableTypes>
+        <type name="agriLifeManagerOilServicePoint" parent="simplePlaceable" filename="$dataS/scripts/placeables/Placeable.lua">
+            <specialization name="OilServicePoint6" />
+        </type>
+    </placeableTypes>
+    <brands>
+        <brand name="GMC" title="GMC" image="gui/icons/brand_gmc.dds" />
+    </brands>
+    <storeItems>
+        <storeItem xmlFilename="placeables/OilTank.xml" />
+        <storeItem xmlFilename="vehicles/fieldServiceKit/fieldServiceKit.xml" />
+        <storeItem xmlFilename="vehicles/serviceTruck/serviceTruck.xml" />
+        <storeItem xmlFilename="vehicles/sparePartsPallet/sparePartsPallet.xml" />
+    </storeItems>
+</modDesc>
