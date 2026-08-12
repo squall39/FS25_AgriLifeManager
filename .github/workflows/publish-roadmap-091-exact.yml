@@ -1,0 +1,42 @@
+name: Publish exact 0.9.1.0 roadmap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-roadmap-091-exact.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Assemble and verify exact master roadmap
+        run: |
+          cat .github/sync/roadmap091/part00.txt \
+              .github/sync/roadmap091/part01.txt \
+              .github/sync/roadmap091/part02.txt \
+              .github/sync/roadmap091/part03.txt \
+              .github/sync/roadmap091/part04.txt \
+              .github/sync/roadmap091/part05.txt \
+              .github/sync/roadmap091/part06.txt \
+              .github/sync/roadmap091/part07.txt \
+              .github/sync/roadmap091/part08.txt \
+              > ROADMAP.md
+          echo "fff56d09417828cbf499f9dc749da5747f754f38d91aad1673b67bb32bd00ac5  ROADMAP.md" | sha256sum -c -
+          rm -rf .github/sync/roadmap091
+          rm -f .github/workflows/sync-roadmap-091-exact.yml
+          rm -f .github/workflows/publish-roadmap-091-exact.yml
+      - name: Commit exact roadmap and clean staging
+        run: |
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add -A ROADMAP.md .github/sync/roadmap091 .github/workflows/sync-roadmap-091-exact.yml .github/workflows/publish-roadmap-091-exact.yml
+          git commit -m "Publish exact complete 0.9.1.0 roadmap"
+          git push
