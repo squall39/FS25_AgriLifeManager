@@ -4,59 +4,53 @@
 
 ## État courant
 
-- Version source synchronisée : **0.9.0.0 TEST**
+- Version source synchronisée : **0.9.1.0 TEST**
 - Auteur : **Chez_Squall**
 - Plateforme cible : PC
 - Multijoueur : infrastructure écrite mais désactivée tant que la campagne réseau n'est pas certifiée
 - Package joueur : `FS25_AgriLifeManager.zip`
 
-### Feuille de route
+## Feuille de route
 
-La feuille de route complète est conservée dans `ROADMAP.md` et fonctionne comme **registre maître additif** : les idées validées ne sont jamais supprimées lors d'une mise à jour. Une mise à jour de feuille de route modifie uniquement l'état des points déjà prévus, précise leur avancement ou ajoute une nouvelle idée explicitement validée.
+`ROADMAP.md` reste le **registre maître additif** du projet. Aucune idée validée ne doit être supprimée ou condensée au point d'en perdre le contenu.
 
-- Étapes 1 à 3 : intégrées, avec plusieurs points historiques avancés encore à compléter et/ou certifier.
-- Étape 4 Entreprise : écriture complète, certification en jeu à faire.
-- Étape 5 Carrière & Qualifications : écriture complète, certification en jeu à faire.
-- Étape 6 Administration : écriture complète, certification en jeu à faire.
-- Étape 7 Contrats & Marchés : écriture complète, certification en jeu à faire.
-- Étape 8 Atelier, Concessionnaire & Gestion technique du parc : écriture complète, certification en jeu à faire.
-- Étape 9 Finalisation : infrastructure de finalisation écrite et intégrée, certification globale à faire.
+La passe 0.9.1.0 ferme les derniers scripts métier identifiés dans Démarrage, Interface et Banque. Les neuf étapes possèdent désormais leur écriture fonctionnelle.
 
-Voir `ROADMAP.md` pour le détail complet de toutes les idées conservées.
+**Écriture fonctionnelle hors tests : 100 % en Facile, Normal et Difficile.**
 
-## Finalisation 0.9.0.0
+Cela ne signifie pas que le mod est certifié ou prêt à publier : les cases encore ouvertes concernent notamment les tests FS25 réels, sauvegarde/rechargement, compatibilités, contrôle visuel 1080p/1440p/4K, multijoueur, relectures de traduction et validation de publication.
 
-La build 0.9.0.0 ajoute le schéma de sauvegarde 4, la migration 3 vers 4, l'identité de carrière, le suivi de récupération backup, les audits de persistance et de compatibilité, l'isolation multi-fermes, un squelette réseau serveur autoritaire non publié, le tutoriel paginé rebasé, les audits l10n/publication, la documentation utilisateur et un packaging TEST/PUBLIC reproductible.
+## Fermeture 0.9.1.0
 
-Le multijoueur reste volontairement `supported=false` tant que sa certification réelle n'est pas terminée.
+- relation bancaire et consultation d'offres enrichies ;
+- profils de risque, sévérité, solidité et vitesse d'étude par banque ;
+- conseiller compatible avec banque, dossier et objet de financement ;
+- influence du marché et de la difficulté sur taux, capacité et décision ;
+- grand livre professionnel avec catégories, contreparties, fournisseurs, contrats, références, types de flux et tags persistants ;
+- filtres comptables par période, catégorie, fournisseur, contrat, type, source et tag ;
+- distinction résultat / investissement / financement / capitaux propres ;
+- amortissements ;
+- compte de résultat ;
+- bilan simplifié incluant trésorerie, matériel, foncier, productions, dettes et fiscalité ;
+- capacité d'autofinancement et couverture du service de dette ;
+- rentabilité par activité ;
+- séparation compte professionnel / personnel plus contraignante selon la difficulté ;
+- synthèses Banque et Carrière sur le tableau de bord ;
+- politique responsive prudente 1080p / 1440p / 4K ;
+- affichage monétaire professionnel au centime.
 
 ## Organisation du dépôt
 
-Le dépôt publie la source texte maintenable du mod aux mêmes chemins que le package lorsque cela est pertinent :
-
-- `src/` : Lua actif ;
-- `gui/` : XML et définitions texte d'interface ;
-- `translations/` : l10n ;
-- `tests/` : contrôles ;
-- `tools/` : vérification et packaging ;
-- `data/`, `placeables/`, `vehicles/` : configurations et scripts texte publiables ;
-- `docs/` : documentation technique et utilisateur ;
-- `modDesc.xml` : descripteur de la version source courante.
-
-Les gros assets binaires et contenus tiers ne sont publiés que lorsque leurs droits de redistribution sont vérifiés.
+Le package joueur reste la source de vérité exécutable. GitHub publie les sources texte maintenables et la roadmap complète lorsque cela est pertinent. Certains gros fichiers historiques et assets binaires ne sont pas automatiquement republiés ; le manifeste de synchronisation indique cette limite.
 
 ## Règles de développement
 
 - Trois difficultés uniquement : **Facile / Normal / Difficile**.
 - Chaque fonctionnalité doit avoir une conséquence réelle en jeu.
-- Les systèmes ne doivent pas être dupliqués entre modules.
+- Une seule autorité par système métier.
 - Courseplay, AutoDrive, Precision Farming, Soil Fertilizer, MudSystem et les systèmes mécaniques tiers restent optionnels.
 - Les contenus maps/multifruits sont détectés dynamiquement lorsque FS25 le permet.
-- Les 27 langues distribuées doivent garder le même jeu de clés l10n.
-- La version reste sous `1.0.0.0` tant que les grands systèmes ne sont pas terminés et validés.
-
-## État de validation
-
-La présence du code sur GitHub signifie qu'il est **écrit et intégré**, pas qu'il est automatiquement certifié dans FS25. Les étapes 4 à 9 nécessitent encore leur campagne de certification en jeu et les étapes 1 à 3 conservent des finitions historiques prévues par la roadmap.
+- Les 27 langues distribuées gardent exactement le même jeu de clés l10n.
+- La version reste sous `1.0.0.0` tant que le projet n'est pas entièrement certifié.
 
 © 2026 Chez_Squall.
