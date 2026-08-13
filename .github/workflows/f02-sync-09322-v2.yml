@@ -1,0 +1,33 @@
+name: F02 dashboard sync 0.9.3.22
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/f02-sync-09322-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply source patch
+        run: |
+          python3 tools/f02_sync_xml_09322.py
+          python3 tools/f02_sync_home_09322.py
+          python3 tools/f02_sync_interface_09322.py
+          python3 tools/f02_sync_roadmap_09322.py
+          python3 -c "import xml.etree.ElementTree as ET; ET.parse('gui/AgriLifeHomeFrame.xml')"
+      - name: Save source changes
+        run: |
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add gui/AgriLifeHomeFrame.xml src/ui/AgriLifeHomeFrame.lua src/ui/AgriLifeInterface6.lua ROADMAP.md docs/ROADMAP.md
+          git diff --cached --quiet || git commit -m "Apply F02 dashboard correction 0.9.3.22"
+          git push origin HEAD:main
