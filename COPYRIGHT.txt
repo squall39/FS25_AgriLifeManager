@@ -1,0 +1,18 @@
+AgriLife Manager - Copyright and Distribution Notice
+
+Copyright (C) 2026 Chez_Squall. All rights reserved.
+
+All original AgriLife Manager source code, user-interface definitions, translations, documentation, gameplay data and original assets contained in this package are copyright Chez_Squall, unless a file or directory carries a separate upstream author, copyright or licence notice.
+
+Third-party and upstream components retain the copyrights, licences and attribution notices of their respective authors. Nothing in this notice transfers ownership of third-party material to Chez_Squall.
+
+OFFICIAL DISTRIBUTION
+AgriLife Manager playable archives are distributed only through channels approved by Chez_Squall. Do not re-upload, mirror, repackage or redistribute the playable mod archive on another website, file host, social network or download service without permission.
+
+OFFICIAL SOURCE REPOSITORY
+Chez_Squall authorizes publication of the original AgriLife Manager source code and original project files in the official GitHub repository maintained for the project. This authorization applies only to original AgriLife Manager material. Third-party files remain subject to their own licences and redistribution terms.
+
+The official GitHub repository is a development and source location. A repository snapshot, fork or modified build must not be represented as an official playable release.
+
+Official publication platform: https://www.kingmods.net/fr/
+Official source repository: https://github.com/squall39/FS25_AgriLifeManager
