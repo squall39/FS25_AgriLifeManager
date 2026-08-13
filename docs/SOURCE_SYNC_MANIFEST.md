@@ -1,41 +1,47 @@
 # Synchronisation du source GitHub
 
-Version de test preparee : **0.9.3.24 TEST**
-Version actuellement presente sur `main` : **0.9.3.23 TEST**
-Date : **13 aout 2026**
+Version de test préparée : **0.9.3.24 TEST**
+Version déclarée sur `main` : **0.9.3.24 TEST**
+Date : **13 août 2026**
 
-La build joueur 0.9.3.24 est preparee localement pour le premier test F03 Banque. F01 et F02 restent validees. F03 n est pas encore certifiee dans Farming Simulator 25.
+La build joueur 0.9.3.24 est la référence exécutable préparée pour le premier test F03 Banque. F01 et F02 restent validées. F03 n'est pas encore certifiée dans Farming Simulator 25.
 
-## Preparation F03 0.9.3.24
+## Préparation F03 0.9.3.24
 
-- lecture du capital restant et des mois restants du pret corrigee ;
-- remboursement anticipe calcule sur le capital reellement restant ;
-- montant, frais et debit total presentes avant confirmation ;
-- frais propres au pret conserves selon sa banque d origine ;
-- reamenagement calcule sur la duree reellement restante ;
-- confirmation Oui / Non avant demande de pret, remboursement anticipe, reamenagement, decouvert, contrat bancaire, refinancement et paiement fiscal ;
-- retour explicite lorsque la banque est fermee ;
-- parite des traductions de la build conservee sur 27 langues ;
-- audits statiques et packaging TEST valides avant essai en jeu.
+- lecture du capital restant et des mois restants du prêt corrigée ;
+- remboursement anticipé calculé sur le capital réellement restant ;
+- montant, frais et débit total présentés avant confirmation ;
+- frais propres au prêt conservés selon sa banque d'origine ;
+- réaménagement calculé sur la durée réellement restante ;
+- confirmations Oui / Non avant les actions bancaires engageantes ;
+- découvert remplacé par une autorisation temporaire avec durée, frais, intérêts, régularisation, mise en demeure et contentieux ;
+- contentieux bancaire relié au Juridique sans double comptabilisation du principal ;
+- dossiers fiscaux et bancaires séparés dans le Juridique ;
+- retour explicite lorsque la banque est fermée ;
+- parité des traductions de la build conservée sur 27 langues ;
+- audits statiques et packaging TEST validés avant essai en jeu.
 
-## Etat reel de `main`
+## État réel de `main`
 
-`main` reste volontairement identifie en 0.9.3.23 tant que les sources actives necessaires a F03 ne sont pas toutes miroitees. Il ne doit pas etre presente comme copie complete du ZIP 0.9.3.24.
+`main` porte désormais le numéro 0.9.3.24 et les fichiers de suivi F03. Le dépôt ne doit toutefois pas être présenté comme miroir complet du ZIP 0.9.3.24 tant que toutes les sources actives F03 ne sont pas présentes et vérifiées.
 
-Les gaps connus comprennent notamment :
+Gaps historiques ou F03 encore ouverts :
 
-- `src/modules/bank/Bank6Service.lua` ;
-- `src/modules/bank/Bank6Events.lua` ;
-- `src/modules/bank/BankModule.lua` ;
-- le repertoire `translations/` ;
-- `tools/verify_release.py`.
+- `src/modules/bank/Bank6Service.lua` absent de `main` ;
+- `src/modules/bank/Bank6Events.lua` absent de `main` ;
+- `src/modules/bank/BankModule.lua` absent de `main` ;
+- `src/modules/administration/Administration6Service.lua` absent de `main` ;
+- `src/modules/administration/AdministrationRoadmap6.lua` absent de `main` ;
+- le répertoire `translations/` distribué dans la build n'est pas encore miroité ;
+- `tools/verify_release.py` n'est pas encore miroité ;
+- les modifications F03 de certains gros fichiers déjà présents, notamment Banque, Juridique, interface, Assistance et feuille de route, restent à comparer octet par octet avec la build avant de déclarer le miroir complet.
 
-Ces ecarts restent ouverts jusqu a presence et verification reelles des chemins concernes.
+Les appels d'écriture directs du connecteur peuvent refuser certains gros fichiers Lua. Un fichier n'est jamais considéré synchronisé tant que sa présence et son contenu n'ont pas été vérifiés sur `main`.
 
-## Regles de synchronisation
+## Règles de synchronisation
 
-- distinguer clairement la version de test et la version reellement presente sur le depot ;
-- ne jamais declarer un fichier synchronise s il n est pas present ;
-- conserver la build joueur comme reference executable tant que le miroir GitHub est incomplet ;
-- retirer les helpers temporaires apres usage ;
+- distinguer clairement la version de test et l'état réel du dépôt ;
+- ne jamais déclarer un fichier synchronisé s'il n'est pas présent et vérifié ;
+- conserver la build joueur comme référence exécutable tant que le miroir GitHub est incomplet ;
+- retirer les helpers temporaires après usage ;
 - aucun tiret cadratin dans les contenus du projet.
