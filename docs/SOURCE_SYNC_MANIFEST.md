@@ -1,47 +1,40 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.24 TEST**
-Version déclarée sur `main` : **0.9.3.24 TEST**
+Version de test préparée : **0.9.3.25 TEST**
+Version déclarée sur `main` : **0.9.3.25 TEST**
 Date : **13 août 2026**
 
-La build joueur 0.9.3.24 est la référence exécutable préparée pour le premier test F03 Banque. F01 et F02 restent validées. F03 n'est pas encore certifiée dans Farming Simulator 25.
+La build joueur 0.9.3.25 est la référence exécutable pour la suite de F03 Banque. F01 et F02 restent validées. F03 reste active jusqu'à certification dans Farming Simulator 25.
 
-## Préparation F03 0.9.3.24
+## Éléments 0.9.3.25 présents sur `main`
 
-- lecture du capital restant et des mois restants du prêt corrigée ;
-- remboursement anticipé calculé sur le capital réellement restant ;
-- montant, frais et débit total présentés avant confirmation ;
-- frais propres au prêt conservés selon sa banque d'origine ;
-- réaménagement calculé sur la durée réellement restante ;
-- confirmations Oui / Non avant les actions bancaires engageantes ;
-- découvert remplacé par une autorisation temporaire avec durée, frais, intérêts, régularisation, mise en demeure et contentieux ;
-- contentieux bancaire relié au Juridique sans double comptabilisation du principal ;
-- dossiers fiscaux et bancaires séparés dans le Juridique ;
-- retour explicite lorsque la banque est fermée ;
-- parité des traductions de la build conservée sur 27 langues ;
-- audits statiques et packaging TEST validés avant essai en jeu.
+- `modDesc.xml` déclare 0.9.3.25 ;
+- `src/core/AgriLifeVersion.lua` déclare 0.9.3.25 ;
+- `src/core/AgriLifeDecisionGuide.lua` est présent ;
+- `modDesc.xml` référence le guide de décision et le catalogue bancaire 0.9.3.25 ;
+- les workflows temporaires utilisés pendant les synchronisations précédentes ont été retirés.
 
-## État réel de `main`
+## Miroir 0.9.3.25 encore incomplet
 
-`main` porte désormais le numéro 0.9.3.24 et les fichiers de suivi F03. Le dépôt ne doit toutefois pas être présenté comme miroir complet du ZIP 0.9.3.24 tant que toutes les sources actives F03 ne sont pas présentes et vérifiées.
+La build ZIP reste la référence complète tant que les chemins actifs suivants ne sont pas présents et vérifiés sur `main` :
 
-Gaps historiques ou F03 encore ouverts :
+- `src/modules/bank/Bank6Service.lua` ;
+- `src/modules/bank/Bank6Events.lua` ;
+- `src/modules/bank/BankModule.lua` ;
+- `src/modules/bank/BankCatalog09325.lua` ;
+- `src/modules/administration/Administration6Service.lua` ;
+- `src/modules/administration/AdministrationRoadmap6.lua` ;
+- le répertoire `translations/` ;
+- `tools/verify_release.py`.
 
-- `src/modules/bank/Bank6Service.lua` absent de `main` ;
-- `src/modules/bank/Bank6Events.lua` absent de `main` ;
-- `src/modules/bank/BankModule.lua` absent de `main` ;
-- `src/modules/administration/Administration6Service.lua` absent de `main` ;
-- `src/modules/administration/AdministrationRoadmap6.lua` absent de `main` ;
-- le répertoire `translations/` distribué dans la build n'est pas encore miroité ;
-- `tools/verify_release.py` n'est pas encore miroité ;
-- les modifications F03 de certains gros fichiers déjà présents, notamment Banque, Juridique, interface, Assistance et feuille de route, restent à comparer octet par octet avec la build avant de déclarer le miroir complet.
+Les modifications 0.9.3.25 de certains gros fichiers déjà présents, notamment interface, horaires, Assistance, feuille de route et suivi de test, restent également à comparer avec la build avant de déclarer le miroir complet.
 
-Les appels d'écriture directs du connecteur peuvent refuser certains gros fichiers Lua. Un fichier n'est jamais considéré synchronisé tant que sa présence et son contenu n'ont pas été vérifiés sur `main`.
+Le connecteur GitHub peut refuser certaines écritures volumineuses. Un fichier n'est jamais considéré comme synchronisé tant que sa présence et son contenu n'ont pas été vérifiés sur `main`.
 
 ## Règles de synchronisation
 
-- distinguer clairement la version de test et l'état réel du dépôt ;
-- ne jamais déclarer un fichier synchronisé s'il n'est pas présent et vérifié ;
-- conserver la build joueur comme référence exécutable tant que le miroir GitHub est incomplet ;
+- distinguer clairement la version déclarée et l'état réel du miroir ;
+- ne jamais annoncer un fichier comme synchronisé s'il n'est pas présent et vérifié ;
+- conserver la build joueur comme référence exécutable tant que le miroir est incomplet ;
 - retirer les helpers temporaires après usage ;
 - aucun tiret cadratin dans les contenus du projet.
