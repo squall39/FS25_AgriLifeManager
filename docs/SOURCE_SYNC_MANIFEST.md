@@ -33,7 +33,7 @@ Le dossier local `notes/` est ignoré par Git afin que les mémos privés de tra
 - Integrity : service et module restaurés ;
 - Legal : service et module restaurés ;
 - Qualifications : service et module restaurés ;
-- People : module et événements réseau restaurés ;
+- People : service, module et événements réseau restaurés ;
 - Career : module, événements réseau, HUD et tracker transport restaurés ;
 - Payroll : module restauré ;
 - Enterprise : module restauré ;
@@ -45,13 +45,13 @@ Le dossier local `notes/` est ignoré par Git afin que les mémos privés de tra
 - sources texte du point de service huile restaurées ;
 - notice `COPYRIGHT.txt` du package restaurée.
 
-Les blobs Git de `AgriLifeCore.lua` et `AgriLifePersistence.lua` ont été vérifiés contre la build locale 0.9.3.13 et correspondent exactement.
+Les blobs Git de `AgriLifeCore.lua`, `AgriLifePersistence.lua` et `People6Service.lua` ont été vérifiés contre la build locale 0.9.3.13 et correspondent exactement.
 
 ## Gaps encore ouverts
 
 `main` n'est pas encore un miroir octet par octet de la build 0.9.3.13. Restent notamment à synchroniser :
 
-- services et extensions encore absents dans People, Career, Exam, Payroll, Enterprise, Administration et Market ;
+- services et extensions encore absents dans Career, Exam, Payroll, Enterprise, Administration et Market ;
 - les 27 fichiers `translations/` ;
 - les tests et outils courants manquants après contrôle de leur utilité ;
 - les sources GUI encore absentes ;
