@@ -2,7 +2,7 @@
 
 ## Principe
 
-Le dépôt public contient la source texte utile au développement et à la revue. Le ZIP joueur reste un artefact séparé.
+Le dépôt public doit contenir le mod courant sous forme dézippée afin que la source utilisée pour les tests soit lisible, maintenable et vérifiable sur GitHub. Le ZIP joueur reste l'artefact de test et de distribution.
 
 ## Publié dans GitHub
 
@@ -11,19 +11,20 @@ Le dépôt public contient la source texte utile au développement et à la revu
 - traductions l10n ;
 - tests et outils ;
 - documentation ;
-- configurations texte des véhicules/placeables lorsque publiables ;
+- fichiers véhicules et placeables ;
+- textures et assets binaires nécessaires au mod lorsque leur redistribution est autorisée ;
 - `modDesc.xml` et changelog.
 
-## Non dupliqué automatiquement
+## Droits tiers
 
-Les gros assets binaires du package joueur, notamment DDS, PNG, I3D et SHAPES, ne sont pas automatiquement republiés dans le dépôt. Ils peuvent provenir de composants ou références dont les droits de redistribution doivent rester respectés.
+Un asset tiers ne doit pas être publié si sa redistribution source n'est pas autorisée. Dans ce cas, l'exception doit être identifiée clairement dans la documentation du dépôt.
 
-Le fait qu'un asset soit présent dans le ZIP joueur ne signifie pas qu'il doit être publié comme source sur GitHub.
+L'objectif reste un miroir complet du mod dézippé. Une exception de licence ne doit pas servir de prétexte à laisser le dépôt dans un état partiel ou ambigu.
 
 ## Historique
 
-Les anciennes versions sont conservées par l'historique Git. Le dépôt courant ne doit pas maintenir un dossier `builds/` avec des copies documentaires de chaque ancienne build.
+Les anciennes versions sont conservées par l'historique Git. Le dépôt courant ne doit pas maintenir un dossier `builds/` avec des copies de chaque ancienne build ni des workflows temporaires utilisés une seule fois.
 
 ## Attribution
 
-Les éléments originaux AgriLife Manager sont attribués à Chez_Squall. Les composants tiers conservent leurs droits et licences respectifs.
+Les éléments originaux AgriLife Manager sont attribués à Chez_Squall. Les composants tiers conservent leurs droits et licences respectifs. Aucun branding de générateur ou attribution automatique ne doit être ajouté aux contenus publics du projet.
