@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.13</version>
+    <version>0.9.3.17</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -53,6 +53,7 @@
         <sourceFile filename="src/core/AgriLifeMigrationManager.lua" />
         <sourceFile filename="src/core/AgriLifePersistence.lua" />
         <sourceFile filename="src/core/AgriLifeNetworkRoadmap9.lua" />
+        <sourceFile filename="src/ui/HudIconPolicy.lua" />
         <sourceFile filename="src/ui/AgriLifeMiniPdaProgress.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialDialog.lua" />
         <sourceFile filename="src/ui/AgriLifeJournalDialog.lua" />
@@ -121,6 +122,16 @@
         <sourceFile filename="src/modules/market/DynamicMarketRoadmap8.lua" />
         <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7.lua" />
         <sourceFile filename="src/modules/contracts/CommercialContractsRoadmap7Events.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmContracts6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmContracts6Events.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmTransfer6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmRental6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmProgress6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmWorkHook6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmTransportHook6.lua" />
+        <sourceFile filename="src/modules/contracts/InterFarmFieldAccess6.lua" />
+        <sourceFile filename="src/modules/contracts/ContractConsequences6.lua" />
+        <sourceFile filename="src/modules/contracts/NativeContractsGuard6.lua" />
         <sourceFile filename="src/modules/compatibility/Compatibility6Service.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4Guard.lua" />
@@ -146,6 +157,14 @@
         <sourceFile filename="src/modules/finalization/Finalization6Service.lua" />
         <sourceFile filename="src/modules/finalization/FinalizationModule.lua" />
         <sourceFile filename="src/modules/finalization/FinalizationRoadmap9.lua" />
+        <sourceFile filename="src/modules/payroll/PayrollMoraleProgression.lua" />
+        <sourceFile filename="src/modules/market/SupplierRelations6.lua" />
+        <sourceFile filename="src/modules/market/SupplierCredit6.lua" />
+        <sourceFile filename="src/modules/market/AuctionMarket6.lua" />
+        <sourceFile filename="src/modules/market/AuctionMarket6Events.lua" />
+        <sourceFile filename="src/modules/market/AuctionCompletion6.lua" />
+        <sourceFile filename="src/modules/career/ReputationCascade6.lua" />
+        <sourceFile filename="src/modules/workshop/WorkshopPartHudIcons.lua" />
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
