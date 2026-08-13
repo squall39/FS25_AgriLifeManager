@@ -1,31 +1,41 @@
 # Synchronisation du source GitHub
 
-Version de reference : **0.9.3.23 TEST**
+Version de test preparee : **0.9.3.24 TEST**
+Version actuellement presente sur `main` : **0.9.3.23 TEST**
 Date : **13 aout 2026**
 
-La build ZIP joueur 0.9.3.23 reste la reference executable utilisee dans Farming Simulator 25 pendant la campagne de test.
+La build joueur 0.9.3.24 est preparee localement pour le premier test F03 Banque. F01 et F02 restent validees. F03 n est pas encore certifiee dans Farming Simulator 25.
 
-## Etat 0.9.3.23
+## Preparation F03 0.9.3.24
 
-- F01 : validee en jeu ;
-- F02 : validee en jeu en 0.9.3.23 ;
-- F03 : active, Banque fonctionnelle ;
-- `modDesc.xml` et `src/core/AgriLifeVersion.lua` sont en 0.9.3.23 ;
-- le correctif F02 du tableau de bord est present sur `main` ;
-- `ROADMAP.md`, `docs/ROADMAP.md` et `TESTING.md` enregistrent la fermeture de F02 ;
-- les fichiers temporaires de synchronisation ont ete retires de `main`.
+- lecture du capital restant et des mois restants du pret corrigee ;
+- remboursement anticipe calcule sur le capital reellement restant ;
+- montant, frais et debit total presentes avant confirmation ;
+- frais propres au pret conserves selon sa banque d origine ;
+- reamenagement calcule sur la duree reellement restante ;
+- confirmation Oui / Non avant demande de pret, remboursement anticipe, reamenagement, decouvert, contrat bancaire, refinancement et paiement fiscal ;
+- retour explicite lorsque la banque est fermee ;
+- parite des traductions de la build conservee sur 27 langues ;
+- audits statiques et packaging TEST valides avant essai en jeu.
 
-## Gaps historiques encore ouverts
+## Etat reel de `main`
 
-`main` ne doit pas etre presente comme miroir octet par octet tant que tous les fichiers du ZIP ne sont pas verifies sur le depot.
+`main` reste volontairement identifie en 0.9.3.23 tant que les sources actives necessaires a F03 ne sont pas toutes miroitees. Il ne doit pas etre presente comme copie complete du ZIP 0.9.3.24.
 
-Le controle du 13 aout 2026 confirme que le repertoire `translations/` distribue dans la build ZIP n est pas encore present sur `main`. Le fichier `tools/verify_release.py` distribue dans la build n est pas encore present non plus.
+Les gaps connus comprennent notamment :
+
+- `src/modules/bank/Bank6Service.lua` ;
+- `src/modules/bank/Bank6Events.lua` ;
+- `src/modules/bank/BankModule.lua` ;
+- le repertoire `translations/` ;
+- `tools/verify_release.py`.
 
 Ces ecarts restent ouverts jusqu a presence et verification reelles des chemins concernes.
 
 ## Regles de synchronisation
 
-- la version du depot et la version de test doivent etre identifiees clairement ;
-- toute difference entre `main` et la build doit etre signalee ;
-- les anciens fichiers temporaires ne restent pas sur `main` ;
+- distinguer clairement la version de test et la version reellement presente sur le depot ;
+- ne jamais declarer un fichier synchronise s il n est pas present ;
+- conserver la build joueur comme reference executable tant que le miroir GitHub est incomplet ;
+- retirer les helpers temporaires apres usage ;
 - aucun tiret cadratin dans les contenus du projet.
