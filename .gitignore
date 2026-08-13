@@ -28,3 +28,6 @@ build/
 dist/
 tmp/
 .temp/
+
+# Private local notes
+notes/
