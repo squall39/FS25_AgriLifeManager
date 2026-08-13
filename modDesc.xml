@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.24</version>
+    <version>0.9.3.25</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -44,6 +44,7 @@
         <sourceFile filename="src/core/AgriLifeVersion.lua" />
         <sourceFile filename="src/core/AgriLifeLogger.lua" />
         <sourceFile filename="src/core/AgriLifeResult.lua" />
+        <sourceFile filename="src/core/AgriLifeDecisionGuide.lua" />
         <sourceFile filename="src/core/AgriLifeLifecycle.lua" />
         <sourceFile filename="src/core/AgriLifeMissionContext.lua" />
         <sourceFile filename="src/core/AgriLifeSettings.lua" />
@@ -70,6 +71,7 @@
         <sourceFile filename="src/modules/bank/BankModule.lua" />
         <sourceFile filename="src/modules/bank/BankRoadmap3.lua" />
         <sourceFile filename="src/modules/bank/BankRoadmap3Completion.lua" />
+        <sourceFile filename="src/modules/bank/BankCatalog09325.lua" />
         <sourceFile filename="src/modules/career/Career6Service.lua" />
         <sourceFile filename="src/modules/career/Career6Events.lua" />
         <sourceFile filename="src/modules/career/CareerWorkTracker.lua" />
