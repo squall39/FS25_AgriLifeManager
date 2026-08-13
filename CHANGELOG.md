@@ -1,49 +1,69 @@
-# Changelog - AgriLife Manager
+# Changelog AgriLife Manager
 
-Le détail des anciennes builds reste disponible dans l'historique Git. Ce fichier conserve les jalons utiles de la branche actuelle.
+## 0.9.3.22 TEST
 
-## 0.9.3.13 TEST - Stabilisation UI
+- Corrige la lisibilité de l'aide contextuelle dans l'en-tête du tableau de bord.
+- Réaligne la carte Banque sur la grille des autres modules.
+- Affiche la banque et le conseiller sur deux lignes distinctes et persistantes.
+- Retire le nom de la banque de la ligne Score de crédit, qui affiche désormais uniquement le score et son appréciation.
+- Conserve F02 active pour validation en jeu.
 
-- Nettoyage des vues Entreprise pour éviter les superpositions de panneaux.
-- Icônes HUD/store ajoutées pour le matériel sélectionné et le marché de l'occasion.
-- Étoiles salarié repositionnées.
-- Blocage du recrutement multiple d'un même candidat.
-- Nettoyage de Contrats & Marchés et suppression de pictogrammes incohérents.
-- Réorganisation des vues Atelier et occasion.
-- Boutons Banque du bas agrandis pour la lisibilité.
-- Résumé Banque du tableau de bord enrichi avec banque, conseiller et notes réputation/compétence.
+## 0.9.3.21
 
-## 0.9.3.10 à 0.9.3.12 TEST - Guidage et lisibilité
+- F02 interface conservée après validation visuelle.
+- Compression DXT5 de `gui/icons/status_good.dds` pour supprimer le warning de texture brute dans FS25.
 
-- Guidage contextuel remis en place sans popup bloquante.
-- Conseiller actif affiché dans la Banque.
-- Corrections de lisibilité Entreprise, Administration, Contrats et Atelier.
-- Ajustements des textes longs, boutons et panneaux secondaires.
+## 0.9.3.20 TEST
 
-## 0.9.3.9 TEST - Gel Banque corrigé
+- Clarifie Acheter/Vendre, Louer/Résilier et Négocier/Signer dans Contrats & Marchés.
+- Masque les boutons d'action Atelier lorsqu'aucune action n'est disponible.
+- Conserve F02 active pour retest ciblé.
 
-- Suppression des calculs lourds synchrones exécutés pendant les rafraîchissements de la page Banque.
-- Navigation Banque validée sans gel souris après correction.
+# 0.9.3.19 TEST
 
-## 0.9.3.5 à 0.9.3.8 TEST - Cohérence interface
+- rend visibles les vues Entreprise Dossier, Planning, Formations, Carrière et Incidents avec des onglets directs
+- clarifie Contrats & Marchés avec des libellés explicites pour marché, article, volume, durée, prix, relation et négociation
+- remplace le sélecteur cyclique Atelier par six onglets directs
+- ajoute un pictogramme HUD cohérent dans chaque vue Atelier et retire les pictogrammes violets des pièces
+- améliore les noms des familles de pièces et le nom affiché du mécanicien
+- conserve F02 comme phase active de reprise des tests
 
-- Pictogrammes principaux harmonisés.
-- Carrés blancs et pictogrammes incohérents supprimés.
-- Mapping Entreprise corrigé.
-- Version interne alignée avec le `modDesc.xml`.
-- Ajustements du tutoriel automatique pendant la phase de test UI.
+# 0.9.3.18 TEST
 
-## 0.9.3.x TEST - Campagne active
+- Ajoute la logistique de délai pour achats physiques neufs et occasion.
+- Ajoute le choix retrait concessionnaire ou livraison à la ferme.
+- Rend les délais de pièces de rechange obligatoires, y compris en urgence.
+- Ajoute un délai de remise pour les biens remportés aux enchères.
+- Conserve toutes les locations en disponibilité immédiate.
+- Ajoute le socle téléphone par joueur et le registre des applications AgriLife.
 
-- F01 reste validée en jeu.
-- F02 reste active jusqu'à validation complète de l'interface.
-- La phase Banque fonctionnelle ne commence qu'après fermeture de F02.
+# 0.9.3.17 TEST
 
-## Jalons antérieurs
+- transferts physiques inter-fermes pour cultures, bottes et materiel
+- location inter-fermes avec etat, degats, retard et retour
+- progression automatique depuis travail de champ et transport
+- factures fournisseurs avec echeances et retards
+- saisies et encheres etendues au materiel, champs et productions
+- reglements securises avec rollback en cas d echec
+- F02 conservee comme phase de reprise des tests
 
-- 0.9.1.x : fermeture de l'écriture fonctionnelle et consolidation tutoriel/Assistance.
-- 0.9.0.0 : finalisation de l'infrastructure pré-1.0.
-- 0.8.x : Atelier, constats, responsabilité et assurance.
-- 0.7.x : Entreprise, Carrière, Administration, Contrats et Marchés.
+# 0.9.3.16 TEST
 
-© 2026 Chez_Squall.
+- priorite permanente aux icones HUD comprehensibles et coherentes
+- politique centrale de resolution des icones HUD
+- socle de ventes aux encheres aleatoires pour materiel, champs, usines et saisies
+- mises, reserve, concurrence automatique et controle des fonds par le serveur
+- produits des saisies affectes a la dette contentieuse en priorite
+- transfert impossible conserve en attente au lieu de supprimer ou dupliquer un bien
+
+# 0.9.3.15 TEST
+
+- relations fournisseurs reliees aux achats et aux conditions commerciales
+- moral du patron, des joueurs reels et des salaries virtuels
+- fidelite, promotions et evolution professionnelle des salaries
+- reputation en cascade entre paie, administration, contrats, banque et fournisseurs
+- icones HUD de familles de pieces dans les vues Atelier compatibles
+- socle multijoueur inter-fermes avec entraide, prestations, ventes, location et remuneration configurable
+- contrats inter-fermes geres par le serveur avec sauvegarde, relations entre fermes et penalites
+- nouveaux contrats vanilla desactives lorsque AgriLife Manager est actif, les contrats vanilla deja acceptes restent terminables
+- consequences renforcees en cas de contrat AgriLife non respecte

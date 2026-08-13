@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.17</version>
+    <version>0.9.3.22</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -165,6 +165,7 @@
         <sourceFile filename="src/modules/market/AuctionCompletion6.lua" />
         <sourceFile filename="src/modules/career/ReputationCascade6.lua" />
         <sourceFile filename="src/modules/workshop/WorkshopPartHudIcons.lua" />
+        <sourceFile filename="src/modules/market/DeliveryLogistics6.lua" />
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
@@ -172,7 +173,9 @@
         <sourceFile filename="src/ui/AgriLifeInterfaceRoadmap2Completion.lua" />
         <sourceFile filename="src/ui/AgriLifeStep7UI.lua" />
         <sourceFile filename="src/ui/AgriLifeStep8UI.lua" />
+        <sourceFile filename="src/ui/F02Clarity0920.lua" />
         <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
+        <sourceFile filename="src/ui/AgriLifePhone6.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
         <sourceFile filename="src/core/AgriLifeCore.lua" />
         <sourceFile filename="src/bootstrap/AgriLifeBootstrap.lua" />

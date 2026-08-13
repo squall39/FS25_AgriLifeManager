@@ -1,77 +1,32 @@
 # Synchronisation du source GitHub
 
-Version de référence : **0.9.3.13 TEST**  
-Date : **13 août 2026**
+Version de reference : **0.9.3.22 TEST**
+Date : **13 aout 2026**
 
-La build ZIP joueur reste la référence exécutable utilisée dans Farming Simulator 25 pendant la campagne de test. La branche `main` est en cours de conversion vers un miroir complet du mod dézippé.
+La build ZIP joueur reste la reference executable utilisee dans Farming Simulator 25 pendant la campagne de test. La branche `main` est en cours de conversion vers un miroir complet du mod dezippa.
 
-## Build locale 0.9.3.13
+## Synchronisation 0.9.3.22
 
-- build : `FS25_AgriLifeManager_0.9.3.13_UI_ENTERPRISE_WORKSHOP_FIX.zip` ;
-- SHA-256 : `60c0be2f728c96dcabc19ed83d69c6b05c0325f4bc41c6084c16d76b56cf4a48` ;
-- arborescence décompressée contrôlée : **427 fichiers** ;
-- sources/documents textuels : **253** ;
-- actifs binaires : **174** ;
-- taille décompressée : environ **70 MiB**.
+- version runtime et package portees a `0.9.3.22` ;
+- correction F02 du tableau de bord et de la carte Banque integree ;
+- `Dashboard6Service.lua`, `F02Clarity0920.lua` et `WorkshopPartHudIcons.lua` font partie du source actif ;
+- changelog, protocole de test et etat projet actualises ;
+- le memo personnel reste local et ne doit jamais etre publie sur GitHub.
 
-## Nettoyage effectué sur main
+## Gaps historiques encore ouverts
 
-Le dépôt a été débarrassé des anciens workflows à usage unique, des helpers de transfert devenus inutiles, des anciens plans de test versionnés, des rapports statiques dépassés, des documents Step 8/Step 9 temporaires et de plusieurs doublons documentaires.
+`main` ne doit pas etre presente comme miroir octet par octet tant que tous les fichiers actifs du ZIP ne sont pas verifies sur le depot. Les gaps historiques peuvent encore concerner des traductions, ressources GUI, textures, vehicules, placeables ou autres actifs binaires utiles au package.
 
-Le workflow permanent conservé est le contrôle de style d'écriture.
+Aucun gap n est considere ferme tant que le chemin correspondant n est pas reellement present et verifie sur `main`.
 
-Le dossier local `notes/` est ignoré par Git afin que les mémos privés de travail ne soient jamais publiés par erreur.
+## Regles de synchronisation
 
-## Source 0.9.3.13 déjà restaurée
+- la version GitHub et la version de test doivent etre identifiees clairement ;
+- toute difference entre `main` et la build doit etre signalee ;
+- Git conserve l historique, les anciennes copies inutiles ne restent pas sur `main` ;
+- aucun tiret cadratin ;
+- aucune attribution automatique ou marque de generateur dans les contenus du projet.
 
-- version GitHub et runtime alignées sur `0.9.3.13` ;
-- coeur : Core, Persistence, Result, Logger, Lifecycle, MissionContext, Settings, SubscriptionManager, ModuleContract et ModuleRegistry restaurés ;
-- bootstrap : `AgriLifeBootstrap.lua` restauré ;
-- UI : HelpIntegration, MiniPdaProgress, Step7UI et Step8UI restaurés ;
-- Company : service, événements réseau et module restaurés ;
-- Journal : service et module restaurés ;
-- Integrity : service et module restaurés ;
-- Legal : service et module restaurés ;
-- Qualifications : service et module restaurés ;
-- People : service, module et événements réseau restaurés ;
-- Career : module, événements réseau, HUD et tracker transport restaurés ;
-- Payroll : module restauré ;
-- Enterprise : module restauré ;
-- Administration : module restauré ;
-- Market : module et pont Workshop parts Roadmap8 restaurés ;
-- `data/fillTypes.xml` restauré ;
-- sources texte du Field Service Kit restaurées ;
-- source XML de la palette de pièces restaurée ;
-- sources texte du point de service huile restaurées ;
-- notice `COPYRIGHT.txt` du package restaurée.
+## Etat test
 
-Les blobs Git de `AgriLifeCore.lua`, `AgriLifePersistence.lua` et `People6Service.lua` ont été vérifiés contre la build locale 0.9.3.13 et correspondent exactement.
-
-## Gaps encore ouverts
-
-`main` n'est pas encore un miroir octet par octet de la build 0.9.3.13. Restent notamment à synchroniser :
-
-- services et extensions encore absents dans Career, Exam, Payroll, Enterprise, Administration et Market ;
-- les 27 fichiers `translations/` ;
-- les tests et outils courants manquants après contrôle de leur utilité ;
-- les sources GUI encore absentes ;
-- `OilTank.i3d` et les autres fichiers texte de package encore absents ;
-- les binaires DDS/PNG/I3D SHAPES utiles au package lorsque leur redistribution est autorisée ;
-- les ressources de `resources/`, `textures/`, `vehicles/`, `placeables/` et les assets GUI qui ne sont pas encore présents.
-
-Les arbres `data/`, `vehicles/` et `placeables/` existent maintenant sur `main`, mais ils ne sont pas encore complets tant que leurs ressources manquantes ne sont pas toutes présentes.
-
-Aucun gap ci-dessus ne doit être présenté comme terminé tant que le chemin n'est pas réellement présent et vérifié sur `main`.
-
-## État fonctionnel à conserver
-
-F01 reste validée. F02 est encore en cours et la 0.9.3.13 doit être retestée avant d'ouvrir la phase Banque métier. Voir `docs/PROJECT_SYNC_STATUS.md` et `docs/SESSION_HANDOFF_2026-08-13.md`.
-
-## Règle de synchronisation
-
-- la version GitHub et la version de test doivent être identifiées clairement ;
-- une différence entre `main` et la build doit être signalée ;
-- aucun fichier historique ne doit rester sur `main` uniquement pour conserver une ancienne version ;
-- l'historique Git remplit ce rôle ;
-- un asset actif n'est supprimé qu'après contrôle de ses références et de ses droits de redistribution ;
-- aucun em dash, branding de générateur ou attribution automatique dans les contenus du projet.
+F01 reste validee. F02 reste active. La 0.9.3.22 est auditee statiquement et doit etre certifiee dans Farming Simulator 25 avant ouverture de la phase Banque fonctionnelle.
