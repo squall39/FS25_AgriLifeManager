@@ -4,7 +4,20 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_DASH = chr(0x2014)
-FORBIDDEN_MARKERS = ("generated" + " with", "co-authored" + "-by:")
+FORBIDDEN_ATTRIBUTION_MARKERS = (
+    "generated" + " with",
+    "co-authored" + "-by:",
+    "co-authored by",
+    "powered by",
+)
+FORBIDDEN_VENDOR_LINKS = (
+    "openai.com",
+    "chatgpt.com",
+    "anthropic.com",
+    "claude.ai",
+    "gemini.google.com",
+    "github.com/features/copilot",
+)
 SKIP = {Path("tests/writing_style_spec.py")}
 
 errors = []
@@ -22,9 +35,12 @@ for path in ROOT.rglob("*"):
         if FORBIDDEN_DASH in line:
             errors.append(f"{relative}:{line_number}: forbidden dash character")
         lowered = line.lower()
-        for marker in FORBIDDEN_MARKERS:
+        for marker in FORBIDDEN_ATTRIBUTION_MARKERS:
             if marker in lowered:
                 errors.append(f"{relative}:{line_number}: forbidden attribution marker")
+        for marker in FORBIDDEN_VENDOR_LINKS:
+            if marker in lowered:
+                errors.append(f"{relative}:{line_number}: forbidden vendor link")
 
 if errors:
     print("writing style check failed")
