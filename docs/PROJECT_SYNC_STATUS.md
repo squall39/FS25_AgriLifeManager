@@ -1,55 +1,38 @@
 # État de synchronisation AgriLife Manager
 
-Version de référence : **0.9.3.1 TEST**  
-Build jouable de référence : `FS25_AgriLifeManager_0.9.3.1_TEST_final.zip`  
-SHA-256 : `9651a39e2108b11be7d40078c2f73187aa619eecb8c68b521352be94f2f0678e`
+Date de reprise : **13 août 2026**  
+Version de référence actuelle : **0.9.3.13 TEST**  
+Build joueur : `FS25_AgriLifeManager_0.9.3.13_UI_ENTERPRISE_WORKSHOP_FIX.zip`  
+SHA-256 build : `60c0be2f728c96dcabc19ed83d69c6b05c0325f4bc41c6084c16d76b56cf4a48`
 
-## Règle permanente
+## Règle de travail
 
-Toute idée explicitement validée doit être reflétée dans :
+Une phase est terminée uniquement après : **correction -> test ciblé en jeu -> validation complète -> phase suivante**. Les fonctions non testées en jeu restent à certifier.
 
-1. la feuille de route additive et son registre maître ;
-2. le tutoriel de départ si elle concerne le comportement joueur ;
-3. le menu `Échap > Assistance`, qui partage les mêmes clés l10n ;
-4. les 27 traductions distribuées ;
-5. GitHub, pour conserver la décision, les sources et les audits maintenables ;
-6. la build de référence.
+## Situation actuelle
 
-Une idée documentée mais non codée garde le statut `À intégrer` ou `Partiellement intégrée`. Une fonctionnalité codée mais non testée reste `À certifier`.
+- F01 : **validée en jeu** ; ne pas la rejouer.
+- F02 / stabilisation et cohérence de l'interface : **toujours active**.
+- Le gel de la souris sur la page Banque a été corrigé et validé à partir de la 0.9.3.9.
+- Les pictogrammes principaux ont été harmonisés et les carrés blancs de la Banque supprimés.
+- Le guidage contextuel a été remis en place sans réintroduire le gel du panneau.
+- La Banque affiche le conseiller actif ; le tableau de bord doit également afficher banque + conseiller + réputation/compétence.
+- Entreprise, Administration, Contrats et Atelier ont reçu plusieurs corrections de lisibilité et de chevauchement.
+- La 0.9.3.13 ajoute les icônes HUD/store du matériel dans Entreprise/Atelier/occasion, bloque l'embauche multiple d'un même candidat et nettoie les vues détaillées Entreprise.
 
-## État 0.9.3.1 TEST
+## Ce qui reste à valider à la prochaine reprise
 
-La build corrective contient **427 fichiers**, **118 Lua runtime actifs**, **84 XML** et **27 langues avec 5 023 clés chacune**.
+1. Retest visuel de **0.9.3.13 uniquement** : Entreprise (toutes les vues), Contrats, Atelier, marché de l'occasion et Banque.
+2. Vérifier qu'aucune vue Entreprise ne chevauche encore le profil salarié.
+3. Vérifier qu'un candidat déjà embauché ne peut plus être recruté une seconde fois et qu'un nouveau candidat distinct est proposé.
+4. Vérifier les icônes HUD/store du matériel dans Entreprise, Atelier et marché de l'occasion.
+5. Vérifier la lisibilité des boutons Banque du bas et le résumé Banque du tableau de bord (nom du conseiller + étoiles réputation/compétence).
+6. Envoyer uniquement les captures des défauts restants et le log si erreur Lua/comportement anormal.
 
-Les systèmes de gameplay 0.9.3 restent inchangés : usure mécanique comportementale AgriLife, collisions séparées, consommation énergétique comportementale, constat joueur/IA, autorité patron pour Assurance/Banque, perte totale/épave et horaires centralisés.
+## Phase suivante
 
-Le correctif 0.9.3.1 traite F02 :
+**Ne pas démarrer la phase Banque fonctionnelle tant que F02 n'est pas entièrement propre.** Une fois F02 validée, la Banque sera testée par petits blocs : partenaire/conseiller -> simulation de crédit -> demande/décision -> remboursement/restructuration -> persistance.
 
-- retour à la palette AgriLife vert/anthracite et neutralisation des états bleu/violet persistants ;
-- niveau actif visible dans l'en-tête sur toutes les pages ;
-- difficulté verrouillée après validation de la carrière ;
-- `Journal` renommé `Historique AgriLife` et fonction clarifiée ;
-- correction `registerControls` des dialogues sous FS25 1.21 ;
-- tutoriel, Historique et constat chargés comme dialogues et non comme frames ;
-- correction de l'appel HomeFrame Banque hors portée ;
-- aération des écrans Banque et Administration ;
-- Assistance difficulté limitée aux trois niveaux officiels Facile, Normal et Difficile ;
-- ancien branding GMC résiduel supprimé avec le reste du camion de service.
+## Source de vérité
 
-## Campagne de test active
-
-F01 Facile reste enregistré comme **VALIDÉ EN JEU** sur la 0.9.3.0. Comme le dialogue paginé a été corrigé, son affichage doit être recontrôlé une fois. F02 est **À REFAIRE sur 0.9.3.1** avant le passage à F03.
-
-Les résultats sont suivis dans `docs/TEST_RESULTS_0.9.3.0.md` et `docs/TEST_RESULTS_0.9.3.1.md`.
-
-## GitHub
-
-`main` est aligné sur la **version 0.9.3.1** pour le `modDesc`, la version Lua, le HomeFrame, son XML, le gestionnaire UI, le dialogue paginé, l'Historique AgriLife, le constat d'accident, le protocole F02, les résultats de test et l'audit correctif. Les anciens helpers/payloads/workflows one-shot utilisés pour transférer ces fichiers ont été supprimés, tout comme le résidu `brand_gmc.png`.
-
-La build ZIP ci-dessus reste la **référence exécutable exacte** utilisée pour les tests. Le connecteur GitHub de cette session ne permet pas d'importer directement en masse l'arborescence locale complète : les 27 XML de traduction distribués et les gros binaires DDS/I3D de la build ne sont donc pas déclarés comme un miroir octet-par-octet de `main`. Ils restent certifiés dans le ZIP joueur par les audits locaux.
-
-L'ancien workflow GitHub qui reconstruisait un ZIP de test depuis la très ancienne base `0.6.4.32` a été retiré : il n'était plus reproductible avec l'architecture actuelle et pouvait produire un résultat trompeur. Il sera préférable de ne réintroduire un build automatique que lorsqu'une base complète 0.9.x sera réellement disponible dans le dépôt ou dans une release de référence.
-
-## Multijoueur
-
-L'architecture multi-fermes est prévue, mais la publication multijoueur reste désactivée jusqu'à la campagne réseau dédiée. Une ferme devra posséder ses propres données AgriLife et les décisions sensibles resteront soumises aux permissions serveur.
+La build ZIP 0.9.3.13 ci-dessus reste la référence exécutable exacte pour les tests FS25. GitHub conserve l'état de travail, les sources déjà synchronisées et ce dossier de reprise ; la synchronisation massive des binaires de la build n'est pas assimilée à une certification en jeu.
