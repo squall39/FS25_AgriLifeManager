@@ -1046,3 +1046,19 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 **Auteur : Chez_Squall**  
 **Projet : FS25_AgriLifeManager**  
 **Statut actuel : développement pré-1.0 - Étapes 4 à 9 écrites/intégrées côté code ; certification FS25 réelle, finitions historiques des étapes 1 à 3 et validation finale à poursuivre.**
+
+## Correction F02 0.9.3.22 - tableau de bord et carte Banque
+
+- L'aide contextuelle supérieure du tableau de bord dispose de davantage de largeur et de contraste.
+- La carte Banque est réalignée sur la grille des autres cartes.
+- Le nom de la banque et le nom du conseiller sont affichés sur deux lignes distinctes.
+- Le score de crédit contient uniquement sa valeur et son appréciation, sans nom de banque.
+
+## Correction F02 0.9.3.23 - en-tête et notation Banque
+
+- La zone d'aide supérieure est élargie et les textes français de mode sont raccourcis pour rester entièrement visibles.
+- Les caractères étoile Unicode non pris en charge par la police FS25 ne sont plus utilisés dans le résumé Banque.
+- Les évaluations Banque et Conseiller utilisent une note lisible sur 5 dans le tableau de bord.
+- F02 est validée dans Farming Simulator 25 en 0.9.3.23 sur le retest 1080p.
+- La phase Banque fonctionnelle peut maintenant ouvrir ses tests ciblés.
+

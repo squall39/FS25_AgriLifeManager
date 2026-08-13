@@ -8,10 +8,11 @@
             <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="315px 8px" size="6px 48px"/>
             <Text profile="fs25_menuHeaderTitle" text="$l10n_agrilife_ui6_dashboard_title" position="340px 8px" size="520px 30px" textSize="24px" textBold="true" visible="false"/>
             <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_dashboard_subtitle" position="340px 34px" size="650px 22px" textSize="13px" textColor="0.68 0.78 0.76 1" visible="false"/>
-            <Text profile="fs25_textDefault" id="headerAccessMode" text="--" position="730px 18px" size="265px 24px" textSize="12px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1" anchors="1 1 0 0"/>
-            <Text profile="fs25_textDefault" id="headerVersion" text="--" position="1010px 18px" size="145px 24px" textSize="14px" textAlignment="right" textColor="0.63 0.86 0.08 1" anchors="1 1 0 0"/>
-            <Text profile="fs25_textDefault" id="headerFarm" text="--" position="1170px 18px" size="180px 24px" textSize="14px" textAlignment="right" anchors="1 1 0 0"/>
-            <Text profile="fs25_textDefault" id="headerCash" text="--" position="1370px 18px" size="200px 24px" textSize="16px" textBold="true" textAlignment="right" textColor="0.68 0.91 0.24 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerContextHelp" text="--" position="340px 9px" size="780px 44px" textSize="11px" textColor="0.84 0.90 0.88 1" textWrap="true"/>
+            <Text profile="fs25_textDefault" id="headerAccessMode" text="--" position="1135px 18px" size="130px 24px" textSize="12px" textBold="true" textAlignment="right" textColor="0.72 0.94 0.50 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerVersion" text="--" position="1280px 18px" size="105px 24px" textSize="13px" textAlignment="right" textColor="0.63 0.86 0.08 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerFarm" text="--" position="1400px 18px" size="145px 24px" textSize="13px" textAlignment="right" textColor="0.88 0.92 0.90 1" anchors="1 1 0 0"/>
+            <Text profile="fs25_textDefault" id="headerCash" text="--" position="1560px 18px" size="220px 24px" textSize="15px" textBold="true" textAlignment="right" textColor="0.68 0.91 0.24 1" anchors="1 1 0 0"/>
         </GuiElement>
         <GuiElement id="responsiveBody" position="0px 62px" size="100% 714px" anchors="0 1 0 0">
             <Bitmap profile="baseReference" imageColor="0.030 0.047 0.052 0.98" size="100% 100%"/>
@@ -76,14 +77,18 @@
                 <GuiElement position="32px 350px" size="376px 188px">
                     <Bitmap profile="baseReference" imageColor="0.055 0.074 0.071 1" size="376px 188px"/>
                     <Bitmap profile="baseReference" imageColor="0.63 0.86 0.08 1" position="0px 184px" size="376px 4px"/>
-                    <Bitmap id="resolvedModImage02" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.55 0.82 0.12 1"/>
+                    <Bitmap id="resolvedModImage02" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.86 0.90 0.88 1"/>
                     <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_bank" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>
-                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="24px 96px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
-                    <Text profile="fs25_textDefault" id="dashBankCash" text="--" position="198px 94px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>
-                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="24px 66px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
-                    <Text profile="fs25_textDefault" id="dashBankDebt" text="--" position="198px 64px" size="150px 22px" textSize="15px" textAlignment="right"/>
-                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="24px 36px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
-                    <Text profile="fs25_textDefault" id="dashBankScore" text="--" position="198px 34px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Text profile="fs25_textDefault" id="dashBankPartnerName" text="Banque : --" position="24px 116px" size="324px 18px" textSize="12px" textBold="true" textColor="0.88 0.92 0.90 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankAdvisorName" text="Conseiller : --" position="24px 98px" size="324px 17px" textSize="11px" textColor="0.78 0.84 0.82 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankPartnerStars" text="Banque RÉP --/5 | COMP --/5" position="24px 82px" size="324px 14px" textSize="10px" textColor="0.74 0.82 0.56 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankAdvisorStars" text="Conseiller RÉP --/5 | COMP --/5" position="24px 68px" size="324px 14px" textSize="10px" textColor="0.68 0.75 0.74 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="24px 46px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankCash" text="--" position="198px 44px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="24px 25px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankDebt" text="--" position="198px 23px" size="150px 22px" textSize="15px" textAlignment="right"/>
+                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="24px 4px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankScore" text="--" position="178px 2px" size="170px 22px" textSize="14px" textAlignment="right"/>
                     <Button profile="ui6CardHit" text="" onClick="onClickBank" position="0px 0px" size="376px 188px"/>
                 </GuiElement>
                 <GuiElement position="440px 350px" size="376px 188px">
