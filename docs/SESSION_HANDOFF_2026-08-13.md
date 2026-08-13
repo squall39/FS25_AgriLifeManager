@@ -1,8 +1,8 @@
-# Reprise de session — 13 août 2026
+# Reprise de session - 13 août 2026
 
 ## Version à reprendre
 
-**0.9.3.13 TEST** — `FS25_AgriLifeManager_0.9.3.13_UI_ENTERPRISE_WORKSHOP_FIX.zip`
+**0.9.3.13 TEST** - `FS25_AgriLifeManager_0.9.3.13_UI_ENTERPRISE_WORKSHOP_FIX.zip`
 
 SHA-256 : `60c0be2f728c96dcabc19ed83d69c6b05c0325f4bc41c6084c16d76b56cf4a48`
 

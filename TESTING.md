@@ -4,7 +4,7 @@ Version de référence : **0.9.3.13 TEST**
 
 État de campagne :
 - F01 : **VALIDÉE EN JEU** ; ne pas recommencer.
-- F02 : **ACTIVE — stabilisation/cohérence UI**.
+- F02 : **ACTIVE, stabilisation et cohérence UI**.
 - F03+ : **EN ATTENTE** jusqu'à validation complète de F02.
 
 Test de reprise : voir `docs/SESSION_HANDOFF_2026-08-13.md`.

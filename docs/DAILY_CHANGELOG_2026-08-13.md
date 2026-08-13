@@ -1,4 +1,4 @@
-# Travail du 13 août 2026 — AgriLife Manager
+# Travail du 13 août 2026 - AgriLife Manager
 
 ## Builds successives
 
@@ -25,7 +25,7 @@ La stabilisation UI est passée de 0.9.3.5 à **0.9.3.13 TEST**.
 
 ### Administration
 
-- réorganisation des commandes et zones de statut pour éviter les boutons cachés / textes empilés.
+- réorganisation des commandes et zones de statut pour éviter les boutons cachés et textes empilés.
 
 ### Contrats & Marchés
 
@@ -40,6 +40,14 @@ La stabilisation UI est passée de 0.9.3.5 à **0.9.3.13 TEST**.
 - icône HUD/store de l'offre du marché de l'occasion ;
 - suppression des superpositions vues/panneau de base à retester.
 
+## GitHub
+
+- workflows de synchronisation temporaires supprimés ;
+- documents de tests et audits liés aux anciennes builds retirés de `main` ;
+- doublon de règles d'écriture supprimé ;
+- `README.md`, `CHANGELOG.md`, `TESTING.md` et documentation de reprise remis à jour ;
+- `main` doit devenir le miroir complet du mod dézippé.
+
 ## Statut
 
-La phase active reste **F02 — stabilisation/cohérence UI**. Ne pas ouvrir la phase Banque fonctionnelle avant validation complète de la 0.9.3.13.
+La phase active reste **F02, stabilisation et cohérence UI**. Ne pas ouvrir la phase Banque fonctionnelle avant validation complète de la 0.9.3.13.
