@@ -1,6 +1,6 @@
 # Organisation du dépôt
 
-Le dépôt GitHub représente la source lisible et maintenable d'AgriLife Manager. Le ZIP joueur reste un artefact séparé.
+Le dépôt GitHub doit devenir la source complète, lisible et maintenable d'AgriLife Manager sous forme dézippée. Le ZIP joueur reste un artefact séparé pour les tests et la distribution.
 
 ## Racine
 
@@ -10,29 +10,34 @@ Le dépôt GitHub représente la source lisible et maintenable d'AgriLife Manage
 - `modDesc.xml` : déclaration FS25 de la version synchronisée.
 - `CONTRIBUTING.md`, `TESTING.md`, `SOURCE_PUBLICATION.md`, `COPYRIGHT.md` : règles du projet.
 
-## Source active
+## Source active du mod
 
 - `src/` : code Lua actif.
-- `gui/` : XML et définitions texte de l'interface publiables.
+- `gui/` : XML et ressources de l'interface.
 - `translations/` : l10n.
-- `data/` : configurations texte.
-- `placeables/` et `vehicles/` : Lua/XML publiables du package.
+- `data/` : configurations.
+- `placeables/` et `vehicles/` : fichiers du package.
+- textures, DDS, PNG, I3D, SHAPES et autres assets réellement utilisés par le mod lorsque leur redistribution est autorisée.
+- toute ressource référencée par `modDesc.xml`, Lua, XML, I3D, GUI, véhicule ou placeable.
+
+## Développement
+
 - `tests/` : contrôles automatisés.
 - `tools/` : vérification et packaging.
-- `docs/` : documentation technique.
-- `development/` : notes de chantier uniquement, sans copie du source actif.
+- `docs/` : documentation technique et état de reprise utile.
 
 ## Ce qui ne doit plus revenir
 
 - dossiers `builds/` servant de seconde archive ;
-- patches découpés ;
+- morceaux de transfert temporaires ;
+- workflows de synchronisation à usage unique ;
 - copies de Lua à plusieurs emplacements ;
-- worklogs datés laissés à la racine ;
-- anciens plans de test liés à une build 0.6.x ;
+- captures et logs temporaires ;
+- anciens plans de test gardés uniquement pour l'historique ;
 - doublons de documents de conception.
 
-L'historique Git conserve les versions précédentes.
+L'historique Git conserve les versions précédentes. `main` doit représenter l'état de travail actuel, pas empiler toutes les anciennes versions.
 
 ## Assets binaires
 
-Les assets binaires du package joueur restent séparés lorsque leur publication source n'est pas nécessaire ou que leurs droits de redistribution ne sont pas établis. Le dépôt ne doit pas devenir un miroir lourd du ZIP joueur.
+L'objectif est que `main` reflète le mod complet dézippé, y compris les assets binaires nécessaires au fonctionnement. Un asset tiers ne peut être publié que si sa redistribution est autorisée. Toute exception doit être documentée explicitement, jamais remplacée par un miroir partiel présenté comme complet.
