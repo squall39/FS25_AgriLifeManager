@@ -20,6 +20,8 @@ Le dépôt a été débarrassé des anciens workflows à usage unique, des helpe
 
 Le workflow permanent conservé est le contrôle de style d'écriture.
 
+Le dossier local `notes/` est ignoré par Git afin que les mémos privés de travail ne soient jamais publiés par erreur.
+
 ## Source 0.9.3.13 déjà restaurée
 
 - version GitHub et runtime alignées sur `0.9.3.13` ;
@@ -36,7 +38,12 @@ Le workflow permanent conservé est le contrôle de style d'écriture.
 - Payroll : module restauré ;
 - Enterprise : module restauré ;
 - Administration : module restauré ;
-- Market : module et pont Workshop parts Roadmap8 restaurés.
+- Market : module et pont Workshop parts Roadmap8 restaurés ;
+- `data/fillTypes.xml` restauré ;
+- sources texte du Field Service Kit restaurées ;
+- source XML de la palette de pièces restaurée ;
+- sources texte du point de service huile restaurées ;
+- notice `COPYRIGHT.txt` du package restaurée.
 
 ## Gaps encore ouverts
 
@@ -46,9 +53,12 @@ Le workflow permanent conservé est le contrôle de style d'écriture.
 - services et extensions encore absents dans People, Career, Exam, Payroll, Enterprise, Administration et Market ;
 - les 27 fichiers `translations/` ;
 - les tests et outils courants manquants après contrôle de leur utilité ;
-- les arbres `data/`, `vehicles/`, `placeables/`, `resources/`, `textures/` et les assets GUI nécessaires qui ne sont pas encore présents ;
-- les binaires DDS/PNG/I3D/SHAPES utiles au package lorsque leur redistribution est autorisée ;
-- les fichiers de package racine nécessaires pour obtenir un miroir dézippé fidèle.
+- les sources GUI encore absentes ;
+- `OilTank.i3d` et les autres fichiers texte de package encore absents ;
+- les binaires DDS/PNG/I3D SHAPES utiles au package lorsque leur redistribution est autorisée ;
+- les ressources de `resources/`, `textures/`, `vehicles/`, `placeables/` et les assets GUI qui ne sont pas encore présents.
+
+Les arbres `data/`, `vehicles/` et `placeables/` existent maintenant sur `main`, mais ils ne sont pas encore complets tant que leurs ressources manquantes ne sont pas toutes présentes.
 
 Aucun gap ci-dessus ne doit être présenté comme terminé tant que le chemin n'est pas réellement présent et vérifié sur `main`.
 
