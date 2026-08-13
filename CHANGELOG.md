@@ -1,5 +1,41 @@
 # Changelog AgriLife Manager
 
+## 0.9.3.24 TEST
+
+- Corrige la classification comptable du découvert, de son contentieux et des règlements fiscaux ou bancaires.
+
+- Sépare les dossiers fiscaux et bancaires dans les plans de paiement, règlements et restrictions Juridiques.
+
+- Met à jour le guide du mod et Assistance pour expliquer le découvert temporaire et son recouvrement.
+
+- Bloque tout renouvellement de découvert pendant la régularisation, la mise en demeure ou le contentieux.
+- F03 Banque : remplace le découvert permanent par une autorisation temporaire avec durée, frais d'ouverture ou de renouvellement et échéance enregistrée.
+- F03 Banque : après échéance avec solde négatif, ouvre un délai de régularisation, puis une mise en demeure avec frais de recouvrement si la situation persiste.
+- F03 Banque : après la mise en demeure non régularisée, convertit le découvert en dette contentieuse sans double comptabilisation du principal et transmet le dossier au module Juridique.
+- F03 Banque : le passage au contentieux dégrade la relation bancaire, ferme la ligne de découvert et peut déclencher la résiliation bancaire.
+- F03 Banque : les intérêts de découvert deviennent majorés pendant la phase de régularisation puis la mise en demeure.
+- F03 Banque : les dossiers Juridique distinguent désormais leur origine afin qu'un contentieux bancaire ne soit plus fusionné silencieusement avec un dossier fiscal.
+- F03 Banque : le renouvellement du contrat bancaire est transactionnel et restaure l’ancien état si la nouvelle signature échoue.
+- F03 Banque : le refinancement utilise une capacité de remplacement dédiée, afin de ne plus évaluer le prêt remplacé comme s’il restait en plus du nouveau.
+- F03 Banque : un ancien prêt actif ne bloque plus le changement d’établissement une fois la relation libérée ; le prêt conserve sa banque d’origine, tandis que le découvert et les arriérés du compte courant doivent être soldés.
+- F03 Banque : les frais de dossier d’un crédit ou refinancement ne peuvent plus dépasser les fonds professionnels autorisés ; un échec de débit annule proprement la création du prêt.
+- F03 Banque : toutes les périodes bancaires manquées sont maintenant rattrapées après reprise de sauvegarde, sans plafond silencieux à 12 mensualités.
+
+- Ouvre la préparation fonctionnelle F03 Banque après validation de F02.
+- Corrige la lecture du prêt actif : capital restant et mois restants utilisent désormais les vraies données du crédit.
+- Corrige le réaménagement +12 mois pour l’appliquer au calendrier restant au lieu de repartir de la durée totale initiale.
+- Corrige le remboursement anticipé pour calculer les 10 % sur le capital réellement restant.
+- Ajoute une confirmation avant demande de prêt, remboursement anticipé, réaménagement, modification de découvert, signature/renouvellement/résiliation du contrat bancaire, refinancement et paiement fiscal.
+- Affiche avant remboursement anticipé le montant, les frais de la banque d’origine et le débit total.
+- Localise les messages Banque utilisés par ces actions et supprime plusieurs textes français codés en dur de l’écran Banque.
+- Ajoute un retour explicite lorsque la banque est fermée selon les horaires AgriLife.
+- Conserve les règles tarifaires de la banque d’origine pour les frais propres aux prêts existants après changement d’établissement.
+- Rend le découvert professionnel fonctionnel : l’utilisation suit le solde négatif réel de la ferme, les échéances et frais bancaires peuvent consommer la ligne autorisée, et les crédits reçus la remboursent automatiquement lorsque le solde remonte.
+- Ajoute les intérêts mensuels de découvert selon le taux de la banque, leur historique, leurs éventuels arriérés et leur persistance.
+- Intègre le découvert utilisé et les intérêts en retard à la dette AgriLife et donc à la capacité bancaire.
+- Affiche plafond, utilisation, disponible, taux, intérêts en retard et dépassement de plafond dans l’écran Banque.
+- Conserve F03 active pour test ciblé en jeu.
+
 ## 0.9.3.23 TEST
 
 - Termine le retest F02 du tableau de bord après contrôle en jeu de la 0.9.3.22.
@@ -75,4 +111,3 @@
 - contrats inter-fermes geres par le serveur avec sauvegarde, relations entre fermes et penalites
 - nouveaux contrats vanilla desactives lorsque AgriLife Manager est actif, les contrats vanilla deja acceptes restent terminables
 - consequences renforcees en cas de contrat AgriLife non respecte
-
