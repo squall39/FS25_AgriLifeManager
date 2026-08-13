@@ -1,12 +1,12 @@
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.13 TEST**
+Version de reference : **0.9.3.17 TEST**
 
-État de campagne :
-- F01 : **VALIDÉE EN JEU** ; ne pas recommencer.
-- F02 : **ACTIVE, stabilisation et cohérence UI**.
-- F03+ : **EN ATTENTE** jusqu'à validation complète de F02.
+Etat de campagne :
+- F01 : **VALIDE EN JEU**. Ne pas recommencer.
+- F02 : **ACTIVE**. Reprendre exactement au point arrete sur la 0.9.3.13.
+- F03+ : **EN ATTENTE** jusqu a validation complete de F02.
 
-Test de reprise : voir `docs/SESSION_HANDOFF_2026-08-13.md`.
+La 0.9.3.17 ajoute du code de fond pour les idees validees, mais aucun nouvel ecran Cooperation ou Encheres ne doit modifier le parcours F02 actuel.
 
-Règle : **correction -> test ciblé -> validation complète -> phase suivante**. Aucun module métier n'est déclaré validé simplement parce que son interface s'ouvre.
+Retest F02 court : Entreprise, Contrats & Marches, Atelier, occasion, Banque et tableau de bord. Verifier aussi absence de gel et d erreur Lua dans le log.
