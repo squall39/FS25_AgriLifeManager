@@ -1,9 +1,8 @@
 -- Copyright (C) 2026 Chez_Squall. All rights reserved.
--- AgriLife Manager original code: official source repository and approved distribution channels.
 AgriLife = AgriLife or {}
 
 AgriLife.Version = {
-    MOD = "0.9.3.13",
+    MOD = "0.9.3.17",
     SAVE_SCHEMA = 4,
     SETTINGS_SCHEMA = 2,
     DISPLAY_NAME = "AgriLife Manager",
