@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!--
+    FS25_AgriLifeManager - Custom Fill Types
+
+    AGRILIFEMANAGER_SPAREPARTS: Consumable workshop parts linked to dealer orders.
+    Delivered or collected on physical pallets, then checked into workshop stock.
+
+    OIL: Motor oil for workshop servicing, repairs and engine maintenance.
+    HYDRAULICOIL: Hydraulic fluid for workshop servicing and hydraulic system maintenance.
+
+    v2.11.1: Removed broken $data/store/menu/hud_fill_unknown.dds references
+    that caused "Missing dds file" errors and corrupted HUD gauge display.
+-->
+<map xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../shared/xml/schema/fillTypes.xsd">
+
+    <fillTypes>
+        <!-- Spare parts for physical workshop orders and repairs -->
+        <fillType name="AGRILIFEMANAGER_SPAREPARTS" title="$l10n_fillType_spareParts" showOnPriceTable="false" unitShort="$l10n_unit_pcs">
+            <physics massPerLiter="0.5" maxPhysicalSurfaceAngle="45" />
+            <economy pricePerLiter="5.00" />
+        </fillType>
+
+        <!-- Motor oil for workshop servicing and repairs -->
+        <fillType name="OIL" title="$l10n_fillType_oil" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.87" maxPhysicalSurfaceAngle="25" />
+            <economy pricePerLiter="3.00" />
+            <image hud="gui/icons/oil.dds" />
+        </fillType>
+
+        <!-- Hydraulic oil for workshop servicing and repairs -->
+        <fillType name="HYDRAULICOIL" title="$l10n_fillType_hydraulicOil" showOnPriceTable="false" unitShort="$l10n_unit_literShort">
+            <physics massPerLiter="0.88" maxPhysicalSurfaceAngle="25" />
+            <economy pricePerLiter="4.00" />
+            <image hud="gui/icons/sys_hydraulic.dds" />
+        </fillType>
+    </fillTypes>
+
+    <fillTypeCategories>
+        <!-- Spare parts category for easy identification -->
+        <fillTypeCategory name="AGRILIFEMANAGER_MAINTENANCE">AGRILIFEMANAGER_SPAREPARTS OIL HYDRAULICOIL</fillTypeCategory>
+    </fillTypeCategories>
+
+</map>
