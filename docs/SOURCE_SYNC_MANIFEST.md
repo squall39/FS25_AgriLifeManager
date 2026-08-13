@@ -25,9 +25,9 @@ Le dossier local `notes/` est ignoré par Git afin que les mémos privés de tra
 ## Source 0.9.3.13 déjà restaurée
 
 - version GitHub et runtime alignées sur `0.9.3.13` ;
-- UI : HelpIntegration, MiniPdaProgress, Step7UI et Step8UI restaurés ;
-- coeur : Result, Logger, Lifecycle, MissionContext, Settings, SubscriptionManager, ModuleContract et ModuleRegistry restaurés ;
+- coeur : Core, Persistence, Result, Logger, Lifecycle, MissionContext, Settings, SubscriptionManager, ModuleContract et ModuleRegistry restaurés ;
 - bootstrap : `AgriLifeBootstrap.lua` restauré ;
+- UI : HelpIntegration, MiniPdaProgress, Step7UI et Step8UI restaurés ;
 - Company : service, événements réseau et module restaurés ;
 - Journal : service et module restaurés ;
 - Integrity : service et module restaurés ;
@@ -45,11 +45,12 @@ Le dossier local `notes/` est ignoré par Git afin que les mémos privés de tra
 - sources texte du point de service huile restaurées ;
 - notice `COPYRIGHT.txt` du package restaurée.
 
+Les blobs Git de `AgriLifeCore.lua` et `AgriLifePersistence.lua` ont été vérifiés contre la build locale 0.9.3.13 et correspondent exactement.
+
 ## Gaps encore ouverts
 
 `main` n'est pas encore un miroir octet par octet de la build 0.9.3.13. Restent notamment à synchroniser :
 
-- coeur : `AgriLifeCore.lua` et `AgriLifePersistence.lua` ;
 - services et extensions encore absents dans People, Career, Exam, Payroll, Enterprise, Administration et Market ;
 - les 27 fichiers `translations/` ;
 - les tests et outils courants manquants après contrôle de leur utilité ;
