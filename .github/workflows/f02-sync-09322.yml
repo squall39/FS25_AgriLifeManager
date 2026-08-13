@@ -1,0 +1,189 @@
+name: F02 dashboard sync 0.9.3.22
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/f02-sync-09322.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply deterministic F02 source patch
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new, label):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'{label}: expected source not found in {path}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          def append_once(path, marker, section):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if marker not in text:
+                  p.write_text(text.rstrip() + '\n\n' + section.strip() + '\n', encoding='utf-8')
+
+          xml = 'gui/AgriLifeHomeFrame.xml'
+          replace_once(xml, '            <Text profile="fs25_textDefault" id="headerContextHelp" text="--" position="340px 8px" size="500px 48px" textSize="11px" textColor="0.72 0.80 0.77 1" textWrap="true"/>', '            <Text profile="fs25_textDefault" id="headerContextHelp" text="--" position="340px 9px" size="640px 44px" textSize="12px" textColor="0.84 0.90 0.88 1" textWrap="true"/>', 'header context')
+          replace_once(xml, '            <Text profile="fs25_textDefault" id="headerAccessMode" text="--" position="850px 18px" size="145px 24px" textSize="12px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1" anchors="1 1 0 0"/>', '            <Text profile="fs25_textDefault" id="headerAccessMode" text="--" position="995px 18px" size="145px 24px" textSize="12px" textBold="true" textAlignment="right" textColor="0.72 0.94 0.50 1" anchors="1 1 0 0"/>', 'header access')
+          replace_once(xml, '            <Text profile="fs25_textDefault" id="headerVersion" text="--" position="1010px 18px" size="145px 24px" textSize="14px" textAlignment="right" textColor="0.63 0.86 0.08 1" anchors="1 1 0 0"/>', '            <Text profile="fs25_textDefault" id="headerVersion" text="--" position="1150px 18px" size="135px 24px" textSize="13px" textAlignment="right" textColor="0.70 0.90 0.20 1" anchors="1 1 0 0"/>', 'header version')
+          replace_once(xml, '            <Text profile="fs25_textDefault" id="headerFarm" text="--" position="1170px 18px" size="180px 24px" textSize="14px" textAlignment="right" anchors="1 1 0 0"/>', '            <Text profile="fs25_textDefault" id="headerFarm" text="--" position="1295px 18px" size="170px 24px" textSize="13px" textAlignment="right" textColor="0.88 0.92 0.90 1" anchors="1 1 0 0"/>', 'header farm')
+          replace_once(xml, '            <Text profile="fs25_textDefault" id="headerCash" text="--" position="1370px 18px" size="200px 24px" textSize="16px" textBold="true" textAlignment="right" textColor="0.68 0.91 0.24 1" anchors="1 1 0 0"/>', '            <Text profile="fs25_textDefault" id="headerCash" text="--" position="1480px 18px" size="220px 24px" textSize="15px" textBold="true" textAlignment="right" textColor="0.72 0.94 0.32 1" anchors="1 1 0 0"/>', 'header cash')
+
+          replace_once(xml, '                    <Bitmap id="resolvedModImage02" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.55 0.82 0.12 1"/>', '                    <Bitmap id="resolvedModImage02" profile="ui6Icon" imageFilename="$moddir$gui/ui6icons/bank.dds" position="18px 122px" size="48px 48px" visible="true" imageColor="0.86 0.90 0.88 1"/>', 'bank icon')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_bank" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>', '''                    <Text profile="fs25_textDefault" text="$l10n_agrilife_ui6_bank" position="78px 146px" size="260px 28px" textSize="21px" textBold="true"/>
+                    <Text profile="fs25_textDefault" id="dashBankPartnerName" text="Banque : --" position="24px 116px" size="324px 18px" textSize="12px" textBold="true" textColor="0.88 0.92 0.90 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankAdvisorName" text="Conseiller : --" position="24px 98px" size="324px 17px" textSize="11px" textColor="0.78 0.84 0.82 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankPartnerStars" text="Banque R -- | C --" position="24px 82px" size="324px 14px" textSize="10px" textColor="0.74 0.82 0.56 1"/>
+                    <Text profile="fs25_textDefault" id="dashBankAdvisorStars" text="Conseiller R -- | C --" position="24px 68px" size="324px 14px" textSize="10px" textColor="0.68 0.75 0.74 1"/>''', 'bank identity rows')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="24px 96px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_cash" position="24px 46px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', 'bank cash label')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" id="dashBankCash" text="--" position="198px 94px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>', '                    <Text profile="fs25_textDefault" id="dashBankCash" text="--" position="198px 44px" size="150px 22px" textSize="16px" textBold="true" textAlignment="right" textColor="0.67 0.91 0.45 1"/>', 'bank cash value')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="24px 66px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_debt" position="24px 25px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', 'bank debt label')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" id="dashBankDebt" text="--" position="198px 64px" size="150px 22px" textSize="15px" textAlignment="right"/>', '                    <Text profile="fs25_textDefault" id="dashBankDebt" text="--" position="198px 23px" size="150px 22px" textSize="15px" textAlignment="right"/>', 'bank debt value')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="24px 36px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', '                    <Text profile="fs25_textDefault" text="$l10n_agrilife_bank6_score" position="24px 4px" size="165px 18px" textSize="12px" textColor="0.63 0.72 0.71 1"/>', 'bank score label')
+          replace_once(xml, '                    <Text profile="fs25_textDefault" id="dashBankScore" text="--" position="198px 34px" size="150px 22px" textSize="15px" textAlignment="right"/>', '                    <Text profile="fs25_textDefault" id="dashBankScore" text="--" position="178px 2px" size="170px 22px" textSize="14px" textAlignment="right"/>', 'bank score value')
+
+          home = 'src/ui/AgriLifeHomeFrame.lua'
+          replace_once(home, '''local function formatStars(stars)
+    stars = math.max(0, math.min(10, math.floor(tonumber(stars) or 0)))
+    return string.format("%d/10", stars)
+end
+''', '''local function formatStars(stars)
+    stars = math.max(0, math.min(10, math.floor(tonumber(stars) or 0)))
+    return string.format("%d/10", stars)
+end
+
+local function formatFiveStars(value)
+    local count = math.max(0, math.min(5, math.floor((tonumber(value) or 0) + 0.5)))
+    return string.rep("★", count) .. string.rep("☆", 5 - count)
+end
+''', 'home star formatter')
+          replace_once(home, '        setText(self.dashBankScore, string.format("%d - %s", bankSnapshot.score or 0, g_i18n:getText("agrilife_bank6_rating_" .. tostring(bankSnapshot.rating or "standard"))))', '''        setText(self.dashBankScore, string.format("%d - %s", bankSnapshot.score or 0, g_i18n:getText("agrilife_bank6_rating_" .. tostring(bankSnapshot.rating or "standard"))))
+        local providerName = tostring(bankSnapshot.providerName or bankSnapshot.providerLabel or "")
+        local advisorName = tostring(bankSnapshot.advisorName or "")
+        if providerName == "" then providerName = "--" end
+        if advisorName == "" then advisorName = "--" end
+        setText(self.dashBankPartnerName, "Banque : " .. providerName)
+        setText(self.dashBankAdvisorName, "Conseiller : " .. advisorName)
+        setText(self.dashBankPartnerStars, string.format("Banque  RÉP %s  |  COMP %s", formatFiveStars(bankSnapshot.providerReputationStars or bankSnapshot.providerStars or 0), formatFiveStars(bankSnapshot.providerCompetenceStars or bankSnapshot.providerStars or 0)))
+        setText(self.dashBankAdvisorStars, string.format("Conseiller  RÉP %s  |  COMP %s", formatFiveStars(bankSnapshot.advisorReputationStars or bankSnapshot.advisorStars or 0), formatFiveStars(bankSnapshot.advisorCompetenceStars or bankSnapshot.advisorStars or 0)))''', 'home bank identity')
+          replace_once(home, '''        local bank = cards.bank or {}
+        local relationship = bank.relationship or {}
+        local relationText = tostring(relationship.status or "none")
+        if relationship.status == "active" then relationText = string.format("%s, %d mois", tostring(bank.providerName or ""), tonumber(relationship.remainingMonths) or 0)
+        elseif tostring(bank.providerName or "") ~= "" then relationText = tostring(bank.providerName) end
+        setText(self.dashBankScore, string.format(g_i18n:getText("agrilife_dashboard_bank_score_relation_fmt"), tonumber(bank.score) or 0, relationText))
+''', '''        local bank = cards.bank or {}
+        local providerName = tostring(bank.providerName or "")
+        local advisorName = tostring(bank.advisorName or "")
+        if providerName == "" then providerName = "--" end
+        if advisorName == "" then advisorName = "--" end
+        setText(self.dashBankPartnerName, "Banque : " .. providerName)
+        setText(self.dashBankAdvisorName, "Conseiller : " .. advisorName)
+        setText(self.dashBankPartnerStars, string.format("Banque  RÉP %s  |  COMP %s", formatFiveStars(bank.providerReputationStars or 0), formatFiveStars(bank.providerCompetenceStars or 0)))
+        setText(self.dashBankAdvisorStars, string.format("Conseiller  RÉP %s  |  COMP %s", formatFiveStars(bank.advisorReputationStars or 0), formatFiveStars(bank.advisorCompetenceStars or 0)))
+        local rating = g_i18n:getText("agrilife_bank6_rating_" .. tostring(bank.rating or "standard"))
+        if rating == nil or rating == "" or rating == "agrilife_bank6_rating_" .. tostring(bank.rating or "standard") then rating = tostring(bank.rating or "") end
+        local scoreText = tostring(math.floor((tonumber(bank.score) or 0) + 0.5))
+        if rating ~= "" then scoreText = scoreText .. " - " .. rating end
+        setText(self.dashBankScore, scoreText)
+''', 'home facade bank')
+
+          interface = 'src/ui/AgriLifeInterface6.lua'
+          replace_once(interface, '''    return string.format("%.0f", value)
+end
+
+local function module(core, id)
+''', '''    return string.format("%.0f", value)
+end
+
+local function formatFiveStars(value)
+    local count = math.max(0, math.min(5, math.floor((tonumber(value) or 0) + 0.5)))
+    return string.rep("★", count) .. string.rep("☆", 5 - count)
+end
+
+local function module(core, id)
+''', 'interface star formatter')
+          replace_once(interface, '''    local relationship = bank.relationship or {}
+    local relationshipText = tr("agrilife_bank_relationship_none")
+    if relationship.status == "active" then
+        relationshipText = trf("agrilife_bank_relationship_active_fmt", tonumber(relationship.remainingMonths) or 0)
+    elseif relationship.status == "expired" then
+        relationshipText = tr("agrilife_bank_relationship_expired")
+    elseif tostring(bank.providerName or "") ~= "" then
+        relationshipText = tostring(bank.providerName)
+    end
+    setText(frame.dashBankScore, trf("agrilife_dashboard_bank_score_relation_fmt", tonumber(bank.score) or 0, relationshipText))
+''', '''    local providerName = tostring(bank.providerName or "")
+    local advisorName = tostring(bank.advisorName or "")
+    if providerName == "" then providerName = "--" end
+    if advisorName == "" then advisorName = "--" end
+    setText(frame.dashBankPartnerName, "Banque : " .. providerName)
+    setText(frame.dashBankAdvisorName, "Conseiller : " .. advisorName)
+    setText(frame.dashBankPartnerStars, string.format("Banque  RÉP %s  |  COMP %s", formatFiveStars(bank.providerReputationStars), formatFiveStars(bank.providerCompetenceStars)))
+    setText(frame.dashBankAdvisorStars, string.format("Conseiller  RÉP %s  |  COMP %s", formatFiveStars(bank.advisorReputationStars), formatFiveStars(bank.advisorCompetenceStars)))
+    local rating = tr("agrilife_bank6_rating_" .. tostring(bank.rating or "standard"))
+    if rating == "--" then rating = tostring(bank.rating or "") end
+    local scoreText = tostring(math.floor((tonumber(bank.score) or 0) + 0.5))
+    if rating ~= "" then scoreText = scoreText .. " - " .. rating end
+    setText(frame.dashBankScore, scoreText)
+''', 'interface bank binding')
+
+          roadmap_section = '''
+## Correction F02 0.9.3.19 - lisibilité des modules
+
+- Entreprise : les vues Dossier salarié, Planning, Formations, Carrière salarié et Incidents sont affichées comme onglets directs.
+- Contrats & Marchés : les données sont présentées avec des libellés explicites et un mode d'emploi visible.
+- Atelier : les six vues deviennent des onglets directs et chaque vue reçoit un pictogramme HUD cohérent.
+- La phase F02 reste active jusqu'à validation en jeu de cette correction.
+
+## Correction F02 0.9.3.20 - compréhension marché et boutons Atelier
+
+- Contrats & Marchés conserve les commandes Acheter, Vendre, Louer et Résilier location.
+- Acheter/Vendre correspond aux opérations directes sur le marché sélectionné.
+- Louer/Résilier correspond aux locations de champs ou productions lorsque la vue concernée les autorise.
+- Négocier/Signer reste réservé au contrat commercial avec volume, durée, prix, qualité et pénalités.
+- Les boutons d'action Atelier sans action disponible sont masqués au lieu d'apparaître comme des boutons vides.
+- F02 reste à certifier en jeu après ce correctif.
+
+## Correction F02 0.9.3.21 - texture HUD optimisée
+
+- Interface F02 conservée telle que validée visuellement pour le moment.
+- Correction du warning de performance FS25 sur `gui/icons/status_good.dds`.
+- Texture `status_good.dds` compressée en DXT5 avec transparence conservée.
+
+## Correction F02 0.9.3.22 - tableau de bord et carte Banque
+
+- L'aide contextuelle supérieure du tableau de bord dispose de davantage de largeur et de contraste.
+- La carte Banque est réalignée sur la grille des autres cartes.
+- Le nom de la banque et le nom du conseiller sont affichés sur deux lignes distinctes.
+- Le score de crédit contient uniquement sa valeur et son appréciation, sans nom de banque.
+- F02 reste active jusqu'à validation dans Farming Simulator 25.
+'''
+          append_once('ROADMAP.md', '## Correction F02 0.9.3.22 - tableau de bord et carte Banque', roadmap_section)
+          append_once('docs/ROADMAP.md', '## Correction F02 0.9.3.22 - tableau de bord et carte Banque', roadmap_section)
+          PY
+      - name: Commit synchronized source
+        shell: bash
+        run: |
+          git config user.name "squall39"
+          git config user.email "38831480+squall39@users.noreply.github.com"
+          git add gui/AgriLifeHomeFrame.xml src/ui/AgriLifeHomeFrame.lua src/ui/AgriLifeInterface6.lua ROADMAP.md docs/ROADMAP.md
+          if git diff --cached --quiet; then
+            echo "No source changes required"
+          else
+            git commit -m "Apply F02 dashboard correction 0.9.3.22"
+            git push origin HEAD:main
+          fi
