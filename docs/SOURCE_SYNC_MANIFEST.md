@@ -1,32 +1,31 @@
 # Synchronisation du source GitHub
 
-Version de reference : **0.9.3.22 TEST**
+Version de reference : **0.9.3.23 TEST**
 Date : **13 aout 2026**
 
-La build ZIP joueur reste la reference executable utilisee dans Farming Simulator 25 pendant la campagne de test. La branche `main` est en cours de conversion vers un miroir complet du mod dezippa.
+La build ZIP joueur 0.9.3.23 reste la reference executable utilisee dans Farming Simulator 25 pendant la campagne de test.
 
-## Synchronisation 0.9.3.22
+## Etat 0.9.3.23
 
-- version runtime et package portees a `0.9.3.22` ;
-- correction F02 du tableau de bord et de la carte Banque integree ;
-- `Dashboard6Service.lua`, `F02Clarity0920.lua` et `WorkshopPartHudIcons.lua` font partie du source actif ;
-- changelog, protocole de test et etat projet actualises ;
-- le memo personnel reste local et ne doit jamais etre publie sur GitHub.
+- F01 : validee en jeu ;
+- F02 : validee en jeu en 0.9.3.23 ;
+- F03 : active, Banque fonctionnelle ;
+- `modDesc.xml` et `src/core/AgriLifeVersion.lua` sont en 0.9.3.23 ;
+- le correctif F02 du tableau de bord est present sur `main` ;
+- `ROADMAP.md`, `docs/ROADMAP.md` et `TESTING.md` enregistrent la fermeture de F02 ;
+- les fichiers temporaires de synchronisation ont ete retires de `main`.
 
 ## Gaps historiques encore ouverts
 
-`main` ne doit pas etre presente comme miroir octet par octet tant que tous les fichiers actifs du ZIP ne sont pas verifies sur le depot. Les gaps historiques peuvent encore concerner des traductions, ressources GUI, textures, vehicules, placeables ou autres actifs binaires utiles au package.
+`main` ne doit pas etre presente comme miroir octet par octet tant que tous les fichiers du ZIP ne sont pas verifies sur le depot.
 
-Aucun gap n est considere ferme tant que le chemin correspondant n est pas reellement present et verifie sur `main`.
+Le controle du 13 aout 2026 confirme que le repertoire `translations/` distribue dans la build ZIP n est pas encore present sur `main`. Le fichier `tools/verify_release.py` distribue dans la build n est pas encore present non plus.
+
+Ces ecarts restent ouverts jusqu a presence et verification reelles des chemins concernes.
 
 ## Regles de synchronisation
 
-- la version GitHub et la version de test doivent etre identifiees clairement ;
+- la version du depot et la version de test doivent etre identifiees clairement ;
 - toute difference entre `main` et la build doit etre signalee ;
-- Git conserve l historique, les anciennes copies inutiles ne restent pas sur `main` ;
-- aucun tiret cadratin ;
-- aucune attribution automatique ou marque de generateur dans les contenus du projet.
-
-## Etat test
-
-F01 reste validee. F02 reste active. La 0.9.3.22 est auditee statiquement et doit etre certifiee dans Farming Simulator 25 avant ouverture de la phase Banque fonctionnelle.
+- les anciens fichiers temporaires ne restent pas sur `main` ;
+- aucun tiret cadratin dans les contenus du projet.
