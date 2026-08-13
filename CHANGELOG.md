@@ -1,5 +1,13 @@
 # Changelog AgriLife Manager
 
+## 0.9.3.23 TEST
+
+- Termine le retest F02 du tableau de bord après contrôle en jeu de la 0.9.3.22.
+- Élargit encore la zone d'aide contextuelle et raccourcit les textes français des trois modes pour supprimer la coupure en haut de l'écran.
+- Remplace les glyphes Unicode étoile non supportés par la police FS25 par des notes numériques sur 5 dans le résumé Banque.
+- Supprime les warnings de police associés aux caractères étoile du tableau de bord.
+- Conserve la séparation Banque, Conseiller et Score de crédit validée visuellement.
+
 ## 0.9.3.22 TEST
 
 - Corrige la lisibilité de l'aide contextuelle dans l'en-tête du tableau de bord.
@@ -67,3 +75,4 @@
 - contrats inter-fermes geres par le serveur avec sauvegarde, relations entre fermes et penalites
 - nouveaux contrats vanilla desactives lorsque AgriLife Manager est actif, les contrats vanilla deja acceptes restent terminables
 - consequences renforcees en cas de contrat AgriLife non respecte
+

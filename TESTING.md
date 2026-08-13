@@ -1,16 +1,24 @@
 # Tests AgriLife Manager
 
-Version de reference : **0.9.3.22 TEST**
+Version de référence : **0.9.3.23 TEST**
 
 Etat de campagne :
-- F01 : **VALIDE EN JEU**. Ne pas recommencer.
-- F02 : **ACTIVE**. Reprendre exactement au point arrete.
-- F03+ : **EN ATTENTE** jusqu a validation complete de F02.
+- F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
+- F02 : **VALIDÉ EN JEU** en 0.9.3.23.
+- F03 : **ACTIVE - Banque fonctionnelle**.
+- F04+ : **EN ATTENTE** jusqu'à validation complète de F03.
 
-Correction F02 0.9.3.22 :
-- Tableau de bord : ligne d aide superieure lisible et complete ;
-- Banque : carte alignee avec les autres cartes ;
-- Banque : nom de la banque et nom du conseiller sur deux lignes distinctes ;
-- Score de credit : aucun nom de banque a cote du score.
+Validation F02 0.9.3.23 :
+- ligne d'aide supérieure complète et lisible en 1920 x 1080 ;
+- Banque et Conseiller sur deux lignes distinctes ;
+- notes Banque et Conseiller au format x/5 ;
+- Score de crédit sans répétition du nom de banque ;
+- aucun warning de police lié aux anciens caractères étoile ;
+- aucun Error, traceback ou défaut de montage UI AgriLife dans le log du retest ;
+- application montée puis cycle de vie passé de MOUNTING_UI à RUNNING.
 
-Retest F02 cible : ouvrir le tableau de bord, verifier l en-tete puis la carte Banque. Ne pas poursuivre les tests suivants avant validation de ce correctif.
+Premier test F03 :
+- ouvrir Banque ;
+- vérifier la page et les données sans effectuer d'opération financière ;
+- ne pas emprunter, rembourser, transférer ou confirmer un changement de banque/conseiller ;
+- envoyer une capture de la page Banque complète et le log FS25.
