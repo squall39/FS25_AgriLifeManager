@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.27</version>
+    <version>0.9.3.28</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -44,6 +44,7 @@
         <sourceFile filename="src/core/AgriLifeVersion.lua" />
         <sourceFile filename="src/core/AgriLifeLogger.lua" />
         <sourceFile filename="src/core/AgriLifeResult.lua" />
+        <sourceFile filename="src/core/AgriLifeGameTime09328.lua" />
         <sourceFile filename="src/core/AgriLifeDecisionGuide.lua" />
         <sourceFile filename="src/core/AgriLifeLifecycle.lua" />
         <sourceFile filename="src/core/AgriLifeMissionContext.lua" />
@@ -84,6 +85,7 @@
         <sourceFile filename="src/modules/payroll/PayrollRoadmap4.lua" />
         <sourceFile filename="src/modules/payroll/Payroll6Events.lua" />
         <sourceFile filename="src/modules/payroll/PayrollModule.lua" />
+        <sourceFile filename="src/modules/payroll/OwnerRemuneration09328.lua" />
         <sourceFile filename="src/modules/exam/ExamTaskCatalog.lua" />
         <sourceFile filename="src/modules/exam/Exam6Service.lua" />
         <sourceFile filename="src/modules/exam/Exam6Events.lua" />
@@ -106,6 +108,7 @@
         <sourceFile filename="src/modules/assets/AssetLifecycleModule.lua" />
         <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap7.lua" />
         <sourceFile filename="src/modules/assets/AssetLifecycleRoadmap8.lua" />
+        <sourceFile filename="src/modules/assets/CumaEquipment09328.lua" />
         <sourceFile filename="src/modules/legal/Legal6Service.lua" />
         <sourceFile filename="src/modules/legal/LegalModule.lua" />
         <sourceFile filename="src/modules/journal/Journal6Service.lua" />
@@ -173,6 +176,9 @@
         <sourceFile filename="src/modules/workshop/WorkshopPartHudIcons.lua" />
         <sourceFile filename="src/modules/market/DeliveryLogistics6.lua" />
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
+        <sourceFile filename="src/modules/economy/AgriculturalSupport09328.lua" />
+        <sourceFile filename="src/modules/economy/BusinessResilience09328.lua" />
+        <sourceFile filename="src/core/AgriLifeTimeBindings09328.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
         <sourceFile filename="src/ui/AgriLifeRoadmapWritingCompletionUI.lua" />
@@ -183,6 +189,8 @@
         <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
         <sourceFile filename="src/ui/AgriLifePhone6.lua" />
         <sourceFile filename="src/ui/AgriLifeStrategy09327UI.lua" />
+        <sourceFile filename="src/ui/AgriLifeDecisionHooks09328.lua" />
+        <sourceFile filename="src/ui/AgriLifeCumaUI09328.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
         <sourceFile filename="src/ui/VanillaBypassGuards09327.lua" />
         <sourceFile filename="src/core/AgriLifeCore.lua" />
