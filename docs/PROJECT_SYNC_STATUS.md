@@ -1,6 +1,6 @@
 # État de synchronisation AgriLife Manager
 
-Version de référence : **0.9.3.37 TEST**
+Version de référence : **0.9.3.38 TEST**
 Date : **14 août 2026**
 
 ## État campagne
@@ -12,20 +12,22 @@ Date : **14 août 2026**
 - F05 et phases suivantes : en attente de validation complète de F04.
 - Correction XP intégrée depuis 0.9.3.26 : retest reporté, sans bloquer F04 Entreprise.
 
-## Validation F04.1 Recrutement 0.9.3.37
+## F04.2 Dossier salarié 0.9.3.38
 
-Le correctif de traçabilité des frais de recrutement est **VALIDÉ EN JEU**.
+Le contrôle visuel F04.2 a montré que le contenu du dossier salarié était trop petit par rapport à l'espace disponible et que `Dossier salarié` / `Carrière salarié` formaient un doublon de navigation. La 0.9.3.38 agrandit le titre et le texte de la fiche dans le panneau droit et fusionne la carrière dans le dossier. Niveau, XP, performance, réussites, échecs, formations, incidents, promotions et action de promotion sont conservés. F04.1 Recrutement reste validé en jeu.
 
-Contrôle réel effectué :
-- Lou Martin recruté ;
-- 350 € débités une seule fois ;
-- trésorerie cohérente à 199 300 € ;
-- ligne `Salarié recruté` visible dans le relevé professionnel ;
-- tags `FRAIS RECRUTEMENT | Lou Martin` ;
-- sauvegarde puis rechargement en 0.9.3.37 réussis ;
-- démarrage AgriLife jusqu'à `MOUNTING_UI -> RUNNING` sans erreur AgriLife bloquante.
+## Correction F04 0.9.3.37
 
-F04 reste active. Le prochain contrôle ciblé est F04.2 `Dossier salarié`, d'abord en lecture seule sur Hugo Bernard puis Lou Martin, avant Planning, Formations, Carrière salarié et Incidents.
+Le premier recrutement F04 a révélé un défaut de traçabilité : les 350 € de frais de recrutement étaient débités de la trésorerie mais n'apparaissaient pas dans le relevé professionnel.
+
+Correction :
+- mouvement bancaire `PAYROLL_RECRUITMENT_FEE` créé après le débit ;
+- libellé `Salarié recruté` dans le relevé, avec catégorie et nom du salarié dans les tags ;
+- nom du salarié transmis avec le mouvement ;
+- solde après opération conservé ;
+- test de non-régression ajouté.
+
+Le prochain contrôle F04 porte uniquement sur ce recrutement, le relevé professionnel, l'absence de doublon et la persistance après sauvegarde/rechargement.
 
 ## Validation F03 0.9.3.36
 
@@ -33,7 +35,7 @@ La phase Banque est validée en jeu : convention fonctionnelle et persistante, h
 
 ## Synchronisation miroir GitHub
 
-La prochaine build F04 ne doit être déclarée synchronisée qu'après présence sur `main` des sources Entreprise requises par le ZIP joueur, notamment `Enterprise6Service.lua`, `EnterpriseRoadmap4.lua` et `EnterpriseRoadmap4Completion.lua`, ainsi que des fichiers modifiés en 0.9.3.37.
+La 0.9.3.38 doit restaurer sur `main` les sources Entreprise requises par le ZIP joueur, notamment `Enterprise6Service.lua`, `EnterpriseRoadmap4.lua` et `EnterpriseRoadmap4Completion.lua`, puis synchroniser les fichiers UI et de suivi de F04.2.
 
 ## Préparation transversale 0.9.3.27
 
