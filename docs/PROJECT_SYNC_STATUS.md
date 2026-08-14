@@ -1,6 +1,6 @@
 # État de synchronisation AgriLife Manager
 
-Version de référence : **0.9.3.28 TEST**
+Version de référence : **0.9.3.35 TEST**
 Date : **14 août 2026**
 
 ## État campagne
@@ -19,7 +19,7 @@ Cette passe a été explicitement autorisée avant la reprise des tests. Elle é
 - formes EI, EARL, GAEC, SCEA, EURL, SARL, SASU et SAS ;
 - ETA raccordée aux prestations inter-exploitations ;
 - coopérative agricole raccordée aux offres commerciales compatibles ;
-- CUMA retirée des formes juridiques et préparée comme réseau professionnel ;
+- CUMA retirée des formes juridiques, migration conservée, sélection non activée tant que le matériel mutualisé n'est pas réellement jouable ;
 - conseiller de gestion dynamique connecté au recrutement et aux choix de structure ;
 - paiements de contrats AgriLife immédiats, mensuels ou différés ;
 - nouveaux contrats vanilla neutralisés ;
@@ -27,24 +27,9 @@ Cette passe a été explicitement autorisée avant la reprise des tests. Elle é
 - reset matériel gratuit remplacé par récupération AgriLife lorsqu'un callback FS25 compatible est détecté ;
 - explication obligatoire avant chaque choix conséquent.
 
-## Préparation transversale 0.9.3.28
-
-Écrite dans le ZIP avant reprise des tests :
-
-- calendrier central compatible avec 1 à 28 jours de jeu par mois ;
-- traitements mensuels liés au changement de période FS25 et traitements quotidiens séparés ;
-- CUMA rendue jouable dans la build : catalogue mutualisé, réservation, coût, délai, mise à disposition et restitution ;
-- conseiller de gestion étendu aux prêts, achats, locations, contrats, structure et recrutement ;
-- santé financière progressive jusqu'à insolvabilité et faillite, avec actions de redressement ;
-- rémunération explicite du dirigeant ;
-- revenus AgriLife immédiats, mensuels ou à échéance, plus aide agricole annuelle simplifiée ;
-- garde-fous vanilla précédents conservés.
-
-Ces éléments sont écrits et auditables statiquement, mais ils ne sont pas considérés validés avant leurs tests ciblés dans Farming Simulator 25.
-
 ## Prochain contrôle F03
 
-La reprise se fait sur la build 0.9.3.28. Le premier contrôle reste Banque : parcourir banques et conseillers, revenir sur le couple de référence, ouvrir `Signer convention`, lire l'explication puis répondre Non. Le retest XP reste reporté.
+La build 0.9.3.35 doit d'abord valider la disparition du dernier micro-freeze après suppression des écritures GUI et repeints de navigation inutiles. Une fois ce contrôle propre, F03 reprend sur Banque : parcourir banques et conseillers, ouvrir `Signer convention`, lire l'explication puis répondre Non.
 
 ## Règles permanentes
 
@@ -53,3 +38,13 @@ La reprise se fait sur la build 0.9.3.28. Le premier contrôle reste Banque : pa
 - aucun tiret cadratin dans les contenus du projet ;
 - aucune attribution automatique à une IA ou à un fournisseur ;
 - aucun fichier déclaré synchronisé tant que sa présence et son contenu ne sont pas réellement vérifiés sur `main`.
+
+
+## Préparation transversale 0.9.3.28
+
+Écrite localement avant reprise des tests : calendrier 1-28 jours/mois, CUMA jouable, conseiller de gestion étendu, santé financière jusqu'à faillite, rémunération dirigeant, aide agricole annuelle et explications sur les investissements. Ces fonctions restent non certifiées en jeu.
+
+
+## F03 Banque 0.9.3.35
+
+Correction locale de la signature de convention : sélection banque/conseiller obligatoire avant signature, faux message de refus de crédit supprimé, conseiller obsolète masqué pendant le parcours, aperçu de prêt allégé pour la fluidité. Validation FS25 encore requise.
