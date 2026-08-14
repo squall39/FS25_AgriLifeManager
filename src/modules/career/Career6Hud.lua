@@ -125,16 +125,22 @@ function AgriLife.Career6Hud:draw()
 
     local label = text(activity.labelKey, tostring(activity.specialtyId))
     local detail
+    local status = string.format("%s : %d XP", text("agrilife_career6_totalXp", "XP totale"), tonumber(activity.xp) or 0)
     if activity.nextXP == nil then
-        detail = string.format("%d XP  -  %s", tonumber(activity.xp) or 0, text("agrilife_career6_specialty_max", "Niveau maximum"))
+        detail = text("agrilife_career6_specialty_max", "Niveau maximum")
     else
-        detail = string.format("%d / %d XP  -  %d%%", tonumber(activity.xp) or 0, tonumber(activity.nextXP) or 0, tonumber(activity.progress) or 0)
+        local floorXP = tonumber(activity.floorXP) or 0
+        local nextXP = tonumber(activity.nextXP) or floorXP
+        local currentStepXP = math.max(0, (tonumber(activity.xp) or 0) - floorXP)
+        local stepTargetXP = math.max(1, nextXP - floorXP)
+        detail = string.format("%d / %d XP  -  %d%%", currentStepXP, stepTargetXP, tonumber(activity.progress) or 0)
     end
     local drawn, bounds = AgriLife.MiniPdaProgress.draw({
         progress = math.max(0, math.min(100, tonumber(activity.progress) or 0)) / 100,
         color = self.XP_COLOR,
         title = label,
-        detail = detail
+        detail = detail,
+        status = status
     })
     if drawn then self:drawStarBadge(bounds, activity.specialtyId, activity.stars) end
 end
