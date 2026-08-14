@@ -1,3 +1,61 @@
+# 0.9.3.35 TEST - correction interaction Banque et fluidité finale
+
+- Corrige le blocage de tous les clics Banque en 0.9.3.34 causé par `tonumber(select(1, ...))` dans le wrapper des horaires opérationnels.
+- Isole explicitement les varargs avant conversion afin que banque, conseiller, convention, prêt, découvert, refinancement et paiement fiscal ne puissent plus planter sur un second argument texte.
+- Ajoute un garde de release qui interdit désormais tout motif `tonumber(select(...))` dans les sources Lua.
+- La navigation AgriLife utilise le snapshot de démarrage léger mis en cache au lieu du snapshot Économie complet à chaque changement de page.
+- Le snapshot de démarrage expose maintenant directement les champs nécessaires à la navigation UI sans synchroniser les comptes personnels ni recalculer tout le module Économie.
+- La page Banque ne relit plus le snapshot Économie complet uniquement pour connaître l'état du tutoriel.
+- Les états sélectionnés des boutons Banque/Conseiller sont mis en cache comme les textes, couleurs et visibilités afin d'éviter les invalidations GUI identiques.
+- La confirmation d'une banque ne déclenche plus deux rafraîchissements synchrones en solo, et la confirmation du conseiller ne repeint plus toute l'application.
+- F03 reste active. Test ciblé requis : confirmer banque, confirmer conseiller, signer convention, sauvegarder/recharger, puis vérifier le log sans `mouseEvent` AgriLife.
+
+# 0.9.3.33 TEST - finition fluidité UI
+
+- Le log 0.9.3.32 confirme un démarrage propre et un montage AgriLife d'environ 294 ms, sans erreur bloquante.
+- Les rafraîchissements de page n'ont pas dépassé le seuil de 8 ms, mais un micro-freeze reste perceptible à haute fréquence d'affichage.
+- Les helpers UI n'envoient plus `setText`, `setVisible`, `setDisabled`, `setImageColor` ou `setTextColor` lorsque la valeur demandée est déjà affichée.
+- Les changements de page évitent ainsi les invalidations de layout et de rendu inutiles.
+- Les icônes et étoiles ne sont plus réassignées lorsque leur texture et leur couleur sont inchangées.
+- La navigation AgriLife possède maintenant une signature d'état et n'est repeinte que lorsque la page active ou les droits de progression changent réellement.
+- Le profiler UI descend à 1,5 ms et distingue navigation, rafraîchissement de page et étapes d'ouverture du menu.
+- Aucun changement de gameplay, d'économie ou de sauvegarde dans cette passe.
+
+# 0.9.3.32 TEST - micro-optimisation UI
+
+- Cache court des snapshots de démarrage et tableau de bord pour supprimer les requêtes répétées dans une même interaction.
+- Le tutoriel utilise désormais l'état brut lorsqu'aucun guide actif n'a besoin du snapshot Économie complet.
+- Cache court des permissions UI, de la simulation de prêt et du prêt principal pendant un rafraîchissement bancaire.
+- Réutilisation du snapshot de convention bancaire dans les décorateurs de la page Banque.
+- Snapshot de démarrage regroupé : une seule lecture Banque et une seule lecture Examen par interaction au lieu de réentrées répétées.
+- Tableau de bord : suppression d'une seconde lecture Examen et cache résumé de 750 ms.
+- Suivi carrière : les racines IA identiques ne sont plus parcourues plusieurs fois dans la même frame et les réaccrochages de compatibilité véhicules sont amortis par petits lots.
+- CUMA : contrôle des réservations limité à deux fois par seconde, cohérent avec son horloge en minutes de jeu.
+- Personnel : contrôle des horaires des ordres actifs limité à quatre fois par seconde au lieu d'une fois par frame.
+- Télémétrie ciblée : tout rafraîchissement de page AgriLife supérieur ou égal à 8 ms est journalisé pour identifier le dernier gel résiduel.
+- Aucun changement de gameplay ou de données financières dans cette passe.
+
+## 0.9.3.31 - TEST
+
+- Corrige les gels importants observés après le retour du menu AgriLife en 0.9.3.30.
+- Supprime le double contrôle périodique qui reconstruisait les commandes du menu Finances jusqu'à deux fois par seconde.
+- Les protections Finances, Contrats et réinitialisation vanilla s'installent désormais une seule fois puis cessent leur polling.
+- Le tableau de bord n'exécute plus la comptabilité avancée bancaire à chaque rafraîchissement.
+- La santé financière affichée utilise l'état mensuel déjà calculé au lieu de recalculer Banque, Paie, Entreprise, Juridique et Contrats à chaque repaint.
+- Le snapshot courant des aides agricoles ne rescane plus toutes les parcelles à chaque ouverture de page.
+- Le mode de difficulté affiché dans l'en-tête utilise le snapshot brut léger.
+- Le contrôle Finalisation au démarrage devient léger. L'audit profond reste disponible uniquement à la demande.
+- Supprime le second rafraîchissement complet du dashboard après le montage GUI.
+- F03 reste active. Contrôle requis avant reprise Banque : absence de gels récurrents dans le menu ESC et log propre.
+
+## 0.9.3.30 - TEST
+
+- Corrige le `stack overflow` 0.9.3.28/0.9.3.29 qui empêchait AgriLife Manager de se monter dans le menu ESC.
+- Supprime la boucle Economy -> Administration -> Economy introduite par le calcul des aides agricoles.
+- Ajoute une garde globale de réentrance sur les snapshots Economy avant tous les décorateurs de snapshot.
+- Les consommateurs de difficulté Administration, Legal, Contrats et Banque utilisent désormais l'état brut de difficulté lorsqu'un snapshot complet n'est pas nécessaire.
+- F03 reste active. Premier contrôle requis : chargement, icône AgriLife visible, ouverture/fermeture du menu et log sans stack overflow.
+
 # Changelog AgriLife Manager
 
 ## 0.9.3.28 TEST
