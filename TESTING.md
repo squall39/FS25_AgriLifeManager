@@ -1,6 +1,36 @@
+## Test F03 Banque 0.9.3.35
+
+Objectif : valider la sélection officielle banque/conseiller puis la signature réelle de convention sans faux refus de crédit.
+
+1. Ouvrir AgriLife Manager > Banque.
+2. Parcourir une autre banque avec une flèche. Vérifier que `Signer convention` est désactivé et qu'aucun ancien conseiller n'est présenté comme conseiller de cette banque.
+3. Cliquer sur le nom de la banque choisie et confirmer OUI.
+4. Choisir ensuite un conseiller compatible, cliquer sur son nom et confirmer OUI.
+5. Vérifier que `Signer convention` devient disponible seulement après ces deux confirmations.
+6. Cliquer `Signer convention`, répondre OUI.
+7. Vérifier que la relation devient active, qu'aucun prêt n'est créé et que la trésorerie ne bouge pas anormalement.
+8. Sauvegarder, quitter, recharger et vérifier la persistance.
+9. Fournir deux captures et `log.txt`.
+
+Performance : signaler tout micro-freeze restant pendant parcours banque/conseiller et ouverture de la confirmation.
+
+## Test performance 0.9.3.33
+
+- Charger la même sauvegarde.
+- Ouvrir AgriLife Manager.
+- Alterner 10 fois Tableau de bord et Banque.
+- Fermer puis rouvrir AgriLife 5 fois.
+- Noter si le dernier micro-freeze a disparu, diminué ou reste identique.
+- Envoyer le log afin de contrôler les lignes `[AgriLife][Performance]`.
+- Les seuils de télémétrie sont maintenant à 1,5 ms pour attraper les micro-pics invisibles au seuil précédent.
+
+# Test actif 0.9.3.33
+
+Contrôle performance bloquant avant F03 : la navigation Tableau de bord / Banque et l'ouverture d'AgriLife doivent paraître instantanées. Le log doit rester sans `stack overflow`, `MODULE_LOAD_FAILED`, `UI_XML_LOAD_FAILED`, atteindre `MOUNTING_UI -> RUNNING`, et les nouvelles lignes Performance doivent permettre d'identifier tout coût restant au-dessus de 1,5 ms.
+
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.28 TEST**
+Version de référence : **0.9.3.35 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
