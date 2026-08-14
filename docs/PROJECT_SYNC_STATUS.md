@@ -1,6 +1,6 @@
 # État de synchronisation AgriLife Manager
 
-Version de référence : **0.9.3.27 TEST**
+Version de référence : **0.9.3.28 TEST**
 Date : **14 août 2026**
 
 ## État campagne
@@ -19,7 +19,7 @@ Cette passe a été explicitement autorisée avant la reprise des tests. Elle é
 - formes EI, EARL, GAEC, SCEA, EURL, SARL, SASU et SAS ;
 - ETA raccordée aux prestations inter-exploitations ;
 - coopérative agricole raccordée aux offres commerciales compatibles ;
-- CUMA retirée des formes juridiques, migration conservée, sélection non activée tant que le matériel mutualisé n'est pas réellement jouable ;
+- CUMA retirée des formes juridiques et préparée comme réseau professionnel ;
 - conseiller de gestion dynamique connecté au recrutement et aux choix de structure ;
 - paiements de contrats AgriLife immédiats, mensuels ou différés ;
 - nouveaux contrats vanilla neutralisés ;
@@ -27,9 +27,24 @@ Cette passe a été explicitement autorisée avant la reprise des tests. Elle é
 - reset matériel gratuit remplacé par récupération AgriLife lorsqu'un callback FS25 compatible est détecté ;
 - explication obligatoire avant chaque choix conséquent.
 
+## Préparation transversale 0.9.3.28
+
+Écrite dans le ZIP avant reprise des tests :
+
+- calendrier central compatible avec 1 à 28 jours de jeu par mois ;
+- traitements mensuels liés au changement de période FS25 et traitements quotidiens séparés ;
+- CUMA rendue jouable dans la build : catalogue mutualisé, réservation, coût, délai, mise à disposition et restitution ;
+- conseiller de gestion étendu aux prêts, achats, locations, contrats, structure et recrutement ;
+- santé financière progressive jusqu'à insolvabilité et faillite, avec actions de redressement ;
+- rémunération explicite du dirigeant ;
+- revenus AgriLife immédiats, mensuels ou à échéance, plus aide agricole annuelle simplifiée ;
+- garde-fous vanilla précédents conservés.
+
+Ces éléments sont écrits et auditables statiquement, mais ils ne sont pas considérés validés avant leurs tests ciblés dans Farming Simulator 25.
+
 ## Prochain contrôle F03
 
-La reprise se fait sur la build 0.9.3.27. Le premier contrôle reste Banque : parcourir banques et conseillers, revenir sur le couple de référence, ouvrir `Signer convention`, lire l'explication puis répondre Non.
+La reprise se fait sur la build 0.9.3.28. Le premier contrôle reste Banque : parcourir banques et conseillers, revenir sur le couple de référence, ouvrir `Signer convention`, lire l'explication puis répondre Non. Le retest XP reste reporté.
 
 ## Règles permanentes
 
