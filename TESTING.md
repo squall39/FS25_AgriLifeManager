@@ -1,3 +1,34 @@
+## Test F04.2 Dossier et salaires 0.9.3.40
+
+Statut : **ACTIF**. La 0.9.3.39 est rejetée pour `stack overflow` lors des interactions UI.
+
+Objectif immédiat : vérifier que l'interface Entreprise peut être parcourue sans récursion ni hausse anormale de mémoire.
+
+1. Charger la même sauvegarde avec la 0.9.3.40.
+2. Ouvrir AgriLife Manager puis Entreprise.
+3. Cliquer successivement sur Hugo, Lou et le propriétaire.
+4. Parcourir plusieurs candidats et revenir sur les salariés.
+5. Ouvrir le dossier complet de chaque profil.
+6. Vérifier l'absence de gel, d'erreur `mouseEvent` et de `stack overflow`.
+7. Vérifier les salaires Facile et la fiche propriétaire.
+8. Fournir captures et `log.txt`.
+
+## Test F04.2 Dossier complet et salaires 0.9.3.39
+
+Objectif : valider la fiche RH complète pour salarié et propriétaire, puis la nouvelle grille salariale dépendante de la difficulté.
+
+1. Ouvrir Entreprise en mode Facile.
+2. Sélectionner Hugo Bernard puis ouvrir Dossier salarié. La fiche doit afficher identité, rôle traduit, contrat, ancienneté, statut, salaire, brut, coût employeur, spécialité, XP, performance, temps, congés, absences, ordre actif, salaire recommandé, fourchette, réputation, moral et carrière.
+3. Sélectionner Lou Martin et vérifier que toutes les valeurs sont rafraîchies pour Lou.
+4. Sélectionner le propriétaire. Le titre doit identifier le rôle Propriétaire, la fiche doit rester complète et le bouton Promouvoir doit être désactivé.
+5. En mode Facile, vérifier que les salaires affichés sont plus bas que dans la 0.9.3.38. Référence attendue au niveau 1 et réputation 50 : salarié AUTO environ 1 490 €/mois, propriétaire AUTO environ 1 620 €/mois.
+6. Vérifier qu'un candidat de recrutement affiche une demande salariale cohérente avec le mode Facile, généralement inférieure à l'ancienne grille.
+7. Ne recruter personne pour ce sous-test.
+8. Sauvegarder, quitter et recharger. Vérifier que la fiche et les salaires restent cohérents.
+9. Fournir une capture salarié, une capture propriétaire et `log.txt`.
+
+F04.1 reste VALIDÉ EN JEU. F04.2 reste ACTIVE jusqu'à validation de ce test.
+
 ## Validation F04.1 Recrutement 0.9.3.37
 
 F04.1 est **VALIDÉ EN JEU** : recrutement fonctionnel, frais fixes de 350 € débités une seule fois, ligne `Salarié recruté` visible dans le relevé professionnel avec le nom du salarié, solde cohérent, sauvegarde/rechargement validés et log AgriLife propre.
@@ -58,7 +89,7 @@ Contrôle performance bloquant avant F03 : la navigation Tableau de bord / Banqu
 
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.38 TEST**
+Version de référence : **0.9.3.40 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
@@ -66,99 +97,3 @@ Version de référence : **0.9.3.38 TEST**
 - F03 : **VALIDÉ EN JEU** en 0.9.3.36.
 - F04 : **ACTIVE - Entreprise**.
 - F05+ : **EN ATTENTE** jusqu’à validation complète de F04.
-
-Préparation F03 0.9.3.24 :
-- capital restant et mois restants du prêt actif corrigés ;
-- remboursement anticipé calculé sur le vrai capital restant, avec frais de la banque d’origine annoncés avant validation ;
-- réaménagement de prêt calculé sur la durée réellement restante ;
-- confirmation Oui / Non avant toute action bancaire engageante de cette passe : demande de prêt, remboursement anticipé, réaménagement, découvert, contrat bancaire, refinancement et paiement fiscal ;
-- refus avec **Non** = aucune écriture financière ;
-- retour explicite si la banque est fermée ;
-- découvert professionnel rendu réel : utilisé = solde négatif, échéances/frais automatiques couverts dans la limite autorisée, remboursement automatique à la remontée du solde, intérêts mensuels et dépassement visibles ;
-- découvert utilisé et intérêts en retard comptés dans la dette AgriLife et la capacité bancaire ;
-- messages F03 localisés et parité l10n conservée sur les 27 langues ;
-- découvert autorisé uniquement pour une durée déterminée, avec frais d'autorisation ou de renouvellement ;
-- échéance non régularisée = délai de régularisation, puis mise en demeure, puis transmission au Juridique ;
-- le transfert contentieux convertit le solde négatif en créance afin d'éviter toute double facturation du principal ;
-- les dossiers Juridique conservent maintenant une origine distincte pour le bancaire et le fiscal.
-
-Premier test F03 :
-1. Ouvrir `Échap > AgriLife Manager > Banque` pendant les horaires d’ouverture, soit 08:00-12:00 ou 14:00-18:00.
-2. Contrôler toute la page sans confirmer de mouvement financier : banque, conseiller, trésorerie, dette FS25, dette AgriLife, score, capacité, prêt actif, capital restant, mois restants, découvert, contrat bancaire et refinancement.
-3. Cliquer sur **une seule action engageante disponible** pour faire apparaître la confirmation. Répondre **Non**.
-4. Vérifier que la trésorerie, la dette et le relevé bancaire n’ont pas changé après le refus.
-5. Envoyer une capture plein écran de la page Banque et le `log.txt`.
-
-Ne confirmer aucune opération avec **Oui** avant validation de ce premier contrôle F03.
-- vérifier qu’aucune nouvelle autorisation de découvert ne peut être demandée pendant la régularisation, la mise en demeure ou un contentieux actif ;
-Correction F03 0.9.3.25 :
-- le bouton `Signer` récupère correctement l’autorisation `bank.manage` ;
-- un propriétaire autorisé doit pouvoir ouvrir la confirmation de signature ;
-- un profil non autorisé reçoit un retour explicite au lieu d’un bouton silencieux.
-
-Retest ciblé F03 0.9.3.25 :
-1. Ouvrir Banque.
-2. Vérifier que `Signer` est actif.
-3. Cliquer `Signer`.
-4. La confirmation doit apparaître.
-5. Répondre `Non` pour ce premier retest.
-6. Vérifier qu’aucun mouvement financier ni contrat n’a été créé.
-
-
-
-## F03 - extension 0.9.3.25
-
-Catalogue banques 0 à 5 :
-- vérifier les catégories locale, régionale, nationale, internationale et en ligne ;
-- vérifier que les conseillers proposés appartiennent à la banque sélectionnée ;
-- vérifier qu'en Facile tous les profils compatibles sont accessibles ;
-- vérifier qu'en Normal et Difficile les profils supérieurs restent visibles mais expliquent le verrou de progression ;
-- vérifier qu'un clic de confirmation Banque ou Conseiller affiche les conséquences avant validation ;
-- vérifier que `Signer convention` affiche banque, conseiller, durée, bonus de relation, frais de rupture indicatifs et services débloqués ;
-- vérifier qu'une demande de prêt reste simulable mais non envoyable tant que la convention n'est pas active ;
-- vérifier qu'une banque en ligne accepte les actions client hors horaires bancaires traditionnels.
-
-Correction XP 0.9.3.26 intégrée dans 0.9.3.27, retest reporté par décision de test :
-1. Effectuer une activité qui affiche le HUD XP sur le mini-PDA.
-2. Vérifier qu'à 3 036 XP une spécialité affiche 3 étoiles.
-3. Vérifier que l'XP total est affiché séparément.
-4. Vérifier que le palier affiche 36 / 1 000 XP et environ 4 %, et non 3 036 / 7 500 XP avec 1 %.
-5. Envoyer une capture du HUD XP et le log.
-
-Le retest XP est volontairement reporté et ne bloque pas la reprise de F03 Banque.
-
-
-
-## Préparation transversale 0.9.3.27 - écrite, non certifiée en jeu
-
-Cette passe a été autorisée avant la reprise des tests sans ouvrir F04. La phase de certification reste F03 Banque.
-
-- Entreprise : séparation nom d'exploitation / forme juridique / activité / réseau professionnel.
-- Formes juridiques : EI, EARL, GAEC, SCEA, EURL, SARL, SASU, SAS.
-- ETA : activité secondaire réellement raccordée aux prestations inter-exploitations.
-- Coopérative agricole : adhésion réellement raccordée aux offres commerciales coopératives.
-- CUMA : socle de données, migration et comptabilité présents, mais sélection volontairement non activée tant que le catalogue de matériel mutualisé et les réservations ne sont pas fonctionnels.
-- Groupement d'employeurs et autres activités préparées : non sélectionnables tant que leurs effets métier complets ne sont pas raccordés.
-- Conseiller de gestion : moteur d'analyse réel et historique, connecté au recrutement et aux choix de structure.
-- Contrats AgriLife : paiement immédiat, mensuel ou différé après livraison selon le profil commercial.
-- Contournements vanilla : nouveaux contrats FS25 bloqués, crédit vanilla bloqué, reset matériel remplacé lorsqu'un callback FS25 compatible est détecté.
-- Tout choix conséquent ouvert par cette passe doit afficher une explication avant confirmation.
-
-### Reprise des tests
-
-La reprise se fait sur 0.9.3.27. On reprend d'abord F03 Banque exactement au contrôle de la convention bancaire déjà prévu. Les systèmes 0.9.3.27 ci-dessus auront leurs tests ciblés après la fermeture de F03 ou lorsqu'un contrôle de fumée est nécessaire pour sécuriser la build.
-
-
-## Préparation transversale 0.9.3.28 - écrite, tests reportés
-
-Cette passe regroupe les idées validées avant reprise des tests. Elle ne change pas l'ordre de certification : F03 Banque reste active.
-
-- Calendrier central : les traitements mensuels suivent `PERIOD_CHANGED`, donc 1 à 28 jours de jeu représentent toujours exactement un mois AgriLife.
-- CUMA : catalogue mutualisé, réservation, délai, frais, dépôt, mise à disposition, mensualités et restitution écrits.
-- Conseiller de gestion : raccordé aux prêts, contrats, recrutement, structure, achats de matériel, parcelles, productions et locations.
-- Santé financière : dégradation progressive jusqu'à insolvabilité/faillite, restrictions et solutions de redressement.
-- Rémunération du dirigeant : API explicite et garde contre une hausse en insolvabilité.
-- Revenus : paiements de contrats immédiats/mensuels/à échéance conservés et aide agricole annuelle simplifiée ajoutée.
-- Anti-contournements vanilla de la passe précédente conservés : contrats, crédit et reset gratuit.
-
-Aucun de ces points n'est marqué validé en jeu. Les tests seront repris un par un. Le prochain test reste F03 Banque sur la fenêtre `Signer convention`, avec réponse `Non` avant toute vraie signature. Le retest XP reste reporté.
