@@ -29,6 +29,35 @@ Points actuellement préparés :
 - découvert autorisé temporaire avec frais, intérêts, régularisation, mise en demeure et contentieux ;
 - dossiers fiscaux et bancaires séparés dans le Juridique.
 
+## Anti-contournements vanilla validés à intégrer
+
+Ces protections sont des règles globales AgriLife et doivent s'appliquer quelle que soit la difficulté. La difficulté peut modifier coûts, délais, tolérances et conséquences, mais ne doit pas réouvrir un contournement vanilla.
+
+### Contrats du menu Échap
+
+- bloquer la création et l'acceptation de nouveaux contrats vanilla lorsque AgriLife Manager est actif ;
+- AgriLife Contrats & Marchés devient la source principale des nouveaux contrats ;
+- les anciens contrats vanilla déjà acceptés sur une sauvegarde existante doivent pouvoir être terminés proprement sans créer de nouveau contrat vanilla ;
+- lorsque c'est techniquement sûr, masquer ou désactiver l'accès vanilla devenu inutile et expliquer que les contrats sont gérés par AgriLife.
+
+### Finances du menu Échap
+
+- empêcher toute opération vanilla d'emprunt ou de remboursement qui contournerait AgriLife Banque ;
+- conserver uniquement les informations financières vanilla qui restent utiles et cohérentes ;
+- si l'onglet Finances reste visible, le rendre informatif et indiquer clairement que les opérations bancaires sont gérées dans AgriLife Manager > Banque ;
+- aucune dette, aucun remboursement et aucun crédit ne doivent pouvoir être créés par une deuxième logique concurrente.
+
+### Réinitialisation des véhicules et outils
+
+- bloquer la réinitialisation vanilla gratuite des véhicules et outils lorsque AgriLife Manager est actif ;
+- remplacer cette téléportation par une procédure AgriLife de récupération, dépannage, enlèvement ou transport ;
+- proposer une destination cohérente selon le cas, concessionnaire, atelier, dépôt ou ferme ;
+- appliquer coût, délai et éventuelle immobilisation selon la situation et la difficulté ;
+- conserver une récupération de secours pour les cas réellement bloqués, mais jamais comme téléportation gratuite permettant de contourner livraison, panne, remorquage ou logistique ;
+- relier cette procédure aux systèmes Concessionnaire, Atelier, Assurance et logistique lorsque ces blocs sont disponibles.
+
+Ces trois règles doivent être reportées de façon additive dans la feuille de route maître lors de la prochaine passe d'écriture concernée, puis testées séparément dans Farming Simulator 25 avant validation.
+
 ## Prochain contrôle F03
 
 1. Ouvrir Banque sur la 0.9.3.26.
