@@ -1,5 +1,21 @@
 # Changelog AgriLife Manager
 
+## 0.9.3.28 TEST
+
+- Centralise le calendrier AgriLife sur les périodes FS25 : un mois AgriLife correspond toujours à un changement de mois du jeu, que le joueur utilise 1 à 28 jours par mois.
+- Sépare explicitement les traitements mensuels des futurs traitements quotidiens afin qu'un réglage de 28 jours ne multiplie jamais par 28 une mensualité, un salaire, un intérêt ou une échéance.
+- Active le gameplay CUMA : adhésion professionnelle, catalogue de matériel mutualisé, réservation, frais, dépôt, délai en heures de jeu, mise à disposition, mensualités et restitution.
+- Ajoute le choix Leasing / CUMA dans la page matériel et conserve une confirmation expliquée avant toute réservation.
+- Ajoute une santé financière progressive de l'exploitation : surveillance, fragilité, difficulté, défaut, insolvabilité puis faillite si la mauvaise gestion persiste.
+- Les difficultés modifient la vitesse d'escalade vers l'insolvabilité et la faillite. Les actions de redressement restent proposées et la remontée reste possible.
+- Bloque les nouveaux emprunts, recrutements et investissements lorsque la situation financière a dépassé les seuils correspondants, sans bloquer remboursement, restructuration ou actions de sauvetage.
+- En faillite, les nouveaux contrats sont suspendus tandis que les contrats existants et les actions de régularisation restent actifs.
+- Formalise la rémunération du dirigeant et interdit de l'augmenter pendant une situation d'insolvabilité tout en permettant de la réduire.
+- Étend le conseiller de gestion aux prêts, achats de parcelles, achats de productions ou matériels et locations, avec comparaison achat/location lorsque les données existent.
+- Ajoute une aide agricole annuelle simplifiée, calculée sur les hectares détenus, la difficulté et la conformité administrative, versée en avance puis en solde à des changements de mois précis.
+- Conserve les revenus AgriLife selon les trois modèles validés : immédiat, mensuel ou à échéance.
+- F03 Banque reste la phase de certification active. Tous les ajouts 0.9.3.28 sont écrits mais restent à valider progressivement en jeu.
+
 ## 0.9.3.27 TEST
 
 - Sépare définitivement le nom de ferme, la forme juridique, les activités économiques et les réseaux professionnels.
