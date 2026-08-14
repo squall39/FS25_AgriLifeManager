@@ -2,7 +2,7 @@
 AgriLife = AgriLife or {}
 
 AgriLife.DecisionGuide = AgriLife.DecisionGuide or {}
-AgriLife.DecisionGuide.VERSION = "0.9.3.25"
+AgriLife.DecisionGuide.VERSION = "0.9.3.27"
 
 local function tr(key)
     if key == nil or key == "" then return "" end
