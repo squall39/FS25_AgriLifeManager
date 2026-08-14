@@ -47,29 +47,106 @@ if AgriLife.Economy6Service ~= nil then
     end
 
     function AgriLife.Economy6Service:getStartupSnapshot(farmId)
+        farmId = tonumber(farmId) or 0
         local state = self:getFarmState(farmId, true)
         local policy = self:getModePolicy(farmId)
-        local provisional = self:getProvisionalLicenceStatus(farmId)
-        local step = self:getStartupStep(farmId)
-        local blockReason = self:getVehicleControlBlockReason(farmId)
+        local modeId = state ~= nil and tostring(state.modeId or "facile") or "facile"
+        local mode = AgriLife.Economy6Service.MODES[modeId] or AgriLife.Economy6Service.MODES.facile
+
+        -- This snapshot is requested on every root-page change. Resolve each
+        -- cross-module dependency once instead of re-entering Bank and Exams
+        -- through getStartupStep(), isReady() and the vehicle guard.
+        local bankState = self:getBankState(farmId)
+        local providerSelected = bankState ~= nil and bankState.providerSelected == true
+        local advisorSelected = bankState ~= nil and bankState.advisorSelected == true
+
+        local ownerProfileId = nil
+        local instances = self.core ~= nil and self.core.registry ~= nil and self.core.registry.instances or nil
+        local company = instances ~= nil and instances.company or nil
+        local companyService = company ~= nil and (company.service or company) or nil
+        if companyService ~= nil and companyService.getFarmState ~= nil then
+            local companyState = companyService:getFarmState(farmId, false)
+            if companyState ~= nil and tostring(companyState.ownerProfileId or "") ~= "" then ownerProfileId = tostring(companyState.ownerProfileId) end
+        end
+        if ownerProfileId == nil then ownerProfileId = self:getOwnerProfileId(farmId) end
+        local exams = instances ~= nil and instances.exams or nil
+        local examSnapshot = exams ~= nil and exams.getSnapshot ~= nil and exams:getSnapshot(farmId, ownerProfileId) or nil
+        local licenceObtained = examSnapshot ~= nil and tostring(examSnapshot.licenceStatus or "") == "obtained"
+        local examRunning = examSnapshot ~= nil and examSnapshot.examRunning == true
+
+        local currentPeriod = self:getCurrentPeriodKey()
+        local provisional
+        if mode.provisionalLicence ~= true then
+            provisional = {enabled=false, active=false, expired=false, completed=licenceObtained}
+        else
+            local deadline = math.max(0, math.floor(tonumber(state ~= nil and state.provisionalDeadlinePeriodKey) or 0))
+            local started = state ~= nil and state.provisionalLicenceStarted == true
+            local expired = started and not licenceObtained and deadline > 0 and currentPeriod >= deadline
+            provisional = {
+                enabled=true, started=started, active=started and not licenceObtained and not expired, expired=expired,
+                completed=licenceObtained or (state ~= nil and state.provisionalCompleted == true),
+                startPeriodKey=math.max(0, math.floor(tonumber(state ~= nil and state.provisionalStartPeriodKey) or 0)),
+                deadlinePeriodKey=deadline,
+                remainingMonths=started and math.max(0, deadline-currentPeriod) or math.max(0, tonumber(mode.provisionalMonths) or 3),
+                fineApplied=state ~= nil and state.provisionalFineApplied == true,
+                fineAmount=math.max(0, tonumber(state ~= nil and state.provisionalFineAmount) or 0)
+            }
+        end
+
+        local step = AgriLife.Economy6Service.STARTUP_STEP.TUTORIAL
+        if state ~= nil and state.existingCareerDetected == true and state.existingCareerAcknowledged ~= true then
+            step = AgriLife.Economy6Service.STARTUP_STEP.MIGRATION
+        elseif state == nil or state.tutorialChoiceMade ~= true then
+            step = AgriLife.Economy6Service.STARTUP_STEP.TUTORIAL
+        elseif state.modeChosen ~= true then
+            step = AgriLife.Economy6Service.STARTUP_STEP.DIFFICULTY
+        elseif policy.bankRequired == true and not providerSelected then
+            step = AgriLife.Economy6Service.STARTUP_STEP.BANK
+        elseif policy.bankRequired == true and not advisorSelected then
+            step = AgriLife.Economy6Service.STARTUP_STEP.ADVISOR
+        elseif policy.licenceRequired == true and not licenceObtained then
+            step = AgriLife.Economy6Service.STARTUP_STEP.EXAM
+        else
+            step = AgriLife.Economy6Service.STARTUP_STEP.READY
+        end
+
+        local ready = state ~= nil and state.tutorialChoiceMade == true and state.modeChosen == true and state.setupCompleted == true
+        if ready and policy.companyRequired == true and state.statutesAccepted ~= true then ready = false end
+        if ready and policy.bankRequired == true and not (providerSelected and advisorSelected) then ready = false end
+        if ready and policy.licenceRequired == true and not licenceObtained then ready = false end
+
+        local blockReason = nil
+        if farmId <= 0 or state == nil or state.modeChosen ~= true then
+            blockReason = "difficulty"
+        elseif mode.id ~= "facile" and mode.bankRequired == true and not (providerSelected and advisorSelected) then
+            blockReason = "bank"
+        elseif mode.id == "difficile" and not licenceObtained and not examRunning then
+            blockReason = "licence"
+        end
 
         return {
-            farmId = tonumber(farmId) or 0,
+            farmId = farmId,
             step = step,
-            ready = self:isReady(farmId),
-            modeId = state ~= nil and state.modeId or "facile",
+            ready = ready,
+            modeId = modeId,
+            modeName = mode.name,
+            modePolicy = policy,
             modeChosen = state ~= nil and state.modeChosen == true,
+            setupCompleted = state ~= nil and state.setupCompleted == true,
+            statutesAccepted = state ~= nil and state.statutesAccepted == true,
             tutorialChoiceMade = state ~= nil and state.tutorialChoiceMade == true,
             tutorialEnabled = state ~= nil and state.tutorialEnabled == true,
+            tutorialCompleted = state ~= nil and state.tutorialCompleted == true,
             existingCareerDetected = state ~= nil and state.existingCareerDetected == true,
             existingCareerAcknowledged = state ~= nil and state.existingCareerAcknowledged == true,
             startingMoneyApplied = state ~= nil and state.startingMoneyApplied == true,
             startingMoney = policy.startingMoney,
             bankRequired = policy.bankRequired == true,
-            bankProviderSelected = self:isBankProviderSelected(farmId),
-            bankAdvisorSelected = self:isBankAdvisorSelected(farmId),
+            bankSelected = providerSelected and advisorSelected,
+            bankProviderSelected = providerSelected,
+            bankAdvisorSelected = advisorSelected,
             licenceRequired = policy.licenceRequired == true,
-            licenceObtained = self:isLicenceObtained(farmId),
+            licenceObtained = licenceObtained,
             provisionalLicence = provisional,
             vehicleBlocked = blockReason ~= nil,
             vehicleBlockReason = blockReason
