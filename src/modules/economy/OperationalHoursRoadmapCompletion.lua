@@ -6,11 +6,11 @@ AgriLife.OperationalHours93 = AgriLife.OperationalHours93 or {}
 local Hours = AgriLife.OperationalHours93
 Hours.VERSION = "0.9.3.0"
 Hours.SCHEDULES = {
-    BANK = {{480,720},{840,1080}},
-    DEALER = {{480,1140}},
-    PERSONAL_WORKSHOP = {{0,1440}},
-    FACTORY = {{480,1140}},
-    SELL_POINT = {{480,720},{840,1080}}
+    BANK = {{480,720},{840,1080}},       -- 08:00-12:00 / 14:00-18:00
+    DEALER = {{480,1140}},               -- 08:00-19:00
+    PERSONAL_WORKSHOP = {{0,1440}},       -- 24/7
+    FACTORY = {{480,1140}},               -- 08:00-19:00 interactions; internal production continues
+    SELL_POINT = {{480,720},{840,1080}}  -- 08:00-12:00 / 14:00-18:00
 }
 
 local function text(value, fallback)
@@ -105,10 +105,14 @@ end
 
 function Hours:installBaseGameHooks()
     if self.baseGameHooksInstalled == true then return true end
+    -- Dealership: block purchase/lease/sale operations when the dealership is closed.
+    -- AgriLife's own dealership pages are also guarded in HomeFrame.
     if ShopMenu ~= nil then
         for _, method in ipairs({"onClickBuy","onClickLease","onClickSell","onClickBuyVehicle","onClickLeaseVehicle"}) do wrapMethod(ShopMenu, method, "DEALER", false) end
     end
 
+    -- FS25 selling/production delivery path. UnloadingStation:addFillLevelFromTool returns
+    -- the amount actually transferred, therefore returning 0 is a safe closed-state refusal.
     if UnloadingStation ~= nil and type(UnloadingStation.addFillLevelFromTool) == "function" and UnloadingStation.agriLifeHours93_addFillLevelFromTool ~= true then
         local baseAddFill = UnloadingStation.addFillLevelFromTool
         UnloadingStation.addFillLevelFromTool = function(station, ...)
@@ -122,6 +126,7 @@ function Hours:installBaseGameHooks()
         UnloadingStation.agriLifeHours93_addFillLevelFromTool = true
     end
 
+    -- Buying an unowned production point is a commercial interaction and follows factory hours.
     if ProductionPoint ~= nil and type(ProductionPoint.buyRequest) == "function" and ProductionPoint.agriLifeHours93_buyRequest ~= true then
         local baseBuyRequest = ProductionPoint.buyRequest
         ProductionPoint.buyRequest = function(point, ...)
@@ -137,13 +142,28 @@ end
 
 Hours:installBaseGameHooks()
 
+-- Bank: block manual customer actions only. Automatic instalments/fees continue overnight.
 if AgriLife.Bank6Service ~= nil then
     local Bank = AgriLife.Bank6Service
     local function wrapBank(name)
         if type(Bank[name]) ~= "function" or Bank["agriLifeHours93_"..name] == true then return end
         local base = Bank[name]
         Bank[name] = function(self, ...)
-            if not Hours:isOpen("BANK") then return Hours:closedResult("BANK") end
+            -- IMPORTANT: select(1, ...) can return several values. Passing that
+            -- expression directly to tonumber would feed the second vararg as
+            -- tonumber's optional base and crash whenever it is a string.
+            local farmIdArg = select(1, ...)
+            local providerIdArg = select(2, ...)
+            local farmId = tonumber(farmIdArg) or 0
+            local providerId = nil
+            if name == "setProvider" then
+                providerId = tostring(providerIdArg or "")
+            else
+                local state = self.getFarmState ~= nil and self:getFarmState(farmId, true) or nil
+                providerId = state ~= nil and tostring(state.providerId or "") or ""
+            end
+            local digitalOpen = self.isDigitalProvider ~= nil and self:isDigitalProvider(providerId)
+            if not digitalOpen and not Hours:isOpen("BANK") then return Hours:closedResult("BANK") end
             return base(self, ...)
         end
         Bank["agriLifeHours93_"..name] = true
@@ -153,14 +173,18 @@ if AgriLife.Bank6Service ~= nil then
     if type(baseSnapshot) == "function" then
         function Bank:getSnapshot(farmId)
             local snapshot = baseSnapshot(self, farmId)
-            snapshot.bankOpen = Hours:isOpen("BANK")
-            snapshot.bankHours = Hours:getScheduleText("BANK")
+            local state = self.getFarmState ~= nil and self:getFarmState(farmId, true) or nil
+            local providerId = state ~= nil and tostring(state.providerId or "") or ""
+            local digitalOpen = self.isDigitalProvider ~= nil and self:isDigitalProvider(providerId)
+            snapshot.bankOpen = digitalOpen or Hours:isOpen("BANK")
+            snapshot.bankHours = digitalOpen and "24/7" or Hours:getScheduleText("BANK")
             snapshot.bankCurrentMinute = Hours:getMinuteOfDay()
             return snapshot
         end
     end
 end
 
+-- Dealer workshop jobs require an open dealership; personal workshop remains unrestricted.
 if AgriLife.Workshop6Service ~= nil and type(AgriLife.Workshop6Service.createWorkshopJob) == "function" then
     local Workshop = AgriLife.Workshop6Service
     local baseCreateJobHours93 = Workshop.createWorkshopJob
@@ -180,6 +204,7 @@ if AgriLife.Workshop6Service ~= nil and type(AgriLife.Workshop6Service.createWor
     end
 end
 
+-- Used/new asset transactions performed through AgriLife also respect dealer hours.
 if AgriLife.AssetLifecycle6Service ~= nil then
     local Assets = AgriLife.AssetLifecycle6Service
     for _, name in ipairs({"purchaseUsed","createLease","buyoutLease","returnLease","inspectOffer"}) do
