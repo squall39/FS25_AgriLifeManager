@@ -4,18 +4,21 @@ F04.1 est **VALIDÉ EN JEU** : recrutement fonctionnel, frais fixes de 350 € d
 
 Validation observée avec le recrutement de Lou Martin : trésorerie à 199 300 €, mouvement `FRAIS RECRUTEMENT | Lou Martin` à -350 € et persistance après rechargement de la sauvegarde en 0.9.3.37.
 
-## Test F04.2 Dossier salarié 0.9.3.37
+## Test F04.2 Dossier salarié 0.9.3.38
 
-Objectif : contrôler la fiche salarié et la cohérence des informations avant d'ouvrir Planning, Formations, Carrière salarié et Incidents.
+Objectif : valider la fiche salarié agrandie et la fusion de la carrière salarié dans le même écran avant d'ouvrir Planning, Formations et Incidents.
 
 1. Ouvrir AgriLife Manager > Entreprise.
 2. Sélectionner Hugo Bernard puis ouvrir `DOSSIER SALARIÉ`.
-3. Contrôler contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, expérience et ordre actif affichés.
-4. Revenir à la liste, sélectionner Lou Martin puis ouvrir `DOSSIER SALARIÉ`.
-5. Vérifier que les informations correspondent bien à Lou Martin et qu'aucune donnée de Hugo Bernard ne reste affichée.
-6. Ne modifier aucun salaire, contrat ou statut pendant ce premier contrôle.
-7. Passer plusieurs fois d'un salarié à l'autre et signaler tout micro-freeze ou information qui ne se rafraîchit pas.
-8. Fournir une capture de chaque dossier salarié et le `log.txt`.
+3. Vérifier que le titre et les informations utilisent nettement mieux le panneau droit et restent entièrement lisibles.
+4. Contrôler contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, XP, niveau, performance, réussites/échecs, formations, incidents, promotions et ordre actif affichés.
+5. Vérifier que le bouton `Carrière salarié` n'est plus affiché.
+6. Vérifier que l'action de promotion, lorsqu'elle devient disponible, est proposée directement dans `Dossier salarié`.
+7. Revenir à la liste, sélectionner Lou Martin puis ouvrir `DOSSIER SALARIÉ`.
+8. Vérifier que les informations correspondent bien à Lou Martin et qu'aucune donnée de Hugo Bernard ne reste affichée.
+9. Ne modifier aucun salaire, contrat ou statut pendant ce contrôle.
+10. Passer plusieurs fois d'un salarié à l'autre et signaler tout micro-freeze ou information qui ne se rafraîchit pas.
+11. Fournir une capture de chaque dossier salarié et le `log.txt`.
 
 F04 reste **ACTIVE - Entreprise** jusqu'à validation complète des sous-tests suivants.
 
@@ -55,7 +58,7 @@ Contrôle performance bloquant avant F03 : la navigation Tableau de bord / Banqu
 
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.37 TEST**
+Version de référence : **0.9.3.38 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
@@ -133,7 +136,7 @@ Cette passe a été autorisée avant la reprise des tests sans ouvrir F04. La ph
 - Entreprise : séparation nom d'exploitation / forme juridique / activité / réseau professionnel.
 - Formes juridiques : EI, EARL, GAEC, SCEA, EURL, SARL, SASU, SAS.
 - ETA : activité secondaire réellement raccordée aux prestations inter-exploitations.
-- Coopérative agricole : adhésion réellement raccordée aux offres commerciales compatibles.
+- Coopérative agricole : adhésion réellement raccordée aux offres commerciales coopératives.
 - CUMA : socle de données, migration et comptabilité présents, mais sélection volontairement non activée tant que le catalogue de matériel mutualisé et les réservations ne sont pas fonctionnels.
 - Groupement d'employeurs et autres activités préparées : non sélectionnables tant que leurs effets métier complets ne sont pas raccordés.
 - Conseiller de gestion : moteur d'analyse réel et historique, connecté au recrutement et aux choix de structure.
