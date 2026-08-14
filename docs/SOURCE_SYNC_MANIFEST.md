@@ -1,10 +1,21 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.37 TEST**
-Version locale déclarée : **0.9.3.37 TEST**
+Version de test préparée : **0.9.3.38 TEST**
+Version locale déclarée : **0.9.3.38 TEST**
 Date : **14 août 2026**
 
-La build ZIP joueur 0.9.3.36 devient la référence exécutable de cette passe après synchronisation du miroir GitHub. F01 et F02 restent validées. F03 Banque reste la phase de certification active.
+La build ZIP joueur 0.9.3.38 devient la référence exécutable de cette passe après synchronisation du miroir GitHub. F01, F02 et F03 restent validées. F04 Entreprise reste la phase de certification active, sous-test F04.2 Dossier salarié.
+
+
+## Ajustement UI F04.2 0.9.3.38
+
+- `src/ui/F04EmployeeSheetUnifiedUI.lua` : agrandit le panneau `Dossier salarié` au chargement, avec titre 20 px environ et texte principal 13 px environ selon l'échelle UI.
+- Le gros XML d'interface reste inchangé par rapport à la 0.9.3.37.
+- Le bouton `Carrière salarié` est masqué pour supprimer le doublon de navigation.
+- Les données de carrière et l'action de promotion sont intégrées directement au `Dossier salarié`.
+- `Enterprise6Service.lua`, `EnterpriseRoadmap4.lua` et `EnterpriseRoadmap4Completion.lua` restent à restaurer à l'identique sur le miroir GitHub avant certification complète de la synchronisation.
+- Aucun changement de schéma de sauvegarde.
+- F04.1 Recrutement reste validé, F04.2 Dossier salarié est le test actif.
 
 ## Éléments nouveaux de la build locale 0.9.3.27
 
@@ -35,7 +46,7 @@ La build ZIP joueur 0.9.3.36 devient la référence exécutable de cette passe a
 ## Correction performance locale 0.9.3.32
 
 - `src/ui/AgriLifeUIManager.lua` : garde Finances installée une seule fois, sans reconstruction périodique du menu ;
-- `src/ui/VanillaBypassGuards09327.lua` : polling de protection arrêtè dès que Contrats, Finances et reset sont protégés ;
+- `src/ui/VanillaBypassGuards09327.lua` : polling de protection arrêté dès que Contrats, Finances et reset sont protégés ;
 - `src/ui/AgriLifeHomeFrame.lua` : en-tête difficulté alimenté par l'état brut léger ;
 - `src/core/AgriLifeCore.lua` : suppression du second refresh complet après montage GUI ;
 - `src/modules/dashboard/Dashboard6Service.lua` et `DashboardRoadmapWritingCompletion.lua` : snapshot dashboard allégé et comptabilité avancée retirée du repaint ;
