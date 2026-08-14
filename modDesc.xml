@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.28</version>
+    <version>0.9.3.35</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -178,6 +178,7 @@
         <sourceFile filename="src/physical/PhysicalWorkshop6.lua" />
         <sourceFile filename="src/modules/economy/AgriculturalSupport09328.lua" />
         <sourceFile filename="src/modules/economy/BusinessResilience09328.lua" />
+        <sourceFile filename="src/modules/economy/SnapshotSafety09330.lua" />
         <sourceFile filename="src/core/AgriLifeTimeBindings09328.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
