@@ -26,7 +26,7 @@
         <text name="action_activateService"><en>Open service doors</en><de>Servicetüren öffnen</de><fr>Ouvrir les portes de service</fr><it>Apri le porte di servizio</it><ct>開啟維修門</ct><cs>开启维修门</cs></text>
         <text name="action_deactivateService"><en>Close service doors</en><de>Servicetüren schließen</de><fr>Fermer les portes de service</fr><it>Chiudi le porte di servizio</it><ct>關閉維修門</ct><cs>关闭维修门</cs></text>
         <text name="action_showMarkers"><en>Show workshop markers</en><de>Werkstattmarkierungen anzeigen</de><fr>Afficher les repères d'atelier</fr><it>Mostra i marcatori dell’officina</it><ct>顯示維修廠標記</ct><cs>显示维修厂标记</cs></text>
-        <text name="action_hideMarkers"><en>Hide workshop markers</en><de>Werkstattmarkierungen masquer</de><fr>Masquer les repères d'atelier</fr><it>Nascondi i marcatori dell’officina</it><ct>隱藏維修廠標記</ct><cs>隐藏维修门</cs></text>
+        <text name="action_hideMarkers"><en>Hide workshop markers</en><de>Werkstattmarkierungen masquer</de><fr>Masquer les repères d'atelier</fr><it>Nascondi i marcatori dell’officina</it><ct>隱藏維修廠標記</ct><cs>隐藏维修厂标记</cs></text>
         <text name="actionIC_Animation"><en>Interactive controls</en><de>Interaktive Steuerung</de><fr>Commandes interactives</fr><it>Comandi interattivi</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="actionIC_IC"><en>Interactive control</en><de>Interaktive Bedienung</de><fr>Commande interactive</fr><it>Controllo interattivo</it><ct>互動控制</ct><cs>互动控制</cs></text>
         <text name="input_AGRILIFE_FIELD_KIT"><en>Use field service kit</en><de>Feldservice-Kit verwenden</de><fr>Utiliser le kit de service mobile</fr><it>Usa il kit di assistenza mobile</it><ct>使用行動維修工具組</ct><cs>使用移动维修工具组</cs></text>
