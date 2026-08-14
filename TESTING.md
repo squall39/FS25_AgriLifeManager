@@ -1,18 +1,23 @@
-## Retest F04 Entreprise 0.9.3.37
+## Validation F04.1 Recrutement 0.9.3.37
 
-Objectif : valider la traçabilité du coût de recrutement avant de poursuivre F04.
+F04.1 est **VALIDÉ EN JEU** : recrutement fonctionnel, frais fixes de 350 € débités une seule fois, ligne `Salarié recruté` visible dans le relevé professionnel avec le nom du salarié, solde cohérent, sauvegarde/rechargement validés et log AgriLife propre.
 
-1. Ouvrir AgriLife Manager > Entreprise > Recrutement.
-2. Confirmer un seul recrutement.
-3. Vérifier que la trésorerie diminue exactement de 350 €.
-4. Ouvrir Banque > Relevé pro.
-5. Vérifier une ligne `Salarié recruté` à -350 €, avec `RECRUTEMENT` et le nom du salarié dans les informations du mouvement, ainsi que le bon solde après opération.
-6. Vérifier que le salarié n'est présent qu'une seule fois et qu'il ne peut pas être recruté une seconde fois.
-7. Sauvegarder, quitter et recharger.
-8. Vérifier que le salarié et la ligne bancaire persistent.
-9. Fournir une capture Entreprise, une capture Relevé pro et le `log.txt`.
+Validation observée avec le recrutement de Lou Martin : trésorerie à 199 300 €, mouvement `FRAIS RECRUTEMENT | Lou Martin` à -350 € et persistance après rechargement de la sauvegarde en 0.9.3.37.
 
-F04 reste active jusqu'à validation réelle de ce retest.
+## Test F04.2 Dossier salarié 0.9.3.37
+
+Objectif : contrôler la fiche salarié et la cohérence des informations avant d'ouvrir Planning, Formations, Carrière salarié et Incidents.
+
+1. Ouvrir AgriLife Manager > Entreprise.
+2. Sélectionner Hugo Bernard puis ouvrir `DOSSIER SALARIÉ`.
+3. Contrôler contrat, ancienneté, salaire, coût employeur, disponibilité, spécialités, expérience et ordre actif affichés.
+4. Revenir à la liste, sélectionner Lou Martin puis ouvrir `DOSSIER SALARIÉ`.
+5. Vérifier que les informations correspondent bien à Lou Martin et qu'aucune donnée de Hugo Bernard ne reste affichée.
+6. Ne modifier aucun salaire, contrat ou statut pendant ce premier contrôle.
+7. Passer plusieurs fois d'un salarié à l'autre et signaler tout micro-freeze ou information qui ne se rafraîchit pas.
+8. Fournir une capture de chaque dossier salarié et le `log.txt`.
+
+F04 reste **ACTIVE - Entreprise** jusqu'à validation complète des sous-tests suivants.
 
 ## Validation F03 Banque 0.9.3.36
 
@@ -128,7 +133,7 @@ Cette passe a été autorisée avant la reprise des tests sans ouvrir F04. La ph
 - Entreprise : séparation nom d'exploitation / forme juridique / activité / réseau professionnel.
 - Formes juridiques : EI, EARL, GAEC, SCEA, EURL, SARL, SASU, SAS.
 - ETA : activité secondaire réellement raccordée aux prestations inter-exploitations.
-- Coopérative agricole : adhésion réellement raccordée aux offres commerciales coopératives.
+- Coopérative agricole : adhésion réellement raccordée aux offres commerciales compatibles.
 - CUMA : socle de données, migration et comptabilité présents, mais sélection volontairement non activée tant que le catalogue de matériel mutualisé et les réservations ne sont pas fonctionnels.
 - Groupement d'employeurs et autres activités préparées : non sélectionnables tant que leurs effets métier complets ne sont pas raccordés.
 - Conseiller de gestion : moteur d'analyse réel et historique, connecté au recrutement et aux choix de structure.
