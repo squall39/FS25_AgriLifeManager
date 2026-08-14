@@ -12,18 +12,20 @@ Date : **14 août 2026**
 - F05 et phases suivantes : en attente de validation complète de F04.
 - Correction XP intégrée depuis 0.9.3.26 : retest reporté, sans bloquer F04 Entreprise.
 
-## Correction F04 0.9.3.37
+## Validation F04.1 Recrutement 0.9.3.37
 
-Le premier recrutement F04 a révélé un défaut de traçabilité : les 350 € de frais de recrutement étaient débités de la trésorerie mais n'apparaissaient pas dans le relevé professionnel.
+Le correctif de traçabilité des frais de recrutement est **VALIDÉ EN JEU**.
 
-Correction :
-- mouvement bancaire `PAYROLL_RECRUITMENT_FEE` créé après le débit ;
-- libellé `Salarié recruté` dans le relevé, avec catégorie et nom du salarié dans les tags ;
-- nom du salarié transmis avec le mouvement ;
-- solde après opération conservé ;
-- test de non-régression ajouté.
+Contrôle réel effectué :
+- Lou Martin recruté ;
+- 350 € débités une seule fois ;
+- trésorerie cohérente à 199 300 € ;
+- ligne `Salarié recruté` visible dans le relevé professionnel ;
+- tags `FRAIS RECRUTEMENT | Lou Martin` ;
+- sauvegarde puis rechargement en 0.9.3.37 réussis ;
+- démarrage AgriLife jusqu'à `MOUNTING_UI -> RUNNING` sans erreur AgriLife bloquante.
 
-Le prochain contrôle F04 porte uniquement sur ce recrutement, le relevé professionnel, l'absence de doublon et la persistance après sauvegarde/rechargement.
+F04 reste active. Le prochain contrôle ciblé est F04.2 `Dossier salarié`, d'abord en lecture seule sur Hugo Bernard puis Lou Martin, avant Planning, Formations, Carrière salarié et Incidents.
 
 ## Validation F03 0.9.3.36
 
