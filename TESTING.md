@@ -1,21 +1,22 @@
-## Test F04 Entreprise 0.9.3.36
+## Retest F04 Entreprise 0.9.3.37
 
-Objectif : valider le recrutement de base et la persistance d’un salarié avant d’ouvrir les ordres de travail, la paie et la carrière du personnel.
+Objectif : valider la traçabilité du coût de recrutement avant de poursuivre F04.
 
-1. Ouvrir AgriLife Manager > Entreprise.
-2. Ouvrir la vue recrutement et noter le candidat affiché, son contrat demandé, son salaire et sa spécialité.
-3. Recruter un seul candidat avec une offre valide.
-4. Vérifier qu’il apparaît une seule fois dans l’effectif et qu’il n’est plus recrutable une seconde fois.
-5. Ouvrir sa fiche salarié et vérifier que nom, contrat, salaire et spécialité sont cohérents.
-6. Sauvegarder, quitter puis recharger la partie.
-7. Vérifier que le salarié est toujours présent une seule fois avec les mêmes données.
-8. Fournir une capture de la page Entreprise après rechargement et le `log.txt`.
+1. Ouvrir AgriLife Manager > Entreprise > Recrutement.
+2. Confirmer un seul recrutement.
+3. Vérifier que la trésorerie diminue exactement de 350 €.
+4. Ouvrir Banque > Relevé pro.
+5. Vérifier une ligne `Salarié recruté` à -350 €, avec `RECRUTEMENT` et le nom du salarié dans les informations du mouvement, ainsi que le bon solde après opération.
+6. Vérifier que le salarié n'est présent qu'une seule fois et qu'il ne peut pas être recruté une seconde fois.
+7. Sauvegarder, quitter et recharger.
+8. Vérifier que le salarié et la ligne bancaire persistent.
+9. Fournir une capture Entreprise, une capture Relevé pro et le `log.txt`.
 
-F04 reste active jusqu’à validation réelle de ce premier contrôle. Les ordres de travail, l’IA FS25, la paie et les incidents seront testés ensuite séparément.
+F04 reste active jusqu'à validation réelle de ce retest.
 
 ## Validation F03 Banque 0.9.3.36
 
-F03 est **VALIDÉE EN JEU**. Contrôles acquis : convention bancaire fonctionnelle et persistante, banque physique fermée avec horaires visibles, banque physique ouverte selon l’heure du jeu, banque numérique ouverte 24/7, interface lisible et log AgriLife propre.
+F03 est **VALIDÉE EN JEU** : convention bancaire fonctionnelle et persistante, banque physique fermée avec horaires visibles, banque physique ouverte selon l'heure du jeu, banque numérique ouverte 24/7, interface lisible et log AgriLife propre.
 
 ## Test F03 Banque 0.9.3.35
 
@@ -49,7 +50,7 @@ Contrôle performance bloquant avant F03 : la navigation Tableau de bord / Banqu
 
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.36 TEST**
+Version de référence : **0.9.3.37 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.

@@ -1,7 +1,7 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.36 TEST**
-Version locale déclarée : **0.9.3.36 TEST**
+Version de test préparée : **0.9.3.37 TEST**
+Version locale déclarée : **0.9.3.37 TEST**
 Date : **14 août 2026**
 
 La build ZIP joueur 0.9.3.36 devient la référence exécutable de cette passe après synchronisation du miroir GitHub. F01 et F02 restent validées. F03 Banque reste la phase de certification active.
@@ -35,7 +35,7 @@ La build ZIP joueur 0.9.3.36 devient la référence exécutable de cette passe a
 ## Correction performance locale 0.9.3.32
 
 - `src/ui/AgriLifeUIManager.lua` : garde Finances installée une seule fois, sans reconstruction périodique du menu ;
-- `src/ui/VanillaBypassGuards09327.lua` : polling de protection arrêté dès que Contrats, Finances et reset sont protégés ;
+- `src/ui/VanillaBypassGuards09327.lua` : polling de protection arrêtè dès que Contrats, Finances et reset sont protégés ;
 - `src/ui/AgriLifeHomeFrame.lua` : en-tête difficulté alimenté par l'état brut léger ;
 - `src/core/AgriLifeCore.lua` : suppression du second refresh complet après montage GUI ;
 - `src/modules/dashboard/Dashboard6Service.lua` et `DashboardRoadmapWritingCompletion.lua` : snapshot dashboard allégé et comptabilité avancée retirée du repaint ;
@@ -70,3 +70,10 @@ Le ZIP de test contient la correction F03 de convention bancaire et la passe de 
 ## Passe locale 0.9.3.36
 
 La page Banque affiche maintenant l'état d'ouverture et les horaires de la banque parcourue. Les banques numériques restent ouvertes 24/7. F03 reste active jusqu'au contrôle en jeu et au log propre.
+
+## 0.9.3.37 TEST
+
+- F03 Banque validée en jeu.
+- F04 Entreprise active.
+- Frais de recrutement raccordés au relevé professionnel via `PAYROLL_RECRUITMENT_FEE`.
+- Le miroir GitHub doit contenir les trois sources Entreprise présentes dans le ZIP avant validation de synchronisation.

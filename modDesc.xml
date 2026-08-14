@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.36</version>
+    <version>0.9.3.37</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -82,6 +82,7 @@
         <sourceFile filename="src/modules/career/Career6Hud.lua" />
         <sourceFile filename="src/modules/career/CareerModule.lua" />
         <sourceFile filename="src/modules/payroll/Payroll6Service.lua" />
+        <sourceFile filename="src/modules/payroll/F04RecruitmentBankStatement.lua" />
         <sourceFile filename="src/modules/payroll/PayrollRoadmap4.lua" />
         <sourceFile filename="src/modules/payroll/Payroll6Events.lua" />
         <sourceFile filename="src/modules/payroll/PayrollModule.lua" />
@@ -190,6 +191,7 @@
         <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
         <sourceFile filename="src/ui/AgriLifePhone6.lua" />
         <sourceFile filename="src/ui/AgriLifeStrategy09327UI.lua" />
+        <sourceFile filename="src/ui/F04RecruitmentBankStatementUI.lua" />
         <sourceFile filename="src/ui/AgriLifeDecisionHooks09328.lua" />
         <sourceFile filename="src/ui/AgriLifeCumaUI09328.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
