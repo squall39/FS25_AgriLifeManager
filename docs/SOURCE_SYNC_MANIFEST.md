@@ -1,10 +1,10 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.35 TEST**
-Version locale déclarée : **0.9.3.35 TEST**
+Version de test préparée : **0.9.3.36 TEST**
+Version locale déclarée : **0.9.3.36 TEST**
 Date : **14 août 2026**
 
-La build ZIP joueur 0.9.3.35 est la référence exécutable de cette passe tant que le miroir GitHub n'a pas été revérifié fichier par fichier. F01 et F02 restent validées. F03 Banque reste la phase de certification active.
+La build ZIP joueur 0.9.3.36 devient la référence exécutable de cette passe après synchronisation du miroir GitHub. F01 et F02 restent validées. F03 Banque reste la phase de certification active.
 
 ## Éléments nouveaux de la build locale 0.9.3.27
 
@@ -67,3 +67,6 @@ Le ZIP local reste la référence exécutable jusqu'à comparaison du miroir Git
 ## Passe locale 0.9.3.35
 
 Le ZIP de test contient la correction F03 de convention bancaire et la passe de micro-fluidité bancaire. La validation en jeu reste obligatoire avant de considérer cette correction comme certifiée.
+## Passe locale 0.9.3.36
+
+La page Banque affiche maintenant l'état d'ouverture et les horaires de la banque parcourue. Les banques numériques restent ouvertes 24/7. F03 reste active jusqu'au contrôle en jeu et au log propre.
