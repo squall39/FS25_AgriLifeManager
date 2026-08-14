@@ -1,6 +1,6 @@
 # État de synchronisation AgriLife Manager
 
-Version de référence : **0.9.3.35 TEST**
+Version de référence : **0.9.3.36 TEST**
 Date : **14 août 2026**
 
 ## État campagne
@@ -48,3 +48,6 @@ La build 0.9.3.35 doit d'abord valider la disparition du dernier micro-freeze ap
 ## F03 Banque 0.9.3.35
 
 Correction locale de la signature de convention : sélection banque/conseiller obligatoire avant signature, faux message de refus de crédit supprimé, conseiller obsolète masqué pendant le parcours, aperçu de prêt allégé pour la fluidité. Validation FS25 encore requise.
+## F03 Banque 0.9.3.36
+
+Ajout du statut d'ouverture directement sous la banque parcourue. Les banques physiques affichent leurs horaires 08:00-12:00 / 14:00-18:00 et leur état selon l'heure du jeu. Les banques numériques affichent 24/7. Le message de verrouillage ou de confirmation reste séparé. Validation FS25 requise.
