@@ -1,12 +1,47 @@
 # Changelog AgriLife Manager
 
+## 0.9.3.27 TEST
+
+- Sépare définitivement le nom de ferme, la forme juridique, les activités économiques et les réseaux professionnels.
+- Retire CUMA de la liste des formes juridiques et migre une ancienne sélection CUMA vers EI + adhésion CUMA conservée.
+- Ajoute les formes EI, EARL, GAEC, SCEA, EURL, SARL, SASU et SAS avec conditions d'associés, coûts de transformation, charges administratives et limites d'activités distinctes.
+- Raccorde la structure juridique à la capacité et au taux bancaires de façon modérée, avec pénalité en cas de frais structurels impayés.
+- Ajoute le socle d'activités secondaires et active réellement ETA dans les règlements de prestations inter-exploitations.
+- Ajoute le socle des réseaux professionnels et active réellement la coopérative agricole dans les offres commerciales compatibles.
+- Prépare CUMA et groupement d'employeurs sans les rendre sélectionnables tant que leur gameplay matériel ou emploi n'est pas réellement raccordé.
+- Ajoute un conseiller de gestion dynamique fondé sur la trésorerie, les engagements mensuels, la dette, le contentieux, les pénalités et la difficulté.
+- Le conseiller de gestion est raccordé aux choix de forme juridique, d'activité, de réseau et au recrutement avant validation.
+- Ajoute trois logiques de paiement AgriLife pour les contrats commerciaux : immédiat, mensuel et règlement différé après livraison, avec gestion d'acompte et de créance.
+- Renforce le remplacement des contrats vanilla par AgriLife et conserve les anciens contrats déjà actifs comme héritage terminable.
+- Maintient les opérations de crédit vanilla bloquées et l'onglet Finances vanilla limité aux informations utiles.
+- Remplace la réinitialisation gratuite détectée des véhicules et outils par une demande de récupération AgriLife avec coût et délai, sans supprimer la possibilité de secours.
+- Généralise l'explication avant toute décision conséquente : effets, coûts, risques, réversibilité et avis du conseiller quand il est pertinent.
+- F03 Banque reste la phase de test active. Ces ajouts sont écrits et audités mais ne sont pas considérés validés en jeu.
+
 ## 0.9.3.26 TEST
 
 - Corrige la progression des étoiles de spécialité : 1 étoile tous les 1 000 XP, jusqu'à 10 étoiles.
 - Corrige le HUD mini-PDA pour ne plus mélanger XP total et progression du palier courant.
-- L'XP total est affiché séparément de la progression dans la tranche de 1 000 XP en cours.
-- Exemple de référence : 3 036 XP = 3 étoiles, 36 / 1 000 XP et environ 4 % vers le palier suivant.
-- F03 Banque reste active.
+- Le HUD affiche désormais l'XP total séparément puis la progression réelle dans la tranche de 1 000 XP en cours.
+- Exemple attendu : 3 036 XP = 3 étoiles, 36 / 1 000 XP vers le palier suivant, soit environ 4 %.
+- F03 Banque reste active et aucune validation F03 supplémentaire n'est ouverte par cette correction XP.
+
+## 0.9.3.25 TEST
+
+- Corrige le bouton `Signer convention` dans Banque.
+- Rend la convention bancaire obligatoire avant l'envoi réel d'une demande de prêt, tout en conservant la simulation libre.
+- Ajoute un catalogue extensible de banques locales, régionales, nationales, internationales et 100 % en ligne.
+- Ajoute des niveaux d'accès de 0 à 5 pour banques et conseillers, séparés de réputation et compétence.
+- Le mode Facile peut choisir librement tous les profils compatibles. Normal et Difficile utilisent la progression bancaire.
+- Rattache chaque conseiller à une ou plusieurs banques compatibles.
+- Ajoute des banques en ligne disponibles 24 h/24 pour leurs opérations client et des banques internationales à critères renforcés.
+- Ajoute une explication obligatoire avant validation d'une banque, d'un conseiller et d'une convention.
+- Ajoute le socle `AgriLifeDecisionGuide` destiné à généraliser l'explication des choix conséquents dans les autres modules.
+
+- Corrige le bouton `Signer` du contrat bancaire qui restait désactivé malgré les droits du propriétaire.
+- Restaure le calcul local de l’autorisation `bank.manage` lors du rafraîchissement de la Banque.
+- Ajoute un retour explicite si une action de contrat bancaire est appelée sans autorisation.
+- F03 reste active jusqu’à validation en jeu du contrat bancaire.
 
 ## 0.9.3.24 TEST
 
