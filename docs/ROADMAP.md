@@ -1062,3 +1062,12 @@ Le tableau de bord regroupe exactement **6 modules fonctionnels** :
 - F02 est validée dans Farming Simulator 25 en 0.9.3.23 sur le retest 1080p.
 - La phase Banque fonctionnelle peut maintenant ouvrir ses tests ciblés.
 
+## Correction XP 0.9.3.26 - cohérence étoiles et mini-PDA
+
+- La progression des spécialités utilise une règle uniforme : 1 étoile tous les 1 000 XP.
+- Chaque spécialité conserve un maximum de 10 étoiles.
+- Le mini-PDA ne mélange plus l'XP total avec le pourcentage du palier en cours.
+- L'XP total est affiché séparément.
+- La ligne de progression affiche uniquement l'avancement depuis la dernière étoile jusqu'à la suivante.
+- Exemple de référence : 3 036 XP correspond à 3 étoiles et 36 / 1 000 XP, soit environ 4 % vers l'étoile suivante.
+- Cette correction ne rouvre pas F01/F02 déjà validées.

@@ -1,5 +1,13 @@
 # Changelog AgriLife Manager
 
+## 0.9.3.26 TEST
+
+- Corrige la progression des étoiles de spécialité : 1 étoile tous les 1 000 XP, jusqu'à 10 étoiles.
+- Corrige le HUD mini-PDA pour ne plus mélanger XP total et progression du palier courant.
+- L'XP total est affiché séparément de la progression dans la tranche de 1 000 XP en cours.
+- Exemple de référence : 3 036 XP = 3 étoiles, 36 / 1 000 XP et environ 4 % vers le palier suivant.
+- F03 Banque reste active.
+
 ## 0.9.3.24 TEST
 
 - Corrige la classification comptable du découvert, de son contentieux et des règlements fiscaux ou bancaires.

@@ -1,6 +1,6 @@
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.24 TEST**
+Version de référence : **0.9.3.26 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
@@ -32,3 +32,12 @@ Premier test F03 :
 
 Ne confirmer aucune opération avec **Oui** avant validation de ce premier contrôle F03.
 - vérifier qu’aucune nouvelle autorisation de découvert ne peut être demandée pendant la régularisation, la mise en demeure ou un contentieux actif ;
+
+Correction XP 0.9.3.26 à revalider avant reprise du test bancaire suivant :
+1. Effectuer une activité qui affiche le HUD XP sur le mini-PDA.
+2. Vérifier qu'à 3 036 XP une spécialité affiche 3 étoiles.
+3. Vérifier que l'XP total est affiché séparément.
+4. Vérifier que le palier affiche 36 / 1 000 XP et environ 4 %, et non 3 036 / 7 500 XP avec 1 %.
+5. Envoyer une capture du HUD XP et le log.
+
+F03 Banque reste active mais le prochain mouvement bancaire attend la validation de cette correction XP.
