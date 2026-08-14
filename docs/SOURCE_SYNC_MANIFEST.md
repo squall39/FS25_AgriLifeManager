@@ -1,20 +1,21 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.25 TEST**
-Version déclarée sur `main` : **0.9.3.25 TEST**
-Date : **13 août 2026**
+Version de test préparée : **0.9.3.26 TEST**
+Version déclarée sur `main` : **0.9.3.26 TEST**
+Date : **14 août 2026**
 
-La build joueur 0.9.3.25 est la référence exécutable pour la suite de F03 Banque. F01 et F02 restent validées. F03 reste active jusqu'à certification dans Farming Simulator 25.
+La build joueur 0.9.3.26 est la référence exécutable pour la correction XP puis la reprise de F03 Banque. F01 et F02 restent validées. F03 reste active jusqu'à certification dans Farming Simulator 25.
 
-## Éléments 0.9.3.25 présents sur `main`
+## Éléments 0.9.3.26 présents sur `main`
 
-- `modDesc.xml` déclare 0.9.3.25 ;
-- `src/core/AgriLifeVersion.lua` déclare 0.9.3.25 ;
-- `src/core/AgriLifeDecisionGuide.lua` est présent ;
-- `modDesc.xml` référence le guide de décision et le catalogue bancaire 0.9.3.25 ;
-- les workflows temporaires utilisés pendant les synchronisations précédentes ont été retirés.
+- `modDesc.xml` déclare 0.9.3.26 ;
+- `src/core/AgriLifeVersion.lua` déclare 0.9.3.26 ;
+- `src/modules/career/Career6Service.lua` est maintenant présent et contient la progression 1 étoile tous les 1 000 XP jusqu'à 10 étoiles ;
+- `src/modules/career/Career6Hud.lua` sépare l'XP total de la progression du palier courant ;
+- `CHANGELOG.md`, `TESTING.md`, `ROADMAP.md` et `docs/ROADMAP.md` enregistrent la correction XP 0.9.3.26 ;
+- les workflows temporaires utilisés pour la synchronisation XP ont été retirés.
 
-## Miroir 0.9.3.25 encore incomplet
+## Miroir encore incomplet
 
 La build ZIP reste la référence complète tant que les chemins actifs suivants ne sont pas présents et vérifiés sur `main` :
 
@@ -27,7 +28,7 @@ La build ZIP reste la référence complète tant que les chemins actifs suivants
 - le répertoire `translations/` ;
 - `tools/verify_release.py`.
 
-Les modifications 0.9.3.25 de certains gros fichiers déjà présents, notamment interface, horaires, Assistance, feuille de route et suivi de test, restent également à comparer avec la build avant de déclarer le miroir complet.
+Les modifications F03 de certains gros fichiers déjà présents restent à comparer avec la build avant de déclarer le miroir complet.
 
 Le connecteur GitHub peut refuser certaines écritures volumineuses. Un fichier n'est jamais considéré comme synchronisé tant que sa présence et son contenu n'ont pas été vérifiés sur `main`.
 
