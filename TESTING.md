@@ -1,6 +1,6 @@
 # Tests AgriLife Manager
 
-Version de référence : **0.9.3.27 TEST**
+Version de référence : **0.9.3.28 TEST**
 
 État de campagne :
 - F01 : **VALIDÉ EN JEU**. Ne pas recommencer.
@@ -88,3 +88,18 @@ Cette passe a été autorisée avant la reprise des tests sans ouvrir F04. La ph
 ### Reprise des tests
 
 La reprise se fait sur 0.9.3.27. On reprend d'abord F03 Banque exactement au contrôle de la convention bancaire déjà prévu. Les systèmes 0.9.3.27 ci-dessus auront leurs tests ciblés après la fermeture de F03 ou lorsqu'un contrôle de fumée est nécessaire pour sécuriser la build.
+
+
+## Préparation transversale 0.9.3.28 - écrite, tests reportés
+
+Cette passe regroupe les idées validées avant reprise des tests. Elle ne change pas l'ordre de certification : F03 Banque reste active.
+
+- Calendrier central : les traitements mensuels suivent `PERIOD_CHANGED`, donc 1 à 28 jours de jeu représentent toujours exactement un mois AgriLife.
+- CUMA : catalogue mutualisé, réservation, délai, frais, dépôt, mise à disposition, mensualités et restitution écrits.
+- Conseiller de gestion : raccordé aux prêts, contrats, recrutement, structure, achats de matériel, parcelles, productions et locations.
+- Santé financière : dégradation progressive jusqu'à insolvabilité/faillite, restrictions et solutions de redressement.
+- Rémunération du dirigeant : API explicite et garde contre une hausse en insolvabilité.
+- Revenus : paiements de contrats immédiats/mensuels/à échéance conservés et aide agricole annuelle simplifiée ajoutée.
+- Anti-contournements vanilla de la passe précédente conservés : contrats, crédit et reset gratuit.
+
+Aucun de ces points n'est marqué validé en jeu. Les tests seront repris un par un. Le prochain test reste F03 Banque sur la fenêtre `Signer convention`, avec réponse `Non` avant toute vraie signature. Le retest XP reste reporté.
