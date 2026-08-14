@@ -118,6 +118,7 @@
         <sourceFile filename="src/modules/qualifications/Qualifications6Service.lua" />
         <sourceFile filename="src/modules/qualifications/QualificationsModule.lua" />
         <sourceFile filename="src/modules/enterprise/Enterprise6Service.lua" />
+        <sourceFile filename="src/modules/enterprise/EnterpriseDifficultyStateGuard09340.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4Completion.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseSalaryBalance09339.lua" />
