@@ -1,37 +1,47 @@
 # Synchronisation du source GitHub
 
-Version de test préparée : **0.9.3.28 TEST**
-Version déclarée sur `main` : **0.9.3.28 TEST**
+Version de test préparée : **0.9.3.35 TEST**
+Version locale déclarée : **0.9.3.35 TEST**
 Date : **14 août 2026**
 
-La build joueur 0.9.3.28 reste la référence exécutable complète. F01 et F02 sont validées en jeu. F03 Banque reste active. La préparation transversale 0.9.3.28 est écrite et auditée statiquement, mais elle n'est pas certifiée en jeu.
+La build ZIP joueur 0.9.3.35 est la référence exécutable de cette passe tant que le miroir GitHub n'a pas été revérifié fichier par fichier. F01 et F02 restent validées. F03 Banque reste la phase de certification active.
 
-## Éléments 0.9.3.28 présents et vérifiés sur `main`
+## Éléments nouveaux de la build locale 0.9.3.27
 
-- `modDesc.xml` et `src/core/AgriLifeVersion.lua` déclarent 0.9.3.28 ;
-- `src/core/AgriLifeGameTime09328.lua` centralise année, période, jours par mois et progression du mois FS25 ;
-- `src/core/AgriLifeTimeBindings09328.lua` raccorde les services mensuels au même numéro de période ;
-- `src/modules/payroll/OwnerRemuneration09328.lua` ajoute la gestion explicite de la rémunération du dirigeant ;
-- `CHANGELOG.md` et `TESTING.md` enregistrent la préparation 0.9.3.28 et conservent F03 Banque comme phase de certification active.
+- `src/modules/company/CompanyStructure09327.lua` : formes juridiques, activités, réseaux, coûts et migration CUMA ;
+- `src/modules/bank/BankCompanyStructure09327.lua` : lien modéré entre structure juridique et analyse bancaire ;
+- `src/modules/enterprise/ManagementAdvisor09327.lua` : conseiller de gestion dynamique et historique ;
+- `src/modules/contracts/ContractCashflow09327.lua` : paiements immédiats, mensuels et différés des contrats AgriLife ;
+- `src/ui/AgriLifeStrategy09327UI.lua` : explications et confirmations des choix de structure et du recrutement ;
+- `src/ui/VanillaBypassGuards09327.lua` : remplacement de reset gratuit et garde visuelle Contrats ;
+- `gui/AgriLifeHomeFrame.xml` : commandes Forme juridique, Activités et Réseaux ;
+- les 27 traductions contiennent les nouvelles clés de cette passe.
 
-## Éléments 0.9.3.28 présents dans le ZIP mais pas encore garantis sur `main`
+## Limites volontairement conservées
 
-- `src/modules/assets/CumaEquipment09328.lua` ;
-- `src/modules/economy/AgriculturalSupport09328.lua` ;
-- `src/modules/economy/BusinessResilience09328.lua` ;
-- `src/ui/AgriLifeDecisionHooks09328.lua` ;
-- `src/ui/AgriLifeCumaUI09328.lua` ;
-- les modifications 0.9.3.28 de `src/modules/enterprise/ManagementAdvisor09327.lua` ;
-- les modifications UI 0.9.3.28 de `src/ui/AgriLifeHomeFrame.lua`, `src/ui/AgriLifeUIManager.lua` et `gui/AgriLifeHomeFrame.xml` ;
-- les 27 traductions avec les nouvelles clés 0.9.3.28 ;
-- `tools/verify_release.py` ;
-- `ROADMAP.md` et `docs/ROADMAP.md` doivent encore être comparés avec les copies de la build.
+- CUMA possède son socle de données, ses coûts et sa migration, mais sa sélection reste inactive tant que catalogue de matériel mutualisé, réservation et restitution ne sont pas réellement fonctionnels ;
+- groupement d'employeurs, transformation, vente directe, méthanisation et forêt restent non sélectionnables tant que leur effet métier complet n'est pas raccordé ;
+- le callback exact de réinitialisation du menu ESC doit être certifié dans FS25. La garde installe uniquement un remplacement sur une méthode réellement détectée ;
+- ces systèmes sont écrits et audités statiquement, pas validés en jeu.
 
-Une tentative d'écriture directe du module d'aide agricole a été refusée par le connecteur. Aucun fichier refusé n'est présenté comme synchronisé.
 
-## Miroir historique encore incomplet
+## Finition performance locale 0.9.3.35
 
-Plusieurs gros fichiers Banque et Administration déjà signalés dans les versions précédentes restent absents ou non comparés sur `main`. Le dépôt ne doit donc pas être utilisé comme remplacement byte pour byte du ZIP de test tant que ce chantier de miroir n'est pas terminé.
+- Setters GUI idempotents pour éviter les invalidations visuelles inutiles.
+- Signature de navigation pour ne pas repeindre les mêmes états.
+- Profiler UI abaissé à 1,5 ms avec mesures ouverture, navigation et page.
+- Le ZIP local reste la référence exécutable jusqu'à vérification du miroir GitHub.
+
+## Correction performance locale 0.9.3.32
+
+- `src/ui/AgriLifeUIManager.lua` : garde Finances installée une seule fois, sans reconstruction périodique du menu ;
+- `src/ui/VanillaBypassGuards09327.lua` : polling de protection arrêté dès que Contrats, Finances et reset sont protégés ;
+- `src/ui/AgriLifeHomeFrame.lua` : en-tête difficulté alimenté par l'état brut léger ;
+- `src/core/AgriLifeCore.lua` : suppression du second refresh complet après montage GUI ;
+- `src/modules/dashboard/Dashboard6Service.lua` et `DashboardRoadmapWritingCompletion.lua` : snapshot dashboard allégé et comptabilité avancée retirée du repaint ;
+- `src/modules/economy/BusinessResilience09328.lua` : santé financière live issue de l'état mensuel stocké ;
+- `src/modules/economy/AgriculturalSupport09328.lua` : plus de scan parcellaire dans le snapshot UI courant ;
+- `src/modules/finalization/Finalization6Service.lua` : audit démarrage léger, audit profond uniquement à la demande.
 
 ## Règles de synchronisation
 
@@ -40,3 +50,20 @@ Plusieurs gros fichiers Banque et Administration déjà signalés dans les versi
 - conserver la build joueur comme référence exécutable tant que le miroir est incomplet ;
 - retirer les helpers temporaires après usage ;
 - aucun tiret cadratin dans les contenus du projet.
+
+
+## Éléments nouveaux de la build locale 0.9.3.28
+
+- `src/core/AgriLifeGameTime09328.lua` et `AgriLifeTimeBindings09328.lua` : calendrier FS25 central 1-28 jours/mois ;
+- `src/modules/assets/CumaEquipment09328.lua` et `src/ui/AgriLifeCumaUI09328.lua` : CUMA jouable ;
+- `src/modules/economy/BusinessResilience09328.lua` : santé financière, insolvabilité et faillite progressive ;
+- `src/modules/economy/AgriculturalSupport09328.lua` : aide agricole annuelle simplifiée ;
+- `src/modules/payroll/OwnerRemuneration09328.lua` : rémunération explicite du dirigeant ;
+- `src/ui/AgriLifeDecisionHooks09328.lua` : conseiller/explication sur prêts et investissements supplémentaires.
+
+Le ZIP local reste la référence exécutable jusqu'à comparaison du miroir GitHub après cette passe.
+
+
+## Passe locale 0.9.3.35
+
+Le ZIP de test contient la correction F03 de convention bancaire et la passe de micro-fluidité bancaire. La validation en jeu reste obligatoire avant de considérer cette correction comme certifiée.
