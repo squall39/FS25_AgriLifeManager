@@ -29,7 +29,7 @@ Cette passe a été explicitement autorisée avant la reprise des tests. Elle é
 
 ## Prochain contrôle F03
 
-La build 0.9.3.35 doit d'abord valider la disparition du dernier micro-freeze après suppression des écritures GUI et repeints de navigation inutiles. Une fois ce contrôle propre, F03 reprend sur Banque : parcourir banques et conseillers, ouvrir `Signer convention`, lire l'explication puis répondre Non.
+La build 0.9.3.36 doit valider l'affichage des horaires de la banque parcourue : banques physiques ouvertes ou fermées selon l'heure du jeu, banques numériques ouvertes 24/7, sans masquer les messages Banque/Conseiller. F03 reste active jusqu'au contrôle visuel et au log propre.
 
 ## Règles permanentes
 
