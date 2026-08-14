@@ -54,4 +54,54 @@ if AgriLife.HomeFrame ~= nil then
         self.headerContextHelp:setText(tostring(value or ""))
     end
 
+    -- F03 0.9.3.36: show opening hours for the bank currently browsed.
+    local baseRefreshBank09336 = AgriLife.HomeFrame.refreshBank
+    function AgriLife.HomeFrame:refreshBank()
+        if baseRefreshBank09336 ~= nil then baseRefreshBank09336(self) end
+
+        local element = self.bankSelectionNoticeText
+        local bank = self.getBankModule ~= nil and self:getBankModule() or nil
+        local farmId = self.core ~= nil and self.core.context ~= nil and self.core.context:getFarmId() or 0
+        if element == nil or element.setText == nil or bank == nil or farmId <= 0 or bank.getProviders == nil then
+            if element ~= nil and element.setVisible ~= nil then element:setVisible(false) end
+            return
+        end
+
+        local snapshot = self.bankLastSnapshot
+        if snapshot == nil and bank.getSnapshot ~= nil then snapshot = bank:getSnapshot(farmId) end
+        if snapshot == nil then
+            if element.setVisible ~= nil then element:setVisible(false) end
+            return
+        end
+
+        local order, providers = bank:getProviders()
+        local count = type(order) == "table" and #order or 0
+        local index = math.max(1, math.min(math.max(1, count), tonumber(self.bankProviderIndex) or 1))
+        local providerId = count > 0 and order[index] or snapshot.providerId
+        local provider = providers ~= nil and providers[providerId] or nil
+        local digital = bank.isDigitalProvider ~= nil and bank:isDigitalProvider(providerId) or (provider ~= nil and provider.online == true)
+        local hours = AgriLife.OperationalHours93
+        local schedule = digital and "24/7" or (hours ~= nil and hours.getScheduleText ~= nil and hours:getScheduleText("BANK") or tostring(snapshot.bankHours or "08:00-12:00 / 14:00-18:00"))
+        local isOpen = digital or (hours ~= nil and hours.isOpen ~= nil and hours:isOpen("BANK") or snapshot.bankOpen == true)
+
+        local label
+        if isOpen then
+            local openLabel = g_i18n ~= nil and g_i18n.getText ~= nil and g_i18n:getText("agrilifemanager_fp_open") or "Open"
+            label = string.format("%s | %s", tostring(openLabel), tostring(schedule))
+        else
+            local closedFormat = g_i18n ~= nil and g_i18n.getText ~= nil and g_i18n:getText("agrilife_bank6_bank_closed_fmt") or "Bank closed. Opening hours: %s."
+            label = string.format(tostring(closedFormat), tostring(schedule))
+        end
+
+        element:setText(label)
+        if element.setVisible ~= nil then element:setVisible(true) end
+        if element.setTextColor ~= nil then
+            if isOpen then
+                element:setTextColor(0.67, 0.91, 0.45, 1)
+            else
+                element:setTextColor(0.94, 0.67, 0.30, 1)
+            end
+        end
+    end
+
 end
