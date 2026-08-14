@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.26</version>
+    <version>0.9.3.27</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -63,6 +63,7 @@
         <sourceFile filename="src/modules/company/Company6Service.lua" />
         <sourceFile filename="src/modules/company/Company6Events.lua" />
         <sourceFile filename="src/modules/company/CompanyModule.lua" />
+        <sourceFile filename="src/modules/company/CompanyStructure09327.lua" />
         <sourceFile filename="src/modules/people/People6Service.lua" />
         <sourceFile filename="src/modules/people/People6Events.lua" />
         <sourceFile filename="src/modules/people/PeopleModule.lua" />
@@ -72,6 +73,7 @@
         <sourceFile filename="src/modules/bank/BankRoadmap3.lua" />
         <sourceFile filename="src/modules/bank/BankRoadmap3Completion.lua" />
         <sourceFile filename="src/modules/bank/BankCatalog09325.lua" />
+        <sourceFile filename="src/modules/bank/BankCompanyStructure09327.lua" />
         <sourceFile filename="src/modules/career/Career6Service.lua" />
         <sourceFile filename="src/modules/career/Career6Events.lua" />
         <sourceFile filename="src/modules/career/CareerWorkTracker.lua" />
@@ -114,6 +116,7 @@
         <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseRoadmap4Completion.lua" />
         <sourceFile filename="src/modules/enterprise/EnterpriseModule.lua" />
+        <sourceFile filename="src/modules/enterprise/ManagementAdvisor09327.lua" />
         <sourceFile filename="src/modules/career/CareerRoadmap5.lua" />
         <sourceFile filename="src/modules/administration/Administration6Service.lua" />
         <sourceFile filename="src/modules/administration/AdministrationModule.lua" />
@@ -134,6 +137,7 @@
         <sourceFile filename="src/modules/contracts/InterFarmFieldAccess6.lua" />
         <sourceFile filename="src/modules/contracts/ContractConsequences6.lua" />
         <sourceFile filename="src/modules/contracts/NativeContractsGuard6.lua" />
+        <sourceFile filename="src/modules/contracts/ContractCashflow09327.lua" />
         <sourceFile filename="src/modules/compatibility/Compatibility6Service.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap4Guard.lua" />
@@ -178,7 +182,9 @@
         <sourceFile filename="src/ui/F02Clarity0920.lua" />
         <sourceFile filename="src/ui/AgriLifeInterface6.lua" />
         <sourceFile filename="src/ui/AgriLifePhone6.lua" />
+        <sourceFile filename="src/ui/AgriLifeStrategy09327UI.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
+        <sourceFile filename="src/ui/VanillaBypassGuards09327.lua" />
         <sourceFile filename="src/core/AgriLifeCore.lua" />
         <sourceFile filename="src/bootstrap/AgriLifeBootstrap.lua" />
     </extraSourceFiles>
