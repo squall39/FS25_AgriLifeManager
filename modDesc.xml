@@ -3,7 +3,7 @@
 <!-- Playable distribution: approved channels only. Official source repository: GitHub. -->
 <modDesc descVersion="111">
     <author>Chez_Squall</author>
-    <version>0.9.3.40</version>
+    <version>0.9.3.62</version>
     <title>
         <en>AgriLife Manager</en>
         <de>AgriLife Manager</de>
@@ -152,6 +152,7 @@
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap7.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap8.lua" />
         <sourceFile filename="src/modules/compatibility/CompatibilityRoadmap9.lua" />
+        <sourceFile filename="src/modules/compatibility/CompatibilityWorkerLifecycle09357.lua" />
         <sourceFile filename="src/modules/workshop/WorkshopRoadmap8.lua" />
         <sourceFile filename="src/modules/workshop/WorkshopRoadmap81Completion.lua" />
         <sourceFile filename="src/modules/workshop/WorkshopRecoveryRoadmapCompletion.lua" />
@@ -185,6 +186,7 @@
         <sourceFile filename="src/modules/economy/SnapshotSafety09330.lua" />
         <sourceFile filename="src/core/AgriLifeTimeBindings09328.lua" />
         <sourceFile filename="src/ui/AgriLifeHomeFrame.lua" />
+        <sourceFile filename="src/modules/exam/ExamWording09344.lua" />
         <sourceFile filename="src/ui/AgriLifeTutorialRoadmapCompletion.lua" />
         <sourceFile filename="src/ui/AgriLifeRoadmapWritingCompletionUI.lua" />
         <sourceFile filename="src/ui/AgriLifeInterfaceRoadmap2Completion.lua" />
@@ -197,6 +199,10 @@
         <sourceFile filename="src/ui/F04RecruitmentBankStatementUI.lua" />
         <sourceFile filename="src/ui/F04EmployeeSheetUnifiedUI.lua" />
         <sourceFile filename="src/ui/F04EmployeeSheetDetail09339.lua" />
+        <sourceFile filename="src/ui/F04EnterpriseSafety09345.lua" />
+        <sourceFile filename="src/ui/F04EnterprisePerformance09346.lua" />
+        <sourceFile filename="src/ui/F04EnterpriseFastPath09347.lua" />
+        <sourceFile filename="src/ui/F04PlanningUI09349.lua" />
         <sourceFile filename="src/ui/AgriLifeDecisionHooks09328.lua" />
         <sourceFile filename="src/ui/AgriLifeCumaUI09328.lua" />
         <sourceFile filename="src/ui/AgriLifeUIManager.lua" />
