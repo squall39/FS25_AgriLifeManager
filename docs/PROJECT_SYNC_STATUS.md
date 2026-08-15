@@ -1,23 +1,25 @@
 # Project sync status
 
-Checkpoint GitHub : 2026-08-15.
+Checkpoint GitHub : 2026-08-16.
 
-Build de test locale actuelle : 0.9.3.58 TEST.
+Build de test locale actuelle : 0.9.3.62 TEST.
 
 État validé en jeu avant ce checkpoint :
-- examens agricoles globalement fonctionnels, avec seulement quelques incohérences mineures restant à peaufiner ;
-- Planning Entreprise : sélection véhicule / outil / barre / chariot, vignettes matériel, bouton unique de planification et prévention des doublons validés visuellement ;
-- chantier actif : cycle physique des ouvriers et automatisation FS25.
+- examens agricoles globalement fonctionnels, avec les étapes de récolte encore suivies séparément ;
+- Planning Entreprise : sélection du salarié, du véhicule, de l'outil, du travail et du champ fonctionnelle ;
+- Dispatch Entreprise : création de l'ordre et démarrage du cycle ouvrier confirmés en jeu ;
+- résolution du champ FS25 confirmée par la progression du cycle au-delà de `fieldwork_start:target_missing`.
 
-Cycle ouvrier 0.9.3.58 en test :
-1. mémoriser l'emplacement initial du véhicule et des équipements ;
-2. aller chercher le matériel non attelé ;
-3. effectuer un transit FS25 `GOTO` vers le champ lorsque celui-ci est éloigné ;
-4. lancer le vrai `FIELDWORK` une fois à proximité ;
-5. ramener et dételer le matériel emprunté à son emplacement initial ;
-6. ramener le véhicule à son emplacement initial ;
-7. terminer l'affectation seulement après le retour.
+Blocage observé en 0.9.3.61 :
+- le trajet `GOTO` vers le John Deere 980 placé dans le hangar est refusé par FS25 comme cible inaccessible ;
+- le log de test répète `fetch_drive_failed` à environ 16,7 m du 980 alors que le job IA devient d'abord actif.
 
-Référence technique externe étudiée avec autorisation communiquée par l'utilisateur : `LeGrizzly/FS25_EmployeeManager`, branche `fix/gui/refacto`. Le modèle `GOTO -> FIELDWORK -> GOTO retour` de son JobManager et l'enregistrement `x/y/z/angle` de son ParkingManager sont retenus comme références, puis adaptés aux règles AgriLife.
+Correction 0.9.3.62 en test :
+1. le matériel local situé à moins de 50 m du véhicule est récupéré sans créer de cible `GOTO` dans le bâtiment ;
+2. un matériel plus éloigné conserve un trajet d'approche, avec un point cible décalé de 15 m ;
+3. le transit séparé vers le champ n'est utilisé qu'au-delà de 150 m ;
+4. en dessous de 150 m, le vrai `FIELDWORK` FS25 est démarré directement ;
+5. le matériel local emprunté est dételé au retour puis replacé exactement à sa transformation d'origine enregistrée ;
+6. les scripts, noms publics et métadonnées restent AgriLife Manager, auteur Chez_Squall.
 
-Le ZIP 0.9.3.58 est la référence exécutable de test actuelle. Le dépôt contient le checkpoint, le changelog de progression et la documentation du cycle ouvrier. Le miroir source dézippé complet reste à réaligner fichier par fichier avec le ZIP avant de considérer GitHub comme strictement identique à la build joueur.
+Ce checkpoint synchronise l'état technique utile à la 0.9.3.62. La validation fonctionnelle reste obligatoirement à faire dans Farming Simulator 25 avant de considérer ce cycle comme validé.
