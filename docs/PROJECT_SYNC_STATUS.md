@@ -1,76 +1,22 @@
-# État de synchronisation AgriLife Manager
+# Project sync status
 
-Version de référence : **0.9.3.38 TEST**
-Date : **14 août 2026**
+Checkpoint GitHub : 2026-08-15.
 
-## État campagne
+Build de test locale actuelle : 0.9.3.57 TEST.
 
-- F01 : **VALIDÉE EN JEU**. Ne pas recommencer.
-- F02 : **VALIDÉE EN JEU** en 0.9.3.23.
-- F03 : **VALIDÉE EN JEU** en 0.9.3.36.
-- F04 : **ACTIVE - Entreprise**.
-- F05 et phases suivantes : en attente de validation complète de F04.
-- Correction XP intégrée depuis 0.9.3.26 : retest reporté, sans bloquer F04 Entreprise.
+État validé en jeu avant ce checkpoint :
+- examens agricoles globalement fonctionnels, avec seulement quelques incohérences mineures restant à peaufiner ;
+- Planning Entreprise : sélection véhicule / outil / barre / chariot, vignettes matériel, bouton unique de planification et prévention des doublons validés visuellement ;
+- prochain chantier actif : cycle physique des ouvriers et automatisation FS25.
 
-## F04.2 Dossier salarié 0.9.3.38
+Cycle ouvrier 0.9.3.57 en test :
+1. mémoriser l'emplacement initial du véhicule et des équipements ;
+2. aller chercher le matériel non attelé ;
+3. lancer le travail de champ ;
+4. ramener et dételer le matériel emprunté à son emplacement initial ;
+5. ramener le véhicule à son emplacement initial ;
+6. terminer l'affectation seulement après le retour.
 
-Le contrôle visuel F04.2 a montré que le contenu du dossier salarié était trop petit par rapport à l'espace disponible et que `Dossier salarié` / `Carrière salarié` formaient un doublon de navigation. La 0.9.3.38 agrandit le titre et le texte de la fiche dans le panneau droit et fusionne la carrière dans le dossier. Niveau, XP, performance, réussites, échecs, formations, incidents, promotions et action de promotion sont conservés. F04.1 Recrutement reste validé en jeu.
+Référence de travail externe autorisée par l'utilisateur : LeGrizzly/FS25_EmployeeManager, branche fix/gui/refacto, à étudier pour la logique JobManager / ParkingManager / IA native FS25.
 
-## Correction F04 0.9.3.37
-
-Le premier recrutement F04 a révélé un défaut de traçabilité : les 350 € de frais de recrutement étaient débités de la trésorerie mais n'apparaissaient pas dans le relevé professionnel.
-
-Correction :
-- mouvement bancaire `PAYROLL_RECRUITMENT_FEE` créé après le débit ;
-- libellé `Salarié recruté` dans le relevé, avec catégorie et nom du salarié dans les tags ;
-- nom du salarié transmis avec le mouvement ;
-- solde après opération conservé ;
-- test de non-régression ajouté.
-
-Le prochain contrôle F04 porte uniquement sur ce recrutement, le relevé professionnel, l'absence de doublon et la persistance après sauvegarde/rechargement.
-
-## Validation F03 0.9.3.36
-
-La phase Banque est validée en jeu : convention fonctionnelle et persistante, horaires des banques physiques, banque en ligne 24/7, interface lisible et log AgriLife propre.
-
-## Synchronisation miroir GitHub
-
-La 0.9.3.38 doit restaurer sur `main` les sources Entreprise requises par le ZIP joueur, notamment `Enterprise6Service.lua`, `EnterpriseRoadmap4.lua` et `EnterpriseRoadmap4Completion.lua`, puis synchroniser les fichiers UI et de suivi de F04.2.
-
-## Préparation transversale 0.9.3.27
-
-Cette passe a été explicitement autorisée avant la reprise des tests. Elle écrit les systèmes mais ne les certifie pas en jeu.
-
-- séparation nom de ferme, forme juridique, activités et réseaux professionnels ;
-- formes EI, EARL, GAEC, SCEA, EURL, SARL, SASU et SAS ;
-- ETA raccordée aux prestations inter-exploitations ;
-- coopérative agricole raccordée aux offres commerciales compatibles ;
-- CUMA retirée des formes juridiques, migration conservée, sélection non activée tant que le matériel mutualisé n'est pas réellement jouable ;
-- conseiller de gestion dynamique connecté au recrutement et aux choix de structure ;
-- paiements de contrats AgriLife immédiats, mensuels ou différés ;
-- nouveaux contrats vanilla neutralisés ;
-- crédit vanilla neutralisé par UI et contrôle économique ;
-- reset matériel gratuit remplacé par récupération AgriLife lorsqu'un callback FS25 compatible est détecté ;
-- explication obligatoire avant chaque choix conséquent.
-
-
-## Règles permanentes
-
-- correction, test ciblé, validation complète, puis étape suivante ;
-- aucune fonction validée uniquement parce que son code existe ;
-- aucun tiret cadratin dans les contenus du projet ;
-- aucune attribution automatique à une IA ou à un fournisseur ;
-- aucun fichier déclaré synchronisé tant que sa présence et son contenu ne sont pas réellement vérifiés sur `main`.
-
-
-## Préparation transversale 0.9.3.28
-
-Écrite localement avant reprise des tests : calendrier 1-28 jours/mois, CUMA jouable, conseiller de gestion étendu, santé financière jusqu'à faillite, rémunération dirigeant, aide agricole annuelle et explications sur les investissements. Ces fonctions restent non certifiées en jeu.
-
-
-## F03 Banque 0.9.3.35
-
-Correction locale de la signature de convention : sélection banque/conseiller obligatoire avant signature, faux message de refus de crédit supprimé, conseiller obsolète masqué pendant le parcours, aperçu de prêt allégé pour la fluidité. Validation FS25 encore requise.
-## F03 Banque 0.9.3.36
-
-Ajout du statut d'ouverture directement sous la banque parcourue. Les banques physiques affichent leurs horaires 08:00-12:00 / 14:00-18:00 et leur état selon l'heure du jeu. Les banques numériques affichent 24/7. Le message de verrouillage ou de confirmation reste séparé. Validation FS25 requise.
+Note : le ZIP 0.9.3.57 reste la référence exécutable de test. Ce checkpoint documente l'avancement courant avant la prochaine passe d'intégration des ouvriers.
