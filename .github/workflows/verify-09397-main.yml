@@ -1,0 +1,97 @@
+name: Verify AgriLife 0.9.3.97 main
+
+on:
+  push:
+    branches:
+      - verify-0.9.3.97-main
+    paths:
+      - '.github/workflows/verify-09397-main.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  verify-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify main source
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '<version>0.9.3.97</version>' modDesc.xml
+          grep -q 'MOD = "0.9.3.97"' src/core/AgriLifeVersion.lua
+          grep -q 'PREVIOUS_MOD = "0.9.3.96"' src/core/AgriLifeVersion.lua
+          test "$(find translations -maxdepth 1 -name 'translation_*.xml' | wc -l)" -eq 27
+          if find . -type f \( -name '*.bak*' -o -name '*.tmp' \) | grep -q .; then exit 1; fi
+          test ! -e .sync_payload
+          printf '%s  %s\n' \
+            c9dd0a1586d0fc92cd49a9991cac22502b2c89e9 modDesc.xml \
+            b5a7d3b6539c1ca9c327cda8d82dbcd57cd605c3 TESTING.md \
+            a5e0703235d869654a6206fb2f6c1842bf9a9725 tools/verify_release.py \
+            20165f3fdf1e02d7b6dd738eb63019de607ba847 CHANGELOG.md \
+            f3e25eb1f43d5465215e394d55dd8d26f70ddfaf src/core/AgriLifePersistence.lua \
+            4ed3c3ed0d1c282d008044a512536c1ed9e61341 src/core/AgriLifeVersion.lua \
+            46088a73a2a0f94db0fc7e40b8216acf3978afac src/modules/compatibility/CompatibilityWorkerLifecycle09357.lua \
+            e104d074100964666c94f46205549ebcd90da228 ROADMAP.md \
+            e104d074100964666c94f46205549ebcd90da228 docs/ROADMAP.md \
+            8e4d9ea6fe066cc488f13958fda98af7c2859e49 docs/PROJECT_SYNC_STATUS.md \
+            918671946c658b8331cc204caedb25e39605aa23 docs/SOURCE_SYNC_MANIFEST.md \
+            70be0f367cc89eaf4c5463c39e78670b5a735882 textures/ui/menuIcon.dds \
+            33edbc3c5e84b67cd5678e235bb0bb06bde2fdd8 resources/ui/logo_horizontal.dds \
+            eec5d523904a11d76e9004d31b1de96e38d8335a icon.dds \
+            558796c209ffe4fe6fdc3ecc95bfcde9818ad917 resources/ui/tab_icon.dds \
+            69163391e78c78e86f18f1c52167009c19171ad1 resources/ui/logo_mark.dds \
+            a1d40e9b85b031bc6b64707b3bbe0f6b1647c1d8 gui/ui5/logo_mark.dds \
+            a8f599162761756900f316a64cb7baca7b6944fd gui/ui6icons/payroll.dds | while read -r expected path; do
+              test "$(git hash-object "$path")" = "$expected" || exit 1
+            done
+          printf '%s  %s\n' \
+            07c1cece8dc992944a71e88cb143acc4597838b8 translations/translation_nl.xml \
+            4d92bc2ec4bfa41081d7f52a5d6ede022fc4c21f translations/translation_ct.xml \
+            7f68df1faa9f11b2e6df960f506c0632ac791f7a translations/translation_tr.xml \
+            3164516c4c027da190def1a2817e2068b368d9cd translations/translation_fi.xml \
+            3b282db81e47ccb4492eefdf5cdd9ee05fa73e04 translations/translation_es.xml \
+            21a10d2819864ba5856083c7bf3c62aa256a09de translations/translation_da.xml \
+            443202526d1d4e6afeb8049ead08c17444f71e9b translations/translation_kr.xml \
+            06f1f5c4c3fb8c00174193ae5d86e85c7a9436c0 translations/translation_id.xml \
+            4793448f8f051772406513f2cd01a9931091a9ae translations/translation_sv.xml \
+            c5f72f767eb48e9b557bd2203467f2f26aac7f85 translations/translation_en.xml \
+            93ace6944a01b6df48f4a6d1bb7a88134eafcc62 translations/translation_fc.xml \
+            af41ced92db7a6df0f7f34dc3f89a317343ea360 translations/translation_ru.xml \
+            70bd54c81d93120af7e26f17c90256e3a0a3dacd translations/translation_hu.xml \
+            152ab065ddb3c9e9e103beedb221858ef6501609 translations/translation_de.xml \
+            50b4c2869099b11c4ac64f353a0f762bbc04b321 translations/translation_br.xml \
+            5785553a0de8eff59ae00374a5d67ed76c757845 translations/translation_cs.xml \
+            7cc0d10900db744418b33fe75e2cea82825e225d translations/translation_pl.xml \
+            5a88ee3fa2d50fd887bef8009e91e7ac8cb34738 translations/translation_no.xml \
+            8f063f7ab511f69f1c882ba7ede26901329fca7f translations/translation_cz.xml \
+            95c4cbab6b3cde5de77f5e289fb2e773f3e65cf8 translations/translation_uk.xml \
+            87adc1d678336c204f040631af9b4f547173b0af translations/translation_fr.xml \
+            d68d033314d9c4d457b658d969f1c910e6942247 translations/translation_pt.xml \
+            abebbae61e8ef57133837c3b41401b9db960fe73 translations/translation_jp.xml \
+            447d82119faf3f6a166bc64e7522e55511077720 translations/translation_it.xml \
+            dc0e30966bdd152ea44bac70fc29798daf66b8a8 translations/translation_vi.xml \
+            2f6cd22b6cc02ca2989deba25efe282ef9226f06 translations/translation_ro.xml \
+            920f33ec88db61313f421ce49313be3a4e662908 translations/translation_ea.xml | while read -r expected path; do
+              test "$(git hash-object "$path")" = "$expected" || exit 1
+            done
+          python tools/verify_release.py .
+
+      - name: Publish verification marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'squall39'
+          git config user.email '38831480+squall39@users.noreply.github.com'
+          git checkout --orphan verify-result
+          git rm -rf . >/dev/null 2>&1 || true
+          printf 'AgriLife Manager main verified at 0.9.3.97\n' > VERIFIED_0.9.3.97.txt
+          git add VERIFIED_0.9.3.97.txt
+          git commit -m 'Verify AgriLife Manager main at 0.9.3.97'
+          git push -f origin HEAD:verify-0.9.3.97-result
